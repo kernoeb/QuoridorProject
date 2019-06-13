@@ -61,5 +61,4 @@ public abstract class Player {
 		// TODO - implement player.checkExistingPath
 		return true;
 	}
-
 }
