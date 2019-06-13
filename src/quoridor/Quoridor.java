@@ -31,7 +31,7 @@ public class Quoridor {
 			Mode mode = Mode.valueOf(list.get(0));
 			this.game = new Game(mode, namePlayer1, namePlayer2);
 		} catch(Exception e) {
-			System.err.println("Quoridor : " +e.getMessage());
+			System.err.println("Quoridor : " + e.getMessage());
 		}
 	}
 
@@ -45,9 +45,8 @@ public class Quoridor {
 	public Quoridor(Mode mode, String namePlayer1, String namePlayer2) {
 		try {
 			this.game = new Game(mode, namePlayer1, namePlayer2);
-
-		} catch(Exception e) {
-			System.err.println("Quoridor : "+e.getMessage());
+		} catch (Exception e) {
+			System.err.println("Quoridor : " + e.getMessage());
 		}
 	}
 
