@@ -18,7 +18,6 @@ public abstract class Player {
 	 */
 	public Player(String name, Board board) {
 		// TODO - implement Player.Player
-		throw new UnsupportedOperationException();
 	}
 
 	public Pawn getPawn() {
@@ -35,13 +34,13 @@ public abstract class Player {
 	 */
 	public int checkNbRestingFences() {
 		// TODO - implement Player.checkNbRestingFences
-		throw new UnsupportedOperationException();
+		return 0;
 	}
 
 
 	public boolean checkHasFinished(){
 		// TODO - Player.checkHasFinished
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	public void setNbFences(int nb) {
@@ -55,12 +54,12 @@ public abstract class Player {
 	 */
 	public boolean checkFencePossible(Square square) {
 		// TODO - implement Player.checkFencePossible
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	public boolean checkExistingPath(){
 		// TODO - implement player.checkExistingPath
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 }

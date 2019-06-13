@@ -24,30 +24,25 @@ public class Board {
 	 */
 	public Board() {
 		// TODO - implement Board.Board
-		// throw new UnsupportedOperationException();
 	}
 
 	public int getSIZE() {
 		// TODO - implement Board.getSIZE
-		// throw new UnsupportedOperationException();
 		return this.SIZE;
 	}
 
 	public ArrayList<Square> getGrid() {
 		// TODO - implement Board.getGrid
-		// throw new UnsupportedOperationException();
 		return this.grid;
 	}
 
 	public void initializeBoard() {
 		// TODO - implement Board.initializeBoard
-		// throw new UnsupportedOperationException();
 	}
 
 	public ArrayList<Square> listOfPossibilitiesFence() {
 		ArrayList<Square> al = new ArrayList<Square>();
 		// TODO - implement Board.listOfPossibilitiesFence
-		// throw new UnsupportedOperationException();
 		return al;
 	}
 
@@ -58,13 +53,11 @@ public class Board {
 	public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
 		ArrayList<Square> al = new ArrayList<Square>();
 		// TODO - implement Board.listOfPossibilitiesPawn
-		// throw new UnsupportedOperationException();
-		return al; 
+		return al;
 	}
 
 	public String toString() {
 		// TODO - implement Board.toString
-		// throw new UnsupportedOperationException();
 		return "";
 	}
 

@@ -32,7 +32,6 @@ public class Square {
 	 */
 	public Square() {
 		// TODO - implement Square.Square
-		throw new UnsupportedOperationException();
 	}
 
 	public StatusFence getStatusFence() {
@@ -53,17 +52,17 @@ public class Square {
 
 	public boolean getFenceN() {
 		// TODO - implement Square.getFenceStatusN
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	public boolean getFenceE() {
 		// TODO - implement Square.getFenceStatusE
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	public boolean getFenceS() {
 		// TODO - implement Square.getFenceStatusS
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	public void setFenceE(boolean fenceE) {

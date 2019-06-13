@@ -64,7 +64,6 @@ public class Quoridor {
 	 */
 	public Game loadOldGame() {
 		// TODO - implement Quoridor.loadOldGame
-		// throw new UnsupportedOperationException();
 		return this.game;
 	}
 
@@ -75,7 +74,6 @@ public class Quoridor {
 	 */
 	public void launchGame(Game game) {
 		// TODO - implement Quoridor.launchGame
-		// throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -85,7 +83,6 @@ public class Quoridor {
 	 */
 	public void saveGame(Game game) {
 		// TODO - implement Quoridor.saveGame
-		// throw new UnsupportedOperationException();
 	}
 
 }

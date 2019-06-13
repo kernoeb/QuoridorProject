@@ -21,7 +21,6 @@ public class AutoPlayer extends Player {
 	 */
 	public void play() {
 		// TODO - implement AutoPlayer.play
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -32,7 +31,6 @@ public class AutoPlayer extends Player {
 	 */
 	private void playFence() {
 		// TODO - implement AutoPlayer.playFence
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -42,7 +40,6 @@ public class AutoPlayer extends Player {
 	 */
 	private void playPawn() {
 		// TODO - implement AutoPlayer.playPawn
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -52,7 +49,7 @@ public class AutoPlayer extends Player {
 	 */
 	public boolean checkHasFinished(Player player) {
 		// TODO - implement Board.checkHasFinished
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 
@@ -62,6 +59,6 @@ public class AutoPlayer extends Player {
 	 */
 	public boolean checkExistingPath() {
 		// TODO - implement Board.checkExistingPath
-		throw new UnsupportedOperationException();
+		return true;
 	}
 }

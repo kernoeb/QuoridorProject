@@ -28,8 +28,8 @@ public class Game {
 	 * @author
 	 */
 	public Game(Mode mode, String namePlayer1, String namePlayer2) {
-
 		this.board = new Board();
+
 		if (mode == Mode.HH) {
 			this.player1 = new HumanPlayer(namePlayer1, this.board);
 			this.player2 = new HumanPlayer(namePlayer2, this.board);
@@ -39,9 +39,6 @@ public class Game {
 			this.player1 = new HumanPlayer(namePlayer1, this.board);
 			this.player2 = new AutoPlayer(namePlayer2, this.board);
 		}
-
-		// TODO - implement Game.Game
-		// throw new UnsupportedOperationException();
 	}
 
 	public Board getBoard() {
@@ -60,7 +57,12 @@ public class Game {
 	 * @param board the desired board to play the game with.
 	 */
 	public void setBoard(Board board) {
-		this.board = board;
+		if(board != null) {
+			this.board = board;
+		}
+		else {
+			System.err.println("setBoard : Paramètre non valide");
+		}
 	}
 
 	/**
@@ -68,7 +70,6 @@ public class Game {
 	 */
 	public void initializeGame() {
 		// TODO - implement Game.initializeGame
-		// throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -77,7 +78,6 @@ public class Game {
 	 */
 	public Player whoStarts() {
 		// TODO - implement Game.whoStarts
-		// throw new UnsupportedOperationException();
 		return this.player1; // à changer
 	}
 
@@ -86,7 +86,6 @@ public class Game {
 	 */
 	public void start() {
 		// TODO - implement Game.start
-		// throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -94,12 +93,10 @@ public class Game {
 	 */
 	public void endOfGame() {
 		// TODO - implement Game.endOfGame
-		// throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
 		// TODO - implement Game.toString
-		// throw new UnsupportedOperationException();
 		return "";
 	}
 

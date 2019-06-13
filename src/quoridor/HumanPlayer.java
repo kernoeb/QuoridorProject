@@ -28,7 +28,6 @@ public class HumanPlayer extends Player {
 	 */
 	public void play() {
 		// TODO - implement HumanPlayer.play
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -40,7 +39,6 @@ public class HumanPlayer extends Player {
 	 */
 	private void playFence(Scanner scan) {
 		// TODO - implement HumanPlayer.playFence
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -51,7 +49,6 @@ public class HumanPlayer extends Player {
 	 */
 	private void playPawn(Scanner scan) {
 		// TODO - implement HumanPlayer.playPawn
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -61,7 +58,7 @@ public class HumanPlayer extends Player {
 	 */
 	public boolean checkHasFinished() {
 		// TODO - implement Board.checkHasFinished
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 	/**
@@ -70,7 +67,7 @@ public class HumanPlayer extends Player {
 	 */
 	public boolean checkExistingPath() {
 		// TODO - implement HumanPlayer.java
-		throw new UnsupportedOperationException();
+		return true;
 	}
 
 }

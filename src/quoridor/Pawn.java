@@ -7,40 +7,40 @@ package quoridor;
 public class Pawn {
 
 	private Square currentSquare;
+	private int x;
+	private int y;
 
 	/**
-	 * 
+	 *
 	 * @param x
 	 * @param y
 	 */
 	public Pawn(int x, int y) {
 		// TODO - implement Pawn.Pawn
-		throw new UnsupportedOperationException();
 	}
 
 	public int getX() {
 		// TODO - implement Pawn.getX
-		throw new UnsupportedOperationException();
+		return this.x;
 	}
 
 	public int getY() {
 		// TODO - implement Pawn.getY
-		throw new UnsupportedOperationException();
+		return this.y;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param x
 	 * @param y
 	 */
 	public void setPosition(int x, int y) {
 		// TODO - implement Pawn.setPosition
-		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
 		// TODO - implement Pawn.toString
-		throw new UnsupportedOperationException();
+		return "";
 	}
 
 }
