@@ -39,9 +39,9 @@ public class Game {
 			this.player1 = new HumanPlayer(namePlayer1, this.board);
 			this.player2 = new AutoPlayer(namePlayer2, this.board);
 		}
-		
+
 		// TODO - implement Game.Game
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
 	}
 
 	public Board getBoard() {
@@ -68,7 +68,7 @@ public class Game {
 	 */
 	public void initializeGame() {
 		// TODO - implement Game.initializeGame
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -77,7 +77,8 @@ public class Game {
 	 */
 	public Player whoStarts() {
 		// TODO - implement Game.whoStarts
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
+		return this.player1; // à changer
 	}
 
 	/**
@@ -85,7 +86,7 @@ public class Game {
 	 */
 	public void start() {
 		// TODO - implement Game.start
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -93,12 +94,13 @@ public class Game {
 	 */
 	public void endOfGame() {
 		// TODO - implement Game.endOfGame
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
 		// TODO - implement Game.toString
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
+		return "";
 	}
 
 }
