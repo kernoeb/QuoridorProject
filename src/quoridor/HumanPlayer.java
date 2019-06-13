@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 
 public class HumanPlayer extends Player {
-
-	private String name;
 	private Scanner scan;
 
 	/**
