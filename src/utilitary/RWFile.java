@@ -33,7 +33,7 @@ public class RWFile {
 			}
 		}
 		else {
-			System.err.println("readFile : fileName n'est pas valide.");
+			System.err.println("readFile : Paramètre non valide.");
 		}
 
 		return ret;
