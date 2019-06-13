@@ -1,0 +1,48 @@
+<project name="Quoridor" default="run" basedir=".">
+	<description>
+		Automatisation des tâches et exécution du fichier .jar de l'application
+	<description/>
+
+	<!-- Définition des principales propriétés du fichier-->
+	<property name="src" value="src"/>
+	<property name="buildJar" value="buildJar"/>
+	<property name="jar" value="jar"/>
+
+	<target name="init">
+		<!-- Définition du tstamp pour obtenir des éléments de date et heure -->
+		<tstamp/>
+
+		<!-- Création du dossier class qui contiendra les fichiers compilés -->
+		<mkdir dir="${buildJar}"/>
+	<target/>
+
+	<target name="compile" depends="init" description="Compilation des fichiers sources">
+		<!-- Compilation des fichiers sources présents dans ${src} en fichiers class dans le dossier ${buildJar} -->
+		<javac srcdir="${src}" destdir="${buildJar}" encoding="utf8"/>
+	<target/>
+
+	<target name="createJar" depends="compile" description="Création du fichier .jar">
+		<!-- Création du dossier qui contiendra le fichier .jar -->
+		<mkdir dir="${jar}"/>
+		<!-- Création du fichier .jar à partir de l'ensemble des fichiers class du dossier ${buildJar} -->
+		<jar jarfile="${jar}/${ant.project.name}.jar" basedir="${buildJar}">
+		<fileset dir="${src}">
+			<include name="data/pics/*.png" />
+		</fileset>
+		<manifest>
+			<attribute name="Main-Class" value="Launcher"/>
+		</manifest>
+		</jar>
+	<target/>
+
+	<target name="clean" depends="createJar"/>
+		<!-- Suppression du fichier temporaire ${buildJar} -->
+		<delete dir="${buildJar}"/>
+	<target/>
+
+	<target name="run" depends="clean" description="Exécution du fichier .jar"/>
+		<!-- Exécution du fichier .jar créé
+			 L'attribut fork permet d'exécuter ce .jar dans une autre JVM -->
+		<java jar="${jar}/${ant.project.name}.jar" fork="true"/>
+	<target/>
+<project/>		
