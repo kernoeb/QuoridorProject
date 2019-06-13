@@ -1,7 +1,9 @@
 package quoridor;
 
 public enum Status {
-	NONE,
-	Player1,
-	Player2
+	FENCEPOSSIBLE,
+	FENCE,
+	PAWNPOSSIBLE,
+	PAWN1,
+	PAWN2
 }
