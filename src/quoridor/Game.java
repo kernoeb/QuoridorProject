@@ -39,12 +39,7 @@ public class Game {
 			this.player1 = new HumanPlayer(namePlayer1, this.board);
 			this.player2 = new AutoPlayer(namePlayer2, this.board);
 		}
-
-		else if (mode == Mode.AA) {
-			this.player1 = new AutoPlayer(namePlayer1, this.board);
-			this.player2 = new AutoPlayer(namePlayer2, this.board);
-		}
-
+		
 		// TODO - implement Game.Game
 		throw new UnsupportedOperationException();
 	}

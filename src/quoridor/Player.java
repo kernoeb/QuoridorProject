@@ -16,7 +16,7 @@ public abstract class Player {
 	 * it cans either be human or bot
 	 * it has a dedidcated pawn and a number of fences left.
 	 */
-	public Player() {
+	public Player(String name, Board board) {
 		// TODO - implement Player.Player
 		throw new UnsupportedOperationException();
 	}
