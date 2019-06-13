@@ -37,7 +37,7 @@ public class Launcher {
 					loc = args[0];
 					System.out.println("Chosen config : " + args[0]);
 				}
-				
+
 			} catch (Exception e) {
 				System.out.println("Mode not set");
 				loc = "config/config.txt";
@@ -72,7 +72,7 @@ public class Launcher {
 
 			System.out.println("Aucun argument, lancement du config.txt");
 			// Quoridor quoridor = new Quoridor("config/config.txt", "Red user", "Green user", 1);
-			Quoridor quoridor = new Quoridor("config/config.txt", "Red user", "Green user", 1);
+			Quoridor quoridor = new Quoridor("config/config.txt", "Red user", "Green user");
 		}
 
 	}
