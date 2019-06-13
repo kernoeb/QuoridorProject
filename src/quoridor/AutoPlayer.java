@@ -10,8 +10,7 @@ public class AutoPlayer extends Player {
 	 * @author
 	 */
 	public AutoPlayer(String name, Board board) {
-		// TODO - implement AutoPlayer.AutoPlayer
-		throw new UnsupportedOperationException();
+		super(name, board);
 	}
 
 	/**

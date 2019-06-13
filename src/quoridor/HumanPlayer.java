@@ -18,8 +18,8 @@ public class HumanPlayer extends Player {
 	 * @author
 	 */
 	public HumanPlayer(String name, Board board) {
-		// TODO - implement HumanPlayer.HumanPlayer
-		throw new UnsupportedOperationException();
+		super(name, board);
+		this.scan = new Scanner(System.in);
 	}
 
 	/**
