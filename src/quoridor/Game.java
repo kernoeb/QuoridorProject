@@ -27,7 +27,10 @@ public class Game {
 	 * The mode is choosen by the players with a scanner
 	 * @author
 	 */
-	public Game() {
+	public Game(Mode mode, String namePlayer1, String namePlayer2) {
+
+		this.board = new Board();
+
 		// TODO - implement Game.Game
 		throw new UnsupportedOperationException();
 	}

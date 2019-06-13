@@ -20,6 +20,9 @@ public class Launcher {
 	 */
 	public static void main(String[] args) {
 
+		// Récupérer nom du fichier en argument
+		Quoridor quoridor = new Quoridor("file.txt", "Paul", "Antoine");
+
 	}
 
 }

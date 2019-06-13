@@ -22,7 +22,19 @@ public class Quoridor {
 	 * @param fileName path to the file where the current game will be saved in
 	 * @author
 	 */
-	public Quoridor(String fileName) {
+	public Quoridor(String fileName, String namePlayer1, String namePlayer2) {
+
+		// Récupérer le mode inscrit dans le fichier
+		// try {
+		// 
+		// } catch (Exception e) {
+		//    // Si rien inscrit dans le fichier ou erreur quelconque
+		// }
+		
+		Mode mode = HH;
+		Game game = new Game(mode, namePlayer1, namePlayer2);
+
+
 		// TODO - implement Quoridor.Quoridor
 		throw new UnsupportedOperationException();
 	}
