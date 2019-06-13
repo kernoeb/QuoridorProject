@@ -23,7 +23,7 @@ public class Board {
 	 * Initialize walls and positionates players on their starting positions
 	 */
 	public Board() {
-		this.grid = new Square[SIZE][SIZE]; 
+		this.grid = new Square[SIZE+8][SIZE+8]; 
 		initializeBoard();
 	}
 
@@ -36,14 +36,16 @@ public class Board {
 	}
 
 	public void initializeBoard() {
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				this.grid[i][j] = new Square(i, j, Status.NONE);
+		for (int i = 0; i <= SIZE+7; i++) {
+			for (int j = 0; j <= SIZE+7; j++) {
+				if (i % 2 == 0 && j % 2 != 0) this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLEV);
+				else if (i % 2 != 0) this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLEH);
+				else this.grid[i][j] = new Square(i, j, Status.PAWNPOSSIBLE);
 			}
 		}
 
-		this.grid[0][4] = new Square(0, 4, Status.Player1);
-		this.grid[8][4] = new Square(8, 4, Status.Player2);
+		this.grid[0*2][4*2] = new Square(0*2, 4*2, Status.PAWN1);
+		this.grid[8*2][4*2] = new Square(8*2, 4*2, Status.PAWN2);
 	}
 
 	public ArrayList<Square> listOfPossibilitiesFence() {
@@ -62,11 +64,16 @@ public class Board {
 
 	public String toString() {
 		String ret = "";
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (this.grid[i][j].getStatus() == Status.NONE) System.out.print(" \u001B[37mX ");;
-				if (this.grid[i][j].getStatus() == Status.Player1) System.out.print(" \u001B[32mX ");;
-				if (this.grid[i][j].getStatus() == Status.Player2) System.out.print(" \u001B[31mX ");;
+		for (int i = 0; i <= SIZE+7; i++) {
+			for (int j = 0; j <= SIZE+7; j++) {
+				if ((j > 8) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) System.out.print(" \u001B[37m─ +");
+				if ((i % 2 != 0) && (j == 16)) System.out.print(" \u001B[37m─"); 
+				else {
+					if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) System.out.print(" \u001B[37mX ");
+					if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEV) System.out.print("\u001B[37m|");
+					if (this.grid[i][j].getStatus() == Status.PAWN1) System.out.print(" \u001B[32mX ");
+					if (this.grid[i][j].getStatus() == Status.PAWN2) System.out.print(" \u001B[31mX ");
+				}
 			}
 			System.out.println("\u001B[0m");
 		}
