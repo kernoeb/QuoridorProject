@@ -80,7 +80,9 @@ public class HumanPlayer extends Player {
 	private void playPawn() {
 		// TODO - implement HumanPlayer.playPawn
 		System.out.println("Vous pouvez jouer un pion sur les cases :");
-		this.board.printListOfPossibilitiesPawn();
+		
+		// À corriger /!\
+		// this.board.printListOfPossibilitiesPawn();
 
 		System.out.println("Sur quelle case voulez-vous jouer ?");
 		int x = this.askX();
@@ -115,10 +117,10 @@ public class HumanPlayer extends Player {
 		while((y < 0) || (y >= this.board.getSIZE())) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
 			System.out.print(this.name + "Coordonnée y : ");
-			x = this.scan.nextInt();
+			y = this.scan.nextInt();
 		}
 
-		return x;
+		return y;
 	}
 
 	/**
