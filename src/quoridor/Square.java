@@ -1,7 +1,6 @@
 package quoridor;
 
 // import Project
-import quoridor.StatusFence;
 import quoridor.Status;
 
 //import java
@@ -13,16 +12,6 @@ public class Square {
 	private int y;
 
 	private Status status; // if it contains player 1 / player 2 or none
-
-
-	private StatusFence statusFence; // gets it from the enumeration statusFence
-
-	// true if there is a fence, false otherwise
-	private boolean fenceN;
-	private boolean fenceE;
-	private boolean fenceS;
-	private boolean fenceW;
-
 
 	/**
 	 * Square constructor
@@ -37,10 +26,6 @@ public class Square {
 		// TODO - implement Square.Square
 	}
 
-	public StatusFence getStatusFence() {
-		return statusFence;
-	}
-
 	public Status getStatus() {
 		return this.status;
 	}
@@ -53,34 +38,9 @@ public class Square {
 		return this.y;
 	}
 
-	public boolean getFenceN() {
-		// TODO - implement Square.getFenceStatusN
-		return true;
+	public void setAsFence() {
+		this.status = Status.FENCE;
 	}
 
-	public boolean getFenceE() {
-		// TODO - implement Square.getFenceStatusE
-		return true;
-	}
-
-	public boolean getFenceS() {
-		// TODO - implement Square.getFenceStatusS
-		return true;
-	}
-
-	public void setFenceE(boolean fenceE) {
-		this.fenceE = fenceE;
-	}
-
-	public void setFenceN(boolean fenceN) {
-		this.fenceN = fenceN;
-	}
-
-	public void setFenceS(boolean fenceS) {
-		this.fenceS = fenceS;
-	}
-
-	public void setFenceW(boolean fenceW) {
-		this.fenceW = fenceW;
-	}
+	
 }

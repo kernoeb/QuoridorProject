@@ -9,7 +9,7 @@ public abstract class Player {
 	protected Board board;
 	protected Pawn pawn;
 	protected String name;
-	private int nbFences;
+	protected int nbFences;
 
 	/**
 	 * Player constructor
@@ -18,6 +18,14 @@ public abstract class Player {
 	 */
 	public Player(String name, Board board) {
 		// TODO - implement Player.Player
+		if((name != null) && (board != null)) {
+			this.name = name;
+			this.board = board;
+			this.nbFences = 0;
+		}
+		else {
+			System.err.println("Player : Paramètre(s) non valide(s).");
+		}
 	}
 
 	public Pawn getPawn() {
@@ -37,6 +45,7 @@ public abstract class Player {
 		return 0;
 	}
 
+	public abstract void play();
 
 	public boolean checkHasFinished(){
 		// TODO - Player.checkHasFinished
@@ -61,5 +70,4 @@ public abstract class Player {
 		// TODO - implement player.checkExistingPath
 		return true;
 	}
-
 }

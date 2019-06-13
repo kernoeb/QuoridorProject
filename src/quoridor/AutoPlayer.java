@@ -1,9 +1,6 @@
 package quoridor;
 
 public class AutoPlayer extends Player {
-
-	private String name;
-
 	/**
 	 * AutoPlayer constructor
 	 * @param name
