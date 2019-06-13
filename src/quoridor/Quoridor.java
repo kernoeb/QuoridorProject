@@ -4,6 +4,8 @@ package quoridor;
 import quoridor.Game;
 import utilitary.RWFile;
 
+import java.util.ArrayList;
+
 // java import
 
 /**
