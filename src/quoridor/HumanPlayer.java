@@ -17,7 +17,7 @@ public class HumanPlayer extends Player {
 	 * @param name
 	 * @author
 	 */
-	public HumanPlayer(String name) {
+	public HumanPlayer(String name, Board board) {
 		// TODO - implement HumanPlayer.HumanPlayer
 		throw new UnsupportedOperationException();
 	}

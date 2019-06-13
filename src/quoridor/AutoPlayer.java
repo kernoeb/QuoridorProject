@@ -9,7 +9,7 @@ public class AutoPlayer extends Player {
 	 * @param name
 	 * @author
 	 */
-	public AutoPlayer(String name) {
+	public AutoPlayer(String name, Board board) {
 		// TODO - implement AutoPlayer.AutoPlayer
 		throw new UnsupportedOperationException();
 	}

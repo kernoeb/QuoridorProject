@@ -30,6 +30,20 @@ public class Game {
 	public Game(Mode mode, String namePlayer1, String namePlayer2) {
 
 		this.board = new Board();
+		if (mode == Mode.HH) {
+			this.player1 = new HumanPlayer(namePlayer1, this.board);
+			this.player2 = new HumanPlayer(namePlayer2, this.board);
+		}
+
+		else if (mode == Mode.HA) {
+			this.player1 = new HumanPlayer(namePlayer1, this.board);
+			this.player2 = new AutoPlayer(namePlayer2, this.board);
+		}
+
+		else if (mode == Mode.AA) {
+			this.player1 = new AutoPlayer(namePlayer1, this.board);
+			this.player2 = new AutoPlayer(namePlayer2, this.board);
+		}
 
 		// TODO - implement Game.Game
 		throw new UnsupportedOperationException();
