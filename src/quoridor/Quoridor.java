@@ -5,6 +5,7 @@ import quoridor.Game;
 import utilitary.RWFile;
 
 import java.util.ArrayList;
+import java.io.*;
 
 // java import
 
@@ -27,13 +28,10 @@ public class Quoridor {
 	public Quoridor(String fileName, String namePlayer1, String namePlayer2) {
 		try {
 			ArrayList<String> list = RWFile.readFile(fileName);
-			Mode mode = list.get(0);
+			Mode mode = Mode.valueOf(list.get(0));
 			this.game = new Game(mode, namePlayer1, namePlayer2);
-
-		} catch (FileNotFoundException e) {
-		   System.err.println("Quoridor : "+e.getMessage());
 		} catch(Exception e) {
-			System.err.println("Quoridor : "+e.getMessage());
+			System.err.println("Quoridor : " +e.getMessage());
 		}
 	}
 

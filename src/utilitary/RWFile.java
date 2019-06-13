@@ -27,7 +27,9 @@ public class RWFile {
 
 				in.close();
 			} catch(FileNotFoundException e) {
-				System.err.println("readFile : "+e.getMessage());
+				System.err.println("readFile : " + e.getMessage());
+			} catch (IOException ex) {
+				System.err.println("readFile : " + ex.getMessage());
 			}
 		}
 		else {
