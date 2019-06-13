@@ -23,20 +23,32 @@ public class Quoridor {
 	 * @author
 	 */
 	public Quoridor(String fileName, String namePlayer1, String namePlayer2) {
+		try {
+			ArrayList<String> list = RWFile.readFile(fileName);
+			Mode mode = list.get(0);
+			this.game = new Game(mode, namePlayer1, namePlayer2);
 
-		// Récupérer le mode inscrit dans le fichier
-		// try {
-		// 
-		// } catch (Exception e) {
-		//    // Si rien inscrit dans le fichier ou erreur quelconque
-		// }
-		
-		Mode mode = HH;
-		Game game = new Game(mode, namePlayer1, namePlayer2);
+		} catch (FileNotFoundException e) {
+		   System.err.println("Quoridor : "+e.getMessage());
+		} catch(Exception e) {
+			System.err.println("Quoridor : "+e.getMessage());
+		}
+	}
 
+	/**
+	 * Quoridor constructor
+	 * Create an object Quoridor
+	 * Serve as a platform to load and launch games
+	 * @param fileName path to the file where the current game will be saved in
+	 * @author
+	*/
+	public Quoridor(Mode mode, String namePlayer1, String namePlayer2) {
+		try {
+			this.game = new Game(mode, namePlayer1, namePlayer2);
 
-		// TODO - implement Quoridor.Quoridor
-		throw new UnsupportedOperationException();
+		} catch(Exception e) {
+			System.err.println("Quoridor : "+e.getMessage());
+		}
 	}
 
 	/**
