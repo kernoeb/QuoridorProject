@@ -43,11 +43,11 @@ public class Quoridor {
 	 * @author
 	*/
 	public Quoridor(Mode mode, String namePlayer1, String namePlayer2) {
-		try {
+		// try {
 			this.game = new Game(mode, namePlayer1, namePlayer2);
-		} catch (Exception e) {
-			System.err.println("Quoridor : " + e.getMessage());
-		}
+		// } catch (Exception e) {
+			// System.err.println("Quoridor : " + e.getMessage());
+		// }
 	}
 
 	/**

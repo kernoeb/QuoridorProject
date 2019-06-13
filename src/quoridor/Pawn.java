@@ -34,7 +34,10 @@ public class Pawn {
 	 * @param x
 	 * @param y
 	 */
-	public void setPosition(int x, int y) {
+	// public void setPosition(int x, int y) {
+	
+	// Move +1 / -1 on X and Y  
+	public void movePawn(int x, int y, boolean diag) {
 		// TODO - implement Pawn.setPosition
 	}
 

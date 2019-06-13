@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Board {
 
 	private int SIZE = 9;
-	private ArrayList<Square> grid;
+	private Square[][] grid;
 
 	/**
 	 * Board constructor
@@ -23,26 +23,31 @@ public class Board {
 	 * Initialize walls and positionates players on their starting positions
 	 */
 	public Board() {
-		// TODO - implement Board.Board
+		this.grid = new Square[SIZE][SIZE]; 
+		initializeBoard();
 	}
 
 	public int getSIZE() {
-		// TODO - implement Board.getSIZE
 		return this.SIZE;
 	}
 
-	public ArrayList<Square> getGrid() {
-		// TODO - implement Board.getGrid
+	public Square[][] getGrid() {
 		return this.grid;
 	}
 
 	public void initializeBoard() {
-		// TODO - implement Board.initializeBoard
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				this.grid[i][j] = new Square(i, j, Status.NONE);
+			}
+		}
+
+		this.grid[0][4] = new Square(0, 4, Status.Player1);
+		this.grid[8][4] = new Square(8, 4, Status.Player2);
 	}
 
 	public ArrayList<Square> listOfPossibilitiesFence() {
 		ArrayList<Square> al = new ArrayList<Square>();
-		// TODO - implement Board.listOfPossibilitiesFence
 		return al;
 	}
 
@@ -52,12 +57,19 @@ public class Board {
 	 */
 	public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
 		ArrayList<Square> al = new ArrayList<Square>();
-		// TODO - implement Board.listOfPossibilitiesPawn
 		return al;
 	}
 
 	public String toString() {
-		// TODO - implement Board.toString
+		String ret = "";
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (this.grid[i][j].getStatus() == Status.NONE) System.out.print(" \u001B[37mX ");;
+				if (this.grid[i][j].getStatus() == Status.Player1) System.out.print(" \u001B[32mX ");;
+				if (this.grid[i][j].getStatus() == Status.Player2) System.out.print(" \u001B[31mX ");;
+			}
+			System.out.println("\u001B[0m");
+		}
 		return "";
 	}
 
