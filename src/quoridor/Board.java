@@ -104,37 +104,38 @@ public class Board {
 
 	public String toString() {
 		String ret = "";
-	//
-	// 	for (int i = 0; i <= this.getTotalSize(); i++) {
-	// 		for (int j = 0; j <= this.getTotalSize(); j++) {
-	// 			if ((j > (this.SIZE - 1)) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) {
-	// 				ret += this.ANSI_BLACK + "─ +";
-	// 			}
-	//
-	// 			if (this.isOddNumber(i) && (j == (this.getTotalSize() - 1))) {
-	// 				ret += this.ANSI_BLACK + "─";
-	// 			}
-	//
-	// 			else {
-	// 				if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) {
-	// 					System.out.print(this.ANSI_WHITE + "X ");
-	// 				}
-	// 				else if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
-	// 					ret += this.ANSI_BLACK + "|";
-	// 				}
-	//
-	// 				else if (this.grid[i][j].getStatus() == Status.PAWN1) {
-	// 					ret += this.ANSI_GREEN + "X ";
-	// 				}
-	//
-	// 				else if (this.grid[i][j].getStatus() == Status.PAWN2) {
-	// 					ret += this.ANSI_RED + "X ";
-	// 			}
-	// 		}
-	//
-	// 		ret += this.ANSI_RESET + "\n";
-	// 	}
-	//
+	
+		for (int i = 0; i <= this.getTotalSize(); i++) {
+			for (int j = 0; j <= this.getTotalSize(); j++) {
+				if ((j > (this.SIZE - 1)) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
+					ret += this.ANSI_BLACK + "─ +";
+				}
+	
+				if (this.isOddNumber(i) && (j == (this.getTotalSize() - 1))) {
+					ret += this.ANSI_BLACK + "─";
+				}
+	
+				else {
+					if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) {
+						System.out.print(this.ANSI_WHITE + "X ");
+					}
+					else if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
+						ret += this.ANSI_BLACK + "|";
+					}
+	
+					else if (this.grid[i][j].getStatus() == Status.PAWN1) {
+						ret += this.ANSI_GREEN + "X ";
+					}
+	
+					else if (this.grid[i][j].getStatus() == Status.PAWN2) {
+						ret += this.ANSI_RED + "X ";
+					}
+				}
+			}
+	
+			ret += this.ANSI_RESET + "\n";
+		}
+	
 		return ret;
 	}
 
