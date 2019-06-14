@@ -38,12 +38,13 @@ public class Square {
 		return this.y;
 	}
 
-	public void setAsFence() {
-		this.status = Status.FENCE;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public boolean isFence() {
-		return (this.status == Status.FENCE) || (this.status == Status.FENCEPOSSIBLE);
+		return (this.status == Status.FENCEPOSSIBLE) || (this.status == Status.FENCEPAWN1)
+			|| (this.status == Status.FENCEPAWN2);
 	}
 
 	public boolean isFencePawn1() {
@@ -59,7 +60,7 @@ public class Square {
 	}
 
 	public boolean isPawn() {
-		return this.status == Status.PAWN1 || this.status == Status.PAWN2 || this.status == Status.PAWNPOSSIBLE;
+		return (this.status == Status.PAWN1) || (this.status == Status.PAWN2) || (this.status == Status.PAWNPOSSIBLE);
 	}
 
 	public boolean isPawnPossible() {
