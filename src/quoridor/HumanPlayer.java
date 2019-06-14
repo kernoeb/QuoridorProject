@@ -99,7 +99,7 @@ public class HumanPlayer extends Player {
 		System.out.print(this.name + "Coordonnée x : ");
 		x = this.scan.nextInt();
 
-		while((x < 0) || (x >= ((this.board.getSIZE() * 2) + 1)) {
+		while((x < 0) || (x >= ((this.board.getSIZE() * 2) + 1))) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
 			System.out.print(this.name + "Coordonnée x : ");
 			x = this.scan.nextInt();
@@ -115,7 +115,7 @@ public class HumanPlayer extends Player {
 		System.out.print(this.name + "Coordonnée y : ");
 		y = this.scan.nextInt();
 
-		while((y < 0) || (y >= ((this.board.getSIZE() * 2) + 1)) {
+		while((y < 0) || (y >= ((this.board.getSIZE() * 2) + 1))) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
 			System.out.print(this.name + "Coordonnée y : ");
 			y = this.scan.nextInt();

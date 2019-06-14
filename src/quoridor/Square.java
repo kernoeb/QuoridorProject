@@ -42,5 +42,37 @@ public class Square {
 		this.status = Status.FENCE;
 	}
 
-	
+	public boolean isFence() {
+		return this.status == Status.FENCE || this.status == Status.FENCEPOSSIBLEH || this.status == Status.FENCEPOSSIBLEV;
+	}
+
+	public boolean isFencePossible() {
+		return this.status == Status.FENCEPOSSIBLEV || this.status == Status.FENCEPOSSIBLEH;
+	}
+
+	public boolean isFencePossibleV() {
+		return this.status == Status.FENCEPOSSIBLEV;
+	}
+
+	public boolean isFencePossibleH() {
+		return this.status == Status.FENCEPOSSIBLEH;
+	}
+
+	public boolean isPawn() {
+		return this.status == Status.PAWN1 || this.status == Status.PAWN2 || this.status == Status.PAWNPOSSIBLE;
+	}	
+
+	public boolean isPawnPossible() {
+		return this.status == Status.PAWNPOSSIBLE;
+	}
+
+	public boolean isPawn1() {
+		return this.status == Status.PAWN1;
+	}
+
+	public boolean isPawn2() {
+		return this.status == Status.PAWN2;
+	}
+
+
 }

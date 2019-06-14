@@ -98,7 +98,7 @@ public class Game {
 		}
 
 		else {
-			System.err.println("checkHasFinished : Paramètre non valide.")
+			System.err.println("checkHasFinished : Paramètre non valide.");
 		}
 
 		return ret;
