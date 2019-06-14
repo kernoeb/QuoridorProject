@@ -44,8 +44,6 @@ public class Game {
 
 		this.actualPlayer = this.player1;
 
-		System.out.println(this.board);
-
 		//this.initializeGame();
 
 		this.start();
