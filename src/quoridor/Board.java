@@ -49,6 +49,14 @@ public class Board {
 		return this.SIZE * 2 - 1;
 	}
 
+	public boolean isEvenNumber(int x) {
+		return (x % 2) == 0;
+	}
+
+	public boolean isOddNumber(int x) {
+		return (x % 2) != 0;
+	}
+
 	public void initializeBoard() {
 		Square temp = null;
 
@@ -56,16 +64,12 @@ public class Board {
 			for (int j = 0; j <= SIZE+7; j++) {
 				temp = this.grid[i][j];
 
-				if (i % 2 == 0 && j % 2 != 0) {
-					this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLEV);
+				if (this.isEvenNumber(i) && this.isOddNumber(j)) {
+					this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLE);
 				}
 
-				else if () {
-					System.out.print(" \u001B[30m─ +");
-				}
-
-				else if (i % 2 != 0) {
-					this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLEH);
+				else if (this.isOddNumber(i)) {
+					this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLE);
 				}
 
 				else {
@@ -80,6 +84,7 @@ public class Board {
 
 	public ArrayList<Square> listOfPossibilitiesFence() {
 		ArrayList<Square> al = new ArrayList<Square>();
+
 		return al;
 	}
 
@@ -89,6 +94,7 @@ public class Board {
 	 */
 	public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
 		ArrayList<Square> al = new ArrayList<Square>();
+
 		return al;
 	}
 
@@ -98,27 +104,38 @@ public class Board {
 
 	public String toString() {
 		String ret = "";
-		for (int i = 0; i <= this.SIZE+7; i++) {
-			for (int j = 0; j <= this.SIZE+7; j++) {
-				if ((j > 8) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) {
-					System.out.print(this.ANSI_BLACK + "─ +");
-				}
-
-				if ((i % 2 != 0) && (j == 16)) {
-					System.out.print(this.ANSI_BLACK + "─");
-				}
-
-				else {
-					if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) System.out.print(this.ANSI_WHITE + "X ");
-					// if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEV) System.out.print("\u001B[37m|");
-					if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) System.out.print(this.ANSI_BLACK + "|");
-					if (this.grid[i][j].getStatus() == Status.PAWN1) System.out.print(this.ANSI_GREEN + "X ");
-					if (this.grid[i][j].getStatus() == Status.PAWN2) System.out.print(thsi.ANSI_RED + "X ");
-				}
-			}
-			System.out.println(this.ANSI_RESET);
-		}
-		return "";
+	//
+	// 	for (int i = 0; i <= this.getTotalSize(); i++) {
+	// 		for (int j = 0; j <= this.getTotalSize(); j++) {
+	// 			if ((j > (this.SIZE - 1)) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) {
+	// 				ret += this.ANSI_BLACK + "─ +";
+	// 			}
+	//
+	// 			if (this.isOddNumber(i) && (j == (this.getTotalSize() - 1))) {
+	// 				ret += this.ANSI_BLACK + "─";
+	// 			}
+	//
+	// 			else {
+	// 				if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) {
+	// 					System.out.print(this.ANSI_WHITE + "X ");
+	// 				}
+	// 				else if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
+	// 					ret += this.ANSI_BLACK + "|";
+	// 				}
+	//
+	// 				else if (this.grid[i][j].getStatus() == Status.PAWN1) {
+	// 					ret += this.ANSI_GREEN + "X ";
+	// 				}
+	//
+	// 				else if (this.grid[i][j].getStatus() == Status.PAWN2) {
+	// 					ret += this.ANSI_RED + "X ";
+	// 			}
+	// 		}
+	//
+	// 		ret += this.ANSI_RESET + "\n";
+	// 	}
+	//
+		return ret;
 	}
 
 }
