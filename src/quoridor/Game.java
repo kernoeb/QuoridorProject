@@ -45,8 +45,6 @@ public class Game {
 		//this.initializeGame();
 
 		this.start();
-
-		System.out.println(this.board);
 	}
 
 	public Board getBoard() {
@@ -115,7 +113,10 @@ public class Game {
 	 */
 	public void start() {
 		// TODO - implement Game.start
-		this.player1.play();
+		while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
+			this.player1.play();
+		//	System.out.println()
+		}
 	}
 
 	/**

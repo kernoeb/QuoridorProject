@@ -1,7 +1,7 @@
 package quoridor;
 
 // import project
-import quoridor.Pawn;
+//import quoridor.Pawn;
 
 // import java
 import java.util.Scanner;
@@ -116,7 +116,7 @@ public class HumanPlayer extends Player {
 			x = this.scan.nextInt();
 		}
 
-		return x;
+		return this.board.pawnCoord(x);
 	}
 
 	// Méthode pour Pawn pour l'instant ...
@@ -132,6 +132,6 @@ public class HumanPlayer extends Player {
 			y = this.scan.nextInt();
 		}
 
-		return y;
+		return this.board.pawnCoord(y);
 	}
 }

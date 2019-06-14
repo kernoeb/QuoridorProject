@@ -19,9 +19,9 @@ public class Square {
 	 * It knows its coordinates, if there is a player or not and if their is fences around him
 	 * @author
 	 */
-	public Square(int i, int j, Status s) {
-		this.x = i;
-		this.y = j;
+	public Square(int x, int y, Status s) {
+		this.x = x;
+		this.y = y;
 		this.status = s;
 		// TODO - implement Square.Square
 	}

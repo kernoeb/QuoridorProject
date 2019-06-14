@@ -34,7 +34,32 @@ public class Board {
 	 */
 	public Board() {
 		this.grid = new Square[this.getTotalSize()][this.getTotalSize()];
-		initializeBoard();
+		this.initializeBoard();
+	}
+
+	public void initializeBoard() {
+		Square temp = null;
+
+		for (int x = 0; x < this.getTotalSize(); x++) {
+			for (int y = 0; y < this.getTotalSize(); y++) {
+				temp = this.grid[x][y];
+
+				if (this.isEvenNumber(x) && this.isOddNumber(y)) {
+					this.grid[x][y] = new Square(x, y, Status.FENCEPOSSIBLE);
+				}
+
+				else if (this.isOddNumber(x)) {
+					this.grid[x][y] = new Square(x, y, Status.FENCEPOSSIBLE);
+				}
+
+				else {
+					this.grid[x][y] = new Square(x, y, Status.PAWNPOSSIBLE);
+				}
+			}
+		}
+
+		this.grid[this.pawnCoord(8)][this.pawnCoord(4)] = new Square(this.pawnCoord(8), this.pawnCoord(4), Status.PAWN1);
+		this.grid[this.pawnCoord(0)][this.pawnCoord(4)] = new Square(this.pawnCoord(0), this.pawnCoord(4), Status.PAWN2);
 	}
 
 	public int getSIZE() {
@@ -65,35 +90,11 @@ public class Board {
 		return (x*2) + 1;
 	}
 
-	public void initializeBoard() {
-		Square temp = null;
-
-		for (int i = 0; i < this.getTotalSize(); i++) {
-			for (int j = 0; j < this.getTotalSize(); j++) {
-				temp = this.grid[i][j];
-
-				if (this.isEvenNumber(i) && this.isOddNumber(j)) {
-					this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLE);
-				}
-
-				else if (this.isOddNumber(i)) {
-					this.grid[i][j] = new Square(i, j, Status.FENCEPOSSIBLE);
-				}
-
-				else {
-					this.grid[i][j] = new Square(i, j, Status.PAWNPOSSIBLE);
-				}
-			}
-		}
-
-		this.grid[this.pawnCoord(8)][this.pawnCoord(4)] = new Square(this.pawnCoord(8), this.pawnCoord(4), Status.PAWN1);
-		this.grid[this.pawnCoord(0)][this.pawnCoord(4)] = new Square(this.pawnCoord(0), this.pawnCoord(4), Status.PAWN2);
-	}
-
 	public ArrayList<Square> listOfPossibilitiesFence() {
-		ArrayList<Square> al = new ArrayList<Square>();
+		ArrayList<Square> list = new ArrayList<Square>();
 
-		return al;
+	//	for(int x=0; x < )
+		return list;
 	}
 
 	/**
@@ -115,9 +116,9 @@ public class Board {
 
 		Square temp = null;
 
-		for (int i = 0; i < this.getTotalSize(); i++) {
-			for (int j = 0; j < this.getTotalSize(); j++) {
-				temp = this.grid[i][j];
+		for (int x = 0; x < this.getTotalSize(); x++) {
+			for (int y = 0; y < this.getTotalSize(); y++) {
+				temp = this.grid[x][y];
 
 				if (temp.isPawn()) {
 					if (temp.isPawnPossible()) {
@@ -149,11 +150,11 @@ public class Board {
 						ret += this.ANSI_RED;
 					}
 
-					if (this.isEvenNumber(i)) {
+					if (this.isEvenNumber(x)) {
 						ret += "| ";
 					}
 
-					else if (this.isEvenNumber(j)) {
+					else if (this.isEvenNumber(y)) {
 						ret += "─ ";
 					}
 
