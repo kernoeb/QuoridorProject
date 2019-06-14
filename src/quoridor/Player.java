@@ -18,7 +18,7 @@ public abstract class Player {
 	 */
 	public Player(String name, Board board) {
 		// TODO - implement Player.Player
-		if((name != null) && (board != null)) {
+		if ((name != null) && (board != null)) {
 			this.name = name;
 			this.board = board;
 			this.nbFences = 0;
@@ -30,12 +30,12 @@ public abstract class Player {
 	}
 
 	public Player(String name, Board board, int initX, int initY) {
-		if((name != null) && (board != null)) {
+		if ((name != null) && (board != null)) {
 			this.name = name;
 			this.board = board;
 			this.nbFences = 0;
 
-			if((initX >= 0) && (initX < this.board.getTotalSize()) && (initY >= 0) && (initY < this.board.getTotalSize())) {
+			if ((initX >= 0) && (initX < this.board.getTotalSize()) && (initY >= 0) && (initY < this.board.getTotalSize())) {
 				this.currentSquare = this.board.getGrid()[initX][initY];
 			}
 			else {
@@ -50,7 +50,7 @@ public abstract class Player {
 	}
 
 	public void setCurrentSquare(int x, int y) {
-		if((x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize())
+		if ((x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize())
 			&& (this.board.getGrid()[x][y].isPawnPossible())) {
 
 			this.currentSquare = this.board.getGrid()[x][y];
@@ -81,7 +81,7 @@ public abstract class Player {
 	public abstract void play();
 
 	protected void movePawn(int x, int y) {
-		if(this.currentSquare != null) {
+		if (this.currentSquare != null) {
 			this.board.getGrid()[x][y].setStatus(this.currentSquare.getStatus());
 			this.board.getGrid()[this.currentSquare.getX()][this.currentSquare.getY()].setStatus(Status.PAWNPOSSIBLE);
 		}

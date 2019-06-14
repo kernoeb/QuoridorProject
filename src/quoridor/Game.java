@@ -19,6 +19,8 @@ public class Game {
 	private Player player2;
 	private Mode mode;
 
+	private Player actualPlayer;
+
 	private Scanner scan;
 
 	/**
@@ -39,6 +41,8 @@ public class Game {
 			this.player1 = new HumanPlayer(namePlayer1, this.board, 8, 4);//this.board.pawnCoord(0), this.board.pawnCoord(4));
 			this.player2 = new AutoPlayer(namePlayer2, this.board, 0, 4); //this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
+
+		this.actualPlayer = this.player1;
 
 		System.out.println(this.board);
 
@@ -109,13 +113,16 @@ public class Game {
 	}
 
 	public void nextPlayer() {
-		this.player1.play();
+		if(this.actualPlayer == this.player1) {
+			this.player1.play();
 
-		System.out.println(this.board);
+			this.actualPlayer = this.player2;
+		}
+		else if(this.actualPlayer == this.player2) {
+			this.player2.play();
 
-		this.player2.play();
-
-		System.out.println(this.board);
+			this.actualPlayer = this.player1;
+		}
 	}
 
 	/**
@@ -124,20 +131,37 @@ public class Game {
 	public void start() {
 		// TODO - implement Game.start
 		while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
+			System.out.println(this);
 			this.nextPlayer();
 		}
+
+		this.endOfGame();
 	}
 
 	/**
 	 * End the game and launch the results procedure
 	 */
 	public void endOfGame() {
-		// TODO - implement Game.endOfGame
+		Player finishPlayer = null;
+
+		if(this.checkHasFinished(this.player1)) {
+			finishPlayer = this.player1;
+		}
+		else if(this.checkHasFinished(this.player2)) {
+			finishPlayer = this.player2;
+		}
+
+		System.out.println("Félicitations ! Le joueur "+this.player1.getName()+" a gagné la partie !");
 	}
 
 	public String toString() {
 		// TODO - implement Game.toString
-		return "";
+		String ret = "";
+
+		ret += this.board;
+		ret += this.player1.getName()+" :";
+
+		return ret;
 	}
 
 }

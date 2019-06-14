@@ -33,11 +33,11 @@ public class HumanPlayer extends Player {
 		// TODO - implement HumanPlayer.play
 		String mode = this.askMode();
 
-		if(mode.equalsIgnoreCase("pawn")) {
+		if (mode.equalsIgnoreCase("pawn")) {
 			this.playPawn();
 		}
 
-		else if(mode.equalsIgnoreCase("fence")) {
+		else if (mode.equalsIgnoreCase("fence")) {
 			this.playFence();
 		}
 	}
@@ -92,7 +92,7 @@ public class HumanPlayer extends Player {
 		int x = this.askX();
 		int y = this.askY();
 
-		while((x == this.currentSquare.getX()) && (y == this.currentSquare.getY())) {
+		while ((x == this.currentSquare.getX()) && (y == this.currentSquare.getY())) {
 			System.out.println("Vous ne pouvez pas jouer sur la même case que votre pion. \n"
 				+"Veuillez choisir une autre case !");
 
@@ -110,7 +110,7 @@ public class HumanPlayer extends Player {
 		System.out.print(this.name + "Coordonnée x : ");
 		x = this.scan.nextInt();
 
-		while((x < 0) || (x >= this.board.getSIZE())) {
+		while ((x < 0) || (x >= this.board.getSIZE())) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
 			System.out.print(this.name + "Coordonnée x : ");
 			x = this.scan.nextInt();
