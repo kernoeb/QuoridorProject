@@ -37,7 +37,7 @@ public class Pawn {
 	// public void setPosition(int x, int y) {
 	
 	// Move +1 / -1 on X and Y  
-	public void movePawn(int x, int y, boolean diag) {
+	public void movePawn(int x, int y) {
 		// TODO - implement Pawn.setPosition
 	}
 

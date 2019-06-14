@@ -87,6 +87,8 @@ public class HumanPlayer extends Player {
 		int x = this.askX();
 		int y = this.askY();
 
+		this.pawn.movePawn(x, y);
+
 		// TODO -- La suite ...
 	}
 
