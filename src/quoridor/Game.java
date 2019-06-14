@@ -85,26 +85,26 @@ public class Game {
 		return this.player1; // à changer
 	}
 
-	public boolean checkHasFinished(Player player) {
-		// TODO - Player.checkHasFinished
-		boolean ret = false;
+	// public boolean checkHasFinished(Player player) {
+	// 	// TODO - Player.checkHasFinished
+	// 	boolean ret = false;
 
-		if (player != null) {
-			if (player == this.player1) {
-				ret = (this.player1.getPawn().getX() == 0);
-			}
+	// 	if (player != null) {
+	// 		if (player == this.player1) {
+	// 			ret = (this.player1.getPawn().getX() == 0);
+	// 		}
 
-			else if (player == this.player2) {
-				ret = (this.player2.getPawn().getX() == ((this.board.getSIZE()-1) * 2));
-			}
-		}
+	// 		else if (player == this.player2) {
+	// 			ret = (this.player2.getPawn().getX() == ((this.board.getSIZE()-1) * 2));
+	// 		}
+	// 	}
 
-		else {
-			System.err.println("checkHasFinished : Paramètre non valide.");
-		}
+	// 	else {
+	// 		System.err.println("checkHasFinished : Paramètre non valide.");
+	// 	}
 
-		return ret;
-	}
+	// 	return ret;
+	// }
 
 	/**
 	 * Launch the game

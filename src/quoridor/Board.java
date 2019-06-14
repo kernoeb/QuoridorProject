@@ -68,8 +68,8 @@ public class Board {
 	public void initializeBoard() {
 		Square temp = null;
 
-		for (int i = 0; i < this.getTotalSize()-1; i++) {
-			for (int j = 0; j < this.getTotalSize()-1; j++) {
+		for (int i = 0; i < this.getTotalSize(); i++) {
+			for (int j = 0; j < this.getTotalSize(); j++) {
 				temp = this.grid[i][j];
 
 				if (this.isEvenNumber(i) && this.isOddNumber(j)) {

@@ -95,7 +95,8 @@ public class HumanPlayer extends Player {
 			y = this.askY();
 		}
 
-		this.pawn.movePawn(x, y);
+		// this.pawn.movePawn(x, y);
+		super.movePawn(x, y);
 	}
 
 	// Méthode pour Pawn pour l'instant ...
