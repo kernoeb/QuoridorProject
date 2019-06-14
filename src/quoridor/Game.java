@@ -108,14 +108,23 @@ public class Game {
 		return ret;
 	}
 
+	public void nextPlayer() {
+		this.player1.play();
+
+		System.out.println(this.board);
+
+		this.player2.play();
+
+		System.out.println(this.board);
+	}
+
 	/**
 	 * Launch the game
 	 */
 	public void start() {
 		// TODO - implement Game.start
 		while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
-			this.player1.play();
-		//	System.out.println()
+			this.nextPlayer();
 		}
 	}
 
