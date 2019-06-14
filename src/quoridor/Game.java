@@ -31,18 +31,20 @@ public class Game {
 		this.board = new Board();
 
 		if (mode == Mode.HH) {
-			this.player1 = new HumanPlayer(namePlayer1, this.board);
-			this.player2 = new HumanPlayer(namePlayer2, this.board);
+			this.player1 = new HumanPlayer(namePlayer1, this.board, this.board.pawnCoord(0), this.board.pawnCoord(4));
+			this.player2 = new HumanPlayer(namePlayer2, this.board, this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
 
 		else if (mode == Mode.HA) {
-			this.player1 = new HumanPlayer(namePlayer1, this.board);
-			this.player2 = new AutoPlayer(namePlayer2, this.board);
+			this.player1 = new HumanPlayer(namePlayer1, this.board, this.board.pawnCoord(0), this.board.pawnCoord(4));
+			this.player2 = new AutoPlayer(namePlayer2, this.board, this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
 
 		System.out.println(this.board);
 
-		initializeGame();
+		//this.initializeGame();
+
+		this.start();
 	}
 
 	public Board getBoard() {
@@ -72,7 +74,7 @@ public class Game {
 	/**
 	 * Initialize the game
 	 */
-	public void initializeGame() {
+	private void initializeGame() {
 		this.player1.play();
 	}
 
@@ -111,6 +113,7 @@ public class Game {
 	 */
 	public void start() {
 		// TODO - implement Game.start
+		this.player1.play();
 	}
 
 	/**

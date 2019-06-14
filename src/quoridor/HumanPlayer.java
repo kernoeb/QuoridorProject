@@ -15,6 +15,11 @@ public class HumanPlayer extends Player {
 	 * @param name
 	 * @author
 	 */
+	public HumanPlayer(String name, Board board, int initX, int initY) {
+		super(name, board, initX, initY);
+		this.scan = new Scanner(System.in);
+	}
+
 	public HumanPlayer(String name, Board board) {
 		super(name, board);
 		this.scan = new Scanner(System.in);

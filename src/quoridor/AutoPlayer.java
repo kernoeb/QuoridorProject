@@ -6,6 +6,10 @@ public class AutoPlayer extends Player {
 	 * @param name
 	 * @author
 	 */
+	public AutoPlayer(String name, Board board, int initX, int initY) {
+		super(name, board, initX, initY);
+	}
+
 	public AutoPlayer(String name, Board board) {
 		super(name, board);
 	}
