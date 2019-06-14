@@ -16,7 +16,8 @@ public class Pawn {
 	 * @param y
 	 */
 	public Pawn(int x, int y) {
-		// TODO - implement Pawn.Pawn
+		this.x = x;
+		this.y = y;
 	}
 
 	public int getX() {
@@ -36,8 +37,11 @@ public class Pawn {
 	 * @param y
 	 */
 	public void movePawn(int x, int y) {
-		this.x = this.x + x;
-		this.y = this.y + y;
+		// System.out.println("X : " + y + " | " + "Y : " + y);
+		// this.x = this.x + x;
+		// this.y = this.y + y;
+		this.x = x;
+		this.y = y;
 	}
 
 	public String toString() {

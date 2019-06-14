@@ -35,7 +35,6 @@ public class AutoPlayer extends Player {
 	 * The validity is checked by the current square fenceStatus
 	 * @author
 	 */
-	private void playPawn() {
-		// TODO - implement AutoPlayer.playPawn
-	}
+	// private void playPawn() {
+	// }
 }

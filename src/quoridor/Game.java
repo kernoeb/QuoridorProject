@@ -41,6 +41,8 @@ public class Game {
 		}
 
 		System.out.println(this.board);
+
+		initializeGame();
 	}
 
 	public Board getBoard() {
@@ -68,10 +70,10 @@ public class Game {
 	}
 
 	/**
-	 *
+	 * Initialize the game
 	 */
 	public void initializeGame() {
-		// TODO - implement Game.initializeGame
+		this.player1.play();
 	}
 
 	/**
@@ -87,12 +89,12 @@ public class Game {
 		// TODO - Player.checkHasFinished
 		boolean ret = false;
 
-		if(player != null) {
-			if(player == this.player1) {
+		if (player != null) {
+			if (player == this.player1) {
 				ret = (this.player1.getPawn().getX() == 0);
 			}
 
-			else if(player == this.player2) {
+			else if (player == this.player2) {
 				ret = (this.player2.getPawn().getX() == ((this.board.getSIZE()-1) * 2));
 			}
 		}

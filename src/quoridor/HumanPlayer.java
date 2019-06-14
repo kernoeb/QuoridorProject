@@ -44,14 +44,14 @@ public class HumanPlayer extends Player {
 		String ret = null;
 		String s = this.scan.nextLine();
 
-		while((!s.equalsIgnoreCase("p")) && (!s.equalsIgnoreCase("pion")) &&
+		while ((!s.equalsIgnoreCase("p")) && (!s.equalsIgnoreCase("pion")) &&
 			(!s.equalsIgnoreCase("mur")) && (!s.equalsIgnoreCase("m"))) {
 				System.out.println("La chaîne de caractères est incorrecte !"
 					+ "Veuillez écrire la pièce que vous voulez jouée : Pion (p) ou Mur (m)");
 				s = this.scan.nextLine();
 		}
 
-		if((s.equalsIgnoreCase("p")) || (s.equalsIgnoreCase("pion"))) {
+		if ((s.equalsIgnoreCase("p")) || (s.equalsIgnoreCase("pion"))) {
 			ret = "pawn";
 		}
 		else {
@@ -88,7 +88,6 @@ public class HumanPlayer extends Player {
 		int y = this.askY();
 
 		this.pawn.movePawn(x, y);
-
 		// TODO -- La suite ...
 	}
 

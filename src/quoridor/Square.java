@@ -26,6 +26,18 @@ public class Square {
 		// TODO - implement Square.Square
 	}
 
+	/**
+	 * Move direction in X and Y
+	 * Possible moves : -1 / 1 / 0 / 2
+	 * @param x
+	 * @param y
+	 */
+	public void movePawn(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+
 	public Status getStatus() {
 		return this.status;
 	}
