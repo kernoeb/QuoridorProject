@@ -30,15 +30,14 @@ public class Pawn {
 	}
 
 	/**
-	 *
+	 * Move direction in X and Y
+	 * Possible moves : -1 / 1 / 0 / 2
 	 * @param x
 	 * @param y
 	 */
-	// public void setPosition(int x, int y) {
-	
-	// Move +1 / -1 on X and Y  
 	public void movePawn(int x, int y) {
-		// TODO - implement Pawn.setPosition
+		this.x = this.x + x;
+		this.y = this.y + y;
 	}
 
 	public String toString() {
