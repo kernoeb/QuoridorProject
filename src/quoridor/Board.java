@@ -122,7 +122,7 @@ public class Board {
 
 				if (temp.isPawn()) {
 					if (temp.isPawnPossible()) {
-						ret += this.ANSI_GREY;
+						ret += this.ANSI_WHITE;
 					}
 
 					else if (temp.isPawn1()) {
@@ -139,7 +139,7 @@ public class Board {
 
 				else if (temp.isFence()) {
 					if (temp.isFencePossible()) {
-						ret += this.ANSI_WHITE;
+						ret += this.ANSI_GREY;
 					}
 
 					else if (temp.isFencePawn1()) {
