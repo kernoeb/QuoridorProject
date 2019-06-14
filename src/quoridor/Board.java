@@ -33,7 +33,7 @@ public class Board {
 	 * Initialize walls and positionates players on their starting positions
 	 */
 	public Board() {
-		this.grid = new Square[SIZE+8][SIZE+8];
+		this.grid = new Square[this.getTotalSize()][this.getTotalSize()];
 		initializeBoard();
 	}
 
@@ -57,11 +57,19 @@ public class Board {
 		return (x % 2) != 0;
 	}
 
+	public int pawnCoord(int x) {
+		return x*2;
+	}
+
+	public int fenceCoord(int x) {
+		return (x*2) + 1;
+	}
+
 	public void initializeBoard() {
 		Square temp = null;
 
-		for (int i = 0; i <= SIZE+7; i++) {
-			for (int j = 0; j <= SIZE+7; j++) {
+		for (int i = 0; i < this.getTotalSize()-1; i++) {
+			for (int j = 0; j < this.getTotalSize()-1; j++) {
 				temp = this.grid[i][j];
 
 				if (this.isEvenNumber(i) && this.isOddNumber(j)) {
@@ -78,8 +86,8 @@ public class Board {
 			}
 		}
 
-		this.grid[0*2][4*2] = new Square(0*2, 4*2, Status.PAWN1);
-		this.grid[8*2][4*2] = new Square(8*2, 4*2, Status.PAWN2);
+		this.grid[this.pawnCoord(0)][this.pawnCoord(4)] = new Square(this.pawnCoord(0), this.pawnCoord(4), Status.PAWN1);
+		this.grid[this.pawnCoord(8)][this.pawnCoord(4)] = new Square(this.pawnCoord(8), this.pawnCoord(4), Status.PAWN2);
 	}
 
 	public ArrayList<Square> listOfPossibilitiesFence() {
