@@ -23,7 +23,7 @@ public class Board {
 	 * Initialize walls and positionates players on their starting positions
 	 */
 	public Board() {
-		this.grid = new Square[SIZE+8][SIZE+8]; 
+		this.grid = new Square[SIZE+8][SIZE+8];
 		initializeBoard();
 	}
 
@@ -62,14 +62,18 @@ public class Board {
 		return al;
 	}
 
+	public void printListOfPossibilitiesPawn() {
+		
+	}
+
 	public String toString() {
 		String ret = "";
 		for (int i = 0; i <= SIZE+7; i++) {
 			for (int j = 0; j <= SIZE+7; j++) {
 				// if ((j > 8) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) System.out.print(" \u001B[37m─ +");
 				if ((j > 8) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) System.out.print(" \u001B[30m─ +");
-				// if ((i % 2 != 0) && (j == 16)) System.out.print(" \u001B[37m─"); 
-				if ((i % 2 != 0) && (j == 16)) System.out.print(" \u001B[30m─"); 
+				// if ((i % 2 != 0) && (j == 16)) System.out.print(" \u001B[37m─");
+				if ((i % 2 != 0) && (j == 16)) System.out.print(" \u001B[30m─");
 				else {
 					if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) System.out.print(" \u001B[37mX ");
 					// if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEV) System.out.print("\u001B[37m|");

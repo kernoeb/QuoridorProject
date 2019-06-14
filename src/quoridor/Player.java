@@ -47,11 +47,6 @@ public abstract class Player {
 
 	public abstract void play();
 
-	public boolean checkHasFinished(){
-		// TODO - Player.checkHasFinished
-		return true;
-	}
-
 	public void setNbFences(int nb) {
 		this.nbFences = nb;
 	}

@@ -80,9 +80,8 @@ public class HumanPlayer extends Player {
 	private void playPawn() {
 		// TODO - implement HumanPlayer.playPawn
 		System.out.println("Vous pouvez jouer un pion sur les cases :");
-		
-		// À corriger /!\
-		// this.board.printListOfPossibilitiesPawn();
+
+		this.board.printListOfPossibilitiesPawn();
 
 		System.out.println("Sur quelle case voulez-vous jouer ?");
 		int x = this.askX();
@@ -121,24 +120,5 @@ public class HumanPlayer extends Player {
 		}
 
 		return y;
-	}
-
-	/**
-	 * Check if the player has finished his turn
-	 * @return true if the player has finished his turn, false otherwise
-	 * @author
-	 */
-	public boolean checkHasFinished() {
-		// TODO - implement Board.checkHasFinished
-		return true;
-	}
-
-	/**
-	 * @return true if there is an existing path to the end, false otherwise
-	 * @author
-	 */
-	public boolean checkExistingPath() {
-		// TODO - implement HumanPlayer.java
-		return true;
 	}
 }

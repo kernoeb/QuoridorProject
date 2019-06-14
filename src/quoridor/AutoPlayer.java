@@ -38,24 +38,4 @@ public class AutoPlayer extends Player {
 	private void playPawn() {
 		// TODO - implement AutoPlayer.playPawn
 	}
-
-	/**
-	 * Check if the player has finished his turn
-	 * @return true if the player has finished his turn, false otherwise
-	 * @author
-	 */
-	public boolean checkHasFinished(Player player) {
-		// TODO - implement Board.checkHasFinished
-		return true;
-	}
-
-
-	/**
-	 * @return true if there is an existing path to the end, false otherwise
-	 * @author
-	 */
-	public boolean checkExistingPath() {
-		// TODO - implement Board.checkExistingPath
-		return true;
-	}
 }

@@ -83,6 +83,21 @@ public class Game {
 		return this.player1; // à changer
 	}
 
+	public boolean checkHasFinished(Player player) {
+		// TODO - Player.checkHasFinished
+		boolean ret = false;
+
+		if(player != null) {
+
+		}
+
+		else {
+			
+		}
+
+		return true;
+	}
+
 	/**
 	 * Launch the game
 	 */
