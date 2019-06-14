@@ -154,78 +154,7 @@ public class Board {
 					}
 				}
 			}
-			//
-			// 	else if(temp.getStatus() == Status.FENCEPOSSIBLE) {
-			//
-			// 	}
-			//
-			// 	else if(temp.getStatus() == Status.FENCE) {
-			// 	 	if(this.isEvenNumber(i)) {
-			// 			ret += "| ";
-			// 		}
-			//
-			// 		else if(this.isOddNumber(j)) {
-			// 			ret += "─ ";
-			// 		}
-			//
-			// 		else {
-			// 			ret += "+";
-			// 		}
-			// 	}
-			//
-			// 	if(this.isEvenNumber(i)) {
-			// 		ret += this.ANSI_GREY + "| ";
-			// 	}
-			//
-			// 	else if(this.isOddNumber(j)) {
-			// 		ret += this.ANSI_GREY + "─ ";
-			// 	}
-			//
-			// 	else {
-			// 		ret += this.ANSI_GREY + "+ ";
-			// 	}
-			//
-			// 	else if() {
-			//
-			// 	}
-			// 	else if(temp.getStatus() == Status.PAWN1) {
-			// 		ret += this.ANSI_GREEN + "X ";
-			// 	}
-			// 	else if(temp.getStatus() == Status.PAWN2) {
-			// 		ret += this.ANSI_RED + "X ";
-			// 	}
-			//
-			//
-			//
-			//
-			//
-			//
-			// 	if ((j > (this.SIZE - 1)) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
-			// 		ret += this.ANSI_GREY + "─ +";
-			// 	}
-			//
-			// 	if (this.isOddNumber(i) && (j == (this.getTotalSize() - 1))) {
-			// 		ret += this.ANSI_GREY + "─";
-			// 	}
-			//
-			// 	else {
-			// 		if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) {
-			// 			ret += this.ANSI_WHITE + "X ";
-			// 		}
-			// 		else if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
-			// 			ret += this.ANSI_GREY + "|";
-			// 		}
-			//
-			// 		else if (this.grid[i][j].getStatus() == Status.PAWN1) {
-			// 			ret += this.ANSI_GREEN + "X ";
-			// 		}
-			//
-			// 		else if (this.grid[i][j].getStatus() == Status.PAWN2) {
-			// 			ret += this.ANSI_RED + "X ";
-			// 		}
-			// 	}
-			// }
-
+			
 			ret += this.ANSI_RESET + "\n";
 		}
 
