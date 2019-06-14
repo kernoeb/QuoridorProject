@@ -43,7 +43,7 @@ public abstract class Player {
 	}
 
 	public void setCurrentSquare(int x, int y) {
-		if((x > 0) && (x < this.board.getTotalSize()) && (y > 0) && (y < this.board.getTotalSize())
+		if((x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize())
 			&& (this.board.getGrid()[x][y].isPawnPossible())) {
 
 			this.currentSquare = this.board.getGrid()[x][y];

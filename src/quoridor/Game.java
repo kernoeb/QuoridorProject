@@ -31,13 +31,13 @@ public class Game {
 		this.board = new Board();
 
 		if (mode == Mode.HH) {
-			this.player1 = new HumanPlayer(namePlayer1, this.board, 8, 4);//this.board.pawnCoord(0), this.board.pawnCoord(4));
-			this.player2 = new HumanPlayer(namePlayer2, this.board, 0, 4);//this.board.pawnCoord(8), this.board.pawnCoord(4));
+			this.player1 = new HumanPlayer(namePlayer1, this.board, this.board.pawnCoord(0), this.board.pawnCoord(4));
+			this.player2 = new HumanPlayer(namePlayer2, this.board, this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
 
 		else if (mode == Mode.HA) {
-			this.player1 = new HumanPlayer(namePlayer1, this.board, 8, 4);//this.board.pawnCoord(0), this.board.pawnCoord(4));
-			this.player2 = new AutoPlayer(namePlayer2, this.board, 0, 4); //this.board.pawnCoord(8), this.board.pawnCoord(4));
+			this.player1 = new HumanPlayer(namePlayer1, this.board, this.board.pawnCoord(0), this.board.pawnCoord(4));
+			this.player2 = new AutoPlayer(namePlayer2, this.board, this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
 
 		System.out.println(this.board);
