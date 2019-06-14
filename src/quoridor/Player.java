@@ -30,13 +30,12 @@ public abstract class Player {
 	}
 
 	public Player(String name, Board board, int initX, int initY) {
-		// TODO - implement Player.Player
 		if((name != null) && (board != null)) {
 			this.name = name;
 			this.board = board;
 			this.nbFences = 0;
 
-			if((x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize()) {
+			if((initX >= 0) && (initX < this.board.getTotalSize()) && (initY >= 0) && (initY < this.board.getTotalSize())) {
 				this.currentSquare = this.board.getGrid()[initX][initY];
 			}
 			else {

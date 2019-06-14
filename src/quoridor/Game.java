@@ -45,6 +45,8 @@ public class Game {
 		//this.initializeGame();
 
 		this.start();
+
+		System.out.println(this.board);
 	}
 
 	public Board getBoard() {
