@@ -1,8 +1,7 @@
 package quoridor;
 
 public enum Status {
-	FENCEPOSSIBLEH,
-	FENCEPOSSIBLEV,
+	FENCEPOSSIBLE,
 	FENCE,
 	PAWNPOSSIBLE,
 	PAWN1,

@@ -43,24 +43,20 @@ public class Square {
 	}
 
 	public boolean isFence() {
-		return this.status == Status.FENCE || this.status == Status.FENCEPOSSIBLEH || this.status == Status.FENCEPOSSIBLEV;
+		return (this.status == Status.FENCE) || (this.status == Status.FENCEPOSSIBLE);
+	}
+
+	public boolean isFenceFixed() {
+		return this.status == Status.FENCE;
 	}
 
 	public boolean isFencePossible() {
-		return this.status == Status.FENCEPOSSIBLEV || this.status == Status.FENCEPOSSIBLEH;
-	}
-
-	public boolean isFencePossibleV() {
-		return this.status == Status.FENCEPOSSIBLEV;
-	}
-
-	public boolean isFencePossibleH() {
-		return this.status == Status.FENCEPOSSIBLEH;
+		return this.status == Status.FENCEPOSSIBLE;
 	}
 
 	public boolean isPawn() {
 		return this.status == Status.PAWN1 || this.status == Status.PAWN2 || this.status == Status.PAWNPOSSIBLE;
-	}	
+	}
 
 	public boolean isPawnPossible() {
 		return this.status == Status.PAWNPOSSIBLE;
