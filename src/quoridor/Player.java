@@ -35,7 +35,6 @@ public abstract class Player {
 			this.name = name;
 			this.board = board;
 			this.nbFences = 0;
-			// this.currentSquare = this.setCurrentSquare(initX, initY);
 			this.setCurrentSquare(initX, initY);
 		}
 		else {
@@ -55,9 +54,9 @@ public abstract class Player {
 		}
 	}
 
-	// public Pawn getPawn() {
-	// 	return this.pawn;
-	// }
+	public Square getCurrentSquare() {
+		return this.currentSquare;
+	}
 
 	public String getName() {
 		return this.name;
@@ -74,7 +73,6 @@ public abstract class Player {
 
 	public abstract void play();
 
-	// private void movePawn(int x, int y) {
 	protected void movePawn(int x, int y) {
 		if(this.currentSquare != null) {
 			this.board.getGrid()[x][y].setStatus(this.currentSquare.getStatus());

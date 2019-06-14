@@ -95,7 +95,6 @@ public class HumanPlayer extends Player {
 			y = this.askY();
 		}
 
-		// this.pawn.movePawn(x, y);
 		super.movePawn(x, y);
 	}
 
