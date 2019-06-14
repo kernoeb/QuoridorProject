@@ -107,20 +107,20 @@ public class Board {
 
 		Square temp = null;
 
-		for (int i = 0; i <= this.getTotalSize(); i++) {
-			for (int j = 0; j <= this.getTotalSize(); j++) {
+		for (int i = 0; i < this.getTotalSize(); i++) {
+			for (int j = 0; j < this.getTotalSize(); j++) {
 				temp = this.grid[i][j];
 
-				if(temp.isPawn()) {
-					if(temp.isPawnPossible()) {
+				if (temp.isPawn()) {
+					if (temp.isPawnPossible()) {
 						ret += this.ANSI_WHITE;
 					}
 
-					else if(temp.isPawn1()) {
+					else if (temp.isPawn1()) {
 						ret += this.ANSI_GREEN;
 					}
 
-					else if(temp.isPawn2()) {
+					else if (temp.isPawn2()) {
 						ret += this.ANSI_RED;
 					}
 
@@ -128,24 +128,24 @@ public class Board {
 				}
 
 
-				else if(temp.isFence()) {
-					if(temp.isFencePossible()) {
+				else if (temp.isFence()) {
+					if (temp.isFencePossible()) {
 						ret += this.ANSI_WHITE;
 					}
 
-					else if(temp.isFencePawn1()) {
+					else if (temp.isFencePawn1()) {
 						ret += this.ANSI_GREEN;
 					}
 
-					else if(temp.isFencePawn2()) {
+					else if (temp.isFencePawn2()) {
 						ret += this.ANSI_RED;
 					}
 
-					if(this.isEvenNumber(i)) {
+					if (this.isEvenNumber(i)) {
 						ret += "| ";
 					}
 
-					else if(this.isOddNumber(j)) {
+					else if (this.isEvenNumber(j)) {
 						ret += "─ ";
 					}
 
