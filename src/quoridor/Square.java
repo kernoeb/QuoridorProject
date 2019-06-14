@@ -46,8 +46,12 @@ public class Square {
 		return (this.status == Status.FENCE) || (this.status == Status.FENCEPOSSIBLE);
 	}
 
-	public boolean isFenceFixed() {
-		return this.status == Status.FENCE;
+	public boolean isFencePawn1() {
+		return this.status == Status.FENCEPAWN1;
+	}
+
+	public boolean isFencePawn2() {
+		return this.status == Status.FENCEPAWN2;
 	}
 
 	public boolean isFencePossible() {

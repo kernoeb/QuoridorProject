@@ -18,7 +18,7 @@ public class Board {
 	private Square[][] grid;
 
 	private final String ANSI_RESET = "\u001B[0m";
-	private final String ANSI_BLACK = "\u001B[30m";
+	private final String ANSI_GREY = "\u001B[30m";
 	private final String ANSI_RED = "\u001B[31m";
 	private final String ANSI_GREEN = "\u001B[32m";
 	private final String ANSI_YELLOW = "\u001B[33m";
@@ -104,38 +104,131 @@ public class Board {
 
 	public String toString() {
 		String ret = "";
-	
+
+		Square temp = null;
+
 		for (int i = 0; i <= this.getTotalSize(); i++) {
 			for (int j = 0; j <= this.getTotalSize(); j++) {
-				if ((j > (this.SIZE - 1)) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
-					ret += this.ANSI_BLACK + "─ +";
+				temp = this.grid[i][j];
+
+				if(temp.isPawn()) {
+					if(temp.isPawnPossible()) {
+						ret += this.ANSI_WHITE;
+					}
+
+					else if(temp.isPawn1()) {
+						ret += this.ANSI_GREEN;
+					}
+
+					else if(temp.isPawn2()) {
+						ret += this.ANSI_RED;
+					}
+
+					ret += "X ";
 				}
-	
-				if (this.isOddNumber(i) && (j == (this.getTotalSize() - 1))) {
-					ret += this.ANSI_BLACK + "─";
-				}
-	
-				else {
-					if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) {
-						System.out.print(this.ANSI_WHITE + "X ");
+
+
+				else if(temp.isFence()) {
+					if(temp.isFencePossible()) {
+						ret += this.ANSI_WHITE;
 					}
-					else if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
-						ret += this.ANSI_BLACK + "|";
+
+					else if(temp.isFencePawn1()) {
+						ret += this.ANSI_GREEN;
 					}
-	
-					else if (this.grid[i][j].getStatus() == Status.PAWN1) {
-						ret += this.ANSI_GREEN + "X ";
+
+					else if(temp.isFencePawn2()) {
+						ret += this.ANSI_RED;
 					}
-	
-					else if (this.grid[i][j].getStatus() == Status.PAWN2) {
-						ret += this.ANSI_RED + "X ";
+
+					if(this.isEvenNumber(i)) {
+						ret += "| ";
+					}
+
+					else if(this.isOddNumber(j)) {
+						ret += "─ ";
+					}
+
+					else {
+						ret += "+ ";
 					}
 				}
 			}
-	
+			//
+			// 	else if(temp.getStatus() == Status.FENCEPOSSIBLE) {
+			//
+			// 	}
+			//
+			// 	else if(temp.getStatus() == Status.FENCE) {
+			// 	 	if(this.isEvenNumber(i)) {
+			// 			ret += "| ";
+			// 		}
+			//
+			// 		else if(this.isOddNumber(j)) {
+			// 			ret += "─ ";
+			// 		}
+			//
+			// 		else {
+			// 			ret += "+";
+			// 		}
+			// 	}
+			//
+			// 	if(this.isEvenNumber(i)) {
+			// 		ret += this.ANSI_GREY + "| ";
+			// 	}
+			//
+			// 	else if(this.isOddNumber(j)) {
+			// 		ret += this.ANSI_GREY + "─ ";
+			// 	}
+			//
+			// 	else {
+			// 		ret += this.ANSI_GREY + "+ ";
+			// 	}
+			//
+			// 	else if() {
+			//
+			// 	}
+			// 	else if(temp.getStatus() == Status.PAWN1) {
+			// 		ret += this.ANSI_GREEN + "X ";
+			// 	}
+			// 	else if(temp.getStatus() == Status.PAWN2) {
+			// 		ret += this.ANSI_RED + "X ";
+			// 	}
+			//
+			//
+			//
+			//
+			//
+			//
+			// 	if ((j > (this.SIZE - 1)) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
+			// 		ret += this.ANSI_GREY + "─ +";
+			// 	}
+			//
+			// 	if (this.isOddNumber(i) && (j == (this.getTotalSize() - 1))) {
+			// 		ret += this.ANSI_GREY + "─";
+			// 	}
+			//
+			// 	else {
+			// 		if (this.grid[i][j].getStatus() == Status.PAWNPOSSIBLE) {
+			// 			ret += this.ANSI_WHITE + "X ";
+			// 		}
+			// 		else if (this.grid[i][j].getStatus() == Status.FENCEPOSSIBLE) {
+			// 			ret += this.ANSI_GREY + "|";
+			// 		}
+			//
+			// 		else if (this.grid[i][j].getStatus() == Status.PAWN1) {
+			// 			ret += this.ANSI_GREEN + "X ";
+			// 		}
+			//
+			// 		else if (this.grid[i][j].getStatus() == Status.PAWN2) {
+			// 			ret += this.ANSI_RED + "X ";
+			// 		}
+			// 	}
+			// }
+
 			ret += this.ANSI_RESET + "\n";
 		}
-	
+
 		return ret;
 	}
 
