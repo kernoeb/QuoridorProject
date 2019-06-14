@@ -68,8 +68,8 @@ public class Board {
 
 	public String toString() {
 		String ret = "";
-		for (int i = 0; i <= SIZE+7; i++) {
-			for (int j = 0; j <= SIZE+7; j++) {
+		for (int i = 0; i <= this.SIZE+7; i++) {
+			for (int j = 0; j <= this.SIZE+7; j++) {
 				// if ((j > 8) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) System.out.print(" \u001B[37m─ +");
 				if ((j > 8) && this.grid[i][j].getStatus() == Status.FENCEPOSSIBLEH) System.out.print(" \u001B[30m─ +");
 				// if ((i % 2 != 0) && (j == 16)) System.out.print(" \u001B[37m─");
