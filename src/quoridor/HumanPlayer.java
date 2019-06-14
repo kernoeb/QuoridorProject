@@ -87,8 +87,15 @@ public class HumanPlayer extends Player {
 		int x = this.askX();
 		int y = this.askY();
 
+		while((x == this.currentSquare.getX()) && (y == this.currentSquare.getY())) {
+			System.out.println("Vous ne pouvez pas jouer sur la même case que votre pion. \n"
+				+"Veuillez choisir une autre case !");
+
+			x = this.askX();
+			y = this.askY();
+		}
+
 		this.pawn.movePawn(x, y);
-		// TODO -- La suite ...
 	}
 
 	// Méthode pour Pawn pour l'instant ...
