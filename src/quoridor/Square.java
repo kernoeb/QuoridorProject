@@ -32,10 +32,10 @@ public class Square {
 	 * @param x
 	 * @param y
 	 */
-	public void movePawn(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
+	// public void movePawn(int x, int y) {
+	// 	this.x = x;
+	// 	this.y = y;
+	// }
 
 
 	public Status getStatus() {

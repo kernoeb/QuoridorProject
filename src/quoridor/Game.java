@@ -111,12 +111,12 @@ public class Game {
 	}
 
 	public void nextPlayer() {
-		if(this.actualPlayer == this.player1) {
+		if (this.actualPlayer == this.player1) {
 			this.player1.play();
 
 			this.actualPlayer = this.player2;
 		}
-		else if(this.actualPlayer == this.player2) {
+		else if (this.actualPlayer == this.player2) {
 			this.player2.play();
 
 			this.actualPlayer = this.player1;
@@ -149,7 +149,7 @@ public class Game {
 			finishPlayer = this.player2;
 		}
 
-		System.out.println("Félicitations ! Le joueur "+this.player1.getName()+" a gagné la partie !");
+		System.out.println("Félicitations ! Le joueur " + this.player1.getName() + " a gagné la partie !");
 	}
 
 	public String toString() {
@@ -157,7 +157,7 @@ public class Game {
 		String ret = "";
 
 		ret += this.board;
-		ret += this.player1.getName()+" :";
+		ret += this.actualPlayer.getName() + " :";
 
 		return ret;
 	}

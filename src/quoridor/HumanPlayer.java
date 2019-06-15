@@ -30,7 +30,6 @@ public class HumanPlayer extends Player {
 	 * @author
 	 */
 	public void play() {
-		// TODO - implement HumanPlayer.play
 		String mode = this.askMode();
 
 		if (mode.equalsIgnoreCase("pawn")) {
@@ -83,7 +82,6 @@ public class HumanPlayer extends Player {
 	 * @author
 	 */
 	private void playPawn() {
-		// TODO - implement HumanPlayer.playPawn
 		System.out.println("Vous pouvez jouer un pion sur les cases :");
 
 		this.board.printListOfPossibilitiesPawn();
@@ -107,12 +105,14 @@ public class HumanPlayer extends Player {
 	private int askX() {
 		int x = 0;
 
-		System.out.print(this.name + "Coordonnée x : ");
+		// System.out.print(this.name + "\nCoordonnée x : ");
+		System.out.print("\nCoordonnée x : ");
 		x = this.scan.nextInt();
 
 		while ((x < 0) || (x >= this.board.getSIZE())) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
-			System.out.print(this.name + "Coordonnée x : ");
+			// System.out.print(this.name + "Coordonnée x : ");
+			System.out.print("\nCoordonnée x : "); 
 			x = this.scan.nextInt();
 		}
 
@@ -123,12 +123,14 @@ public class HumanPlayer extends Player {
 	private int askY() {
 		int y = 0;
 
-		System.out.print(this.name + "Coordonnée y : ");
+		// System.out.print(this.name + "\nCoordonnée y : ");
+		System.out.print("\nCoordonnée y : ");
 		y = this.scan.nextInt();
 
 		while((y < 0) || (y >= this.board.getSIZE())) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
-			System.out.print(this.name + "Coordonnée y : ");
+			// System.out.print(this.name + "Coordonnée y : ");
+			System.out.print("\nCoordonnée y : "); 
 			y = this.scan.nextInt();
 		}
 

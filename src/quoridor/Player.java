@@ -36,7 +36,8 @@ public abstract class Player {
 			this.nbFences = 0;
 
 			if ((initX >= 0) && (initX < this.board.getTotalSize()) && (initY >= 0) && (initY < this.board.getTotalSize())) {
-				this.currentSquare = this.board.getGrid()[initX][initY];
+				// this.currentSquare = this.board.getGrid()[initX][initY];
+				this.currentSquare = this.board.getGrid()[this.board.pawnCoord(initX)][this.board.pawnCoord(initY)];
 			}
 			else {
 				System.out.println("Player : Paramètre(s) x et/ou y non valide(s). \n"
@@ -53,7 +54,8 @@ public abstract class Player {
 		if ((x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize())
 			&& (this.board.getGrid()[x][y].isPawnPossible())) {
 
-			this.currentSquare = this.board.getGrid()[x][y];
+			this.currentSquare = this.board.getGrid()[this.board.pawnCoord(x)][this.board.pawnCoord(y)];
+			// this.currentSquare = this.board.getGrid()[x][y];
 		}
 
 		else {
@@ -82,6 +84,8 @@ public abstract class Player {
 
 	protected void movePawn(int x, int y) {
 		if (this.currentSquare != null) {
+			// System.out.println("X : " + this.currentSquare.getX() + " | Y : " + this.currentSquare.getY());
+			// System.out.println(this.currentSquare.getStatus());
 			this.board.getGrid()[x][y].setStatus(this.currentSquare.getStatus());
 			this.board.getGrid()[this.currentSquare.getX()][this.currentSquare.getY()].setStatus(Status.PAWNPOSSIBLE);
 		}
