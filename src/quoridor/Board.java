@@ -17,15 +17,15 @@ public class Board {
 	private int SIZE = 9;
 	private Square[][] grid;
 
-	private final String ANSI_RESET = "\u001B[0m";
-	private final String ANSI_GREY = "\u001B[30m";
-	private final String ANSI_RED = "\u001B[31m";
-	private final String ANSI_GREEN = "\u001B[32m";
-	private final String ANSI_YELLOW = "\u001B[33m";
-	private final String ANSI_BLUE = "\u001B[34m";
-	private final String ANSI_PURPLE = "\u001B[35m";
-	private final String ANSI_CYAN = "\u001B[36m";
-	private final String ANSI_WHITE = "\u001B[37m";
+	private String ANSI_RESET = "\u001B[0m";
+	private String ANSI_GREY = "\u001B[30m";
+	private String ANSI_RED = "\u001B[31m";
+	private String ANSI_GREEN = "\u001B[32m";
+	private String ANSI_YELLOW = "\u001B[33m";
+	private String ANSI_BLUE = "\u001B[34m";
+	private String ANSI_PURPLE = "\u001B[35m";
+	private String ANSI_CYAN = "\u001B[36m";
+	private String ANSI_WHITE = "\u001B[37m";
 
 	/**
 	 * Board constructor
@@ -35,6 +35,7 @@ public class Board {
 	public Board() {
 		this.grid = new Square[this.getTotalSize()][this.getTotalSize()];
 		this.initializeBoard();
+		// stopColors();
 	}
 
 	public void initializeBoard() {
@@ -168,6 +169,19 @@ public class Board {
 		}
 
 		return ret;
+	}
+
+
+	public void stopColors() {
+		this.ANSI_RESET = "";
+		this.ANSI_GREY = "";
+		this.ANSI_RED = "";
+		this.ANSI_GREEN = "";
+		this.ANSI_YELLOW = "";
+		this.ANSI_BLUE = "";
+		this.ANSI_PURPLE = "";
+		this.ANSI_CYAN = "";
+		this.ANSI_WHITE = "";		
 	}
 
 }
