@@ -35,7 +35,7 @@ public abstract class Player {
 			this.board = board;
 			this.nbFences = 0;
 
-			if ((initX >= 0) && (initX < this.board.getTotalSize()) && (initY >= 0) && (initY < this.board.getTotalSize())) {
+			if ((initX >= 0) && (initX < this.board.getSIZE()) && (initY >= 0) && (initY < this.board.getSIZE())) {
 				// this.currentSquare = this.board.getGrid()[initX][initY];
 				this.currentSquare = this.board.getGrid()[this.board.pawnCoord(initX)][this.board.pawnCoord(initY)];
 			} else {
@@ -50,8 +50,8 @@ public abstract class Player {
 	}
 
 	public void setCurrentSquare(int x, int y) {
-		if ((x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize())
-			&& (this.board.getGrid()[x][y].isPawnPossible())) {
+		if ((x >= 0) && (x < this.board.getSIZE()) && (y >= 0) && (y < this.board.getSIZE())
+			&& (this.board.getGrid()[this.board.pawnCoord(x)][this.board.pawnCoord(y)].isPawnPossible())) {
 
 			this.currentSquare = this.board.getGrid()[this.board.pawnCoord(x)][this.board.pawnCoord(y)];
 			// this.currentSquare = this.board.getGrid()[x][y];
