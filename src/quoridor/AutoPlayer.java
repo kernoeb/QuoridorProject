@@ -33,12 +33,4 @@ public class AutoPlayer extends Player {
 	private void playFence() {
 		// TODO - implement AutoPlayer.playFence
 	}
-
-	/**
-	 * Moves the pawns to the desired direction.
-	 * The validity is checked by the current square fenceStatus
-	 * @author
-	 */
-	// private void playPawn() {
-	// }
 }

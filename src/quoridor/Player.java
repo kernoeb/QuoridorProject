@@ -38,8 +38,7 @@ public abstract class Player {
 			if ((initX >= 0) && (initX < this.board.getTotalSize()) && (initY >= 0) && (initY < this.board.getTotalSize())) {
 				// this.currentSquare = this.board.getGrid()[initX][initY];
 				this.currentSquare = this.board.getGrid()[this.board.pawnCoord(initX)][this.board.pawnCoord(initY)];
-			}
-			else {
+			} else {
 				System.out.println("Player : Paramètre(s) x et/ou y non valide(s). \n"
 					+ "L'attribut currentSquare sera mis à null par défaut.");
 				this.currentSquare = null;

@@ -84,7 +84,7 @@ public class HumanPlayer extends Player {
 	private void playPawn() {
 		System.out.println("Vous pouvez jouer un pion sur les cases :");
 
-		this.board.printListOfPossibilitiesPawn();
+		this.board.printListOfPossibilitiesPawn(this);
 
 		System.out.println("Sur quelle case voulez-vous jouer ?");
 		int x = this.askX();

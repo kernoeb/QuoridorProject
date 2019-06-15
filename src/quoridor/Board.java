@@ -91,7 +91,7 @@ public class Board {
 		return (x*2) + 1;
 	}
 
-	public ArrayList<Square> listOfPossibilitiesFence() {
+	public ArrayList<Square> listOfPossibilitiesFence(Player player) {
 		ArrayList<Square> list = new ArrayList<Square>();
 
 	//	for(int x=0; x < )
@@ -105,11 +105,12 @@ public class Board {
 	public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
 		ArrayList<Square> al = new ArrayList<Square>();
 
+
 		return al;
 	}
 
-	public void printListOfPossibilitiesPawn() {
-
+	public void printListOfPossibilitiesPawn(Player player) {
+		System.out.println(player.getCurrentSquare().getX()/2 + " " + player.getCurrentSquare().getY()/2);
 	}
 
 	public String toString() {
