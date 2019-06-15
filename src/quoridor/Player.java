@@ -87,6 +87,7 @@ public abstract class Player {
 			// System.out.println(this.currentSquare.getStatus());
 			this.board.getGrid()[x][y].setStatus(this.currentSquare.getStatus());
 			this.board.getGrid()[this.currentSquare.getX()][this.currentSquare.getY()].setStatus(Status.PAWNPOSSIBLE);
+			this.currentSquare = this.board.getGrid()[x][y];
 		}
 
 		else {

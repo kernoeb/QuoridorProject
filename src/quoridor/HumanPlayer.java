@@ -51,7 +51,7 @@ public class HumanPlayer extends Player {
 		while ((!s.equalsIgnoreCase("p")) && (!s.equalsIgnoreCase("pion")) &&
 			(!s.equalsIgnoreCase("mur")) && (!s.equalsIgnoreCase("m"))) {
 				System.out.println("La chaîne de caractères est incorrecte !"
-					+ "Veuillez écrire la pièce que vous voulez jouée : Pion (p) ou Mur (m)");
+					+ "Veuillez écrire la pièce que vous voulez jouer : Pion (p) ou Mur (m)");
 				s = this.scan.nextLine();
 		}
 
@@ -82,7 +82,7 @@ public class HumanPlayer extends Player {
 	 * @author
 	 */
 	private void playPawn() {
-		System.out.println("Vous pouvez jouer un pion sur les cases :");
+		System.out.print("Vous pouvez jouer un pion sur les cases : ");
 
 		this.board.printListOfPossibilitiesPawn(this);
 
@@ -124,7 +124,7 @@ public class HumanPlayer extends Player {
 		int y = 0;
 
 		// System.out.print(this.name + "\nCoordonnée y : ");
-		System.out.print("\nCoordonnée y : ");
+		System.out.print("Coordonnée y : ");
 		y = this.scan.nextInt();
 
 		while((y < 0) || (y >= this.board.getSIZE())) {
