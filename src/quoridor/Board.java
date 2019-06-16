@@ -117,8 +117,8 @@ public class Board {
 		// for (int i = 0; i < 4; i++) {
 		// 	try {
 		// 		if (this.grid[x+rep[i][0]][y+rep[i][1]].getStatus() != Status.FENCEPAWN1 && this.grid[x+rep[i][0]][y+rep[i][1]].getStatus() != Status.FENCEPAWN2) {
-		// 			if (this.grid[x+2*(rep[i][0])][y+2*(rep[i][1])].getStatus() == Status.PAWN1 || this.grid[x+2*(rep[i][0])][y+2*(rep[i][1])].getStatus() == Status.PAWN2) al.add(this.grid[x+3*(rep[i][0])][y+3*(rep[i][1])]);
-		// 			else if (this.grid[x+2*(rep[i][0])][y+2*(rep[i][1])].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x+2*(rep[i][0])][y+2*(rep[i][1])]);
+		//			if (this.grid[x+rep[i][0]+rep[i][0]][y+rep[i][0]+rep[i][1]].getStatus() == Status.PAWN1.... à finir mais flemme là
+
 		// 		}
 		// 	} catch (ArrayIndexOutOfBoundsException e) {}			
 		// }
@@ -126,21 +126,25 @@ public class Board {
 		try {
 			if (this.grid[x-1][y].getStatus() != Status.FENCEPAWN1 && this.grid[x-1][y].getStatus() != Status.FENCEPAWN2) {
 				if (this.grid[x-2][y].getStatus() == Status.PAWN1 || this.grid[x-2][y].getStatus() == Status.PAWN2) {
-					if (this.grid[x-3][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x-3][y]);
+					if (this.grid[x-4][y].getStatus() == Status.PAWNPOSSIBLE && this.grid[x-3][y].getStatus() != Status.FENCEPAWN1 && this.grid[x-3][y].getStatus() != Status.FENCEPAWN2) {
+						al.add(this.grid[x-4][y]);
+					}
 				}
 				else if (this.grid[x-2][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x-2][y]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
-		// Ici y a un problème :think:
 		try {
 			if (this.grid[x+1][y].getStatus() != Status.FENCEPAWN1 && this.grid[x+1][y].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x+2][y].getStatus() == Status.PAWN1 || this.grid[x+2][y].getStatus() == Status.PAWN2) al.add(this.grid[x+3][y]);				
-				else if (this.grid[x+2][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x+2][y]);				
+				if (this.grid[x+2][y].getStatus() == Status.PAWN1 || this.grid[x+2][y].getStatus() == Status.PAWN2) {
+					if (this.grid[x+4][y].getStatus() == Status.PAWNPOSSIBLE && this.grid[x+3][y].getStatus() != Status.FENCEPAWN1 && this.grid[x+3][y].getStatus() != Status.FENCEPAWN2) {
+						al.add(this.grid[x+4][y]);
+					}
+				}
+				else if (this.grid[x+2][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x+2][y]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
-		// Ici y un problème :think:
 		try {
 			if (this.grid[x][y-1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-1].getStatus() != Status.FENCEPAWN2) {
 				if (this.grid[x][y-2].getStatus() == Status.PAWN1 || this.grid[x][y-2].getStatus() == Status.PAWN2) al.add(this.grid[x][y-3]); 			
