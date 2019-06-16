@@ -125,7 +125,9 @@ public class Board {
 
 		try {
 			if (this.grid[x-1][y].getStatus() != Status.FENCEPAWN1 && this.grid[x-1][y].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x-2][y].getStatus() == Status.PAWN1 || this.grid[x-2][y].getStatus() == Status.PAWN2) al.add(this.grid[x-3][y]);
+				if (this.grid[x-2][y].getStatus() == Status.PAWN1 || this.grid[x-2][y].getStatus() == Status.PAWN2) {
+					if (this.grid[x-3][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x-3][y]);
+				}
 				else if (this.grid[x-2][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x-2][y]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
