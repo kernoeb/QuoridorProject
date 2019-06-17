@@ -63,8 +63,7 @@ public class Quoridor {
 	 * @author
 	 */
 	public Game loadOldGame() {
-		// TODO - implement Quoridor.loadOldGame
-		return this.game;
+		return RWFile.readFile(this.fileName);
 	}
 
 	/**
@@ -73,7 +72,13 @@ public class Quoridor {
 	 * @author
 	 */
 	public void launchGame(Game game) {
-		// TODO - implement Quoridor.launchGame
+		if(game != null) {
+			this.game = game;
+		}
+
+		else {
+			System.err.println("launchGame : Paramètre non valide.");
+		}
 	}
 
 	/**
@@ -82,7 +87,12 @@ public class Quoridor {
 	 * @author
 	 */
 	public void saveGame(Game game) {
-		// TODO - implement Quoridor.saveGame
-	}
+		if (game != null) {
+			RWFile.writeFile(this.fileName, game);
+		}
 
+		else {
+			System.err.println("saveGame : Paramètre non valide.");
+		}
+	}
 }

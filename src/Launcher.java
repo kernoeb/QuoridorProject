@@ -21,6 +21,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		String loc = null;
 		Mode mode = null;
+		boolean load = false;
 
 		if (args.length != 0) {
 
@@ -33,6 +34,20 @@ public class Launcher {
 				else if (args[0].equals("HA")) {
 					mode = Mode.HA;
 					System.out.println("Chosen mode : HA");
+				}
+
+				else if (args[0].equalsIgnoreCase("load")) {
+					load = true;
+
+					if(args[1] != null) {
+						loc = args[1];
+					}
+
+					else {
+						loc = "data/save" + "randomMessage" + ".txt";
+					}
+
+					// TODO - Ecrire un message aleatoire pour les différentes sauvegardes de fichier
 				}
 
 				else {

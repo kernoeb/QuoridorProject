@@ -60,6 +60,10 @@ public class Game {
 		return this.player2;
 	}
 
+	public Player getActualPlayer() {
+		return this.actualPlayer;
+	}
+
 	/**
 	 * @param board the desired board to play the game with.
 	 */

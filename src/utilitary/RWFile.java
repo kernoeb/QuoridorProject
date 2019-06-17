@@ -39,13 +39,55 @@ public class RWFile {
 		return ret;
 	}
 
+	public Game readFile(String fileName) {
+		Game game = null;
+
+		if(fileName != null) {
+			try {
+				FileInputStream file = new FileInputStream(fileName);
+				ObjectInputStream obj = new ObjectInputStream(file);
+
+				game = obj.readObject();
+
+				obj.close();
+
+			} catch(FileNotFoundException e) {
+				System.err.println("readFile : " + e.getMessage());
+			} catch (IOException ex) {
+				System.err.println("readFile : " + ex.getMessage());
+			}
+		}
+		else {
+			System.err.println("readFile : Paramètre non valide.");
+		}
+
+		return game;
+	}
+
 	/**
 	 *
 	 * @param fileName
 	 */
-	public void writeFile(String fileName) {
-		// TODO - implement RWFile.writeFile
-		throw new UnsupportedOperationException();
+	public void writeFile(String fileName, Game game) {
+		if ((fileName != null) && (game != null)) {
+			try {
+				FileOutputStream file = new FileOutputStream(fileName);
+				ObjectOutputStream obj = new ObjectOutputStream(file);
+
+				obj.writeObject(game);
+
+				obj.close();
+
+			} catch (FileNotFoundException e) {
+				System.err.println("writeFile : " + e.getMessage());
+			} catch (IOException e) {
+				System.err.println("writeFile : " + e.getMessage());
+			}
+		}
+
+		else {
+			System.err.println("writeFile : Paramètre(s) non valide(s).");
+		}
 	}
 
 }
