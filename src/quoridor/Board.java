@@ -1,10 +1,8 @@
 package quoridor;
 
-// import project
 import quoridor.Square;
+import utilitary.Maze;
 //import GUI.MainGUI;
-
-// import java
 import java.util.ArrayList;
 
 /**
