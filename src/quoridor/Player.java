@@ -175,8 +175,28 @@ public abstract class Player {
 	 * @param square
 	 * @return
 	 */
-	public boolean checkFencePossible(Square square) {
-		// TODO - implement Player.checkFencePossible
-		return true;
+	public boolean checkFencePossible(Square square, String dir) {
+		boolean ret = false;
+
+		if ((square != null) && (dir != null)) {
+			int x = square.getX();
+			int y = square.getY();
+
+			if (dir.equalsIgnoreCase("h") || dir.equalsIgnoreCase("horizontal")) {
+				ret = square.isFencePossible() && this.board.getGrid()[x][y-1].isFencePossible()
+							&& this.board.getGrid()[x][y+1].isFencePossible();
+			}
+
+			else if (dir.equalsIgnoreCase("v") || dir.equalsIgnoreCase("vertical")) {
+				ret = square.isFencePossible() && this.board.getGrid()[x-1][y].isFencePossible()
+							&& this.board.getGrid()[x+1][y].isFencePossible();
+			}
+		}
+
+		else {
+			System.err.println("checkFencePossible : Paramètre(s) non valide(s).")
+		}
+
+		return ret;
 	}
 }
