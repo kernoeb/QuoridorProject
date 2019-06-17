@@ -7,6 +7,8 @@ import quoridor.Player;
 
 // import java
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * This class contains the methods to intiliaze the game
@@ -42,6 +44,7 @@ public class Game {
 			this.player2 = new AutoPlayer(namePlayer2, this.board, 0, 4); //this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
 
+		this.initializeGame();
 		this.start();
 	}
 
