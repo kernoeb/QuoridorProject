@@ -74,6 +74,4 @@ public class Square {
 	public boolean isPawn2() {
 		return this.status == Status.PAWN2;
 	}
-
-
 }

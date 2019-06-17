@@ -130,7 +130,7 @@ public class Board {
 	 * @param player
 	 */
 	public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
-		ArrayList<Square> al = new ArrayList<Square>();
+		ArrayList<Square> listOfPossibilities = new ArrayList<Square>();
 
 		int x = player.getCurrentSquare().getX();
 		int y = player.getCurrentSquare().getY();
@@ -148,7 +148,7 @@ public class Board {
 		// 				System.out.println("ok 2");
 		// 				if (this.grid[(x+(a*4))][(x+(b*4))].getStatus() == Status.PAWNPOSSIBLE && this.grid[(x+(a*3))][(x+(b*3))].getStatus() != Status.FENCEPAWN1 && this.grid[(x+(a*3))][(x+(b*3))].getStatus() != Status.FENCEPAWN2) {
 		// 					System.out.println("ok 3");
-		// 					al.add(this.grid[(x+(a*4))][(x+(b*4))]);
+		// 					listOfPossibilities.add(this.grid[(x+(a*4))][(x+(b*4))]);
 		// 				}
 		// 			}
 
@@ -156,51 +156,60 @@ public class Board {
 		// 	} catch (ArrayIndexOutOfBoundsException e) {}
 		// }
 
+		// Verification du haut
 		try {
-			if (this.grid[x-1][y].getStatus() != Status.FENCEPAWN1 && this.grid[x-1][y].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x-2][y].getStatus() == Status.PAWN1 || this.grid[x-2][y].getStatus() == Status.PAWN2) {
-					if (this.grid[x-4][y].getStatus() == Status.PAWNPOSSIBLE && this.grid[x-3][y].getStatus() != Status.FENCEPAWN1 && this.grid[x-3][y].getStatus() != Status.FENCEPAWN2) {
-						al.add(this.grid[x-4][y]);
+			if (this.grid[x-1][y].isFencePossible()) {
+				if (!this.grid[x-2][y].isPawnPossible()) {
+					if (this.grid[x-4][y].isPawnPossible() && this.grid[x-3][y].isFencePossible()) {
+						listOfPossibilities.add(this.grid[x-4][y]);
 					}
 				}
-				else if (this.grid[x-2][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x-2][y]);
+				else if (this.grid[x-2][y].isPawnPossible()) {
+					listOfPossibilities.add(this.grid[x-2][y]);
+				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
+		// Verification du bas
 		try {
-			if (this.grid[x+1][y].getStatus() != Status.FENCEPAWN1 && this.grid[x+1][y].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x+2][y].getStatus() == Status.PAWN1 || this.grid[x+2][y].getStatus() == Status.PAWN2) {
-					if (this.grid[x+4][y].getStatus() == Status.PAWNPOSSIBLE && this.grid[x+3][y].getStatus() != Status.FENCEPAWN1 && this.grid[x+3][y].getStatus() != Status.FENCEPAWN2) {
-						al.add(this.grid[x+4][y]);
+			if (this.grid[x+1][y].isFencePossible()) {
+				if (!this.grid[x+2][y].isPawnPossible()) {
+					if (this.grid[x+4][y].isPawnPossible() && this.grid[x+3][y].isFencePossible()) {
+						listOfPossibilities.add(this.grid[x+4][y]);
 					}
 				}
-				else if (this.grid[x+2][y].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x+2][y]);
+
+				else if (this.grid[x+2][y].isPawnPossible()) {
+					listOfPossibilities.add(this.grid[x+2][y]);
+				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
+		// Verification de la gauche
 		try {
 			if (this.grid[x][y-1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-1].getStatus() != Status.FENCEPAWN2) {
 				if (this.grid[x][y-2].getStatus() == Status.PAWN1 || this.grid[x][y-2].getStatus() == Status.PAWN2) {
 					if (this.grid[x][y-4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x][y-3].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-3].getStatus() != Status.FENCEPAWN2) {
-						al.add(this.grid[x][y-4]);
+						listOfPossibilities.add(this.grid[x][y-4]);
 					}
 				}
-				else if (this.grid[x][y-2].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x][y-2]);
+				else if (this.grid[x][y-2].getStatus() == Status.PAWNPOSSIBLE) listOfPossibilities.add(this.grid[x][y-2]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
+		// Verification de la droite
 		try {
 			if (this.grid[x][y+1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y+2].getStatus() != Status.FENCEPAWN2) {
 				if (this.grid[x][y+2].getStatus() == Status.PAWN1 || this.grid[x][y+2].getStatus() == Status.PAWN2) {
 					if (this.grid[x][y+4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x][y+3].getStatus() != Status.FENCEPAWN1 && this.grid[x][y+3].getStatus() != Status.FENCEPAWN2) {
-						al.add(this.grid[x][y+4]);
+						listOfPossibilities.add(this.grid[x][y+4]);
 					}
 				}
-				else if (this.grid[x][y+2].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x][y+2]);
+				else if (this.grid[x][y+2].getStatus() == Status.PAWNPOSSIBLE) listOfPossibilities.add(this.grid[x][y+2]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
-		return al;
+		return listOfPossibilities;
 	}
 
 	/**
@@ -210,10 +219,10 @@ public class Board {
 	public void printListOfPossibilitiesPawn(Player player) {
 		// System.out.println(player.getCurrentSquare().getX()/2 + " " + player.getCurrentSquare().getY()/2);
 
-		ArrayList<Square> al = listOfPossibilitiesPawn(player);
+		ArrayList<Square> listOfPossibilities = listOfPossibilitiesPawn(player);
 
 		// System.out.print("Coups possibles : ");
-		for (Square s : al) {
+		for (Square s : listOfPossibilities) {
 			System.out.print(s.getX()/2 + ", " + s.getY()/2	 + " | ");
 		}
 		System.out.println();
