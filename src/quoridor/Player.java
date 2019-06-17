@@ -194,7 +194,7 @@ public abstract class Player {
 		}
 
 		else {
-			System.err.println("checkFencePossible : Paramètre(s) non valide(s).")
+			System.err.println("checkFencePossible : Paramètre(s) non valide(s).");
 		}
 
 		return ret;

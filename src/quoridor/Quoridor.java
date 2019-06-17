@@ -63,7 +63,12 @@ public class Quoridor {
 	 * @author
 	 */
 	public Game loadOldGame() {
-		return RWFile.readFile(this.fileName);
+		try {
+			return new RWFile().readObj(this.fileName);
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 	/**
@@ -88,7 +93,9 @@ public class Quoridor {
 	 */
 	public void saveGame(Game game) {
 		if (game != null) {
-			RWFile.writeFile(this.fileName, game);
+			try {
+				new RWFile().writeFile(this.fileName, game);
+			} catch (Exception e) {}
 		}
 
 		else {

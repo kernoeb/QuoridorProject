@@ -2,6 +2,7 @@ package utilitary;
 
 import java.io.*;
 import java.util.ArrayList;
+import quoridor.*;
 
 public class RWFile {
 
@@ -39,7 +40,7 @@ public class RWFile {
 		return ret;
 	}
 
-	public Game readFile(String fileName) {
+	public Game readObj(String fileName) throws ClassNotFoundException, IOException {
 		Game game = null;
 
 		if(fileName != null) {
@@ -47,7 +48,7 @@ public class RWFile {
 				FileInputStream file = new FileInputStream(fileName);
 				ObjectInputStream obj = new ObjectInputStream(file);
 
-				game = obj.readObject();
+				game = (Game)obj.readObject();
 
 				obj.close();
 
@@ -68,7 +69,7 @@ public class RWFile {
 	 *
 	 * @param fileName
 	 */
-	public void writeFile(String fileName, Game game) {
+	public void writeFile(String fileName, Game game) throws ClassNotFoundException, IOException {
 		if ((fileName != null) && (game != null)) {
 			try {
 				FileOutputStream file = new FileOutputStream(fileName);
