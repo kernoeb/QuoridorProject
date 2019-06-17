@@ -21,7 +21,7 @@ public abstract class Player {
 		if ((name != null) && (board != null)) {
 			this.name = name;
 			this.board = board;
-			this.nbFences = 0;
+			this.nbFences = 10;
 			this.currentSquare = null;
 		}
 		else {
@@ -33,7 +33,7 @@ public abstract class Player {
 		if ((name != null) && (board != null)) {
 			this.name = name;
 			this.board = board;
-			this.nbFences = 0;
+			this.nbFences = 10;
 
 			if ((initX >= 0) && (initX < this.board.getSIZE()) && (initY >= 0) && (initY < this.board.getSIZE())) {
 				// this.currentSquare = this.board.getGrid()[initX][initY];
@@ -106,11 +106,6 @@ public abstract class Player {
 	 */
 	public boolean checkFencePossible(Square square) {
 		// TODO - implement Player.checkFencePossible
-		return true;
-	}
-
-	public boolean checkExistingPath(){
-		// TODO - implement player.checkExistingPath
 		return true;
 	}
 }
