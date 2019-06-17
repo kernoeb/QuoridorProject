@@ -83,7 +83,7 @@ public abstract class Player {
 			if (player.getGame().checkHasFinished(player)) {
 				ret = true;
 			}
-			else if(this.listOfOldPositions(sq)) {
+			else if(this.listOfOldPositions.contains(sq)) {
 
 			}
 			else {
