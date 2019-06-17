@@ -348,61 +348,61 @@ public class Board {
 		for (int i = 0; i < this.getSIZE(); i++) System.out.print(ANSI_YELLOW + i + "   ");
 		System.out.println("");
 
-		for (int x = 0; x < this.getTotalSize(); x++) {
-			if (this.isEvenNumber(x)) {
-				System.out.print(ANSI_YELLOW + x/2 + " ");
-			}
-			else System.out.print("  ");
+			for (int x = 0; x < this.getTotalSize(); x++) {
+				if (this.isEvenNumber(x)) {
+					System.out.print(ANSI_YELLOW + x/2 + " ");
+				}
+				else System.out.print("  ");
 
-			for (int y = 0; y < this.getTotalSize(); y++) {
-				temp = this.grid[x][y];
+				for (int y = 0; y < this.getTotalSize(); y++) {
+					temp = this.grid[x][y];
 
-				if (temp.isPawn()) {
-					if (temp.isPawnPossible()) {
-						System.out.print(this.ANSI_WHITE);
+					if (temp.isPawn()) {
+						if (temp.isPawnPossible()) {
+							System.out.print(this.ANSI_WHITE);
+						}
+
+						else if (temp.isPawn1()) {
+							System.out.print(this.ANSI_RED);
+						}
+
+						else if (temp.isPawn2()) {
+							System.out.print(this.ANSI_GREEN);
+						}
+
+						System.out.print("X ");
 					}
 
-					else if (temp.isPawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
 
-					else if (temp.isPawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
+					else if (temp.isFence()) {
+						if (temp.isFencePossible()) {
+							System.out.print(this.ANSI_GREY);
+						}
 
-					System.out.print("X ");
+						else if (temp.isFencePawn1()) {
+							System.out.print(this.ANSI_RED);
+						}
+
+						else if (temp.isFencePawn2()) {
+							System.out.print(this.ANSI_GREEN);
+						}
+
+						if (this.isEvenNumber(x)) {
+							System.out.print("| ");
+						}
+
+						else if (this.isEvenNumber(y)) {
+							System.out.print("─ ");
+						}
+
+						else {
+							System.out.print("+ ");
+						}
+					}
 				}
 
-
-				else if (temp.isFence()) {
-					if (temp.isFencePossible()) {
-						System.out.print(this.ANSI_GREY);
-					}
-
-					else if (temp.isFencePawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
-
-					else if (temp.isFencePawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
-
-					if (this.isEvenNumber(x)) {
-						System.out.print("| ");
-					}
-
-					else if (this.isEvenNumber(y)) {
-						System.out.print("─ ");
-					}
-
-					else {
-						System.out.print("+ ");
-					}
-				}
+				System.out.println(this.ANSI_RESET);
 			}
-
-			System.out.println(this.ANSI_RESET);
-		}
 	}
 
 	public void displayForFence() {
@@ -412,61 +412,61 @@ public class Board {
 		for (int i = 0; i < this.getSIZE()-1; i++) System.out.print(ANSI_YELLOW + i + "   ");
 		System.out.println("");
 
-		for (int x = 0; x < this.getTotalSize(); x++) {
-			if (this.isOddNumber(x)) {
-				System.out.print(ANSI_YELLOW + (int) (x/2) + " ");
-			}
-			else System.out.print("  ");
+			for (int x = 0; x < this.getTotalSize(); x++) {
+				if (this.isOddNumber(x)) {
+					System.out.print(ANSI_YELLOW + (int) (x/2) + " ");
+				}
+				else System.out.print("  ");
 
-			for (int y = 0; y < this.getTotalSize(); y++) {
-				temp = this.grid[x][y];
+				for (int y = 0; y < this.getTotalSize(); y++) {
+					temp = this.grid[x][y];
 
-				if (temp.isPawn()) {
-					if (temp.isPawnPossible()) {
-						System.out.print(this.ANSI_WHITE);
+					if (temp.isPawn()) {
+						if (temp.isPawnPossible()) {
+							System.out.print(this.ANSI_WHITE);
+						}
+
+						else if (temp.isPawn1()) {
+							System.out.print(this.ANSI_RED);
+						}
+
+						else if (temp.isPawn2()) {
+							System.out.print(this.ANSI_GREEN);
+						}
+
+						System.out.print("X ");
 					}
 
-					else if (temp.isPawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
 
-					else if (temp.isPawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
+					else if (temp.isFence()) {
+						if (temp.isFencePossible()) {
+							System.out.print(this.ANSI_GREY);
+						}
 
-					System.out.print("X ");
+						else if (temp.isFencePawn1()) {
+							System.out.print(this.ANSI_RED);
+						}
+
+						else if (temp.isFencePawn2()) {
+							System.out.print(this.ANSI_GREEN);
+						}
+
+						if (this.isEvenNumber(x)) {
+							System.out.print("| ");
+						}
+
+						else if (this.isEvenNumber(y)) {
+							System.out.print("─ ");
+						}
+
+						else {
+							System.out.print("+ ");
+						}
+					}
 				}
 
-
-				else if (temp.isFence()) {
-					if (temp.isFencePossible()) {
-						System.out.print(this.ANSI_GREY);
-					}
-
-					else if (temp.isFencePawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
-
-					else if (temp.isFencePawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
-
-					if (this.isEvenNumber(x)) {
-						System.out.print("| ");
-					}
-
-					else if (this.isEvenNumber(y)) {
-						System.out.print("─ ");
-					}
-
-					else {
-						System.out.print("+ ");
-					}
-				}
+				System.out.println(this.ANSI_RESET);
 			}
-
-			System.out.println(this.ANSI_RESET);
-		}
 	}
 
 
