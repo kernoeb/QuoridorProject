@@ -96,8 +96,8 @@ public class HumanPlayer extends Player {
 
 		Square currentSquare = this.getCurrentSquare();
 
-		while((!this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)].isFencePossible())
-			|| (!this.checkExistingPath(this.game.getPlayer1())) || (!this.checkExistingPath(this.game.getPlayer2()))) {
+		while((!this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)].isFencePossible())) {
+			// || (!this.checkExistingPath(this.game.getPlayer1())) || (!this.checkExistingPath(this.game.getPlayer2()))) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
 								+ "Veuillez en choisir une autre !");
 
@@ -145,15 +145,34 @@ public class HumanPlayer extends Player {
 	private int askX(int maxSize) {
 		int x = 0;
 
-		// System.out.print(this.name + "\nCoordonnée x : ");
 		System.out.print("\nCoordonnée x : ");
-		x = this.scan.nextInt();
+		
+		boolean isNumeric = false;
+		while (!isNumeric) {
+			try {
+				x = this.scan.nextInt();
+				isNumeric = true;
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("La chaîne de caractère est incorrecte !");
+				this.scan.nextLine();
+				System.out.print("Coordonnée x : ");
+			}
+		}
 
 		while ((x < 0) || (x >= maxSize)) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
-			// System.out.print(this.name + "Coordonnée x : ");
 			System.out.print("\nCoordonnée x : ");
-			x = this.scan.nextInt();
+			isNumeric = false;
+			while (!isNumeric) {
+				try {
+					x = this.scan.nextInt();
+					isNumeric = true;
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("La chaîne de caractère est incorrecte !");
+					this.scan.nextLine();
+					System.out.print("Coordonnée x : ");
+				}
+			}		
 		}
 
 		return x;
@@ -163,15 +182,33 @@ public class HumanPlayer extends Player {
 	private int askY(int maxSize) {
 		int y = 0;
 
-		// System.out.print(this.name + "\nCoordonnée y : ");
 		System.out.print("Coordonnée y : ");
-		y = this.scan.nextInt();
+		boolean isNumeric = false;
+		while (!isNumeric) {
+			try {
+				y = this.scan.nextInt();
+				isNumeric = true;
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("La chaîne de caractère est incorrecte !");
+				this.scan.nextLine();
+				System.out.print("Coordonnée y : ");
+			}
+		}
 
 		while((y < 0) || (y >= maxSize)) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
-			// System.out.print(this.name + "Coordonnée y : ");
 			System.out.print("\nCoordonnée y : ");
-			y = this.scan.nextInt();
+			isNumeric = false;
+			while (!isNumeric) {
+				try {
+					y = this.scan.nextInt();
+					isNumeric = true;
+				} catch (java.util.InputMismatchException e) {
+					System.out.println("La chaîne de caractère est incorrecte !");
+					this.scan.nextLine();
+					System.out.print("Coordonnée y : ");
+				}
+			}		
 		}
 
 		return y;
