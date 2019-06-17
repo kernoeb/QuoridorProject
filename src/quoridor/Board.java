@@ -147,14 +147,22 @@ public class Board {
 
 		try {
 			if (this.grid[x][y-1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-1].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x][y-2].getStatus() == Status.PAWN1 || this.grid[x][y-2].getStatus() == Status.PAWN2) al.add(this.grid[x][y-3]); 			
+				if (this.grid[x][y-2].getStatus() == Status.PAWN1 || this.grid[x][y-2].getStatus() == Status.PAWN2) {
+					if (this.grid[x][y-4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x][y-3].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-3].getStatus() != Status.FENCEPAWN2) {
+						al.add(this.grid[x][y-4]); 
+					}
+				}			
 				else if (this.grid[x][y-2].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x][y-2]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
 		try {
 			if (this.grid[x][y+1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y+2].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x][y+2].getStatus() == Status.PAWN1 || this.grid[x][y+2].getStatus() == Status.PAWN2) al.add(this.grid[x][y+3]);				
+				if (this.grid[x][y+2].getStatus() == Status.PAWN1 || this.grid[x][y+2].getStatus() == Status.PAWN2) {
+					if (this.grid[x][y+4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x][y+3].getStatus() != Status.FENCEPAWN1 && this.grid[x][y+3].getStatus() != Status.FENCEPAWN2) {
+						al.add(this.grid[x][y+4]);
+					}
+				}				
 				else if (this.grid[x][y+2].getStatus() == Status.PAWNPOSSIBLE) al.add(this.grid[x][y+2]);
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
