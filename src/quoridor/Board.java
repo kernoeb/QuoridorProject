@@ -112,18 +112,19 @@ public class Board {
 		int x = player.getCurrentSquare().getX();
 		int y = player.getCurrentSquare().getY();
 
-		// int rep[][] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+		int rep[][] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
 		// for (int i = 0; i < 4; i++) {
-		// 	try {
+		// // 	try {
 		// 		int a = rep[i][0];
 		// 		int b = rep[i][1];
-		// 		if (this.grid[x+a][y+b].getStatus() != Status.FENCEPAWN1 && this.grid[x+a][y+b].getStatus() != Status.FENCEPAWN2) {
-		// 			// System.out.println("ok 1 " + a*2 + " " + b*2);
-		// 			if (this.grid[x+(a*2)][y+(b*2)].getStatus() == Status.PAWN1 || this.grid[x+(a*2)][y+(b*2)].getStatus() == Status.PAWN2) {
-		// 				// System.out.println("ok 2");
-		// 				if (this.grid[x+a*4][x+b*4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x+a*3][x+b*3].getStatus() != Status.FENCEPAWN1 && this.grid[x+a*3][x+b*3].getStatus() != Status.FENCEPAWN2) {
-		// 					// System.out.println("ok 3");
-		// 					al.add(this.grid[x+a*4][x+b*4]);
+		// 		// System.out.println((x+a) + " " + (x+b));
+		// 		if (this.grid[(x+a)][(y+b)].getStatus() != Status.FENCEPAWN1 && this.grid[(x+a)][(y+b)].getStatus() != Status.FENCEPAWN2) {
+		// 			System.out.println("ok 1 " + a*2 + " " + b*2);
+		// 			if (this.grid[(x+(a*2))][(y+(b*2))].getStatus() == Status.PAWN1 || this.grid[(x+(a*2))][(y+(b*2))].getStatus() == Status.PAWN2) {
+		// 				System.out.println("ok 2");
+		// 				if (this.grid[(x+(a*4))][(x+(b*4))].getStatus() == Status.PAWNPOSSIBLE && this.grid[(x+(a*3))][(x+(b*3))].getStatus() != Status.FENCEPAWN1 && this.grid[(x+(a*3))][(x+(b*3))].getStatus() != Status.FENCEPAWN2) {
+		// 					System.out.println("ok 3");
+		// 					al.add(this.grid[(x+(a*4))][(x+(b*4))]);
 		// 				}
 		// 			}
 
