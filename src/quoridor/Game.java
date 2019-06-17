@@ -42,10 +42,6 @@ public class Game {
 			this.player2 = new AutoPlayer(namePlayer2, this.board, 0, 4); //this.board.pawnCoord(8), this.board.pawnCoord(4));
 		}
 
-		this.actualPlayer = this.player1;
-
-		//this.initializeGame();
-
 		this.start();
 	}
 
@@ -77,7 +73,7 @@ public class Game {
 	 * Initialize the game
 	 */
 	private void initializeGame() {
-		this.player1.play();
+		this.actualPlayer = this.whoStarts();
 	}
 
 	/**
@@ -85,8 +81,11 @@ public class Game {
 	 * @return the starting player
 	 */
 	public Player whoStarts() {
-		// TODO - implement Game.whoStarts
-		return this.player1; // à changer
+		ArrayList<Player> list = new ArrayList<Player>();
+		list.add(this.player1);
+		list.add(this.player2);
+
+		return list.get(new Random().nextInt(list.size()));
 	}
 
 	public boolean checkHasFinished(Player player) {
