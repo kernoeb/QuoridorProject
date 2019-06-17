@@ -1,5 +1,7 @@
 package quoridor;
 
+import java.util.ArrayList;
+
 /**
  * Player
  * @author
@@ -11,6 +13,7 @@ public abstract class Player {
 	protected String name;
 	protected int nbFences;
 	protected Game game;
+	protected ArrayList<Square> listOfOldPositions;
 
 	/**
 	 * Player constructor
@@ -25,6 +28,7 @@ public abstract class Player {
 			this.nbFences = 10;
 			this.currentSquare = null;
 			this.game = game;
+			this.listOfOldPositions = new ArrayList<Square>();
 		}
 		else {
 			System.err.println("Player : Paramètre(s) non valide(s).");
@@ -69,21 +73,29 @@ public abstract class Player {
 			// Sinon ret = checkExistingPath(player)
 			// 	Si
 			sq = list.get(i);
-			player.movePawn(sq.getX(), sq.getY());
+				player.movePawn(sq.getX(), sq.getY());
+			this.listOfOldPositions.add(this.board.getGrid()[sq.getX()][sq.getY()]);
+
+			System.out.println("x : " + sq.getX() + "y : " + sq.getY());
 
 			if (player.getGame().checkHasFinished(player)) {
 				ret = true;
 			}
 			else {
 				ret = this.checkExistingPath(player);
+
 				if(!ret) {
-					player.movePawn()
+					player.movePawn(sq.getX(), sq.getY());
 				}
 			}
+
+			i++;
 		}
 
-		return ret1;
+		return ret;
 	}
+
+
 
 	public void setCurrentSquare(int x, int y) {
 		if ((x >= 0) && (x < this.board.getSIZE()) && (y >= 0) && (y < this.board.getSIZE())

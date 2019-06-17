@@ -86,6 +86,8 @@ public class HumanPlayer extends Player {
 	 */
 	private void playFence() {
 		// TODO - implement HumanPlayer.playFence
+		this.listOfOldPositions.clear();
+
 		System.out.println("Sur quelle case voulez-vous jouer ?");
 
 		int x = this.askX(this.board.getSIZE() - 1);
