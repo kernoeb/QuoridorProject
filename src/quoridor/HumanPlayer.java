@@ -91,12 +91,12 @@ public class HumanPlayer extends Player {
 		int y = this.askY(this.board.getSIZE() - 1);
 		String dir = this.askDir();
 
-		while(!this.board.getGrid()[x][y].isFencePossible()) {
+		while(!this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)].isFencePossible()) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
-				+"Veuillez en choisir une autre !");
+								+ "Veuillez en choisir une autre !");
 
-			x = this.askX();
-			y = this.askY();
+			x = this.askX(this.board.getSIZE() - 1);
+			y = this.askY(this.board.getSIZE() - 1);
 		}
 
 		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
@@ -117,16 +117,19 @@ public class HumanPlayer extends Player {
 		int x = this.askX(this.board.getSIZE());
 		int y = this.askY(this.board.getSIZE());
 
-		while ((x == this.currentSquare.getX()) && (y == this.currentSquare.getY())) {
-			System.out.println("Vous ne pouvez pas jouer sur la même case que votre pion. \n"
-				+"Veuillez choisir une autre case !");
+		while (((this.board.pawnCoord(x) == this.currentSquare.getX()) && (this.board.pawnCoord(y) == this.currentSquare.getY())) 
+				|| (this.board.listOfPossibilitiesPawn(this).contains(this.board.getGrid()[this.board.pawnCoord(x)][this.board.pawnCoord(y)]) == false)) {
+			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
+								+ "Veuillez en choisir une autre !"); 
 
-			x = this.askX();
-			y = this.askY();
+			x = this.askX(this.board.getSIZE());
+			y = this.askY(this.board.getSIZE());
 		}
+ 
 
-		super.movePawn(x, y);
+		super.movePawn(this.board.pawnCoord(x), this.board.pawnCoord(y));
 	}
+
 
 	// Méthode pour Pawn pour l'instant ...
 	private int askX(int maxSize) {
@@ -143,7 +146,7 @@ public class HumanPlayer extends Player {
 			x = this.scan.nextInt();
 		}
 
-		return this.board.pawnCoord(x);
+		return x;
 	}
 
 	// Méthode pour Pawn pour l'instant ...
@@ -161,7 +164,7 @@ public class HumanPlayer extends Player {
 			y = this.scan.nextInt();
 		}
 
-		return this.board.pawnCoord(y);
+		return y;
 	}
 
 	private String askDir() {
