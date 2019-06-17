@@ -41,6 +41,7 @@ public abstract class Player {
 			this.board = board;
 			this.nbFences = 10;
 			this.game = game;
+			this.listOfOldPositions = new ArrayList<Square>();
 
 			if ((initX >= 0) && (initX < this.board.getSIZE()) && (initY >= 0) && (initY < this.board.getSIZE())) {
 				// this.currentSquare = this.board.getGrid()[initX][initY];
@@ -62,7 +63,7 @@ public abstract class Player {
 
 	public boolean checkExistingPath(Player player) {
 		boolean ret = false;
-		ArrayList<Square> list = this.listOfPossibilitiesPawn(player);
+		ArrayList<Square> list = this.board.listOfPossibilitiesPawn(player);
 		int i = 0;
 		Square sq = null;
 
