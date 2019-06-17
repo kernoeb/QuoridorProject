@@ -99,7 +99,7 @@ public class HumanPlayer extends Player {
 			y = this.askY();
 		}
 
-		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir);
+		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
 		this.setNbFences(this.nbFences - 1);
 	}
 
