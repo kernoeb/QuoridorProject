@@ -163,9 +163,14 @@ public class Board {
 					if (this.grid[x-4][y].isPawnPossible() && this.grid[x-3][y].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x-4][y]);
 					}
-					// else {
-					// 	if (this.grid[]
-					// }
+					else {
+						if (this.grid[x-2][y-1].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x-2][y-2]);
+						}
+						if (this.grid[x-2][y+1].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x-2][y+2]);
+						}
+					}
 				}
 				else if (this.grid[x-2][y].isPawnPossible()) {
 					listOfPossibilities.add(this.grid[x-2][y]);
@@ -179,6 +184,14 @@ public class Board {
 				if (!this.grid[x+2][y].isPawnPossible()) {
 					if (this.grid[x+4][y].isPawnPossible() && this.grid[x+3][y].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x+4][y]);
+					}
+					else {
+						if (this.grid[x+2][y-1].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x+2][y-2]);
+						}
+						if (this.grid[x+2][y+1].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x+2][y+2]);
+						}
 					}
 				}
 
@@ -195,6 +208,14 @@ public class Board {
 					if (this.grid[x][y-4].isPawnPossible() && this.grid[x][y-3].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x][y-4]);
 					}
+					else {
+						if (this.grid[x-1][y-2].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x-2][y-2]);
+						}
+						if (this.grid[x+1][y-2].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x+2][y-2]);
+						}
+					}
 				}
 				else if (this.grid[x][y-2].isPawnPossible()) {
 					listOfPossibilities.add(this.grid[x][y-2]);
@@ -208,6 +229,14 @@ public class Board {
 				if (!this.grid[x][y+2].isPawnPossible()) {
 					if (this.grid[x][y+4].isPawnPossible() && this.grid[x][y+3].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x][y+4]);
+					}
+					else {
+						if (this.grid[x-1][y+2].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x-2][y+2]);
+						}
+						if (this.grid[x+1][y+2].isFencePossible()) {
+							listOfPossibilities.add(this.grid[x+2][y+2]);
+						}
 					}
 				}
 				else if (this.grid[x][y+2].isPawnPossible()) {
