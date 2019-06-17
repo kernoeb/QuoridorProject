@@ -163,6 +163,9 @@ public class Board {
 					if (this.grid[x-4][y].isPawnPossible() && this.grid[x-3][y].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x-4][y]);
 					}
+					// else {
+					// 	if (this.grid[]
+					// }
 				}
 				else if (this.grid[x-2][y].isPawnPossible()) {
 					listOfPossibilities.add(this.grid[x-2][y]);
@@ -187,25 +190,29 @@ public class Board {
 
 		// Verification de la gauche
 		try {
-			if (this.grid[x][y-1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-1].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x][y-2].getStatus() == Status.PAWN1 || this.grid[x][y-2].getStatus() == Status.PAWN2) {
-					if (this.grid[x][y-4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x][y-3].getStatus() != Status.FENCEPAWN1 && this.grid[x][y-3].getStatus() != Status.FENCEPAWN2) {
+			if (this.grid[x][y-1].isFencePossible()) {
+				if (!this.grid[x][y-2].isPawnPossible()) {
+					if (this.grid[x][y-4].isPawnPossible() && this.grid[x][y-3].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x][y-4]);
 					}
 				}
-				else if (this.grid[x][y-2].getStatus() == Status.PAWNPOSSIBLE) listOfPossibilities.add(this.grid[x][y-2]);
+				else if (this.grid[x][y-2].isPawnPossible()) {
+					listOfPossibilities.add(this.grid[x][y-2]);
+				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
 		// Verification de la droite
 		try {
-			if (this.grid[x][y+1].getStatus() != Status.FENCEPAWN1 && this.grid[x][y+2].getStatus() != Status.FENCEPAWN2) {
-				if (this.grid[x][y+2].getStatus() == Status.PAWN1 || this.grid[x][y+2].getStatus() == Status.PAWN2) {
-					if (this.grid[x][y+4].getStatus() == Status.PAWNPOSSIBLE && this.grid[x][y+3].getStatus() != Status.FENCEPAWN1 && this.grid[x][y+3].getStatus() != Status.FENCEPAWN2) {
+			if (this.grid[x][y+1].isFencePossible()) {
+				if (!this.grid[x][y+2].isPawnPossible()) {
+					if (this.grid[x][y+4].isPawnPossible() && this.grid[x][y+3].isFencePossible()) {
 						listOfPossibilities.add(this.grid[x][y+4]);
 					}
 				}
-				else if (this.grid[x][y+2].getStatus() == Status.PAWNPOSSIBLE) listOfPossibilities.add(this.grid[x][y+2]);
+				else if (this.grid[x][y+2].isPawnPossible()) {
+					listOfPossibilities.add(this.grid[x][y+2]);
+				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {}
 
