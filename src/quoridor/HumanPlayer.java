@@ -96,7 +96,7 @@ public class HumanPlayer extends Player {
 
 		Square currentSquare = this.getCurrentSquare();
 
-		while((!this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)].isFencePossible())) {
+		while ((!this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)].isFencePossible())) {
 			// || (!this.checkExistingPath(this.game.getPlayer1())) || (!this.checkExistingPath(this.game.getPlayer2()))) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
 								+ "Veuillez en choisir une autre !");

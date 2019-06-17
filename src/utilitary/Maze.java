@@ -1,3 +1,5 @@
+package utilitary;
+
 import quoridor.*;
 
 public class Maze {
@@ -21,18 +23,19 @@ public class Maze {
 				System.out.print(" " + maze[i][j] + " "); 
 			System.out.println(); 
 		} 
+		System.out.println();
 	}
 
 	private boolean isSafe(int maze[][], int x, int y) { 
 		return (x >= 0 && x < maze.length && y >= 0 && y < maze.length && maze[x][y] == 1); 
 	} 
 
-	private boolean solveMaze() {
+	public boolean solveMaze(int x, int y) {
 		int[][] maze = convertToMaze(this.board);
 		int[][] sol = new int[maze.length][maze.length]; 
 
-		if (solveMazeUtil(maze, 0, 0, sol) == false) { 
-			System.out.print("Aucune solution"); 
+		if (solveMazeUtil(maze, x, y, sol) == false) { 
+			System.out.print("Aucune solution\n"); 
 			return false; 
 		} 
 
@@ -41,6 +44,7 @@ public class Maze {
 	} 
 
 	private boolean solveMazeUtil(int maze[][], int x, int y, int sol[][]) { 
+		// if (x == maze.length - 1) { 
 		if (x == 0) { 
 			sol[x][y] = 1; 
 			return true; 
@@ -49,7 +53,8 @@ public class Maze {
 		if (isSafe(maze, x, y) == true) { 
 			sol[x][y] = 1; 
 
-			if (solveMazeUtil(maze, x + 1, y, sol)) return true;
+			// if (solveMazeUtil(maze, x + 1, y, sol)) return true;
+			if (solveMazeUtil(maze, x - 1, y, sol)) return true;
 
 			if (solveMazeUtil(maze, x, y + 1, sol)) return true;
 
