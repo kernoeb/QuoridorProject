@@ -62,6 +62,24 @@ public abstract class Player {
 		}
 	}
 
+	public void setCurrentSquare(Square square) {
+		if (square != null) {
+			int x = square.getX();
+			int y = square.getY();
+
+			if((x >= 0) && (x < this.board.getSIZE()) && (y >= 0) && (y < this.board.getSIZE())
+				&& (this.board.getGrid()[x][y].isPawnPossible())) {
+
+					this.currentSquare = square;
+			}
+		}
+
+		else {
+			System.err.println("setCurrentSquare : Paramètre non valide.");
+		}
+
+	}
+
 	public Square getCurrentSquare() {
 		return this.currentSquare;
 	}
