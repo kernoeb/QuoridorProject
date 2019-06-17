@@ -30,14 +30,24 @@ public class HumanPlayer extends Player {
 	 * @author
 	 */
 	public void play() {
-		String mode = this.askMode();
+		if(this.nbFences > 0) {
+			String mode = this.askMode();
 
-		if (mode.equalsIgnoreCase("pawn")) {
-			this.playPawn();
+			if (mode.equalsIgnoreCase("pawn")) {
+				this.board.displayForPawn();
+				this.playPawn();
+			}
+
+			else if (mode.equalsIgnoreCase("fence")) {
+				this.board.displayForFence();
+				this.playFence();
+			}
 		}
+		else {
+			System.out.println("Vous n'avez plus de murs disponibles !");
 
-		else if (mode.equalsIgnoreCase("fence")) {
-			this.playFence();
+			this.board.displayForPawn();
+			this.playPawn();
 		}
 	}
 
@@ -46,11 +56,13 @@ public class HumanPlayer extends Player {
 			+ "Pion (p) ou Mur (m)");
 
 		String ret = null;
+		this.scan = new Scanner(System.in);
 		String s = this.scan.nextLine();
+
 
 		while ((!s.equalsIgnoreCase("p")) && (!s.equalsIgnoreCase("pion")) &&
 			(!s.equalsIgnoreCase("mur")) && (!s.equalsIgnoreCase("m"))) {
-				System.out.println("La chaîne de caractères est incorrecte !"
+				System.out.println("La chaîne de caractères est incorrecte !\n"
 					+ "Veuillez écrire la pièce que vous voulez jouer : Pion (p) ou Mur (m)");
 				s = this.scan.nextLine();
 		}
@@ -73,7 +85,21 @@ public class HumanPlayer extends Player {
 	 */
 	private void playFence() {
 		// TODO - implement HumanPlayer.playFence
+		System.out.println("Sur quelle case voulez-vous jouer ?");
 
+		int x = this.askX(this.board.getSIZE() - 1);
+		int y = this.askY(this.board.getSIZE() - 1);
+
+		while(!this.board.getGrid()[x][y].isFencePossible()) {
+			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
+				+"Veuillez en choisir une autre !");
+
+			x = this.askX();
+			y = this.askY();
+		}
+
+		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y));
+		this.board.setNbFences(this.nbFences - 1);
 	}
 
 	/**
@@ -87,8 +113,8 @@ public class HumanPlayer extends Player {
 		this.board.printListOfPossibilitiesPawn(this);
 
 		System.out.println("Sur quelle case voulez-vous jouer ?");
-		int x = this.askX();
-		int y = this.askY();
+		int x = this.askX(this.board.getSIZE());
+		int y = this.askY(this.board.getSIZE());
 
 		while ((x == this.currentSquare.getX()) && (y == this.currentSquare.getY())) {
 			System.out.println("Vous ne pouvez pas jouer sur la même case que votre pion. \n"
@@ -102,17 +128,17 @@ public class HumanPlayer extends Player {
 	}
 
 	// Méthode pour Pawn pour l'instant ...
-	private int askX() {
+	private int askX(int maxSize) {
 		int x = 0;
 
 		// System.out.print(this.name + "\nCoordonnée x : ");
 		System.out.print("\nCoordonnée x : ");
 		x = this.scan.nextInt();
 
-		while ((x < 0) || (x >= this.board.getSIZE())) {
+		while ((x < 0) || (x >= maxSize)) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
 			// System.out.print(this.name + "Coordonnée x : ");
-			System.out.print("\nCoordonnée x : "); 
+			System.out.print("\nCoordonnée x : ");
 			x = this.scan.nextInt();
 		}
 
@@ -120,17 +146,17 @@ public class HumanPlayer extends Player {
 	}
 
 	// Méthode pour Pawn pour l'instant ...
-	private int askY() {
+	private int askY(int maxSize) {
 		int y = 0;
 
 		// System.out.print(this.name + "\nCoordonnée y : ");
 		System.out.print("Coordonnée y : ");
 		y = this.scan.nextInt();
 
-		while((y < 0) || (y >= this.board.getSIZE())) {
+		while((y < 0) || (y >= maxSize)) {
 			System.out.println("La coordonnée n'est pas valide. Veuillez en saisir une nouvelle !");
 			// System.out.print(this.name + "Coordonnée y : ");
-			System.out.print("\nCoordonnée y : "); 
+			System.out.print("\nCoordonnée y : ");
 			y = this.scan.nextInt();
 		}
 
