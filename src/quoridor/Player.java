@@ -73,14 +73,18 @@ public abstract class Player {
 			// Alors ret = true
 			// Sinon ret = checkExistingPath(player)
 			// 	Si
+
 			sq = list.get(i);
-				player.movePawn(sq.getX(), sq.getY());
+			player.movePawn(sq.getX(), sq.getY());
 			this.listOfOldPositions.add(this.board.getGrid()[sq.getX()][sq.getY()]);
 
 			System.out.println("x : " + sq.getX() + "y : " + sq.getY());
 
 			if (player.getGame().checkHasFinished(player)) {
 				ret = true;
+			}
+			else if(this.listOfOldPositions(sq)) {
+
 			}
 			else {
 				ret = this.checkExistingPath(player);
