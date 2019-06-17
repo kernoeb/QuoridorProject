@@ -1,7 +1,7 @@
 package quoridor;
 
 import java.util.ArrayList;
-import java.util.Random; 
+import java.util.Random;
 
 public class AutoPlayer extends Player {
 	/**
@@ -9,12 +9,12 @@ public class AutoPlayer extends Player {
 	 * @param name
 	 * @author
 	 */
-	public AutoPlayer(String name, Board board, int initX, int initY) {
-		super(name, board, initX, initY);
+	public AutoPlayer(Game game, String name, Board board, int initX, int initY) {
+		super(game, name, board, initX, initY);
 	}
 
-	public AutoPlayer(String name, Board board) {
-		super(name, board);
+	public AutoPlayer(Game game, String name, Board board) {
+		super(game, name, board);
 	}
 
 	/**

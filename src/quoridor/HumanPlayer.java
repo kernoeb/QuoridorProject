@@ -15,13 +15,13 @@ public class HumanPlayer extends Player {
 	 * @param name
 	 * @author
 	 */
-	public HumanPlayer(String name, Board board, int initX, int initY) {
-		super(name, board, initX, initY);
+	public HumanPlayer(Game game, String name, Board board, int initX, int initY) {
+		super(game, name, board, initX, initY);
 		this.scan = new Scanner(System.in);
 	}
 
-	public HumanPlayer(String name, Board board) {
-		super(name, board);
+	public HumanPlayer(Game game, String name, Board board) {
+		super(game, name, board);
 		this.scan = new Scanner(System.in);
 	}
 
@@ -95,7 +95,7 @@ public class HumanPlayer extends Player {
 		Square currentSquare = this.getCurrentSquare();
 
 		while((!this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)].isFencePossible())
-			|| (!this.board.checkExistingPath(this))) {
+			|| (!this.checkExistingPath(this.game.getPlayer1())) || (!this.checkExistingPath(this.game.getPlayer2()))) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
 								+ "Veuillez en choisir une autre !");
 

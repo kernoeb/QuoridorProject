@@ -136,6 +136,7 @@ public class Board {
 		int y = player.getCurrentSquare().getY();
 
 		int rep[][] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+
 		// for (int i = 0; i < 4; i++) {
 		// // 	try {
 		// 		int a = rep[i][0];
