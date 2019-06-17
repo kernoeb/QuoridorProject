@@ -1,5 +1,8 @@
 package quoridor;
 
+import java.util.ArrayList;
+import java.util.Random; 
+
 public class AutoPlayer extends Player {
 	/**
 	 * AutoPlayer constructor
@@ -21,7 +24,19 @@ public class AutoPlayer extends Player {
 	 * @author
 	 */
 	public void play() {
-		// TODO - implement AutoPlayer.play
+		ArrayList<Square> al = this.board.listOfPossibilitiesPawn(this);
+		int currentX = this.currentSquare.getX();
+		int currentY = this.currentSquare.getY();
+		// System.out.println("Vals : " + currentX + " " + currentY);
+		this.board.printListOfPossibilitiesPawn(this);
+
+		if (al.contains(this.board.getGrid()[(currentX+2)][currentY])) {
+			super.movePawn((currentX+2), currentY);
+		} else {
+			Square s = al.get(new Random().nextInt(al.size()));
+			super.movePawn(s.getX(), s.getY());
+		}
+
 	}
 
 	/**

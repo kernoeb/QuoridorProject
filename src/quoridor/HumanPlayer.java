@@ -41,6 +41,7 @@ public class HumanPlayer extends Player {
 			else if (mode.equalsIgnoreCase("fence")) {
 				this.board.displayForFence();
 				this.playFence();
+				System.out.println("Il vous reste " + super.nbFences + " barrières !");
 			}
 		}
 		else {
