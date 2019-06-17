@@ -89,6 +89,7 @@ public class HumanPlayer extends Player {
 
 		int x = this.askX(this.board.getSIZE() - 1);
 		int y = this.askY(this.board.getSIZE() - 1);
+		String dir = this.askDir();
 
 		while(!this.board.getGrid()[x][y].isFencePossible()) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
@@ -98,7 +99,7 @@ public class HumanPlayer extends Player {
 			y = this.askY();
 		}
 
-		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y));
+		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir);
 		this.board.setNbFences(this.nbFences - 1);
 	}
 
@@ -161,5 +162,31 @@ public class HumanPlayer extends Player {
 		}
 
 		return this.board.pawnCoord(y);
+	}
+
+	private String askDir() {
+		String ret = null;
+
+		System.out.println("Dans quelle direction voulez-vous mettre le mur ? \n"
+			+"'H' (Horizontal) ou 'V' (Vertical)");
+
+		ret = this.scan.nextLine();
+
+		while ((!ret.equalsIgnoreCase("h")) && (!ret.equalsIgnoreCase("horizontal")) &&
+			(!ret.equalsIgnoreCase("v")) && (!ret.equalsIgnoreCase("vertical"))) {
+				System.out.println("La chaîne de caractères est incorrecte !\n"
+					+ "Veuillez écrire la direction du mur que vous voulez jouer : \n"
+					+ "'H' (Horizontal) ou 'V' (Vertical)");
+				ret = this.scan.nextLine();
+		}
+
+		if ((ret.equalsIgnoreCase("h")) || (ret.equalsIgnoreCase("horizontal"))) {
+			ret = "h";
+		}
+		else {
+			ret = "v";
+		}
+
+		return ret;
 	}
 }
