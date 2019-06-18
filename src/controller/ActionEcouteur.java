@@ -36,13 +36,16 @@ public class ActionEcouteur implements ActionListener {
 
     else if (button == this.quoridor.getButtonModeHH()) {
       this.quoridor.getMenuMode().setVisible(false);
-      this.quoridor.addGameGUI(new GameGUI(new Game(Mode.HH, "Red user", "Green user")));
+      this.quoridor.setGameGUI(new GameGUI(new Game(Mode.HH, "Red user", "Green user", false)));
+      this.quoridor.add(this.quoridor.getGameGUI());
       this.quoridor.getGameGUI().setVisible(true);
+      this.quoridor.setFocusableWindowState(true);
     }
 
     else if (button == this.quoridor.getButtonModeHA()) {
       this.quoridor.getMenuMode().setVisible(false);
-      this.quoridor.addGameGUI(new GameGUI(new Game(Mode.HA, "Red user", "Green user")));
+      this.quoridor.setGameGUI(new GameGUI(new Game(Mode.HA, "Red user", "Green user", false)));
+      this.quoridor.add(this.quoridor.getGameGUI());
       this.quoridor.getGameGUI().setVisible(true);
     }
   }

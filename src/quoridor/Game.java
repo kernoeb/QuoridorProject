@@ -24,6 +24,7 @@ public class Game {
 	private Player actualPlayer;
 
 	private Scanner scan;
+	private boolean terminal;
 
 	/**
 	 * Game constructor
@@ -31,8 +32,9 @@ public class Game {
 	 * The mode is choosen by the players with a scanner
 	 * @author
 	 */
-	public Game(Mode mode, String namePlayer1, String namePlayer2) {
+	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		this.board = new Board();
+		this.terminal = terminal;
 
 		if (mode == Mode.HH) {
 			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2));
@@ -45,7 +47,10 @@ public class Game {
 		}
 
 		this.initializeGame();
-		this.start();
+
+		if(this.terminal) {
+			this.start();
+		}
 	}
 
 	public Board getBoard() {

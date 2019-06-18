@@ -81,20 +81,20 @@ public class Launcher {
 			}
 
 			if ((loc == null) && (chosenMode != null)) {
-				Quoridor quoridor = new Quoridor(chosenMode, p1, p2);
+				Quoridor quoridor = new Quoridor(chosenMode, p1, p2, true);
 			}
 			else if (load && (!loc.equalsIgnoreCase("data/config.txt"))) {
-				Quoridor quoridor = new Quoridor(loc);
+				Quoridor quoridor = new Quoridor(loc, true);
 			}
 			else {
 				System.out.println("Location : " + loc);
-				Quoridor quoridor = new Quoridor(loc, p1, p2);
+				Quoridor quoridor = new Quoridor(loc, p1, p2, true);
 			}
 		}
 
 		else {
 			System.out.println("Aucun argument, lancement du config.txt");
-			Quoridor quoridor = new Quoridor("data/config.txt", "Red user", "Green user");
+			Quoridor quoridor = new Quoridor("data/config.txt", "Red user", "Green user", true);
 		}
 
 	}

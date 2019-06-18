@@ -12,11 +12,11 @@ public class GameGUI extends JPanel {
 
   public GameGUI(Game game) {
     this.game = game;
+    System.out.println("gamegui");
     this.createAndShowGUI();
   }
 
   private void createAndShowGUI() {
     label = new JLabel("Game");
-
   }
 }

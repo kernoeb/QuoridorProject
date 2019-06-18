@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import controller.ActionEcouteur;
+import quoridor.Quoridor;
 
 public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
@@ -22,6 +23,8 @@ public class QuoridorGUI extends JFrame {
   JButton modeHAButton;
 
   GameGUI gameGUI;
+
+  Quoridor quoridor;
 
   public QuoridorGUI() {
     this.createAndShowGUI();
@@ -63,11 +66,17 @@ public class QuoridorGUI extends JFrame {
     return this.gameGUI;
   }
 
+  public void setGameGUI(GameGUI gameGUI) {
+    this.gameGUI = gameGUI;
+  }
+
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
     this.setPreferredSize(new Dimension(800, 800));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
+
+    // quoridor = new Quoridor()
 
     this.loadMenu = new JPanel();
     this.mainMenu = new JPanel();
@@ -107,7 +116,8 @@ public class QuoridorGUI extends JFrame {
     this.setVisible(true);
   }
 
-  public void addGameGUI(GameGUI gameGUI) {
-    this.gameGUI = gameGUI;
-  }
+  // public void addGameGUI(GameGUI gameGUI) {
+  //   this.gameGUI = gameGUI;
+  //   this.add(this.gameGUI);
+  // }
 }
