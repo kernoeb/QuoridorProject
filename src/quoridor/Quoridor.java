@@ -33,7 +33,7 @@ public class Quoridor {
 			this.terminal = terminal;
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
 		} catch(Exception e) {
-			System.err.println("Quoridor : " + e.getMessage());
+			System.err.println("Quoridor 1 : " + e.getMessage());
 		}
 	}
 
@@ -50,7 +50,7 @@ public class Quoridor {
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
 
 		} catch (Exception e) {
-			System.err.println("Quoridor : " + e.getMessage());
+			System.err.println("Quoridor 2 : " + e.getMessage());
 		}
 	}
 
@@ -62,7 +62,7 @@ public class Quoridor {
 			this.launchGame(this.game);
 
 	 	} catch (Exception e) {
-			System.err.println("Quoridor : " + e.getMessage());
+			System.err.println("Quoridor 3 : " + e.getMessage());
 		}
 	}
 

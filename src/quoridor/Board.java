@@ -334,7 +334,6 @@ public class Board {
 
 			ret += this.ANSI_RESET + "\n";
 		}
-
 		return ret;
 	}
 

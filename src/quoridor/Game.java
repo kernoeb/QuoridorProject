@@ -5,6 +5,9 @@ import quoridor.Board;
 import quoridor.Mode;
 import quoridor.Player;
 
+import view.Damier;
+
+
 // import java
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -21,6 +24,8 @@ public class Game {
 	private Player player2;
 	private Mode mode;
 
+	private Damier damier;
+
 	private Player actualPlayer;
 
 	private Scanner scan;
@@ -34,6 +39,7 @@ public class Game {
 	 */
 	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		this.board = new Board();
+		this.damier = new Damier();
 		this.terminal = terminal;
 
 		if (mode == Mode.HH) {
@@ -48,7 +54,7 @@ public class Game {
 
 		this.initializeGame();
 
-		if(this.terminal) {
+		if (this.terminal) {
 			this.start();
 		}
 	}
@@ -166,6 +172,8 @@ public class Game {
 	public String toString() {
 		// TODO - implement Game.toString
 		String ret = "";
+
+		this.damier.useBoard(this.board);
 
 		ret += this.board;
 		ret += this.actualPlayer.getName() + " :";

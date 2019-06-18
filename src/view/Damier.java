@@ -3,56 +3,121 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import quoridor.Board;
+import quoridor.Square;
 // import java.awt.Color;
 // import java.awt.Graphics;
  
 public class Damier extends JFrame {
-    private Container contents;
+    private Board board;
 
+    private Container contents;
     private JButton[][] squares = new JButton[17][17];
 
-    private Color colorBlack = Color.BLACK;
+    // COLORS
+    private Color colorRed = new Color(211, 47, 47);
     private Color colorWhite = Color.WHITE;
 
+    private ImageIcon greenUser = new ImageIcon((new ImageIcon("../data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon redUser = new ImageIcon((new ImageIcon("../data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+
     public static void main(String[] args) {
-        Damier gui = new Damier();
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new Damier().setVisible(true);
+            }
+        });
     }
 
     public Damier() {
         super("Damier");
+
+        this.board = board;
+
         contents = getContentPane();
-        contents.setLayout(new GridLayout(17,17));
+        contents.setLayout(new FlowLayout());
+        // contents.setBackground(Color.BLACK);
+        contents.setBackground(new Color(211, 47, 47));
 
         ButtonHandler buttonHandler = new ButtonHandler();
 
         for (int i = 0; i < 17; i++) {
             for (int j = 0; j < 17; j++) {
-                squares[i][j] = new JButton();
+                this.squares[i][j] = new JButton();
                 if (i % 2 == 0 && j % 2 != 0) {
-                    squares[i][j].setBackground(colorBlack);
-                    squares[i][j].setBounds(5,5,5,5);
-                    // squares[i][j].setPreferredSize(new Dimension(50,50));
+                    this.squares[i][j].setBackground(colorRed);
+                    this.squares[i][j].setPreferredSize(new Dimension(7,30));
                 }
                 else if (i % 2 != 0) {
-                    squares[i][j].setBackground(colorBlack);
-                    // squares[i][j].setPreferredSize(new Dimension(50,50));
-                    squares[i][j].setBounds(5,5,5,5);
+                    this.squares[i][j].setBackground(colorRed);
+                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(30,7));
+                    else squares[i][j].setPreferredSize(new Dimension(7,7));
                 }
-                else squares[i][j].setBackground(colorWhite);
+                else {
+                    this.squares[i][j].setBackground(colorWhite);
+                    this.squares[i][j].setPreferredSize(new Dimension(30,30));
+                }
+                this.squares[i][j].setBorderPainted(false); 
                 contents.add(squares[i][j]);
-                squares[i][j].addActionListener(buttonHandler);
+                // this.squares[i][j].addActionListener(buttonHandler);
             }
         }
         // squares[row][col].setIcon...
     
-
-        setSize(500, 500);
+        setSize(420, 450);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
+
+    public void useBoard(Board board) {
+        Square temp = null;
+        for (int x = 0; x < board.getTotalSize(); x++) {
+            for (int y = 0; y < board.getTotalSize(); y++) {
+                temp = board.getGrid()[x][y];
+
+                if (temp.isPawn()) {
+                    if (temp.isPawn1()) {
+                        this.squares[x][y].setIcon(redUser);
+                    }
+
+                    else if (temp.isPawn2()) {
+                        this.squares[x][y].setIcon(greenUser);
+                    }
+
+                    else this.squares[x][y].setIcon(null);
+                }
+            }  
+        } 
+    }  
 }
+
+                        // else if (temp.isFence()) {
+                        //     if (temp.isFencePossible()) {
+                        //         ret += this.ANSI_GREY;
+                        //     }
+
+                        //     else if (temp.isFencePawn1()) {
+                        //         ret += this.ANSI_RED;
+                        //     }
+
+                        //     else if (temp.isFencePawn2()) {
+                        //         ret += this.ANSI_GREEN;
+                        //     }
+
+                        //     if (this.isEvenNumber(x)) {
+                        //         ret += "| ";
+                        //     }
+
+                        //     else if (this.isEvenNumber(y)) {
+                        //         ret += "─ ";
+                        //     }
+
+                        //     else {
+                        //         ret += "+ ";
+                        //     }
+                        // }
 
 
 class ButtonHandler implements ActionListener {
