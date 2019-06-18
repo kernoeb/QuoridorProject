@@ -20,34 +20,38 @@ public class Launcher {
 	 */
 	public static void main(String[] args) {
 		String loc = null;
-		Mode mode = null;
+		Mode chosenMode = null;
+		boolean mode = false;
 		boolean load = false;
 
 		if (args.length != 0) {
 
 			try {
 				if (args[0].equals("HH")) {
-					mode = Mode.HH;
+					chosenMode = Mode.HH;
+					mode = true;
 					System.out.println("Chosen mode : HH");
 				}
 
 				else if (args[0].equals("HA")) {
-					mode = Mode.HA;
+					chosenMode = Mode.HA;
+					mode = true;
 					System.out.println("Chosen mode : HA");
 				}
 
 				else if (args[0].equalsIgnoreCase("load")) {
 					load = true;
 
-					if(args[1] != null) {
+					if (args[1] != null) {
 						loc = args[1];
 					}
 
 					else {
-						loc = "data/save" + "randomMessage" + ".txt";
-					}
+						System.out.println("Aucun fichier n'a été rentré. \n"
+							+ "Une nouvelle partie va être lancée.");
 
-					// TODO - Ecrire un message aleatoire pour les différentes sauvegardes de fichier
+						loc = "data/config.txt";
+					}
 				}
 
 				else {
@@ -63,19 +67,24 @@ public class Launcher {
 			String p1 = "";
 			String p2 = "";
 
-			try {
-				p1 = args[1];
-			} catch (Exception e) {
-				p1 = "Red user";
-			}
-			try {
-				p2 = args[2];
-			} catch (Exception e) {
-				p2 = "Green user";
+			if (mode) {
+				try {
+					p1 = args[1];
+				} catch (Exception e) {
+					p1 = "Red user";
+				}
+				try {
+					p2 = args[2];
+				} catch (Exception e) {
+					p2 = "Green user";
+				}
 			}
 
-			if((loc == null) && (mode != null)) {
-				Quoridor quoridor = new Quoridor(mode, p1, p2);
+			if ((loc == null) && (chosenMode != null)) {
+				Quoridor quoridor = new Quoridor(chosenMode, p1, p2);
+			}
+			else if (load && (!loc.equalsIgnoreCase("data/config.txt"))) {
+				Quoridor quoridor = new Quoridor(loc);
 			}
 			else {
 				System.out.println("Location : " + loc);

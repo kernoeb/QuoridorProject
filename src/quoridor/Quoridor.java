@@ -43,11 +43,23 @@ public class Quoridor {
 	 * @author
 	*/
 	public Quoridor(Mode mode, String namePlayer1, String namePlayer2) {
-		// try {
+		try {
 			this.game = new Game(mode, namePlayer1, namePlayer2);
-		// } catch (Exception e) {
-			// System.err.println("Quoridor : " + e.getMessage());
-		// }
+
+		} catch (Exception e) {
+			System.err.println("Quoridor : " + e.getMessage());
+		}
+	}
+
+	public Quoridor(String fileName) {
+		try {
+			this.fileName = fileName;
+			this.game = this.loadOldGame(this.fileName);
+			this.launchGame(this.game);
+
+	 	} catch (Exception e) {
+			System.err.println("Quoridor : " + e.getMessage());
+		}
 	}
 
 	/**
@@ -62,8 +74,16 @@ public class Quoridor {
 	 * @return The previously saved game
 	 * @author
 	 */
-	public Game loadOldGame() {
-		return RWFile.readObj(this.fileName);
+	public Game loadOldGame(String fileName) {
+		Game game = null;
+
+		try {
+			game = RWFile.readObj(fileName);
+		} catch (Exception e) {
+			System.err.println("loadOldGame : " + e.getMessage());
+		}
+
+		return game;
 	}
 
 	/**
@@ -73,7 +93,7 @@ public class Quoridor {
 	 */
 	public void launchGame(Game game) {
 		if(game != null) {
-			this.game = game;
+			game.start();
 		}
 
 		else {
