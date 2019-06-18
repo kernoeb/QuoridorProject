@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.awt.*;
 import quoridor.Board;
 import quoridor.Square;
+
+import java.util.ArrayList;
 // import java.awt.Color;
 // import java.awt.Graphics;
  
@@ -20,6 +22,7 @@ public class Damier extends JFrame {
 
     private ImageIcon greenUser = new ImageIcon((new ImageIcon("../data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     private ImageIcon redUser = new ImageIcon((new ImageIcon("../data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     private ImageIcon fence_red = new ImageIcon((new ImageIcon("../data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     private ImageIcon fence_green = new ImageIcon((new ImageIcon("../data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 
@@ -70,6 +73,13 @@ public class Damier extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+
+    }
+
+    public void addTmpPossibilities(ArrayList<Square> pos) {
+        for (Square s : pos) {
+            this.squares[s.getX()][s.getY()].setIcon(pawn_possible);
+        }
 
     }
 

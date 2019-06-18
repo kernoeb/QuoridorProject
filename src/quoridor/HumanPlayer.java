@@ -123,6 +123,7 @@ public class HumanPlayer extends Player {
 		System.out.print("Vous pouvez jouer un pion sur les cases : ");
 
 		this.board.printListOfPossibilitiesPawn(this);
+		this.game.getDamier().addTmpPossibilities(this.board.listOfPossibilitiesPawn(this));
 
 		System.out.println("Sur quelle case voulez-vous jouer ?");
 		int x = this.askX(this.board.getSIZE());
@@ -136,8 +137,6 @@ public class HumanPlayer extends Player {
 			x = this.askX(this.board.getSIZE());
 			y = this.askY(this.board.getSIZE());
 		}
-
-
 		super.movePawn(this.board.pawnCoord(x), this.board.pawnCoord(y));
 	}
 

@@ -75,6 +75,10 @@ public class Game {
 		return this.actualPlayer;
 	}
 
+	public Damier getDamier() {
+		return this.damier;
+	}
+
 	/**
 	 * @param board the desired board to play the game with.
 	 */
