@@ -42,7 +42,7 @@ public class BackgroundFrameImage {
                     // text.setForeground(Color.WHITE);
                     // text.setHorizontalAlignment(JLabel.CENTER);
 
-                    // frame.add(button);
+                    frame.add(button);
                     frame.pack();
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
@@ -178,7 +178,7 @@ class StyledButtonUI extends BasicButtonUI {
 
 
 //     this.setContentPane(new BackgroundImage("../data/images/Menu.png"));
-//     this.mainMenu.setOpaque(false);    
+//     this.mainMenu.setOpaque(false);
 //     // this.mainMenu.setLocationRelativeTo(null);
 //     this.add(this.mainMenu);
 

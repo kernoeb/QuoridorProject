@@ -11,6 +11,8 @@ public class QuoridorGUI extends JFrame {
   JPanel mainMenu;
   JPanel modeMenu;
 
+  JPanel buttonMainMenu;
+
   JLabel quoridorText;
 
   JButton loadButton;
@@ -82,7 +84,11 @@ public class QuoridorGUI extends JFrame {
     this.mainMenu = new JPanel();
     this.modeMenu = new JPanel();
 
-    this.quoridorText = new JLabel("Quoridor");
+    this.buttonMainMenu = new JPanel();
+
+    this.quoridorText = new JLabel("QUORIDOR");
+    this.quoridorText.setForeground(Color.WHITE);
+    this.quoridorText.setFont(new Font("Palatino Linotype", Font.BOLD, 50));
     this.loadButton = new JButton("Charger une partie");
     this.playButton = new JButton("Jouer");
     this.quitButton = new JButton("Quitter");
@@ -99,25 +105,34 @@ public class QuoridorGUI extends JFrame {
     this.modeHHButton.addActionListener(new ActionEcouteur(this));
     this.modeHAButton.addActionListener(new ActionEcouteur(this));
 
-    this.mainMenu.add(this.loadButton);
-    this.mainMenu.add(this.playButton);
-    this.mainMenu.add(this.quitButton);
+    this.buttonMainMenu.setLayout(new GridLayout(3, 0, 50, 50));
+    this.buttonMainMenu.add(this.loadButton);
+    this.buttonMainMenu.add(this.playButton);
+    this.buttonMainMenu.add(this.quitButton);
+    this.buttonMainMenu.setOpaque(false);
+
+    this.mainMenu.setLayout(new BorderLayout(200, 200));
+    //this.mainMenu.add(Box.createRigidArea(new Dimension(50,50)), BorderLayout.PAGE_START);
+    this.mainMenu.add(this.quoridorText, BorderLayout.NORTH);
+    this.mainMenu.add(this.buttonMainMenu, BorderLayout.CENTER);
 
     this.modeMenu.add(this.modeHHButton);
     this.modeMenu.add(this.modeHAButton);
 
-    //this.setContentPane(new BackgroundImage("../data/images/Menu.png"));
+    this.setBackgroundImage("../data/images/MenuBackground.png");
+    // this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+    this.setLayout(new FlowLayout());
     this.mainMenu.setOpaque(false);
     this.add(this.mainMenu);
 
     this.mainMenu.setVisible(true);
 
     this.pack();
+    this.setLocationRelativeTo(null);
     this.setVisible(true);
   }
 
-  // public void addGameGUI(GameGUI gameGUI) {
-  //   this.gameGUI = gameGUI;
-  //   this.add(this.gameGUI);
-  // }
+  public void setBackgroundImage(String fileName) {
+    this.setContentPane(new BackgroundImage(fileName));
+  }
 }
