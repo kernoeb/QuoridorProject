@@ -76,10 +76,8 @@ public abstract class Player {
 		} else {
 			maze = new Maze(tmp, 1);
 			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(), 
-				player.getCurrentSquare().getY(), this.board.getTotalSize()-1);
+						  player.getCurrentSquare().getY(), this.board.getTotalSize()-1);
 		}
-		// if (ok) System.out.println(player.getName() + " : au moins un chemin est possible");
-		// else System.out.println("Aucun chemin possible");
 		if (!ok) System.out.println("Aucun chemin possible !");
 		return ok;
 	}
