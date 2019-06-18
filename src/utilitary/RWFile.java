@@ -3,6 +3,7 @@ package utilitary;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import quoridor.*;
 
 public class RWFile {
@@ -55,9 +56,9 @@ public class RWFile {
 
 			} catch (FileNotFoundException e) {
 				System.err.println("readFile : " + e.getMessage());
-			} catch (ClassNotFoundException ex) {
+			} catch (IOException ex) {
 				System.err.println("readFile : " + ex.getMessage());
-			} catch (IOException exc) {
+			} catch (Exception exc) {
 				System.err.println("readFile : " + exc.getMessage());
 			}
 		}
@@ -85,10 +86,10 @@ public class RWFile {
 
 			} catch (FileNotFoundException e) {
 				System.err.println("writeFile : " + e.getMessage());
-			} catch (ClassNotFoundException ex) {
-				System.err.println("readFile : " + ex.getMessage());
-			} catch (IOException e) {
-				System.err.println("writeFile : " + e.getMessage());
+			} catch (IOException ex) {
+				System.err.println("writeFile : " + ex.getMessage());
+			} catch (Exception exc) {
+				System.err.println("writeFile : " + exc.getMessage());
 			}
 		}
 
