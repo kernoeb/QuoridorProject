@@ -20,6 +20,8 @@ public class Damier extends JFrame {
 
     private ImageIcon greenUser = new ImageIcon((new ImageIcon("../data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     private ImageIcon redUser = new ImageIcon((new ImageIcon("../data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon fence_red = new ImageIcon((new ImageIcon("../data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon fence_green = new ImageIcon((new ImageIcon("../data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -88,36 +90,24 @@ public class Damier extends JFrame {
 
                     else this.squares[x][y].setIcon(null);
                 }
+                else if (temp.isFence()) {
+                    if (temp.isFencePossible()) {
+                        this.squares[x][y].setIcon(null);
+                    }
+
+                    else if (temp.isFencePawn1()) {
+                        this.squares[x][y].setIcon(fence_red);
+                    }
+
+                    else if (temp.isFencePawn2()) {
+                        this.squares[x][y].setIcon(fence_green);
+                    }
+                }
             }  
         } 
     }  
 }
 
-                        // else if (temp.isFence()) {
-                        //     if (temp.isFencePossible()) {
-                        //         ret += this.ANSI_GREY;
-                        //     }
-
-                        //     else if (temp.isFencePawn1()) {
-                        //         ret += this.ANSI_RED;
-                        //     }
-
-                        //     else if (temp.isFencePawn2()) {
-                        //         ret += this.ANSI_GREEN;
-                        //     }
-
-                        //     if (this.isEvenNumber(x)) {
-                        //         ret += "| ";
-                        //     }
-
-                        //     else if (this.isEvenNumber(y)) {
-                        //         ret += "─ ";
-                        //     }
-
-                        //     else {
-                        //         ret += "+ ";
-                        //     }
-                        // }
 
 
 class ButtonHandler implements ActionListener {
