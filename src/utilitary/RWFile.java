@@ -40,7 +40,7 @@ public class RWFile {
 		return ret;
 	}
 
-	public Game readObj(String fileName) throws ClassNotFoundException, IOException {
+	public Game readObj(String fileName) {
 		Game game = null;
 
 		if(fileName != null) {
@@ -48,14 +48,16 @@ public class RWFile {
 				FileInputStream file = new FileInputStream(fileName);
 				ObjectInputStream obj = new ObjectInputStream(file);
 
-				game = (Game)obj.readObject();
+				game = (Game) obj.readObject();
 
 				obj.close();
 
-			} catch(FileNotFoundException e) {
+			} catch (FileNotFoundException e) {
 				System.err.println("readFile : " + e.getMessage());
-			} catch (IOException ex) {
+			} catch (ClassNotFoundException ex) {
 				System.err.println("readFile : " + ex.getMessage());
+			} catch (IOException exc) {
+				System.err.println("readFile : " + exc.getMessage());
 			}
 		}
 		else {

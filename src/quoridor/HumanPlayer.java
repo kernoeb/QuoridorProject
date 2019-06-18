@@ -103,6 +103,7 @@ public class HumanPlayer extends Player {
 
 			x = this.askX(this.board.getSIZE() - 1);
 			y = this.askY(this.board.getSIZE() - 1);
+			dir = this.askDir();
 
 			this.setCurrentSquare(currentSquare);
 		}
