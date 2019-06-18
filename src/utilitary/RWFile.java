@@ -2,6 +2,7 @@ package utilitary;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import quoridor.*;
 
 public class RWFile {
@@ -71,9 +72,10 @@ public class RWFile {
 	 *
 	 * @param fileName
 	 */
-	public void writeFile(String fileName, Game game) throws ClassNotFoundException, IOException {
-		if ((fileName != null) && (game != null)) {
+	public void writeFile(Game game) {
+		if (game != null) {
 			try {
+				String fileName = new SimpleDateFormat("'save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
 				FileOutputStream file = new FileOutputStream(fileName);
 				ObjectOutputStream obj = new ObjectOutputStream(file);
 
@@ -83,13 +85,15 @@ public class RWFile {
 
 			} catch (FileNotFoundException e) {
 				System.err.println("writeFile : " + e.getMessage());
+			} catch (ClassNotFoundException ex) {
+				System.err.println("readFile : " + ex.getMessage());
 			} catch (IOException e) {
 				System.err.println("writeFile : " + e.getMessage());
 			}
 		}
 
 		else {
-			System.err.println("writeFile : Paramètre(s) non valide(s).");
+			System.err.println("writeFile : Paramètre non valide.");
 		}
 	}
 

@@ -108,9 +108,7 @@ public class Quoridor {
 	 */
 	public void saveGame(Game game) {
 		if (game != null) {
-			try {
-				new RWFile().writeFile(this.fileName, game);
-			} catch (Exception e) {}
+				RWFile.writeFile(game);
 		}
 
 		else {
