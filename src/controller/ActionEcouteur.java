@@ -1,5 +1,13 @@
+package controller;
+
 import javax.swing.*;
 import java.awt.event.*;
+
+import quoridor.Game;
+import quoridor.Mode;
+
+import view.QuoridorGUI;
+import view.GameGUI;
 
 public class ActionEcouteur implements ActionListener {
 
@@ -24,6 +32,18 @@ public class ActionEcouteur implements ActionListener {
 
     else if (button == this.quoridor.getButtonQuit()) {
       System.exit(0);
+    }
+
+    else if (button == this.quoridor.getButtonModeHH()) {
+      this.quoridor.getMenuMode().setVisible(false);
+      this.quoridor.addGameGUI(new GameGUI(new Game(Mode.HH, "Red user", "Green user")));
+      this.quoridor.getGameGUI().setVisible(true);
+    }
+
+    else if (button == this.quoridor.getButtonModeHA()) {
+      this.quoridor.getMenuMode().setVisible(false);
+      this.quoridor.addGameGUI(new GameGUI(new Game(Mode.HA, "Red user", "Green user")));
+      this.quoridor.getGameGUI().setVisible(true);
     }
   }
 

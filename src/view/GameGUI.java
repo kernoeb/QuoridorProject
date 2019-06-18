@@ -1,10 +1,14 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
+
 import quoridor.*;
 
 public class GameGUI extends JPanel {
   Game game;
 
+  JLabel label;
 
   public GameGUI(Game game) {
     this.game = game;
@@ -12,7 +16,7 @@ public class GameGUI extends JPanel {
   }
 
   private void createAndShowGUI() {
-
+    label = new JLabel("Game");
 
   }
 }

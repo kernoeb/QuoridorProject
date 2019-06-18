@@ -1,5 +1,9 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
+
+import controller.ActionEcouteur;
 
 public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
@@ -55,6 +59,10 @@ public class QuoridorGUI extends JFrame {
     return this.modeMenu;
   }
 
+  public GameGUI getGameGUI() {
+    return this.gameGUI;
+  }
+
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
     this.setPreferredSize(new Dimension(800, 800));
@@ -89,14 +97,17 @@ public class QuoridorGUI extends JFrame {
     this.modeMenu.add(this.modeHHButton);
     this.modeMenu.add(this.modeHAButton);
 
-
-    this.setContentPane(new BackgroundImage("../data/images/Menu.png"));
-    this.mainMenu.setOpaque(false);    
+    //this.setContentPane(new BackgroundImage("../data/images/Menu.png"));
+    this.mainMenu.setOpaque(false);
     this.add(this.mainMenu);
 
     this.mainMenu.setVisible(true);
 
     this.pack();
     this.setVisible(true);
+  }
+
+  public void addGameGUI(GameGUI gameGUI) {
+    this.gameGUI = gameGUI;
   }
 }
