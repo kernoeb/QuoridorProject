@@ -42,7 +42,7 @@ public class RWFile {
 		return ret;
 	}
 
-	public Game readObj(String fileName) {
+	public static Game readObj(String fileName) {
 		Game game = null;
 
 		if(fileName != null) {
@@ -73,7 +73,7 @@ public class RWFile {
 	 *
 	 * @param fileName
 	 */
-	public void writeFile(Game game) {
+	public static void writeFile(Game game) {
 		if (game != null) {
 			try {
 				String fileName = new SimpleDateFormat("'save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
