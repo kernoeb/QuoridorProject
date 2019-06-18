@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import quoridor.*;
 
 public class GameGUI extends JPanel {
   Game game;

@@ -1,11 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class BackgroundImage extends JComponent {
-  Image image;
+  BufferedImage image;
 
-  public BackgroundImage(Image image) {
-    this.image = image;
+  public BackgroundImage(String fileName) {
+    try {
+      this.image = ImageIO.read(new File(fileName));
+    } catch (IOException e) {
+      System.err.println("BackgroundImage : " + e.getMessage());
+    } catch (Exception ex) {
+      System.err.println("BackgroundImage : " + ex.getMessage());
+    }
   }
 
   public void paintComponent(Graphics g) {

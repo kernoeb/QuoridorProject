@@ -89,8 +89,9 @@ public class QuoridorGUI extends JFrame {
     this.modeMenu.add(this.modeHHButton);
     this.modeMenu.add(this.modeHAButton);
 
-    this.add(new BackgroundImage());
 
+    this.setContentPane(new BackgroundImage("../data/images/Menu.png"));
+    this.mainMenu.setOpaque(false);    
     this.add(this.mainMenu);
 
     this.mainMenu.setVisible(true);
