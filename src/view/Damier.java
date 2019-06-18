@@ -3,6 +3,10 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
+import controller.MouseButton;
+import java.awt.event.*;
+
+
 import quoridor.Board;
 import quoridor.Square;
 
@@ -45,6 +49,7 @@ public class Damier extends JFrame {
         contents.setBackground(new Color(211, 47, 47));
 
         ButtonHandler buttonHandler = new ButtonHandler();
+        MouseButton mb = new MouseButton(this);
 
         for (int i = 0; i < 17; i++) {
             for (int j = 0; j < 17; j++) {
@@ -65,6 +70,7 @@ public class Damier extends JFrame {
                 this.squares[i][j].setBorderPainted(false); 
                 contents.add(squares[i][j]);
                 // this.squares[i][j].addActionListener(buttonHandler);
+                this.squares[i][j].addMouseListener(mb);
             }
         }
         // squares[row][col].setIcon...
@@ -81,6 +87,29 @@ public class Damier extends JFrame {
             this.squares[s.getX()][s.getY()].setIcon(pawn_possible);
         }
 
+    }
+
+    public int getX(JButton jB) {
+        for (int i = 0; i < this.squares.length; i++) {
+           for (int j = 0; j < this.squares.length; j++) {
+                if (this.squares[i][j] == jB) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+
+    public int getY(JButton jB) {
+        for (int i = 0; i < this.squares.length; i++) {
+           for (int j = 0; j < this.squares.length; j++) {
+                if (this.squares[i][j] == jB) {
+                    return j;
+                }
+            }
+        }
+        return -1;
     }
 
     public void useBoard(Board board) {

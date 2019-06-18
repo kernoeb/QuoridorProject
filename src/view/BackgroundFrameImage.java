@@ -48,7 +48,7 @@ public class BackgroundFrameImage {
                     frame.setVisible(true);
 
 
-                    frame.addMouseListener(new MouseBGFI(frame));
+                    // frame.addMouseListener(new MouseBGFI(frame));
 
 
                 } catch (IOException | HeadlessException exp) {
