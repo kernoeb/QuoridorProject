@@ -22,7 +22,7 @@ public class Maze {
 
 	public Maze(Board board, int sens) {
 		this.board = board;
-		//this.sens = sens;
+		this.sens = sens;
 	}
 
 	public void printSolution(boolean visited[][]) { 
@@ -47,6 +47,10 @@ public class Maze {
 
 	private boolean isValid(int mat[][], boolean visited[][], int row, int col) {
 		return (row >= 0) && (row < this.board.getTotalSize()) && (col >= 0) && (col < this.board.getTotalSize()) && mat[row][col] == 1 && !visited[row][col];
+	}
+
+	private boolean checkValid(int x, int y) {
+		return (x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize());
 	}
 
 	public boolean BFS(int mat[][], int i, int j, int x) {
@@ -79,17 +83,10 @@ public class Maze {
 		}
 
 		if (min_dist != Integer.MAX_VALUE) {
-			// System.out.print("The shortest path from source to destination " + "has length " + min_dist + "\n");
-			// printSolution(visited);
 			return true;
 		} else {
-			// System.out.print("Destination can't be reached from source\n");
 			return false;
 		}
-	}
-
-	private boolean checkValid(int x, int y) {
-		return (x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize());
 	}
 
 	private boolean fenceAroundX(int x, int y) {
@@ -132,19 +129,15 @@ public class Maze {
 
 				if (this.sens == 0) {
 					if (fenceAroundX(x, y)) maze[x][y] = 0;
-
 					else if (fenceAroundY(x, y)) maze[x][y] = 0;
-
-					else if (temp.isPawn2() || temp.isFencePawn1() || temp.isFencePawn2()) {
-						maze[x][y] = 0;
-					} else {
-						maze[x][y] = 1;
-					}
+					else if (temp.isPawn2() || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
+					else maze[x][y] = 1;
 
 				} else {
-					if (temp.isPawn1() || temp.isFencePawn1() || temp.isFencePawn2()) {
-						maze[x][y] = 0;
-					} else maze[x][y] = 1;					
+					if (fenceAroundX(x, y)) maze[x][y] = 0;
+					else if (fenceAroundY(x, y)) maze[x][y] = 0;
+					else if (temp.isPawn1() || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
+					else maze[x][y] = 1;					
 				}
 			}
 		}
@@ -152,14 +145,4 @@ public class Maze {
 		// printMaze(maze);
 		return maze;
 	}
-
-
-
-
-
-
-
-
-
-
 }
