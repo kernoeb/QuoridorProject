@@ -1,6 +1,7 @@
 package quoridor;
 
 import java.util.ArrayList;
+import utilitary.Maze;
 
 /**
  * Player
@@ -61,44 +62,66 @@ public abstract class Player {
 		return this.game;
 	}
 
-	public boolean checkExistingPath(Player player) {
-		boolean ret = false;
-		ArrayList<Square> list = this.board.listOfPossibilitiesPawn(player);
-		int i = 0;
-		Square sq = null;
+	public boolean checkExistingPath(Player player, int x, int y, String dir) {
+		Board tmp = this.board;
+		tmp.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, player);
 
-		while((!ret) && (i < list.size())) {
-			// movePawn -> nouvelle cases (list.get(i))
-			// Si joueur a fini
-			// Alors ret = true
-			// Sinon ret = checkExistingPath(player)
-			// 	Si
 
-			sq = list.get(i);
-			player.movePawn(sq.getX(), sq.getY());
-			this.listOfOldPositions.add(this.board.getGrid()[sq.getX()][sq.getY()]);
-
-			System.out.println("x : " + sq.getX() + "y : " + sq.getY());
-
-			if (player.getGame().checkHasFinished(player)) {
-				ret = true;
-			}
-			else if(this.listOfOldPositions.contains(sq)) {
-
-			}
-			else {
-				ret = this.checkExistingPath(player);
-
-				if(!ret) {
-					player.movePawn(sq.getX(), sq.getY());
-				}
-			}
-
-			i++;
+		Maze maze = null;
+		boolean ok = false;
+		if (this.game.getPlayer1() == player) {
+			maze = new Maze(tmp, 0);
+			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(), 
+				player.getCurrentSquare().getY(), 0);
+		} else {
+			maze = new Maze(tmp, 1);
+			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(), 
+				player.getCurrentSquare().getY(), this.board.getTotalSize()-1);
 		}
-
-		return ret;
+		// if (ok) System.out.println(player.getName() + " : au moins un chemin est possible");
+		// else System.out.println("Aucun chemin possible");
+		if (!ok) System.out.println("Aucun chemin possible !");
+		return ok;
 	}
+
+	// public boolean checkExistingPath(Player player) {
+	// 	boolean ret = false;
+	// 	ArrayList<Square> list = this.board.listOfPossibilitiesPawn(player);
+	// 	int i = 0;
+	// 	Square sq = null;
+
+	// 	while((!ret) && (i < list.size())) {
+	// 		// movePawn -> nouvelle cases (list.get(i))
+	// 		// Si joueur a fini
+	// 		// Alors ret = true
+	// 		// Sinon ret = checkExistingPath(player)
+	// 		// 	Si
+
+	// 		sq = list.get(i);
+	// 		player.movePawn(sq.getX(), sq.getY());
+	// 		this.listOfOldPositions.add(this.board.getGrid()[sq.getX()][sq.getY()]);
+
+	// 		System.out.println("x : " + sq.getX() + "y : " + sq.getY());
+
+	// 		if (player.getGame().checkHasFinished(player)) {
+	// 			ret = true;
+	// 		}
+	// 		else if(this.listOfOldPositions.contains(sq)) {
+
+	// 		}
+	// 		else {
+	// 			ret = this.checkExistingPath(player);
+
+	// 			if(!ret) {
+	// 				player.movePawn(sq.getX(), sq.getY());
+	// 			}
+	// 		}
+
+	// 		i++;
+	// 	}
+
+	// 	return ret;
+	// }
 
 
 
