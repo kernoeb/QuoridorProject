@@ -1,7 +1,6 @@
 package quoridor;
 
 import quoridor.Square;
-import utilitary.Maze;
 //import GUI.MainGUI;
 import java.util.ArrayList;
 
@@ -274,9 +273,6 @@ public class Board {
 	}
 
 	public String toString() {
-		Maze maze = new Maze(this);
-		maze.solveMaze(14, 8);
-
 		String ret = "";
 
 		Square temp = null;

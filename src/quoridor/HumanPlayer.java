@@ -96,8 +96,8 @@ public class HumanPlayer extends Player {
 
 		Square currentSquare = this.getCurrentSquare();
 
-		while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)) {
-			// || (!this.checkExistingPath(this.game.getPlayer1())) || (!this.checkExistingPath(this.game.getPlayer2()))) {
+		while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
+			|| (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
 								+ "Veuillez en choisir une autre !");
 
@@ -221,6 +221,7 @@ public class HumanPlayer extends Player {
 		System.out.println("Dans quelle direction voulez-vous mettre le mur ? \n"
 			+"'H' (Horizontal) ou 'V' (Vertical)");
 
+		this.scan = new Scanner(System.in);
 		ret = this.scan.nextLine();
 
 		while ((!ret.equalsIgnoreCase("h")) && (!ret.equalsIgnoreCase("horizontal")) &&
