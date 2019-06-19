@@ -2,6 +2,7 @@ package textured;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 public class JTexturedButton extends JButton {
   private static final long serialVersionUID = 1L;
@@ -9,7 +10,12 @@ public class JTexturedButton extends JButton {
   public JTexturedButton(String text, String icon, String iconHover) {
     super(text);
     this.setForeground(Color.BLACK);
-    this.setFont(new Font("Palatino Linotype", Font.BOLD, 35));
+    try {
+      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+      this.setFont(font.deriveFont(35F));
+    } catch (Exception e) {
+      System.err.println("JTexturedButton : " + e.getMessage());
+    }
 
     this.setOpaque(false);
     this.setContentAreaFilled(false);

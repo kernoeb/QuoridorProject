@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 import controller.ActionEcouteur;
 import quoridor.Quoridor;
@@ -83,14 +84,24 @@ public class QuoridorGUI extends JFrame {
   public void setBackgroundImage(String fileName) {
     this.back = new BackgroundImage(fileName);
     this.setContentPane(this.back);
+    // this.setPreferredSize(this.)
     this.setLayout(new FlowLayout());
+  }
+
+  public void setFontPalatino(JComponent component, int size) {
+    try {
+      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+      component.setFont(font.deriveFont(size * 1.0f));
+    } catch (Exception e) {
+      System.err.println("JTexturedButton : " + e.getMessage());
+    }
   }
 
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
-    this.setPreferredSize(new Dimension(800, 800));
+    this.setMinimumSize(new Dimension(800, 800));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setResizable(false);
+    // this.setResizable(false);
 
     // quoridor = new Quoridor()
 
@@ -120,7 +131,7 @@ public class QuoridorGUI extends JFrame {
 
     this.quoridorText = new JLabel("QUORIDOR");
     this.quoridorText.setForeground(Color.WHITE);
-    this.quoridorText.setFont(new Font("Palatino Linotype", Font.BOLD, 55));
+    this.setFontPalatino(this.quoridorText, 55);
     this.quoridorText.setPreferredSize(new Dimension(300, 250));
     this.quoridorText.setHorizontalAlignment(JLabel.CENTER);
     this.playButton = new JTexturedButton("Jouer", "../data/images/Button.png", "../data/images/ButtonHover.png");
@@ -156,7 +167,7 @@ public class QuoridorGUI extends JFrame {
     this.modeText.setPreferredSize(new Dimension(400, 300));
     this.modeText.setHorizontalAlignment(JLabel.CENTER);
     this.modeText.setForeground(Color.WHITE);
-    this.modeText.setFont(new Font("Palatino Linotype", Font.BOLD, 40));
+    this.setFontPalatino(this.modeText, 40);
 
     this.modeHHButton = new JTexturedButton("Humain / Humain", "../data/images/Button.png", "../data/images/ButtonHover.png");
     this.modeHAButton = new JTexturedButton("Humain / IA", "../data/images/Button.png", "../data/images/ButtonHover.png");
