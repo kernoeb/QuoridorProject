@@ -30,13 +30,21 @@ public class MouseButton implements MouseListener {
 
     public void mouseEntered(MouseEvent e) {
         JButton source = (JButton)e.getSource();
-        // if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
-        //     try {
-        //         this.boardGUI.getSquares()[]
-        //     }
-        // }
+        if (this.boardGUI.getX(source) % 2 != 0 && this.boardGUI.getY(source) % 2 == 0) {
+            try {
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+1].setBackground(colorTmp);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+2].setBackground(colorTmp);
+            } catch (Exception ex) {}
+        } else if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
+            try {
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)+1][this.boardGUI.getY(source)].setBackground(colorTmp);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)+2][this.boardGUI.getY(source)].setBackground(colorTmp);
+            } catch (Exception ex) {}
+        }
         // source.setBackground(Color.RED);
-        source.setBackground(colorTmp);
+        if (!(this.boardGUI.getX(source) % 2 != 0 && this.boardGUI.getY(source) % 2 != 0)) source.setBackground(colorTmp);
     }
 
     public void mouseExited(MouseEvent e) {
@@ -48,7 +56,21 @@ public class MouseButton implements MouseListener {
         } else {
             // source.setBackground(colorWhite);
             source.setBackground(colorBlack);
-        }        
+        }   
+
+        if (this.boardGUI.getX(source) % 2 != 0 && this.boardGUI.getY(source) % 2 == 0) {
+            try {
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+1].setBackground(colorRed);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+2].setBackground(colorRed);
+            } catch (Exception ex) {}
+        } else if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
+            try {
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)+1][this.boardGUI.getY(source)].setBackground(colorRed);
+                this.boardGUI.getSquares()[this.boardGUI.getX(source)+2][this.boardGUI.getY(source)].setBackground(colorRed);
+            } catch (Exception ex) {}
+        }                    
     }
 
     public void mouseClicked(MouseEvent e) {
