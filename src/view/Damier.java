@@ -69,7 +69,7 @@ public class Damier extends JFrame {
                 }
                 this.squares[i][j].setBorderPainted(false); 
                 contents.add(squares[i][j]);
-                // this.squares[i][j].addActionListener(buttonHandler);
+                this.squares[i][j].addActionListener(buttonHandler);
                 this.squares[i][j].addMouseListener(mb);
             }
         }
@@ -151,8 +151,8 @@ public class Damier extends JFrame {
 
 class ButtonHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-        // if (e.getSource() == squares[i][j])
-            // System.out.println("hey");
+    	JButton source = (JButton)e.getSource();
+        System.out.println(source.getX() + ", " + source.getY());
     }
     // private boolean isValid
 }
