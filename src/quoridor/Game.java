@@ -182,7 +182,7 @@ public class Game {
 		// TODO - implement Game.toString
 		String ret = "";
 
-		this.boardGUI.displayBoardGUI(this.board);
+		// this.boardGUI.displayBoardGUI(this.board);
 
 		ret += this.board;
 		ret += this.actualPlayer.getName() + " :";

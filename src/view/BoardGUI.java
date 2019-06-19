@@ -99,6 +99,10 @@ public class BoardGUI extends JPanel {
         return -1;
     }
 
+    public void addPawn(ImageIcon im, int i, int j) {
+        this.squares[i][j].setIcon(im);
+    }
+
     public JButton[][] getSquares() {
     	return this.squares;
     }

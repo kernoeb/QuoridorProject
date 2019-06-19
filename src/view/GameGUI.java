@@ -75,6 +75,9 @@ public class GameGUI extends JPanel {
     jP.add(nbBar1, BorderLayout.NORTH);
     jP.add(bg, BorderLayout.CENTER);
     jP.add(nbBar2, BorderLayout.SOUTH);
+
     bg.displayBoardGUI(this.game.getBoard());
+    bg.addTmpPossibilities(this.game.getBoard().listOfPossibilitiesPawn(this.game.getActualPlayer()));
+
   }
 }

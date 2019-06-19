@@ -97,6 +97,10 @@ public class QuoridorGUI extends JFrame {
     }
   }
 
+  public Font getFontPalatino() throws FontFormatException, IOException {
+    return Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+  }
+
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
     this.setMinimumSize(new Dimension(820, 850));
@@ -163,7 +167,13 @@ public class QuoridorGUI extends JFrame {
     this.modeMenu = new JPanel();
     this.buttonModeMenu = new JPanel();
 
-    this.modeText = new JLabel("<html><div align='center'>Veuillez choisir un <br> mode de jeu :</div></html>");
+    GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    try {
+      genv.registerFont(getFontPalatino());
+    } catch (FontFormatException ffe) {
+    } catch (IOException io) {}
+
+    this.modeText = new JLabel("<html><head><style type='text/css'>body { font-family: Palatino Linotype; } </style></head><div align='center'>Veuillez choisir un <br> mode de jeu :</div></html>");
     this.setFontPalatino(this.modeText, 40);
     this.modeText.setPreferredSize(new Dimension(400, 300));
     this.modeText.setHorizontalAlignment(JLabel.CENTER);
