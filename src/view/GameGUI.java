@@ -22,7 +22,15 @@ public class GameGUI extends JPanel {
   private void createAndShowGUI() {
   	BoardGUI bg = this.game.getBoardGUI();
     this.setLayout(new BorderLayout());
-    this.add(bg, BorderLayout.CENTER);
+    // this.setLayout(new GridLayout(4, 0));
+    this.add(new JLabel("Joueur actuel : " + this.game.getActualPlayer().getName()), BorderLayout.NORTH);
+    // BorderLayout bl = new BorderLayout();
+    JPanel jP = new JPanel();
+    jP.setLayout(new BorderLayout());
+    add(jP, BorderLayout.CENTER);
+    jP.add(new JLabel("5 barrières"), BorderLayout.NORTH);
+    jP.add(bg, BorderLayout.CENTER);
+    jP.add(new JLabel("5 barrières"), BorderLayout.SOUTH);
     bg.displayBoardGUI(this.game.getBoard());
   }
 }
