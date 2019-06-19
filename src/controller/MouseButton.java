@@ -6,7 +6,7 @@ import javax.imageio.*;
 import java.io.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.border.EmptyBorder;
-import view.Damier;
+import view.BoardGUI;
 
 
 public class MouseButton implements MouseListener {
@@ -18,10 +18,10 @@ public class MouseButton implements MouseListener {
     private Color colorWhite = Color.WHITE;
     private Color colorBlack = Color.BLACK;
     private Color colorTmp = new Color(167, 168, 170);
-    private Damier damier;
+    private BoardGUI boardGUI;
 
-    public MouseButton(Damier damier) {
-        this.damier = damier;
+    public MouseButton(BoardGUI boardGUI) {
+        this.boardGUI = boardGUI;
     } 
 
     public void mousePressed(MouseEvent e) {}
@@ -30,9 +30,9 @@ public class MouseButton implements MouseListener {
 
     public void mouseEntered(MouseEvent e) {
         JButton source = (JButton)e.getSource();
-        // if (this.damier.getX(source) % 2 == 0 && this.damier.getY(source) % 2 != 0) {
+        // if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
         //     try {
-        //         this.damier.getSquares()[]
+        //         this.boardGUI.getSquares()[]
         //     }
         // }
         // source.setBackground(Color.RED);
@@ -41,9 +41,9 @@ public class MouseButton implements MouseListener {
 
     public void mouseExited(MouseEvent e) {
         JButton source = (JButton)e.getSource();
-        if (this.damier.getX(source) % 2 == 0 && this.damier.getY(source) % 2 != 0) {
+        if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
             source.setBackground(colorRed);
-        } else if (this.damier.getX(source) % 2 != 0) {
+        } else if (this.boardGUI.getX(source) % 2 != 0) {
             source.setBackground(colorRed);
         } else {
             // source.setBackground(colorWhite);

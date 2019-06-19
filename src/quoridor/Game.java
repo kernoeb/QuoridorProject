@@ -5,7 +5,7 @@ import quoridor.Board;
 import quoridor.Mode;
 import quoridor.Player;
 
-import view.Damier;
+import view.BoardGUI;
 
 
 // import java
@@ -24,7 +24,7 @@ public class Game {
 	private Player player2;
 	private Mode mode;
 
-	private Damier damier;
+	private BoardGUI boardGUI;
 
 	private Player actualPlayer;
 
@@ -39,7 +39,7 @@ public class Game {
 	 */
 	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		this.board = new Board();
-		this.damier = new Damier();
+		this.boardGUI = new BoardGUI();
 		this.terminal = terminal;
 
 		if (mode == Mode.HH) {
@@ -75,8 +75,8 @@ public class Game {
 		return this.actualPlayer;
 	}
 
-	public Damier getDamier() {
-		return this.damier;
+	public BoardGUI getBoardGUI() {
+		return this.boardGUI;
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class Game {
 		// TODO - implement Game.toString
 		String ret = "";
 
-		this.damier.displayBoardGUI(this.board);
+		this.boardGUI.displayBoardGUI(this.board);
 
 		ret += this.board;
 		ret += this.actualPlayer.getName() + " :";

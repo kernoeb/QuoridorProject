@@ -14,7 +14,7 @@ import java.util.ArrayList;
 // import java.awt.Color;
 // import java.awt.Graphics;
  
-public class Damier extends JFrame {
+public class BoardGUI extends JFrame {
     private Board board;
 
     private Container contents;
@@ -43,13 +43,13 @@ public class Damier extends JFrame {
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Damier().setVisible(true);
+                new BoardGUI().setVisible(true);
             }
         });
     }
 
-    public Damier() {
-        super("Damier");
+    public BoardGUI() {
+        super("BoardGUI");
 
         this.board = board;
 
@@ -166,15 +166,15 @@ public class Damier extends JFrame {
 
 
 class ButtonHandler implements ActionListener {
-	Damier damier;
+	BoardGUI boardGUI;
 
-	public ButtonHandler(Damier damier) {
-		this.damier = damier;
+	public ButtonHandler(BoardGUI boardGUI) {
+		this.boardGUI = boardGUI;
 	}
 
     public void actionPerformed(ActionEvent e) {
     	JButton source = (JButton)e.getSource();
-        System.out.println("Le joueur a cliqué en : " + this.damier.getX(source)/2 + ", " + this.damier.getY(source)/2);
+        System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(source)/2 + ", " + this.boardGUI.getY(source)/2);
     }
     // private boolean isValid
 }
