@@ -21,14 +21,24 @@ public class Damier extends JFrame {
     private JButton[][] squares = new JButton[17][17];
 
     // COLORS
-    private Color colorRed = new Color(211, 47, 47);
+    private Color colorRed = new Color(186, 0, 32); 
+    // private Color colorRed = new Color(192, 13, 30); 
+    // private Color colorRed = new Color(180, 35, 25); 
+    // private Color colorRed = new Color(211, 47, 47);
+    // private Color colorRed = new Color(149, 26, 0);
     private Color colorWhite = Color.WHITE;
+    private Color colorBlack = Color.BLACK;
 
-    private ImageIcon greenUser = new ImageIcon((new ImageIcon("../data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    private ImageIcon redUser = new ImageIcon((new ImageIcon("../data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    private ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    private ImageIcon fence_red = new ImageIcon((new ImageIcon("../data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
-    private ImageIcon fence_green = new ImageIcon((new ImageIcon("../data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    // background : #C3C394 (195, 195, 148)
+    // orange (top pawn) : #C57600 (197, 118, 0)
+    // blue (bottom pawn) : #1F6398 (31, 99, 152)
+
+
+    private ImageIcon greenUser = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon redUser = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_red.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon pawn_possible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_possible.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon fence_red = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_red2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    private ImageIcon fence_green = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_green2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -46,9 +56,10 @@ public class Damier extends JFrame {
         contents = getContentPane();
         contents.setLayout(new FlowLayout());
         // contents.setBackground(Color.BLACK);
-        contents.setBackground(new Color(211, 47, 47));
+        // contents.setBackground(new Color(211, 47, 47));
+        contents.setBackground(colorRed);
 
-        ButtonHandler buttonHandler = new ButtonHandler();
+        ButtonHandler buttonHandler = new ButtonHandler(this);
         MouseButton mb = new MouseButton(this);
 
         for (int i = 0; i < 17; i++) {
@@ -64,12 +75,13 @@ public class Damier extends JFrame {
                     else squares[i][j].setPreferredSize(new Dimension(7,7));
                 }
                 else {
-                    this.squares[i][j].setBackground(colorWhite);
+                    // this.squares[i][j].setBackground(colorWhite);
+                    this.squares[i][j].setBackground(colorBlack);
                     this.squares[i][j].setPreferredSize(new Dimension(30,30));
                 }
                 this.squares[i][j].setBorderPainted(false); 
                 contents.add(squares[i][j]);
-                // this.squares[i][j].addActionListener(buttonHandler);
+                this.squares[i][j].addActionListener(buttonHandler);
                 this.squares[i][j].addMouseListener(mb);
             }
         }
@@ -112,7 +124,11 @@ public class Damier extends JFrame {
         return -1;
     }
 
-    public void useBoard(Board board) {
+    public JButton[][] getSquares() {
+    	return this.squares;
+    }
+
+    public void displayBoardGUI(Board board) {
         Square temp = null;
         for (int x = 0; x < board.getTotalSize(); x++) {
             for (int y = 0; y < board.getTotalSize(); y++) {
@@ -150,57 +166,15 @@ public class Damier extends JFrame {
 
 
 class ButtonHandler implements ActionListener {
+	Damier damier;
+
+	public ButtonHandler(Damier damier) {
+		this.damier = damier;
+	}
+
     public void actionPerformed(ActionEvent e) {
-        // if (e.getSource() == squares[i][j])
-            // System.out.println("hey");
+    	JButton source = (JButton)e.getSource();
+        System.out.println("Le joueur a cliqué en : " + this.damier.getX(source)/2 + ", " + this.damier.getY(source)/2);
     }
     // private boolean isValid
 }
-
-
-
-
-// public class Damier extends JFrame {
-//     public Damier() {
-//     	JFrame f = new JFrame("Jeux de Dame en Java");
-//         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//         f.setSize(500, 530);
-//         JPanel damier = new Checkerboard();
-//         f.add(damier);
-//         f.setVisible(true);
-//     }
-
-// 	public static void main(String argv[]) {
-//         Runnable showMyGUI = new Runnable() {
-//             public void run() {
-//                 new Damier();
-//             }
-//         };
-//         SwingUtilities.invokeLater(showMyGUI);
-//     }
-// }
-
-// class Checkerboard extends JPanel {
-//     public void paintComponent(Graphics g) {
-//         int row;
-//         int col;
-//         int x,y;
-
-//         for (row = 0;  row <= 18;  row++ ) {
-//            for ( col = 0;  col <= 18;  col++ ) {
-              
-//                 if (row % 2 != 0 && col % 2 != 0) {
-//                     x = 10*col;
-//                     y = 20*row;
-//                     g.setColor(Color.white);
-//                     g.fillRect(x,y,10,20);
-//                 } else {
-//                     x = 20*col;
-//                     y = 10*row;                    
-//                     g.setColor(Color.black);
-//                     g.fillRect(x,y,20,10);
-//                 }
-//            }
-//         }
-//     }
-
