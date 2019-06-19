@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.Border;
 
 import quoridor.*;
 
@@ -21,6 +22,9 @@ public class GameGUI extends JPanel {
 
   private void createAndShowGUI() {
   	BoardGUI bg = this.game.getBoardGUI();
+  	Border redLine = BorderFactory.createLineBorder(new Color(149, 26, 0), 7);
+  	bg.setBorder(redLine);
+
     this.setLayout(new BorderLayout());
 
     this.add(new JLabel("Joueur actuel : " + this.game.getActualPlayer().getName()), BorderLayout.NORTH);
