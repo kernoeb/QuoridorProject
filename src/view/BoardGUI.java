@@ -20,7 +20,7 @@ public class BoardGUI extends JPanel {
     // Color colorRed = new Color(186, 0, 32);
     // private Color colorRed = new Color(192, 13, 30);
     // private Color colorRed = new Color(180, 35, 25);
-    Color colorRed = new Color(149, 26, 0);    
+    Color colorRed = new Color(149, 26, 0);
     // private Color colorRed = new Color(149, 26, 0);
     Color colorWhite = Color.WHITE;
     Color colorBlack = Color.BLACK;
@@ -74,7 +74,10 @@ public class BoardGUI extends JPanel {
                 else if (i % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
                     if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(30,9));
-                    else squares[i][j].setPreferredSize(new Dimension(9,9));
+                    else {
+                      squares[i][j].setPreferredSize(new Dimension(9,9));
+                      squares[i][j].setEnabled(false);
+                    }
                 }
                 else {
                     // this.squares[i][j].setBackground(colorWhite);
