@@ -39,9 +39,9 @@ public class ActionEcouteur implements ActionListener {
       //this.quoridor.getContentPane().remove(this.quoridor.getBackgroundImage());
       this.quoridor.setBackgroundImage("../data/images/MenuBackground2.png");
 
-      this.quoridor.remove(this.quoridor.getMenuMain());
-      this.quoridor.add(this.quoridor.getMenuMode());
-      this.quoridor.getMenuLoad().setOpaque(false);
+      // this.quoridor.remove(this.quoridor.getMenuMain());
+      // this.quoridor.add(this.quoridor.getMenuMode());
+      // this.quoridor.getMenuLoad().setOpaque(false);
       this.quoridor.revalidate();
       this.quoridor.repaint();
     }
@@ -51,11 +51,21 @@ public class ActionEcouteur implements ActionListener {
     }
 
     else if (button == this.quoridor.getButtonModeHH()) {
-      this.quoridor.getMenuMode().setVisible(false);
+      // this.quoridor.getMenuMode().setVisible(false);
+      // this.quoridor.setGameGUI(new GameGUI(new Game(Mode.HH, "Red user", "Green user", false)));
+      // this.quoridor.add(this.quoridor.getGameGUI());
+      // this.quoridor.getGameGUI().setVisible(true);
+      // this.quoridor.setFocusableWindowState(true);
+      this.quoridor.setBackgroundImage("../data/images/GameBoard.png");
+
+      this.quoridor.remove(this.quoridor.getMenuMode());
       this.quoridor.setGameGUI(new GameGUI(new Game(Mode.HH, "Red user", "Green user", false)));
       this.quoridor.add(this.quoridor.getGameGUI());
-      this.quoridor.getGameGUI().setVisible(true);
+      this.quoridor.getGameGUI().getGame().getBoardGUI().displayBoardGUI(this.quoridor.getGameGUI().getGame().getBoard());
       this.quoridor.setFocusableWindowState(true);
+      this.quoridor.getGameGUI().setOpaque(false);
+      this.quoridor.revalidate();
+      this.quoridor.repaint();
     }
 
     else if (button == this.quoridor.getButtonModeHA()) {

@@ -13,6 +13,7 @@ public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
   JPanel mainMenu;
   JPanel modeMenu;
+  GameGUI gameGUI;
 
   JPanel buttonMainMenu;
   JPanel buttonModeMenu;
@@ -28,8 +29,6 @@ public class QuoridorGUI extends JFrame {
 
   JTexturedButton modeHHButton;
   JTexturedButton modeHAButton;
-
-  GameGUI gameGUI;
 
   Quoridor quoridor;
 
@@ -84,7 +83,8 @@ public class QuoridorGUI extends JFrame {
   public void setBackgroundImage(String fileName) {
     this.back = new BackgroundImage(fileName);
     this.setContentPane(this.back);
-    // this.setPreferredSize(this.)
+    // System.out.println(this.back.getImageSize());
+    // this.setPreferredSize(this.back.getImageSize());
     this.setLayout(new FlowLayout());
   }
 
@@ -99,7 +99,7 @@ public class QuoridorGUI extends JFrame {
 
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
-    this.setMinimumSize(new Dimension(800, 800));
+    this.setMinimumSize(new Dimension(820, 850));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     // this.setResizable(false);
 
@@ -131,14 +131,14 @@ public class QuoridorGUI extends JFrame {
 
     this.quoridorText = new JLabel("QUORIDOR");
     this.quoridorText.setForeground(Color.WHITE);
-    this.setFontPalatino(this.quoridorText, 55);
-    this.quoridorText.setPreferredSize(new Dimension(300, 250));
+    this.setFontPalatino(this.quoridorText, 70);
+    this.quoridorText.setPreferredSize(new Dimension(450, 250));
     this.quoridorText.setHorizontalAlignment(JLabel.CENTER);
     this.playButton = new JTexturedButton("Jouer", "../data/images/Button.png", "../data/images/ButtonHover.png");
     this.loadButton = new JTexturedButton("Charger", "../data/images/Button.png", "../data/images/ButtonHover.png");
     this.quitButton = new JTexturedButton("Quitter", "../data/images/Button.png", "../data/images/ButtonHover.png");
 
-    this.buttonMainMenu.setLayout(new GridLayout(3, 0, 50, 50));
+    this.buttonMainMenu.setLayout(new GridLayout(3, 0, 30, 30));
     this.buttonMainMenu.add(this.playButton);
     this.buttonMainMenu.add(this.loadButton);
     this.buttonMainMenu.add(this.quitButton);
@@ -148,7 +148,7 @@ public class QuoridorGUI extends JFrame {
     this.loadButton.addActionListener(new ActionEcouteur(this));
     this.quitButton.addActionListener(new ActionEcouteur(this));
 
-    this.mainMenu.setLayout(new BorderLayout(80, 80));
+    this.mainMenu.setLayout(new BorderLayout(30, 30));
     //this.mainMenu.add(Box.createRigidArea(new Dimension(50,50)), BorderLayout.PAGE_START);
     this.mainMenu.add(this.quoridorText, BorderLayout.NORTH);
     this.mainMenu.add(this.buttonMainMenu, BorderLayout.CENTER);
@@ -164,10 +164,10 @@ public class QuoridorGUI extends JFrame {
     this.buttonModeMenu = new JPanel();
 
     this.modeText = new JLabel("<html><div align='center'>Veuillez choisir un <br> mode de jeu :</div></html>");
+    this.setFontPalatino(this.modeText, 40);
     this.modeText.setPreferredSize(new Dimension(400, 300));
     this.modeText.setHorizontalAlignment(JLabel.CENTER);
     this.modeText.setForeground(Color.WHITE);
-    this.setFontPalatino(this.modeText, 40);
 
     this.modeHHButton = new JTexturedButton("Humain / Humain", "../data/images/Button.png", "../data/images/ButtonHover.png");
     this.modeHAButton = new JTexturedButton("Humain / IA", "../data/images/Button.png", "../data/images/ButtonHover.png");
