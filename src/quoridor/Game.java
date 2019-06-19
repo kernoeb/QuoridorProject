@@ -177,7 +177,7 @@ public class Game {
 		// TODO - implement Game.toString
 		String ret = "";
 
-		this.damier.useBoard(this.board);
+		this.damier.displayBoardGUI(this.board);
 
 		ret += this.board;
 		ret += this.actualPlayer.getName() + " :";

@@ -128,7 +128,7 @@ public class Damier extends JFrame {
     	return this.squares;
     }
 
-    public void useBoard(Board board) {
+    public void displayBoardGUI(Board board) {
         Square temp = null;
         for (int x = 0; x < board.getTotalSize(); x++) {
             for (int y = 0; y < board.getTotalSize(); y++) {
