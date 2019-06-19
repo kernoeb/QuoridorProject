@@ -23,4 +23,8 @@ public class BackgroundImage extends JComponent {
     super.paintComponent(g);
     g.drawImage(this.image, 0, 0, null);
   }
+
+  public Dimension getImageSize() {
+    return new Dimension(this.image.getWidth(), this.image.getHeight());
+  }
 }
