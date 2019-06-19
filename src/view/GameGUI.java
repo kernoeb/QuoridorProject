@@ -12,7 +12,6 @@ public class GameGUI extends JPanel {
 
   public GameGUI(Game game) {
     this.game = game;
-    System.out.println("gamegui");
     this.createAndShowGUI();
   }
 

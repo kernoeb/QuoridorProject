@@ -1,4 +1,4 @@
-package view;
+package textured;
 
 import javax.swing.*;
 import java.awt.*;

@@ -21,13 +21,29 @@ public class ActionEcouteur implements ActionListener {
     JButton button = (JButton) e.getSource();
 
     if (button == this.quoridor.getButtonPlay()) {
-      this.quoridor.getMenuMain().setVisible(false);
+      this.quoridor.setBackgroundImage("../data/images/MenuBackground2.png");
+      // this.quoridor.getContentPane().revalidate();
+      // this.quoridor.getContentPane().repaint();
+
+      this.quoridor.remove(this.quoridor.getMenuMain());
       this.quoridor.add(this.quoridor.getMenuMode());
-      this.quoridor.getMenuMode().setVisible(true);
+      this.quoridor.getMenuMode().setOpaque(false);
+      this.quoridor.revalidate();
+      this.quoridor.repaint();
     }
 
     else if (button == this.quoridor.getButtonLoad()) {
+      // Ne marche pas car cela enlève l'élément BackgroundImage dans le nouveau layout de la frame
+      // En gros c'est comme si l'élément n'était plus accessible ...
+      // Essayer d'ajouter tous les éléments dans le JPanel BackgroundImage
+      //this.quoridor.getContentPane().remove(this.quoridor.getBackgroundImage());
+      this.quoridor.setBackgroundImage("../data/images/MenuBackground2.png");
 
+      this.quoridor.remove(this.quoridor.getMenuMain());
+      this.quoridor.add(this.quoridor.getMenuMode());
+      this.quoridor.getMenuLoad().setOpaque(false);
+      this.quoridor.revalidate();
+      this.quoridor.repaint();
     }
 
     else if (button == this.quoridor.getButtonQuit()) {
