@@ -38,7 +38,8 @@ public class BoardGUI extends JPanel {
     public BoardGUI() {
         super();
         this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
-        super.setPreferredSize(new Dimension(360, 358));
+        // super.setPreferredSize(new Dimension(360, 358));
+        super.setPreferredSize(new Dimension(425, 441));
         this.setBackground(colorRed);
 
         ButtonHandler buttonHandler = new ButtonHandler(this);
@@ -50,19 +51,19 @@ public class BoardGUI extends JPanel {
                 this.squares[i][j] = new JButton();
                 if (i % 2 == 0 && j % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
-                    this.squares[i][j].setPreferredSize(new Dimension(9,30));
+                    this.squares[i][j].setPreferredSize(new Dimension(12,35));
                 }
                 else if (i % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
-                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(30,9));
+                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(35,12));
                     else {
-                      squares[i][j].setPreferredSize(new Dimension(9,9));
+                      squares[i][j].setPreferredSize(new Dimension(12,12));
                       squares[i][j].setEnabled(false);
                     }
                 }
                 else {
                     this.squares[i][j].setBackground(colorBlack);
-                    this.squares[i][j].setPreferredSize(new Dimension(30,30));
+                    this.squares[i][j].setPreferredSize(new Dimension(35,35));
                 }
                 this.squares[i][j].setBorderPainted(false);
                 this.add(squares[i][j]);

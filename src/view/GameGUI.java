@@ -22,16 +22,28 @@ public class GameGUI extends JPanel {
 
   private void createAndShowGUI() {
   	BoardGUI bg = this.game.getBoardGUI();
-  	Border redLine = BorderFactory.createLineBorder(new Color(149, 26, 0), 7);
+  	Border redLine = BorderFactory.createLineBorder(new Color(149, 26, 0), 15);
   	bg.setBorder(redLine);
 
     this.setLayout(new BorderLayout(0,5));
 
+    ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/blueFence.png")).getImage().getScaledInstance(8, 65,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon pawnBlue = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/orangeFence.png")).getImage().getScaledInstance(8, 65,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon pawnOrange = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
 
     JPanel top = new JPanel();
-    top.setLayout(new GridLayout(1,0));
+    top.setLayout(new GridLayout(1,0,30,0));
     top.add(new JLabel("Temps : 00:45"));
-    top.add(new JLabel("Joueur actuel : " + this.game.getActualPlayer().getName()));
+
+    JPanel currentPlayer = new JPanel();
+    currentPlayer.setLayout(new GridLayout(1,0,0,0));
+    currentPlayer.add(new JLabel("Joueur actuel :"));
+    if (this.game.getActualPlayer() == this.game.getPlayer1()) currentPlayer.add(new JLabel(pawnBlue));
+    else currentPlayer.add(new JLabel(pawnOrange));
+    currentPlayer.setBackground(new Color(195, 195, 148));
+
+    top.add(currentPlayer);
     top.setBackground(new Color(195, 195, 148));
     
 
@@ -42,8 +54,6 @@ public class GameGUI extends JPanel {
     add(jP, BorderLayout.CENTER);
     jP.setBackground(new Color(195, 195, 148));
 
-    ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/blueFence.png")).getImage().getScaledInstance(8, 65,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/orangeFence.png")).getImage().getScaledInstance(8, 65,  java.awt.Image.SCALE_SMOOTH));
 
     JPanel nbBar1 = new JPanel();
     nbBar1.setLayout(new GridLayout(0,10));
