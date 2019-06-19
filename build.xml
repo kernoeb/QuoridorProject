@@ -28,9 +28,8 @@
 		<mkdir dir="${jar}"/>
 		<!-- Création du fichier .jar à partir de l'ensemble des fichiers class du dossier ${buildJar} -->
 		<jar jarfile="${jar}/${ant.project.name}.jar" basedir="${buildJar}">
-		<fileset dir="${src}">
-			<include name="data/pics/*.png" />
-		</fileset>
+		<fileset dir="${src}"></fileset>
+		<fileset dir="." includes="data/**" />
 		<manifest>
 			<attribute name="Main-Class" value="Launcher"/>
 		</manifest>
