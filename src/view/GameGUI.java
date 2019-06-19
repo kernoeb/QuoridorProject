@@ -25,23 +25,32 @@ public class GameGUI extends JPanel {
   	Border redLine = BorderFactory.createLineBorder(new Color(149, 26, 0), 7);
   	bg.setBorder(redLine);
 
-    this.setLayout(new BorderLayout());
+    this.setLayout(new BorderLayout(0,5));
 
-    this.add(new JLabel("Joueur actuel : " + this.game.getActualPlayer().getName()), BorderLayout.NORTH);
+
+    JPanel top = new JPanel();
+    top.setLayout(new GridLayout(1,0));
+    top.add(new JLabel("Temps : 00:45"));
+    top.add(new JLabel("Joueur actuel : " + this.game.getActualPlayer().getName()));
+    top.setBackground(new Color(195, 195, 148));
+    
+
+    this.add(top, BorderLayout.NORTH);
+
     JPanel jP = new JPanel();
     jP.setLayout(new BorderLayout(0,10));
     add(jP, BorderLayout.CENTER);
     jP.setBackground(new Color(195, 195, 148));
 
-    ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/blueFence.png")).getImage().getScaledInstance(5, 50,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/orangeFence.png")).getImage().getScaledInstance(5, 50,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/blueFence.png")).getImage().getScaledInstance(8, 65,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/orangeFence.png")).getImage().getScaledInstance(8, 65,  java.awt.Image.SCALE_SMOOTH));
 
     JPanel nbBar1 = new JPanel();
     nbBar1.setLayout(new GridLayout(0,10));
     nbBar1.setBackground(new Color(195, 195, 148));
 
     for (int i = 0; i < this.game.getActualPlayer().getNbRestingFences(); i++) {
-    	nbBar1.add(new JLabel(fenceBlue));
+    	nbBar1.add(new JLabel(fenceOrange));
     }
 
     JPanel nbBar2 = new JPanel();
@@ -49,7 +58,7 @@ public class GameGUI extends JPanel {
     nbBar2.setBackground(new Color(195, 195, 148));
 
     for (int i = 0; i < this.game.getOtherPlayer().getNbRestingFences(); i++) {
-    	nbBar2.add(new JLabel(fenceOrange));
+    	nbBar2.add(new JLabel(fenceBlue));
     }
 
 

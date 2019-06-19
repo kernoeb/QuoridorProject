@@ -88,7 +88,7 @@ public class QuoridorGUI extends JFrame {
     this.setLayout(new FlowLayout());
   }
 
-  public void setFontPalatino(JComponent component, int size) {
+  public void setFontPalatino(JComponent component, int size) {    
     try {
       Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
       component.setFont(font.deriveFont(size * 1.0f));
