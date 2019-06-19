@@ -20,11 +20,9 @@ public class GameGUI extends JPanel {
   }
 
   private void createAndShowGUI() {
-    // System.out.println(this.game.getBoard());
-    this.setLayout(new GridLayout(0,3));
-    this.add(new JLabel("eiuhopihf"));
-    this.add(this.game.getBoardGUI(), BorderLayout.CENTER);
-    this.add(new JLabel("lzeuhefliuh"));
-    // this.game.getBoardGUI().displayBoardGUI(this.game.getBoard());
+  	BoardGUI bg = this.game.getBoardGUI();
+    this.setLayout(new BorderLayout());
+    this.add(bg, BorderLayout.CENTER);
+    bg.displayBoardGUI(this.game.getBoard());
   }
 }

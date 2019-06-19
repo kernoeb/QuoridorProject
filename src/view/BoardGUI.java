@@ -6,7 +6,6 @@ import java.awt.*;
 import controller.MouseButton;
 import java.awt.event.*;
 
-
 import quoridor.Board;
 import quoridor.Square;
 
@@ -18,10 +17,10 @@ public class BoardGUI extends JPanel {
     JButton[][] squares = new JButton[17][17];
 
     // COLORS
-    Color colorRed = new Color(186, 0, 32);
+    // Color colorRed = new Color(186, 0, 32);
     // private Color colorRed = new Color(192, 13, 30);
     // private Color colorRed = new Color(180, 35, 25);
-    // private Color colorRed = new Color(211, 47, 47);
+    Color colorRed = new Color(149, 26, 0);    
     // private Color colorRed = new Color(149, 26, 0);
     Color colorWhite = Color.WHITE;
     Color colorBlack = Color.BLACK;
@@ -31,11 +30,11 @@ public class BoardGUI extends JPanel {
     // blue (bottom pawn) : #1F6398 (31, 99, 152)
 
 
-    ImageIcon greenUser = new ImageIcon((new ImageIcon("/data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon redUser = new ImageIcon((new ImageIcon("/data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon pawn_possible = new ImageIcon((new ImageIcon("/data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon fence_red = new ImageIcon((new ImageIcon("/data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon fence_green = new ImageIcon((new ImageIcon("/data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon greenUser = new ImageIcon((new ImageIcon("../data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon redUser = new ImageIcon((new ImageIcon("../data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fence_red = new ImageIcon((new ImageIcon("../data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fence_green = new ImageIcon((new ImageIcon("../data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon greenUser = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon redUser = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_red.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon pawn_possible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_possible.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
@@ -51,7 +50,12 @@ public class BoardGUI extends JPanel {
     // }
 
     public BoardGUI() {
-        this.setLayout(new FlowLayout());
+        super();
+        // this.setLayout(new FlowLayout());
+        // this.setLayout(new FlowLayout());
+        this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
+        // this.setLayout(new GridLayout(17,17));
+        super.setPreferredSize(new Dimension(360, 360));
         // this.setBackground(Color.BLACK);
         // this.setBackground(new Color(211, 47, 47));
         this.setBackground(colorRed);
@@ -59,17 +63,18 @@ public class BoardGUI extends JPanel {
         ButtonHandler buttonHandler = new ButtonHandler(this);
         MouseButton mb = new MouseButton(this);
 
+
         for (int i = 0; i < 17; i++) {
             for (int j = 0; j < 17; j++) {
                 this.squares[i][j] = new JButton();
                 if (i % 2 == 0 && j % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
-                    this.squares[i][j].setPreferredSize(new Dimension(7,30));
+                    this.squares[i][j].setPreferredSize(new Dimension(9,30));
                 }
                 else if (i % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
-                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(30,7));
-                    else squares[i][j].setPreferredSize(new Dimension(7,7));
+                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(30,9));
+                    else squares[i][j].setPreferredSize(new Dimension(9,9));
                 }
                 else {
                     // this.squares[i][j].setBackground(colorWhite);

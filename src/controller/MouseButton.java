@@ -10,10 +10,10 @@ import view.BoardGUI;
 
 
 public class MouseButton implements MouseListener {
-    private Color colorRed = new Color(186, 0, 32); 
+    // private Color colorRed = new Color(186, 0, 32); 
     // private Color colorRed = new Color(192, 13, 30); 
     // private Color colorRed = new Color(180, 35, 25); 
-    // private Color colorRed = new Color(211, 47, 47);
+    private Color colorRed = new Color(149, 26, 0);
     // private Color colorRed = new Color(149, 26, 0);
     private Color colorWhite = Color.WHITE;
     private Color colorBlack = Color.BLACK;
