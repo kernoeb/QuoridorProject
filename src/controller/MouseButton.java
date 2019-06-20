@@ -32,15 +32,27 @@ public class MouseButton implements MouseListener {
         JButton source = (JButton)e.getSource();
         if (this.boardGUI.getX(source) % 2 != 0 && this.boardGUI.getY(source) % 2 == 0) {
             try {
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+1].setBackground(colorTmp);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+2].setBackground(colorTmp);
+                if (this.boardGUI.getY(source) == this.boardGUI.getSquares().length-1) {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)-1].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)-2].setBackground(colorTmp);                    
+                } else {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+1].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+2].setBackground(colorTmp);
+                }
             } catch (Exception ex) {}
         } else if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
             try {
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)+1][this.boardGUI.getY(source)].setBackground(colorTmp);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)+2][this.boardGUI.getY(source)].setBackground(colorTmp);
+                if (this.boardGUI.getX(source) == this.boardGUI.getSquares().length-1) {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)-1][this.boardGUI.getY(source)].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)-2][this.boardGUI.getY(source)].setBackground(colorTmp);                    
+                } else {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)+1][this.boardGUI.getY(source)].setBackground(colorTmp);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)+2][this.boardGUI.getY(source)].setBackground(colorTmp);
+                }
             } catch (Exception ex) {}
         }
         // source.setBackground(Color.RED);
@@ -60,15 +72,27 @@ public class MouseButton implements MouseListener {
 
         if (this.boardGUI.getX(source) % 2 != 0 && this.boardGUI.getY(source) % 2 == 0) {
             try {
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+1].setBackground(colorRed);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+2].setBackground(colorRed);
+                if (this.boardGUI.getY(source) == this.boardGUI.getSquares().length-1) {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)-1].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)-2].setBackground(colorRed);                    
+                } else {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+1].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)+2].setBackground(colorRed);
+                }
             } catch (Exception ex) {}
         } else if (this.boardGUI.getX(source) % 2 == 0 && this.boardGUI.getY(source) % 2 != 0) {
             try {
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)+1][this.boardGUI.getY(source)].setBackground(colorRed);
-                this.boardGUI.getSquares()[this.boardGUI.getX(source)+2][this.boardGUI.getY(source)].setBackground(colorRed);
+                if (this.boardGUI.getX(source) == this.boardGUI.getSquares().length-1) {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)-1][this.boardGUI.getY(source)].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)-2][this.boardGUI.getY(source)].setBackground(colorRed);                    
+                } else {
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)][this.boardGUI.getY(source)].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)+1][this.boardGUI.getY(source)].setBackground(colorRed);
+                    this.boardGUI.getSquares()[this.boardGUI.getX(source)+2][this.boardGUI.getY(source)].setBackground(colorRed);
+                }
             } catch (Exception ex) {}
         }                    
     }
