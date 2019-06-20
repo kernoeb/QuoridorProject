@@ -33,7 +33,7 @@ public class GameGUI extends JPanel {
     ImageIcon pawnOrange = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
 
     JPanel top = new JPanel();
-    top.setLayout(new GridLayout(1,0,30,0));
+    top.setLayout(new GridLayout(1,0,50,0));
     top.add(new JLabel("Temps : 00:45"));
 
     JPanel currentPlayer = new JPanel();
