@@ -5,7 +5,7 @@ Application Java réalisée dans le cadre d'un projet universitaire.
 Quoridor : <https://www.gigamic.com/jeu/quoridor>  
 Plus d'informations sur le jeu ici : <https://fr.wikipedia.org/wiki/Quoridor>
 
-Linux users :
+Compile and create the jar file :
 
 ```bash
 ant init compile clean run
