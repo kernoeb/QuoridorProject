@@ -9,6 +9,14 @@ public class JTexturedButton extends JButton {
 
   public JTexturedButton(String text, String icon, String iconHover) {
     super(text);
+    this.initializeComponents(icon, iconHover);
+  }
+
+  public JTexturedButton(String icon, String iconHover) {
+    this.initializeComponents(icon, iconHover);
+  }
+
+  private void initializeComponents(String icon, String iconHover) {
     this.setForeground(Color.BLACK);
     try {
       Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
