@@ -211,24 +211,24 @@ public class QuoridorGUI extends JFrame {
     // this.modeMenu.add(this.buttonModeMenu, BorderLayout.CENTER);
     
 
-    this.modeMenu.setLayout(new BorderLayout());
+    this.modeMenu.setLayout(new BorderLayout(0,-30));
 
     JPanel crossPanel = new JPanel();
     // crossPanel.setLayout(new GridLayout(0, 3, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 0));
     crossPanel.setLayout(new GridLayout(0, 3, 300, 0));
-    crossPanel.setOpaque(false);
     crossPanel.add(this.modeCrossButton);
-    // crossPanel.add(new JPanel());  
+    crossPanel.setOpaque(false);
     // crossPanel.add(new JPanel()); 
       
     // cons.anchor = GridBagConstraints.WEST;
 
     this.modeMenu.add(crossPanel, BorderLayout.NORTH);
     JPanel jP = new JPanel();
-    jP.setLayout(new GridLayout(0,1));
+    // jP.setLayout(new GridLayout(0,1));
+    jP.setLayout(new BorderLayout(0,50));
     jP.setOpaque(false);
-    jP.add(this.modeText);
-    jP.add(this.buttonModeMenu);
+    jP.add(this.modeText, BorderLayout.NORTH);
+    jP.add(this.buttonModeMenu, BorderLayout.CENTER);
     this.modeMenu.add(jP);
 
 
