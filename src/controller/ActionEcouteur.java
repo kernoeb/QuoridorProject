@@ -119,7 +119,7 @@ public class ActionEcouteur implements ActionListener {
   }
 
   private void launchMenuPause() {
-    this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+    this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
 
     // this.quoridorGUI.remove(this.quoridorGUI.getGameGUI());
     this.quoridorGUI.add(this.quoridorGUI.getMenuPause());

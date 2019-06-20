@@ -151,6 +151,7 @@ public class QuoridorGUI extends JFrame {
     this.initializeLoadMenu();
     this.initializeMainMenu();
     this.initializeModeMenu();
+    this.initializePauseMenu();
 
 
     this.add(this.mainMenu);
@@ -293,6 +294,7 @@ public class QuoridorGUI extends JFrame {
 
     this.pauseText = new JLabel("Pause");
     this.pauseText.setForeground(Color.WHITE);
+    this.pauseText.setPreferredSize(new Dimension(400, 235));
     this.setFontPalatino(this.pauseText, 40);
     this.pauseText.setHorizontalAlignment(JLabel.CENTER);
     this.resumeButton = new JTexturedButton("Reprendre", "../data/images/Button.png", "../data/images/ButtonHover.png");
