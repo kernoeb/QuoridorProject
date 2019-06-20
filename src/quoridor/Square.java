@@ -3,10 +3,13 @@ package quoridor;
 // import Project
 import quoridor.Status;
 
+import java.io.*;
 //import java
 
 
-public class Square {
+public class Square implements Serializable {
+
+	private static final long serialVersionUID = 5458954L;
 
 	private int x;
 	private int y;

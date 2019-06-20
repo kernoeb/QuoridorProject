@@ -76,7 +76,7 @@ public class RWFile {
 	public static void writeFile(Game game) {
 		if (game != null) {
 			try {
-				String fileName = new SimpleDateFormat("'save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
+				String fileName = new SimpleDateFormat("'../data/save/save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
 				FileOutputStream file = new FileOutputStream(fileName);
 				ObjectOutputStream obj = new ObjectOutputStream(file);
 
@@ -85,11 +85,13 @@ public class RWFile {
 				obj.close();
 
 			} catch (FileNotFoundException e) {
-				System.err.println("writeFile : " + e.getMessage());
+				System.err.println("writeFile FileNotFoundException : " + e.getMessage());
 			} catch (IOException ex) {
-				System.err.println("writeFile : " + ex.getMessage());
+				System.out.print("writeFile IO : ");
+				ex.printStackTrace();
+				// System.err.println("writeFile IO : " + ex.getMessage());
 			} catch (Exception exc) {
-				System.err.println("writeFile : " + exc.getMessage());
+				System.err.println("writeFile Other : " + exc.getMessage());
 			}
 		}
 

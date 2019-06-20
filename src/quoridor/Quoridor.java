@@ -32,6 +32,11 @@ public class Quoridor {
 			Mode mode = Mode.valueOf(list.get(0));
 			this.terminal = terminal;
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
+			if (this.terminal) {
+				this.game.start();
+			}		
+		} catch (SaveGameException ex) {
+			this.saveGame(this.game);
 		} catch(Exception e) {
 			System.err.println("Quoridor 1 : " + e.getMessage());
 		}
@@ -48,7 +53,11 @@ public class Quoridor {
 		try {
 			this.terminal = terminal;
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
-
+			if (this.terminal) {
+				this.game.start();
+			}			
+		} catch (SaveGameException ex) {
+			this.saveGame(this.game);
 		} catch (Exception e) {
 			System.err.println("Quoridor 2 : " + e.getMessage());
 		}
@@ -59,8 +68,10 @@ public class Quoridor {
 			this.terminal = terminal;
 			this.fileName = fileName;
 			this.game = this.loadOldGame(this.fileName);
-			this.launchGame(this.game);
-
+			// this.game.start();
+			if (this.terminal) this.launchGame(this.game);
+		} catch (SaveGameException ex) {
+			this.saveGame(this.game);
 	 	} catch (Exception e) {
 			System.err.println("Quoridor 3 : " + e.getMessage());
 		}
@@ -95,7 +106,7 @@ public class Quoridor {
 	 * @param game the desired game to launch
 	 * @author
 	 */
-	public void launchGame(Game game) {
+	public void launchGame(Game game) throws SaveGameException {
 		if(game != null) {
 			game.start();
 		}

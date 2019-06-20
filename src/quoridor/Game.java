@@ -12,12 +12,15 @@ import view.BoardGUI;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.*;
 
 /**
  * This class contains the methods to intiliaze the game
  * @author
  */
-public class Game {
+public class Game implements Serializable {
+
+	private static final long serialVersionUID = 5454564654L;
 
 	private Board board;
 	private Player player1;
@@ -37,26 +40,22 @@ public class Game {
 	 * The mode is choosen by the players with a scanner
 	 * @author
 	 */
-	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
+	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) throws SaveGameException {
 		this.board = new Board();
-		this.boardGUI = new BoardGUI();
+		this.boardGUI = new BoardGUI(this);
 		this.terminal = terminal;
 
 		if (mode == Mode.HH) {
-			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2));
-			this.player2 = new HumanPlayer(this, namePlayer2, this.board, 0, (int) (this.board.getSIZE() /2));
+			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2), terminal);
+			this.player2 = new HumanPlayer(this, namePlayer2, this.board, 0, (int) (this.board.getSIZE() /2), terminal);
 		}
 
 		else if (mode == Mode.HA) {
-			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2));
-			this.player2 = new AutoPlayer(this, namePlayer2, this.board, 0, (int) (this.board.getSIZE() /2));
+			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2), terminal);
+			this.player2 = new AutoPlayer(this, namePlayer2, this.board, 0, (int) (this.board.getSIZE() /2), terminal);
 		}
 
 		this.initializeGame();
-
-		if (this.terminal) {
-			this.start();
-		}
 	}
 
 	public Board getBoard() {
@@ -136,7 +135,7 @@ public class Game {
 		return ret;
 	}
 
-	public void nextPlayer() {
+	public void nextPlayer() throws SaveGameException {
 		if (this.actualPlayer == this.player1) {
 			this.player1.play();
 
@@ -152,7 +151,7 @@ public class Game {
 	/**
 	 * Launch the game
 	 */
-	public void start() {
+	public void start() throws SaveGameException {
 		// TODO - implement Game.start
 		while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
 			System.out.println(this);

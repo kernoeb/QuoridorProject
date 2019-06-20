@@ -2,19 +2,22 @@ package quoridor;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.*;
 
-public class AutoPlayer extends Player {
+public class AutoPlayer extends Player implements Serializable {
+
+	private static final long serialVersionUID = 5452854L;
 	/**
 	 * AutoPlayer constructor
 	 * @param name
 	 * @author
 	 */
-	public AutoPlayer(Game game, String name, Board board, int initX, int initY) {
-		super(game, name, board, initX, initY);
+	public AutoPlayer(Game game, String name, Board board, int initX, int initY, boolean terminal) {
+		super(game, name, board, initX, initY, terminal);
 	}
 
-	public AutoPlayer(Game game, String name, Board board) {
-		super(game, name, board);
+	public AutoPlayer(Game game, String name, Board board, boolean terminal) {
+		super(game, name, board, terminal);
 	}
 
 	/**

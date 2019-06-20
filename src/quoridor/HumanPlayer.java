@@ -5,52 +5,78 @@ package quoridor;
 
 // import java
 import java.util.Scanner;
+import java.io.*;
 
+public class HumanPlayer extends Player implements Serializable {
 
-public class HumanPlayer extends Player {
-	private Scanner scan;
+	private static final long serialVersionUID = 5454574554L;
+
+	private transient Scanner scan;
 
 	/**
 	 * HumanPlayer constructor
 	 * @param name
 	 * @author
 	 */
-	public HumanPlayer(Game game, String name, Board board, int initX, int initY) {
-		super(game, name, board, initX, initY);
+	public HumanPlayer(Game game, String name, Board board, int initX, int initY, boolean terminal) {
+		super(game, name, board, initX, initY, terminal);
 		this.scan = new Scanner(System.in);
 	}
 
-	public HumanPlayer(Game game, String name, Board board) {
-		super(game, name, board);
+	public HumanPlayer(Game game, String name, Board board, boolean terminal) {
+		super(game, name, board, terminal);
 		this.scan = new Scanner(System.in);
 	}
 
-	/**
-	 * Let the player choose between if he wants to play a fence or moves its pawn
-	 * @author
-	 */
-	public void play() {
-		if(this.nbFences > 0) {
-			String mode = this.askMode();
+    /**
+     * Let the player choose between if he wants to play a fence or moves its pawn
+     * @author
+     */
+    public void play() {
+        if(this.terminal) {
+            if(this.nbFences > 0) {
+                String mode = this.askMode();
+ 
+                if (mode.equalsIgnoreCase("pawn")) {
+                    this.board.displayForPawn();
+                    this.playPawn();
+                }
+ 
+                else if (mode.equalsIgnoreCase("fence")) {
+                    this.board.displayForFence();
+                    this.playFence();
+                    System.out.println("Il vous reste " + super.nbFences + " barrières !");
+                }
+                else if (mode.equalsIgnoreCase("save")) {
+                	throw new SaveGameException("");
+                }
+            }
+            else {
+                System.out.println("Vous n'avez plus de murs disponibles !");
+ 
+                this.board.displayForPawn();
+                this.playPawn();
+            }
+        }
+    }
 
-			if (mode.equalsIgnoreCase("pawn")) {
-				this.board.displayForPawn();
-				this.playPawn();
-			}
-
-			else if (mode.equalsIgnoreCase("fence")) {
-				this.board.displayForFence();
-				this.playFence();
-				System.out.println("Il vous reste " + super.nbFences + " barrières !");
-			}
-		}
-		else {
-			System.out.println("Vous n'avez plus de murs disponibles !");
-
-			this.board.displayForPawn();
-			this.playPawn();
-		}
-	}
+    public void play(Square sq) {
+        if(!terminal) {
+            if(this.nbFences > 0) {
+                if (sq.isPawn()) {
+                    this.playPawn(sq);
+                }
+ 
+                else if (sq.isFence()) {
+                    this.playFence(sq);
+                    // TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
+                }
+            }
+            else {
+                this.playPawn(sq);
+            }
+        }
+    }
 
 	private String askMode() {
 		System.out.println("Quelle pièce voulez-vous jouer ? \n"
@@ -62,7 +88,8 @@ public class HumanPlayer extends Player {
 
 
 		while ((!s.equalsIgnoreCase("p")) && (!s.equalsIgnoreCase("pion")) &&
-			(!s.equalsIgnoreCase("mur")) && (!s.equalsIgnoreCase("m"))) {
+			(!s.equalsIgnoreCase("mur")) && (!s.equalsIgnoreCase("m")) &&
+			((!s.equalsIgnoreCase("s")) && (!s.equalsIgnoreCase("save")))) {
 				System.out.println("La chaîne de caractères est incorrecte !\n"
 					+ "Veuillez écrire la pièce que vous voulez jouer : Pion (p) ou Mur (m)");
 				s = this.scan.nextLine();
@@ -71,8 +98,11 @@ public class HumanPlayer extends Player {
 		if ((s.equalsIgnoreCase("p")) || (s.equalsIgnoreCase("pion"))) {
 			ret = "pawn";
 		}
-		else {
+		else if ((s.equalsIgnoreCase("m")) || (s.equalsIgnoreCase("mur"))) {
 			ret = "fence";
+		}
+		else if ((s.equalsIgnoreCase("s")) || (s.equalsIgnoreCase("save"))) {
+			ret = "save";
 		}
 
 		return ret;
@@ -113,6 +143,30 @@ public class HumanPlayer extends Player {
 		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
 		this.setNbFences(this.nbFences - 1);
 	}
+
+    private void playFence(Square sq) {
+        // TODO - implement HumanPlayer.playFence
+        this.listOfOldPositions.clear();
+ 
+        Square currentSquare = this.getCurrentSquare();
+ 
+        while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
+            || (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
+            System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
+                                + "Veuillez en choisir une autre !");
+ 
+            x = this.askX(this.board.getSIZE() - 1);
+            y = this.askY(this.board.getSIZE() - 1);
+            dir = this.askDir();
+ 
+            this.setCurrentSquare(currentSquare);
+        }
+ 
+        this.setCurrentSquare(currentSquare);
+ 
+        this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
+        this.setNbFences(this.nbFences - 1);
+    }
 
 	/**
 	 * Moves the pawns to the desired direction.

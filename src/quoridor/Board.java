@@ -3,13 +3,16 @@ package quoridor;
 import quoridor.Square;
 //import GUI.MainGUI;
 import java.util.ArrayList;
+import java.io.*;
 
 /**
  * Class for the initializing of the board.
  * Contains the grid and calls the GUI package to show the game
  * @author
  */
-public class Board {
+public class Board implements Serializable {
+
+	private static final long serialVersionUID = 54254574554L;
 
 	private int SIZE = 9;
 	private Square[][] grid;

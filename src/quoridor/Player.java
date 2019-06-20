@@ -15,13 +15,14 @@ public abstract class Player {
 	protected int nbFences;
 	protected Game game;
 	protected ArrayList<Square> listOfOldPositions;
+	protected boolean terminal;
 
 	/**
 	 * Player constructor
 	 * it cans either be human or bot
 	 * it has a dedidcated pawn and a number of fences left.
 	 */
-	public Player(Game game, String name, Board board) {
+	public Player(Game game, String name, Board board, boolean terminal) {
 		// TODO - implement Player.Player
 		if ((game != null) && (name != null) && (board != null)) {
 			this.name = name;
@@ -30,19 +31,21 @@ public abstract class Player {
 			this.currentSquare = null;
 			this.game = game;
 			this.listOfOldPositions = new ArrayList<Square>();
+			this.terminal = terminal;
 		}
 		else {
 			System.err.println("Player : Paramètre(s) non valide(s).");
 		}
 	}
 
-	public Player(Game game, String name, Board board, int initX, int initY) {
+	public Player(Game game, String name, Board board, int initX, int initY, boolean terminal) {
 		if ((game != null) && (name != null) && (board != null)) {
 			this.name = name;
 			this.board = board;
 			this.nbFences = 10;
 			this.game = game;
 			this.listOfOldPositions = new ArrayList<Square>();
+			this.terminal = terminal;
 
 			if ((initX >= 0) && (initX < this.board.getSIZE()) && (initY >= 0) && (initY < this.board.getSIZE())) {
 				// this.currentSquare = this.board.getGrid()[initX][initY];
@@ -170,7 +173,7 @@ public abstract class Player {
 		return this.nbFences;
 	}
 
-	public abstract void play();
+	public abstract void play() throws SaveGameException;
 
 	protected void movePawn(int x, int y) {
 		if (this.currentSquare != null) {
