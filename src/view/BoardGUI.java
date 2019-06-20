@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import controller.MouseButton;
+import controller.SquareEcouteur;
 import java.awt.event.*;
 
 import quoridor.Board;
@@ -42,7 +43,7 @@ public class BoardGUI extends JPanel {
         super.setPreferredSize(new Dimension(425, 441));
         this.setBackground(colorRed);
 
-        ButtonHandler buttonHandler = new ButtonHandler(this);
+        SquareEcouteur sqEcouteur = new SquareEcouteur(this);
         MouseButton mb = new MouseButton(this);
 
 
@@ -67,7 +68,7 @@ public class BoardGUI extends JPanel {
                 }
                 this.squares[i][j].setBorderPainted(false);
                 this.add(squares[i][j]);
-                this.squares[i][j].addActionListener(buttonHandler);
+                this.squares[i][j].addActionListener(sqEcouteur);
                 this.squares[i][j].addMouseListener(mb);
             }
         }
@@ -120,7 +121,7 @@ public class BoardGUI extends JPanel {
                         this.squares[x][y].setIcon(player1);
                     } else this.squares[x][y].setIcon(null);
                 }
-                
+
                 else if (temp.isFence()) {
                     if (temp.isFencePossible()) {
                         this.squares[x][y].setIcon(null);
@@ -137,16 +138,16 @@ public class BoardGUI extends JPanel {
 
 
 
-class ButtonHandler implements ActionListener {
-	BoardGUI boardGUI;
-
-	public ButtonHandler(BoardGUI boardGUI) {
-		this.boardGUI = boardGUI;
-	}
-
-    public void actionPerformed(ActionEvent e) {
-    	JButton source = (JButton)e.getSource();
-        System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(source)/2 + ", " + this.boardGUI.getY(source)/2);
-    }
-    // private boolean isValid
-}
+// class ButtonHandler implements ActionListener {
+// 	BoardGUI boardGUI;
+//
+// 	public ButtonHandler(BoardGUI boardGUI) {
+// 		this.boardGUI = boardGUI;
+// 	}
+//
+//     public void actionPerformed(ActionEvent e) {
+//     	JButton source = (JButton)e.getSource();
+//         System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(source)/2 + ", " + this.boardGUI.getY(source)/2);
+//     }
+//     // private boolean isValid
+// }

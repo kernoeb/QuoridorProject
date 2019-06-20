@@ -29,6 +29,9 @@ public class QuoridorGUI extends JFrame {
 
   JTexturedButton modeHHButton;
   JTexturedButton modeHAButton;
+  JTexturedButton modeCrossButton;
+
+  JTexturedButton loadCrossButton;
 
   Quoridor quoridor;
 
@@ -54,6 +57,14 @@ public class QuoridorGUI extends JFrame {
 
   public JTexturedButton getButtonModeHA() {
     return this.modeHAButton;
+  }
+
+  public JTexturedButton getButtonModeCross() {
+    return this.modeCrossButton;
+  }
+
+  public JTexturedButton getButtonLoadCross() {
+    return this.loadCrossButton;
   }
 
   public JPanel getMenuLoad() {
@@ -88,7 +99,7 @@ public class QuoridorGUI extends JFrame {
     this.setLayout(new FlowLayout());
   }
 
-  public void setFontPalatino(JComponent component, int size) {    
+  public void setFontPalatino(JComponent component, int size) {
     try {
       Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
       component.setFont(font.deriveFont(size * 1.0f));
@@ -126,7 +137,10 @@ public class QuoridorGUI extends JFrame {
   private void initializeLoadMenu() {
     this.loadMenu = new JPanel();
 
-
+    this.loadCrossButton = new JTexturedButton("../data/images/WhiteCross.png", "../data/images/GreyCross.png");
+    this.loadMenu.setLayout(new FlowLayout());
+    this.loadCrossButton.addActionListener(new ActionEcouteur(this));
+    this.loadMenu.add(this.loadCrossButton);
   }
 
   private void initializeMainMenu() {
@@ -167,11 +181,14 @@ public class QuoridorGUI extends JFrame {
     this.modeMenu = new JPanel();
     this.buttonModeMenu = new JPanel();
 
+    this.modeCrossButton = new JTexturedButton("../data/images/WhiteCross.png", "../data/images/GreyCross.png");
+
     GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
     try {
       genv.registerFont(getFontPalatino());
     } catch (FontFormatException ffe) {
     } catch (IOException io) {}
+
 
     this.modeText = new JLabel("<html><head><style type='text/css'>body { font-family: Palatino Linotype; } </style></head><div align='center'>Veuillez choisir un <br> mode de jeu :</div></html>");
     this.setFontPalatino(this.modeText, 40);
@@ -187,11 +204,29 @@ public class QuoridorGUI extends JFrame {
     this.buttonModeMenu.add(this.modeHAButton);
     this.buttonModeMenu.setOpaque(false);
 
-    this.modeMenu.setLayout(new BorderLayout(50, 50));
-    this.modeMenu.add(this.modeText, BorderLayout.NORTH);
-    this.modeMenu.add(this.buttonModeMenu, BorderLayout.CENTER);
+    // this.modeMenu.setLayout(new BorderLayout(50, 50));
+    // this.modeMenu.add(this.modeText, BorderLayout.NORTH);
+    // this.modeMenu.add(this.buttonModeMenu, BorderLayout.CENTER);
+    this.modeMenu.setLayout(new GridBagLayout());
+    GridBagConstraints cons = new GridBagConstraints();
+    // cons.anchor = GridBagConstraints.NORTHWEST;
+    cons.gridx = 0;
+    cons.gridy = 0;
+    cons.weightx = GridBagConstraints.LINE_START;
+    // cons.fill = GridBagConstraints.NORTHEAST;
+    this.modeMenu.add(this.modeCrossButton, cons);
+
+    cons.gridx = 1;
+    cons.gridy = 1;
+    cons.anchor = GridBagConstraints.NORTH;
+    this.modeMenu.add(this.modeText, cons);
+
+    cons.gridy = 2;
+    // cons.anchor = GridBagConstraints.CENTER;
+    this.modeMenu.add(this.buttonModeMenu, cons);
 
     this.modeHHButton.addActionListener(new ActionEcouteur(this));
     this.modeHAButton.addActionListener(new ActionEcouteur(this));
+    this.modeCrossButton.addActionListener(new ActionEcouteur(this));
   }
 }
