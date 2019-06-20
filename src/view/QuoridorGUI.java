@@ -3,6 +3,8 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 
 import controller.ActionEcouteur;
 import quoridor.Quoridor;
@@ -207,23 +209,52 @@ public class QuoridorGUI extends JFrame {
     // this.modeMenu.setLayout(new BorderLayout(50, 50));
     // this.modeMenu.add(this.modeText, BorderLayout.NORTH);
     // this.modeMenu.add(this.buttonModeMenu, BorderLayout.CENTER);
-    this.modeMenu.setLayout(new GridBagLayout());
-    GridBagConstraints cons = new GridBagConstraints();
+    
+
+    this.modeMenu.setLayout(new BorderLayout());
+
+    JPanel crossPanel = new JPanel();
+    // crossPanel.setLayout(new GridLayout(0, 3, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 0));
+    crossPanel.setLayout(new GridLayout(0, 3, 300, 0));
+    crossPanel.setOpaque(false);
+    crossPanel.add(this.modeCrossButton);
+    // crossPanel.add(new JPanel());  
+    // crossPanel.add(new JPanel()); 
+      
+    // cons.anchor = GridBagConstraints.WEST;
+
+    this.modeMenu.add(crossPanel, BorderLayout.NORTH);
+    JPanel jP = new JPanel();
+    jP.setLayout(new GridLayout(0,1));
+    jP.setOpaque(false);
+    jP.add(this.modeText);
+    jP.add(this.buttonModeMenu);
+    this.modeMenu.add(jP);
+
+
+     
+    
+    // this.modeMenu.setLayout(new GridBagLayout());
+    // GridBagConstraints cons = new GridBagConstraints();
+    // // cons.anchor = GridBagConstraints.NORTHWEST;
+    // cons.gridx = 0;
+    // cons.gridy = 0;
+    // cons.weightx = GridBagConstraints.LINE_START;
+    // // cons.fill = GridBagConstraints.NORTHEAST;
+    // this.modeMenu.add(this.modeCrossButton, cons);
+    // // this.modeCrossButton.setBorder(new EmptyBorder(0, -20, 0, 0));
+
+    // // cons.insets = new Insets(-25, -50, 0, 0);
+
+    // cons.gridx = 1;
+    // cons.gridy = 1;
+    // // cons.anchor = GridBagConstraints.NORTH;
     // cons.anchor = GridBagConstraints.NORTHWEST;
-    cons.gridx = 0;
-    cons.gridy = 0;
-    cons.weightx = GridBagConstraints.LINE_START;
-    // cons.fill = GridBagConstraints.NORTHEAST;
-    this.modeMenu.add(this.modeCrossButton, cons);
+    // this.modeMenu.add(this.modeText, cons);
 
-    cons.gridx = 1;
-    cons.gridy = 1;
-    cons.anchor = GridBagConstraints.NORTH;
-    this.modeMenu.add(this.modeText, cons);
-
-    cons.gridy = 2;
-    // cons.anchor = GridBagConstraints.CENTER;
-    this.modeMenu.add(this.buttonModeMenu, cons);
+    // cons.gridy = 2;
+    // // cons.anchor = GridBagConstraints.CENTER;
+    // this.modeMenu.add(this.buttonModeMenu, cons);
 
     this.modeHHButton.addActionListener(new ActionEcouteur(this));
     this.modeHAButton.addActionListener(new ActionEcouteur(this));
