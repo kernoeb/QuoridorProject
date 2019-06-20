@@ -118,11 +118,33 @@ public class Board implements Serializable {
 		}
 	}
 
-	public ArrayList<Square> listOfPossibilitiesFence(Player player) {
-		ArrayList<Square> list = new ArrayList<Square>();
+	// public ArrayList<Square> listOfPossibilitiesFence(Player player) {
+	public Object[][] listOfPossibilitiesFence(Player player) {
+		// ArrayList<Square> list = new ArrayList<Square>();
+		Object[][] obj = new Object[128][1];
 
-	//	for(int x=0; x < )
-		return list;
+		int val = 0;
+		for (int i = 0; i < getTotalSize(); i++) {
+			for (int j = 0; j < getTotalSize(); j++) {
+				if (((i % 2 != 0) && (j % 2 != 0))) {
+					if (checkFencePossible(this.grid[x][y], "h")) {
+						obj[val][0] = this.grid[i][j];
+						obj[val][1] = "h"
+						val++;
+					}
+					
+					if (checkFencePossible(this.grid[x][y], "v")) {
+						obj[val][0] = this.grid[i][j];
+						obj[val][1] = "v"
+						val++;
+					}					
+					// if (this.grid[i][j].isFencePossible()) list.add(this.grid[i][j]);
+				}
+			}
+		}
+
+		// return list;
+		return obj;
 	}
 
 	/**
