@@ -118,34 +118,34 @@ public class Board implements Serializable {
 		}
 	}
 
-	// public ArrayList<Square> listOfPossibilitiesFence(Player player) {
-	public Object[][] listOfPossibilitiesFence(Player player) {
-		// ArrayList<Square> list = new ArrayList<Square>();
-		Object[][] obj = new Object[128][1];
+	// // public ArrayList<Square> listOfPossibilitiesFence(Player player) {
+	// public Object[][] listOfPossibilitiesFence(Player player) {
+	// 	// ArrayList<Square> list = new ArrayList<Square>();
+	// 	Object[][] obj = new Object[128][1];
 
-		int val = 0;
-		for (int i = 0; i < getTotalSize(); i++) {
-			for (int j = 0; j < getTotalSize(); j++) {
-				if (((i % 2 != 0) && (j % 2 != 0))) {
-					if (checkFencePossible(this.grid[x][y], "h")) {
-						obj[val][0] = this.grid[i][j];
-						obj[val][1] = "h"
-						val++;
-					}
+	// 	int val = 0;
+	// 	for (int i = 0; i < getTotalSize(); i++) {
+	// 		for (int j = 0; j < getTotalSize(); j++) {
+	// 			if (((i % 2 != 0) && (j % 2 != 0))) {
+	// 				if (checkFencePossible(this.grid[i][j], "h")) {
+	// 					obj[val][0] = this.grid[i][j];
+	// 					obj[val][1] = "h";
+	// 					val++;
+	// 				}
 					
-					if (checkFencePossible(this.grid[x][y], "v")) {
-						obj[val][0] = this.grid[i][j];
-						obj[val][1] = "v"
-						val++;
-					}					
-					// if (this.grid[i][j].isFencePossible()) list.add(this.grid[i][j]);
-				}
-			}
-		}
+	// 				if (checkFencePossible(this.grid[i][j], "v")) {
+	// 					obj[val][0] = this.grid[i][j];
+	// 					obj[val][1] = "v";
+	// 					val++;
+	// 				}					
+	// 				// if (this.grid[i][j].isFencePossible()) list.add(this.grid[i][j]);
+	// 			}
+	// 		}
+	// 	}
 
-		// return list;
-		return obj;
-	}
+	// 	// return list;
+	// 	return obj;
+	// }
 
 	/**
 	 * Check the list of possibilities for the player
