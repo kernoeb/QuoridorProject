@@ -5,14 +5,20 @@ import java.awt.*;
 import javax.swing.border.Border;
 
 import quoridor.*;
+import textured.JTexturedButton;
+import controller.ActionEcouteur;
 
 public class GameGUI extends JPanel {
+  QuoridorGUI quoridorGUI;
   Game game;
 
   BoardGUI bg;
   Border redLine;
 
+  JTexturedButton pauseButton;
+
   JLabel time;
+  JLabel currentPlayerColor;
 
   JPanel jP;
   JPanel nbBar1;
@@ -25,13 +31,18 @@ public class GameGUI extends JPanel {
   ImageIcon fenceOrange;
   ImageIcon pawnOrange;
 
-  public GameGUI(Game game) {
+  public GameGUI(Game game, QuoridorGUI quoridorGUI) {
     this.game = game;
+    this.quoridorGUI = quoridorGUI;
     this.createAndShowGUI();
   }
 
   public Game getGame() {
     return this.game;
+  }
+
+  public JTexturedButton getButtonPause() {
+    return this.pauseButton;
   }
 
   private void createAndShowGUI() {
@@ -47,19 +58,24 @@ public class GameGUI extends JPanel {
     this.pawnOrange = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
 
     this.top = new JPanel();
-    this.top.setLayout(new GridLayout(1,0,50,0));
+    this.top.setLayout(new GridLayout(2,0,50,0));
+
+    this.pauseButton = new JTexturedButton("../data/images/ButtonPause.png", "../data/images/ButtonPause.png");
+    this.top.add(this.pauseButton);
+    this.pauseButton.addActionListener(new ActionEcouteur(this.quoridorGUI));
+
     this.top.add(new JLabel("Temps : 00:45"));
 
     this.currentPlayer = new JPanel();
     this.currentPlayer.setLayout(new GridLayout(1,0,0,0));
     this.currentPlayer.add(new JLabel("Joueur actuel :"));
-    if (this.game.getActualPlayer() == this.game.getPlayer1()) this.currentPlayer.add(new JLabel(this.pawnBlue));
-    else this.currentPlayer.add(new JLabel(this.pawnOrange));
+    this.currentPlayerColor = new JLabel();
     this.currentPlayer.setBackground(new Color(195, 195, 148));
+
+    this.updateCurrentPlayer();
 
     this.top.add(this.currentPlayer);
     this.top.setBackground(new Color(195, 195, 148));
-
 
     this.add(this.top, BorderLayout.NORTH);
 
@@ -87,6 +103,14 @@ public class GameGUI extends JPanel {
 
     this.bg.displayBoardGUI();
     this.bg.addTmpPossibilities(this.game.getBoard().listOfPossibilitiesPawn(this.game.getActualPlayer()));
+  }
+
+  public void updateCurrentPlayer() {
+    this.currentPlayer.remove(this.currentPlayerColor);
+    if (this.game.getActualPlayer() == this.game.getPlayer1()) this.currentPlayerColor = new JLabel(this.pawnBlue);
+    else this.currentPlayerColor = new JLabel(this.pawnOrange);
+
+    this.currentPlayer.add(this.currentPlayerColor);
   }
 
   public void updateFences() {

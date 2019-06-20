@@ -31,7 +31,7 @@ public class SquareEcouteur implements ActionListener {
 		else {
 			this.actualPlayer.playPawn(square);
 		}
-
+    
     // System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(square)/2 + ", " + this.boardGUI.getY(square)/2);
   }
 }

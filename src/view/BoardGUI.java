@@ -109,24 +109,6 @@ public class BoardGUI extends JPanel {
     }
 
     public Square getSquare(JButton button) {
-      // for(int i=0; i < this.squares.length; i++) {
-      //   for(int j=0; j < this.squares.length; j++) {
-      //     if(this.squares[i][j] == button) {
-      //       if (((this.getX(button) % 2) == 0) && ((this.getY(button) % 2) != 0)) {
-    	// 				this.grid[x][y] = new Square(x, y, Status.FENCEPOSSIBLE);
-    	// 			}
-      //
-    	// 			else if (this.isOddNumber(x)) {
-    	// 				this.grid[x][y] = new Square(x, y, Status.FENCEPOSSIBLE);
-    	// 			}
-      //
-    	// 			else {
-    	// 				this.grid[x][y] = new Square(x, y, Status.PAWNPOSSIBLE);
-    	// 			}
-      //     }
-      //   }
-      // }
-
       for (int x = 0; x < this.board.getTotalSize(); x++) {
           for (int y = 0; y < this.board.getTotalSize(); y++) {
               if (this.squares[x][y] == button) return this.board.getGrid()[x][y];
@@ -170,19 +152,3 @@ public class BoardGUI extends JPanel {
         }
     }
 }
-
-
-
-// class ButtonHandler implements ActionListener {
-// 	BoardGUI boardGUI;
-//
-// 	public ButtonHandler(BoardGUI boardGUI) {
-// 		this.boardGUI = boardGUI;
-// 	}
-//
-//     public void actionPerformed(ActionEvent e) {
-//     	JButton source = (JButton)e.getSource();
-//         System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(source)/2 + ", " + this.boardGUI.getY(source)/2);
-//     }
-//     // private boolean isValid
-// }

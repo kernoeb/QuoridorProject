@@ -15,10 +15,12 @@ public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
   JPanel mainMenu;
   JPanel modeMenu;
+  JPanel pauseMenu;
   GameGUI gameGUI;
 
   JPanel buttonMainMenu;
   JPanel buttonModeMenu;
+  JPanel buttonPauseMenu;
 
   JLabel quoridorText;
   BackgroundImage back;
@@ -28,12 +30,16 @@ public class QuoridorGUI extends JFrame {
   JTexturedButton quitButton;
 
   JLabel modeText;
-
   JTexturedButton modeHHButton;
   JTexturedButton modeHAButton;
   JTexturedButton modeCrossButton;
 
   JTexturedButton loadCrossButton;
+
+  JLabel pauseText;
+  JTexturedButton resumeButton;
+  JTexturedButton restartButton;
+  JTexturedButton saveAndQuitButton;
 
   Quoridor quoridor;
 
@@ -69,6 +75,18 @@ public class QuoridorGUI extends JFrame {
     return this.loadCrossButton;
   }
 
+  public JTexturedButton getButtonResume() {
+    return this.resumeButton;
+  }
+
+  public JTexturedButton getButtonRestart() {
+    return this.restartButton;
+  }
+
+  public JTexturedButton getButtonSaveAndQuit() {
+    return this.saveAndQuitButton;
+  }
+
   public JPanel getMenuLoad() {
     return this.loadMenu;
   }
@@ -81,8 +99,16 @@ public class QuoridorGUI extends JFrame {
     return this.modeMenu;
   }
 
+  public JPanel getMenuPause() {
+    return this.pauseMenu;
+  }
+
   public GameGUI getGameGUI() {
     return this.gameGUI;
+  }
+
+  public Quoridor getQuoridor() {
+    return this.quoridor;
   }
 
   public void setGameGUI(GameGUI gameGUI) {
@@ -259,5 +285,32 @@ public class QuoridorGUI extends JFrame {
     this.modeHHButton.addActionListener(new ActionEcouteur(this));
     this.modeHAButton.addActionListener(new ActionEcouteur(this));
     this.modeCrossButton.addActionListener(new ActionEcouteur(this));
+  }
+
+  private void initializePauseMenu() {
+    this.pauseMenu = new JPanel();
+    this.buttonPauseMenu = new JPanel();
+
+    this.pauseText = new JLabel("Pause");
+    this.pauseText.setForeground(Color.WHITE);
+    this.setFontPalatino(this.pauseText, 40);
+    this.pauseText.setHorizontalAlignment(JLabel.CENTER);
+    this.resumeButton = new JTexturedButton("Reprendre", "../data/images/Button.png", "../data/images/ButtonHover.png");
+    this.restartButton = new JTexturedButton("Recommencer", "../data/images/Button.png", "../data/images/ButtonHover.png");
+    this.saveAndQuitButton = new JTexturedButton("Sauvegarder et quitter", "../data/images/Button.png", "../data/images/ButtonHover.png");
+
+    this.buttonPauseMenu.setLayout(new GridLayout(3, 0, 30, 30));
+    this.buttonPauseMenu.add(this.resumeButton);
+    this.buttonPauseMenu.add(this.restartButton);
+    this.buttonPauseMenu.add(this.saveAndQuitButton);
+    this.buttonPauseMenu.setOpaque(false);
+
+    this.resumeButton.addActionListener(new ActionEcouteur(this));
+    this.restartButton.addActionListener(new ActionEcouteur(this));
+    this.saveAndQuitButton.addActionListener(new ActionEcouteur(this));
+
+    this.pauseMenu.setLayout(new BorderLayout(30, 30));
+    this.pauseMenu.add(this.pauseText, BorderLayout.NORTH);
+    this.pauseMenu.add(this.buttonPauseMenu, BorderLayout.CENTER);
   }
 }

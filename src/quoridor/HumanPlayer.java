@@ -194,7 +194,9 @@ public class HumanPlayer extends Player implements Serializable {
 		super.movePawn(this.board.pawnCoord(x), this.board.pawnCoord(y));
 	}
 
-	public void playPawn(Square square) {}
+	public void playPawn(Square square) {
+		super.movePawn(this.square.getX(), this.square.getY());
+	}
 
 
 	// Méthode pour Pawn pour l'instant ...
