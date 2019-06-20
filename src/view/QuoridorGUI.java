@@ -139,7 +139,7 @@ public class QuoridorGUI extends JFrame {
   private void initializeLoadMenu() {
     this.loadMenu = new JPanel();
 
-    this.loadCrossButton = new JTexturedButton("../data/images/WhiteCross.png", "../data/images/GreyCross.png");
+    this.loadCrossButton = new JTexturedButton("../data/images/ArrowBack.png", "../data/images/ArrowBackHover.png");
     this.loadMenu.setLayout(new FlowLayout());
     this.loadCrossButton.addActionListener(new ActionEcouteur(this));
     this.loadMenu.add(this.loadCrossButton);
@@ -183,7 +183,7 @@ public class QuoridorGUI extends JFrame {
     this.modeMenu = new JPanel();
     this.buttonModeMenu = new JPanel();
 
-    this.modeCrossButton = new JTexturedButton("../data/images/WhiteCross.png", "../data/images/GreyCross.png");
+    this.modeCrossButton = new JTexturedButton("../data/images/ArrowBack.png", "../data/images/ArrowBackHover.png");
 
     GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
     try {
@@ -209,7 +209,7 @@ public class QuoridorGUI extends JFrame {
     // this.modeMenu.setLayout(new BorderLayout(50, 50));
     // this.modeMenu.add(this.modeText, BorderLayout.NORTH);
     // this.modeMenu.add(this.buttonModeMenu, BorderLayout.CENTER);
-    
+
 
     this.modeMenu.setLayout(new BorderLayout(0,-30));
 
@@ -218,8 +218,8 @@ public class QuoridorGUI extends JFrame {
     crossPanel.setLayout(new GridLayout(0, 3, 300, 0));
     crossPanel.add(this.modeCrossButton);
     crossPanel.setOpaque(false);
-    // crossPanel.add(new JPanel()); 
-      
+    // crossPanel.add(new JPanel());
+
     // cons.anchor = GridBagConstraints.WEST;
 
     this.modeMenu.add(crossPanel, BorderLayout.NORTH);
@@ -232,8 +232,8 @@ public class QuoridorGUI extends JFrame {
     this.modeMenu.add(jP);
 
 
-     
-    
+
+
     // this.modeMenu.setLayout(new GridBagLayout());
     // GridBagConstraints cons = new GridBagConstraints();
     // // cons.anchor = GridBagConstraints.NORTHWEST;
