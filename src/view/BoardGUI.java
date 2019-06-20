@@ -10,18 +10,12 @@ import quoridor.Board;
 import quoridor.Square;
 
 import java.util.ArrayList;
-// import java.awt.Color;
-// import java.awt.Graphics;
 
 public class BoardGUI extends JPanel {
     JButton[][] squares = new JButton[17][17];
 
     // COLORS
-    // Color colorRed = new Color(186, 0, 32);
-    // private Color colorRed = new Color(192, 13, 30);
-    // private Color colorRed = new Color(180, 35, 25);
     Color colorRed = new Color(149, 26, 0);
-    // private Color colorRed = new Color(149, 26, 0);
     Color colorWhite = Color.WHITE;
     Color colorBlack = Color.BLACK;
 
@@ -30,34 +24,22 @@ public class BoardGUI extends JPanel {
     // blue (bottom pawn) : #1F6398 (31, 99, 152)
 
 
-    ImageIcon greenUser = new ImageIcon((new ImageIcon("../data/icons/pawn_green.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon redUser = new ImageIcon((new ImageIcon("../data/icons/pawn_red.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon player1 = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon player2 = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon fence_red = new ImageIcon((new ImageIcon("../data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon fence_green = new ImageIcon((new ImageIcon("../data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon greenUser = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon redUser = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_red.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    // private ImageIcon player1 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    // private ImageIcon player2 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_red.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon pawn_possible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_possible.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon fence_red = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_red2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon fence_green = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_green2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
-    //
-    // public static void main(String[] args) {
-    //     javax.swing.SwingUtilities.invokeLater(new Runnable() {
-    //         public void run() {
-    //             new BoardGUI().setVisible(true);
-    //         }
-    //     });
-    // }
 
     public BoardGUI() {
         super();
-        // this.setLayout(new FlowLayout());
-        // this.setLayout(new FlowLayout());
         this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
-        // this.setLayout(new GridLayout(17,17));
-        super.setPreferredSize(new Dimension(360, 360));
-        // this.setBackground(Color.BLACK);
-        // this.setBackground(new Color(211, 47, 47));
+        // super.setPreferredSize(new Dimension(360, 358));
+        super.setPreferredSize(new Dimension(425, 441));
         this.setBackground(colorRed);
 
         ButtonHandler buttonHandler = new ButtonHandler(this);
@@ -69,20 +51,19 @@ public class BoardGUI extends JPanel {
                 this.squares[i][j] = new JButton();
                 if (i % 2 == 0 && j % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
-                    this.squares[i][j].setPreferredSize(new Dimension(9,30));
+                    this.squares[i][j].setPreferredSize(new Dimension(12,35));
                 }
                 else if (i % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
-                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(30,9));
+                    if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(35,12));
                     else {
-                      squares[i][j].setPreferredSize(new Dimension(9,9));
+                      squares[i][j].setPreferredSize(new Dimension(12,12));
                       squares[i][j].setEnabled(false);
                     }
                 }
                 else {
-                    // this.squares[i][j].setBackground(colorWhite);
                     this.squares[i][j].setBackground(colorBlack);
-                    this.squares[i][j].setPreferredSize(new Dimension(30,30));
+                    this.squares[i][j].setPreferredSize(new Dimension(35,35));
                 }
                 this.squares[i][j].setBorderPainted(false);
                 this.add(squares[i][j]);
@@ -90,10 +71,6 @@ public class BoardGUI extends JPanel {
                 this.squares[i][j].addMouseListener(mb);
             }
         }
-        // squares[row][col].setIcon...
-
-        // this.setSize(420, 450);
-
     }
 
     public void addTmpPossibilities(ArrayList<Square> pos) {
@@ -106,9 +83,7 @@ public class BoardGUI extends JPanel {
     public int getX(JButton jB) {
         for (int i = 0; i < this.squares.length; i++) {
            for (int j = 0; j < this.squares.length; j++) {
-                if (this.squares[i][j] == jB) {
-                    return i;
-                }
+                if (this.squares[i][j] == jB) return i;
             }
         }
         return -1;
@@ -118,12 +93,14 @@ public class BoardGUI extends JPanel {
     public int getY(JButton jB) {
         for (int i = 0; i < this.squares.length; i++) {
            for (int j = 0; j < this.squares.length; j++) {
-                if (this.squares[i][j] == jB) {
-                    return j;
-                }
+                if (this.squares[i][j] == jB) return j;
             }
         }
         return -1;
+    }
+
+    public void addPawn(ImageIcon im, int i, int j) {
+        this.squares[i][j].setIcon(im);
     }
 
     public JButton[][] getSquares() {
@@ -138,25 +115,18 @@ public class BoardGUI extends JPanel {
 
                 if (temp.isPawn()) {
                     if (temp.isPawn1()) {
-                        this.squares[x][y].setIcon(redUser);
-                    }
-
-                    else if (temp.isPawn2()) {
-                        this.squares[x][y].setIcon(greenUser);
-                    }
-
-                    else this.squares[x][y].setIcon(null);
+                        this.squares[x][y].setIcon(player2);
+                    } else if (temp.isPawn2()) {
+                        this.squares[x][y].setIcon(player1);
+                    } else this.squares[x][y].setIcon(null);
                 }
+                
                 else if (temp.isFence()) {
                     if (temp.isFencePossible()) {
                         this.squares[x][y].setIcon(null);
-                    }
-
-                    else if (temp.isFencePawn1()) {
+                    } else if (temp.isFencePawn1()) {
                         this.squares[x][y].setIcon(fence_red);
-                    }
-
-                    else if (temp.isFencePawn2()) {
+                    } else if (temp.isFencePawn2()) {
                         this.squares[x][y].setIcon(fence_green);
                     }
                 }

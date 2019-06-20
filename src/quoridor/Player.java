@@ -166,9 +166,8 @@ public abstract class Player {
 	 * @return the number of fences left playable by the player
 	 * @author
 	 */
-	public int checkNbRestingFences() {
-		// TODO - implement Player.checkNbRestingFences
-		return 0;
+	public int getNbRestingFences() {
+		return this.nbFences;
 	}
 
 	public abstract void play();

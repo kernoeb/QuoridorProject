@@ -75,6 +75,11 @@ public class Game {
 		return this.actualPlayer;
 	}
 
+	public Player getOtherPlayer() {
+		if (this.actualPlayer == this.player1) return this.player2;
+		else return this.player1;
+	}
+
 	public BoardGUI getBoardGUI() {
 		return this.boardGUI;
 	}
@@ -177,7 +182,7 @@ public class Game {
 		// TODO - implement Game.toString
 		String ret = "";
 
-		this.boardGUI.displayBoardGUI(this.board);
+		// this.boardGUI.displayBoardGUI(this.board);
 
 		ret += this.board;
 		ret += this.actualPlayer.getName() + " :";
