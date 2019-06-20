@@ -32,16 +32,16 @@ public class HumanPlayer extends Player implements Serializable {
      * Let the player choose between if he wants to play a fence or moves its pawn
      * @author
      */
-    public void play() {
+    public void play() throws SaveGameException {
         if(this.terminal) {
             if(this.nbFences > 0) {
                 String mode = this.askMode();
- 
+
                 if (mode.equalsIgnoreCase("pawn")) {
                     this.board.displayForPawn();
                     this.playPawn();
                 }
- 
+
                 else if (mode.equalsIgnoreCase("fence")) {
                     this.board.displayForFence();
                     this.playFence();
@@ -53,7 +53,7 @@ public class HumanPlayer extends Player implements Serializable {
             }
             else {
                 System.out.println("Vous n'avez plus de murs disponibles !");
- 
+
                 this.board.displayForPawn();
                 this.playPawn();
             }
@@ -66,7 +66,7 @@ public class HumanPlayer extends Player implements Serializable {
                 if (sq.isPawn()) {
                     this.playPawn(sq);
                 }
- 
+
                 else if (sq.isFence()) {
                     this.playFence(sq);
                     // TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
@@ -144,29 +144,29 @@ public class HumanPlayer extends Player implements Serializable {
 		this.setNbFences(this.nbFences - 1);
 	}
 
-    private void playFence(Square sq) {
-        // TODO - implement HumanPlayer.playFence
-        this.listOfOldPositions.clear();
- 
-        Square currentSquare = this.getCurrentSquare();
- 
-        while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
-            || (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
-            System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
-                                + "Veuillez en choisir une autre !");
- 
-            x = this.askX(this.board.getSIZE() - 1);
-            y = this.askY(this.board.getSIZE() - 1);
-            dir = this.askDir();
- 
-            this.setCurrentSquare(currentSquare);
-        }
- 
-        this.setCurrentSquare(currentSquare);
- 
-        this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
-        this.setNbFences(this.nbFences - 1);
-    }
+  public void playFence(Square sq) {
+      // // TODO - implement HumanPlayer.playFence
+      // this.listOfOldPositions.clear();
+			//
+      // Square currentSquare = this.getCurrentSquare();
+			//
+      // while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
+      //     || (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
+      //     System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
+      //                         + "Veuillez en choisir une autre !");
+			//
+      //     x = this.askX(this.board.getSIZE() - 1);
+      //     y = this.askY(this.board.getSIZE() - 1);
+      //     dir = this.askDir();
+			//
+      //     this.setCurrentSquare(currentSquare);
+      // }
+			//
+      // this.setCurrentSquare(currentSquare);
+			//
+      // this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
+      // this.setNbFences(this.nbFences - 1);
+  }
 
 	/**
 	 * Moves the pawns to the desired direction.
@@ -193,6 +193,8 @@ public class HumanPlayer extends Player implements Serializable {
 		}
 		super.movePawn(this.board.pawnCoord(x), this.board.pawnCoord(y));
 	}
+
+	public void playPawn(Square square) {}
 
 
 	// Méthode pour Pawn pour l'instant ...

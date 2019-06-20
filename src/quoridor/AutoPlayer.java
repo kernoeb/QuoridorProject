@@ -51,4 +51,8 @@ public class AutoPlayer extends Player implements Serializable {
 	private void playFence() {
 		// TODO - implement AutoPlayer.playFence
 	}
+
+	public void playPawn(Square square) {}
+
+	public void playFence(Square square) {}
 }

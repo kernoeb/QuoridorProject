@@ -74,11 +74,11 @@ public abstract class Player {
 		boolean ok = false;
 		if (this.game.getPlayer1() == player) {
 			maze = new Maze(tmp, 0);
-			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(), 
+			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(),
 				player.getCurrentSquare().getY(), 0);
 		} else {
 			maze = new Maze(tmp, 1);
-			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(), 
+			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(),
 						  player.getCurrentSquare().getY(), this.board.getTotalSize()-1);
 		}
 		if (!ok) System.out.println("Aucun chemin possible !");
@@ -174,6 +174,10 @@ public abstract class Player {
 	}
 
 	public abstract void play() throws SaveGameException;
+
+	public abstract void playPawn(Square square);
+
+	public abstract void playFence(Square square);
 
 	protected void movePawn(int x, int y) {
 		if (this.currentSquare != null) {

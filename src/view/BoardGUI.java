@@ -7,8 +7,7 @@ import controller.MouseButton;
 import controller.SquareEcouteur;
 import java.awt.event.*;
 
-import quoridor.Board;
-import quoridor.Square;
+import quoridor.*;
 
 import java.util.ArrayList;
 
@@ -19,6 +18,9 @@ public class BoardGUI extends JPanel {
     Color colorRed = new Color(149, 26, 0);
     Color colorWhite = Color.WHITE;
     Color colorBlack = Color.BLACK;
+
+    Game game;
+    Board board;
 
     // background : #C3C394 (195, 195, 148)
     // orange (top pawn) : #C57600 (197, 118, 0)
@@ -36,8 +38,9 @@ public class BoardGUI extends JPanel {
     // private ImageIcon fence_red = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_red2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon fence_green = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_green2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 
-    public BoardGUI() {
-        super();
+    public BoardGUI(Game game, Board board) {
+        this.game = game;
+        this.board = board;
         this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
         // super.setPreferredSize(new Dimension(360, 358));
         super.setPreferredSize(new Dimension(450, 441));
@@ -75,6 +78,10 @@ public class BoardGUI extends JPanel {
         }
     }
 
+    public Game getGame() {
+      return this.game;
+    }
+
     public void addTmpPossibilities(ArrayList<Square> pos) {
         for (Square s : pos) {
             this.squares[s.getX()][s.getY()].setIcon(pawn_possible);
@@ -101,6 +108,33 @@ public class BoardGUI extends JPanel {
         return -1;
     }
 
+    public Square getSquare(JButton button) {
+      // for(int i=0; i < this.squares.length; i++) {
+      //   for(int j=0; j < this.squares.length; j++) {
+      //     if(this.squares[i][j] == button) {
+      //       if (((this.getX(button) % 2) == 0) && ((this.getY(button) % 2) != 0)) {
+    	// 				this.grid[x][y] = new Square(x, y, Status.FENCEPOSSIBLE);
+    	// 			}
+      //
+    	// 			else if (this.isOddNumber(x)) {
+    	// 				this.grid[x][y] = new Square(x, y, Status.FENCEPOSSIBLE);
+    	// 			}
+      //
+    	// 			else {
+    	// 				this.grid[x][y] = new Square(x, y, Status.PAWNPOSSIBLE);
+    	// 			}
+      //     }
+      //   }
+      // }
+
+      for (int x = 0; x < this.board.getTotalSize(); x++) {
+          for (int y = 0; y < this.board.getTotalSize(); y++) {
+              if (this.squares[x][y] == button) return this.board.getGrid()[x][y];
+          }
+      }
+      return null;
+    }
+
     public void addPawn(ImageIcon im, int i, int j) {
         this.squares[i][j].setIcon(im);
     }
@@ -109,11 +143,11 @@ public class BoardGUI extends JPanel {
     	return this.squares;
     }
 
-    public void displayBoardGUI(Board board) {
+    public void displayBoardGUI() {
         Square temp = null;
-        for (int x = 0; x < board.getTotalSize(); x++) {
-            for (int y = 0; y < board.getTotalSize(); y++) {
-                temp = board.getGrid()[x][y];
+        for (int x = 0; x < this.board.getTotalSize(); x++) {
+            for (int y = 0; y < this.board.getTotalSize(); y++) {
+                temp = this.board.getGrid()[x][y];
 
                 if (temp.isPawn()) {
                     if (temp.isPawn1()) {
