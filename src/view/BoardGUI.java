@@ -40,7 +40,8 @@ public class BoardGUI extends JPanel {
         super();
         this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
         // super.setPreferredSize(new Dimension(360, 358));
-        super.setPreferredSize(new Dimension(425, 441));
+        super.setPreferredSize(new Dimension(450, 441));
+        // super.setMaximumSize(new Dimension(425, 441));
         this.setBackground(colorRed);
 
         SquareEcouteur sqEcouteur = new SquareEcouteur(this);
