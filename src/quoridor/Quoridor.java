@@ -93,6 +93,7 @@ public class Quoridor {
 		Game game = null;
 
 		try {
+			if (this.terminal) System.out.println("Reprise de la partie : " + fileName);
 			game = RWFile.readObj(fileName);
 		} catch (Exception e) {
 			System.err.println("loadOldGame : " + e.getMessage());

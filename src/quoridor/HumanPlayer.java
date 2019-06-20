@@ -9,7 +9,7 @@ import java.io.*;
 
 public class HumanPlayer extends Player implements Serializable {
 
-	private static final long serialVersionUID = 5454574554L;
+	private static final long serialVersionUID = 52698554L;
 
 	private transient Scanner scan;
 
@@ -80,7 +80,7 @@ public class HumanPlayer extends Player implements Serializable {
 
 	private String askMode() {
 		System.out.println("Quelle pièce voulez-vous jouer ? \n"
-			+ "Pion (p) ou Mur (m)");
+			+ "Pion (p) ou Mur (m) | Arrêter et sauvegarder la partie (s)");
 
 		String ret = null;
 		this.scan = new Scanner(System.in);
@@ -91,7 +91,7 @@ public class HumanPlayer extends Player implements Serializable {
 			(!s.equalsIgnoreCase("mur")) && (!s.equalsIgnoreCase("m")) &&
 			((!s.equalsIgnoreCase("s")) && (!s.equalsIgnoreCase("save")))) {
 				System.out.println("La chaîne de caractères est incorrecte !\n"
-					+ "Veuillez écrire la pièce que vous voulez jouer : Pion (p) ou Mur (m)");
+					+ "Veuillez écrire la pièce que vous voulez jouer : Pion (p) ou Mur (m) | Arrêter et sauvegarder la partie (s)");
 				s = this.scan.nextLine();
 		}
 

@@ -45,7 +45,7 @@ public class RWFile {
 	public static Game readObj(String fileName) {
 		Game game = null;
 
-		if(fileName != null) {
+		if (fileName != null) {
 			try {
 				FileInputStream file = new FileInputStream(fileName);
 				ObjectInputStream obj = new ObjectInputStream(file);
@@ -55,11 +55,14 @@ public class RWFile {
 				obj.close();
 
 			} catch (FileNotFoundException e) {
-				System.err.println("readFile : " + e.getMessage());
+				System.err.println("readFile FFE : " + e.getMessage());
+				e.printStackTrace();
 			} catch (IOException ex) {
-				System.err.println("readFile : " + ex.getMessage());
+				System.err.println("readFile IO : " + ex.getMessage());
+				ex.printStackTrace();
 			} catch (Exception exc) {
 				System.err.println("readFile : " + exc.getMessage());
+				exc.printStackTrace();
 			}
 		}
 		else {

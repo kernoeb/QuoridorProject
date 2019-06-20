@@ -2,12 +2,15 @@ package quoridor;
 
 import java.util.ArrayList;
 import utilitary.Maze;
+import java.io.*;
 
 /**
  * Player
  * @author
  */
-public abstract class Player {
+public abstract class Player implements Serializable {
+
+	private static final long serialVersionUID = 52696565L;
 
 	protected Board board;
 	protected Square currentSquare;
