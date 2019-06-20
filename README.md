@@ -8,7 +8,7 @@ Plus d'informations sur le jeu ici : <https://fr.wikipedia.org/wiki/Quoridor>
 Linux users :
 
 ```bash
-./run_script.sh
+ant init compile clean run
 ```
 
 By [@kernoeb](https://github.com/kernoeb) and [@Gavidof](https://github.com/Gavidof)
