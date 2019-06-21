@@ -42,7 +42,6 @@ public class Game implements Serializable {
 	 */
 	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) throws SaveGameException {
 		this.board = new Board();
-		this.boardGUI = new BoardGUI(this, this.board);
 		this.terminal = terminal;
 
 		if (mode == Mode.HH) {
@@ -56,6 +55,7 @@ public class Game implements Serializable {
 		}
 
 		this.initializeGame();
+		this.boardGUI = new BoardGUI(this, this.board);
 	}
 
 	public Board getBoard() {
