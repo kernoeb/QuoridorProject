@@ -23,7 +23,12 @@ public class SquareEcouteur implements ActionListener {
 		if (this.boardGUI.getGame().getActualPlayer().getNbRestingFences() > 0) {
 			if (square.isPawn()) {
 				// this.actualPlayer.playPawn(square);
-				this.boardGUI.getGame().getActualPlayer().playPawn(square);
+				
+				int x = square.getX();
+				int y = square.getY();
+				if ((this.boardGUI.getBoard().listOfPossibilitiesPawn(this.boardGUI.getGame().getActualPlayer()).contains(this.boardGUI.getBoard().getGrid()[x][y]) == false)) {			
+					System.out.println("Erreur!");
+				} else  this.boardGUI.getGame().getActualPlayer().playPawn(square);
 				this.boardGUI.displayBoardGUI();
 			}
 

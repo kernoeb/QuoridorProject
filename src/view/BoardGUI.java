@@ -82,6 +82,10 @@ public class BoardGUI extends JPanel {
       return this.game;
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
     public void addTmpPossibilities(ArrayList<Square> pos) {
         for (Square s : pos) {
             this.squares[s.getX()][s.getY()].setIcon(pawn_possible);
