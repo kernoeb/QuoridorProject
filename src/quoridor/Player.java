@@ -226,8 +226,7 @@ public abstract class Player implements Serializable {
 							&& this.board.getGrid()[x+1][y].isFencePossible();
 			}
 
-			ret = ret && this.checkExistingPath(this.game.getPlayer1(), x, y, dir) &&
-			this.checkExistingPath(this.game.getPlayer2(), x, y, dir);
+			ret = ret && this.checkExistingPath(this.game.getPlayer1(), x, y, dir) && this.checkExistingPath(this.game.getPlayer2(), x, y, dir);
 		}
 
 		else {
