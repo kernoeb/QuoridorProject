@@ -25,16 +25,16 @@ public class Maze {
 		this.sens = sens;
 	}
 
-	public void printSolution(boolean visited[][]) { 
-		for (int i = 0; i < visited.length; i++) { 
-			for (int j = 0; j < visited.length; j++) { 
-				if (visited[i][j] == true) System.out.print(" " + "\u001B[32m1" + " ");
-				else System.out.print(" " + "\u001B[0m0" + " ");
-			} 
-			System.out.println(); 
-		} 
-		System.out.println("\u001B[0m");
-	}
+	// public void printSolution(boolean visited[][]) { 
+	// 	for (int i = 0; i < visited.length; i++) { 
+	// 		for (int j = 0; j < visited.length; j++) { 
+	// 			if (visited[i][j] == true) System.out.print(" " + "\u001B[32m1" + " ");
+	// 			else System.out.print(" " + "\u001B[0m0" + " ");
+	// 		} 
+	// 		System.out.println(); 
+	// 	} 
+	// 	System.out.println("\u001B[0m");
+	// }
 
 	public void printMaze(int maze[][]) { 
 		for (int i = 0; i < maze.length; i++) { 
@@ -82,11 +82,8 @@ public class Maze {
 			}
 		}
 
-		if (min_dist != Integer.MAX_VALUE) {
-			return true;
-		} else {
-			return false;
-		}
+		if (min_dist != Integer.MAX_VALUE) return true;
+		else return false;
 	}
 
 	// private boolean fenceAroundX(int x, int y) {
