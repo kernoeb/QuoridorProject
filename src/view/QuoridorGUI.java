@@ -160,7 +160,7 @@ public class QuoridorGUI extends JFrame {
 
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
-    this.setMinimumSize(new Dimension(806, 835));
+    this.setMinimumSize(new Dimension(800, 830));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
 
