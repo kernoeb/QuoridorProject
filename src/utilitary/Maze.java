@@ -197,25 +197,26 @@ public class Maze {
 				temp = this.board.getGrid()[x][y];
 
 				if (this.sens == 0) {
-					if (fenceAroundX(x, y)) maze[x][y] = 0;
-					// if (x % 2 != 0 && y % 2 != 0) {
+					if (x % 2 != 0 && y % 2 != 0) {
+						if (fenceAroundX(x, y)) maze[x][y] = 0;
+						else if (fenceAroundY(x, y)) maze[x][y] = 0;
 						// if (fenceXG(x, y)) maze[x][y] = 0;
 						// else if (fenceXD(x, y)) maze[x][y] = 0;
 						// else if (fenceYG(x, y)) maze[x][y] = 0;
 						// else if (fenceYD(x, y)) maze[x][y] = 0;
-					// } 
+					} 
 					else if ((temp.isPawn2() && x == 0 && fenceX(x, y, 0)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
 					else maze[x][y] = 1;
 
 				} else {
-					if (fenceAroundX(x, y)) maze[x][y] = 0;
-					else if (fenceAroundY(x, y)) maze[x][y] = 0;
-					// if ((x % 2 != 0) && (y % 2 != 0)) {
+					if ((x % 2 != 0) && (y % 2 != 0)) {
+						if (fenceAroundX(x, y)) maze[x][y] = 0;
+						else if (fenceAroundY(x, y)) maze[x][y] = 0;
 						// if (fenceXG(x, y)) maze[x][y] = 0;
 						// else if (fenceXD(x, y)) maze[x][y] = 0;
 						// else if (fenceYG(x, y)) maze[x][y] = 0;
 						// else if (fenceYD(x, y)) maze[x][y] = 0;
-					// } 
+					} 
 					else if ((temp.isPawn1() && x == this.board.getTotalSize()-1 && fenceX(x, y, this.board.getTotalSize()-1)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
 					else maze[x][y] = 1;					
 				}
