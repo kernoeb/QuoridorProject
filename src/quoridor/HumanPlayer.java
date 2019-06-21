@@ -246,7 +246,7 @@ public class HumanPlayer extends Player implements Serializable {
 		System.out.print("Vous pouvez jouer un pion sur les cases : ");
 
 		this.board.printListOfPossibilitiesPawn(this);
-		this.game.getBoardGUI().addTmpPossibilities(this.board.listOfPossibilitiesPawn(this));
+		// this.game.getBoardGUI().addTmpPossibilities(this.board.listOfPossibilitiesPawn(this));
 
 		System.out.println("Sur quelle case voulez-vous jouer ?");
 		int x = this.askX(this.board.getSIZE());

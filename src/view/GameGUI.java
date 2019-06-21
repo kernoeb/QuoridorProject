@@ -102,7 +102,7 @@ public class GameGUI extends JPanel {
     this.board.add(this.nbBar2, BorderLayout.SOUTH);
 
     this.boardGUI.displayBoardGUI();
-    this.boardGUI.addTmpPossibilities(this.game.getBoard().listOfPossibilitiesPawn(this.game.getActualPlayer()));
+    this.boardGUI.addTmpPossibilities(this.game.getBoard().listOfPossibilitiesPawn(this.game.getActualPlayer()), this.game.getActualPlayer());
   }
 
   public void updateCurrentPlayer() {

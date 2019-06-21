@@ -29,7 +29,9 @@ public class BoardGUI extends JPanel {
 
     ImageIcon player1 = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon player2 = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon orangePlayerPossible = new ImageIcon((new ImageIcon("../data/icons/orangePlayerPossible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon bluePlayerPossible = new ImageIcon((new ImageIcon("../data/icons/bluePlayerPossible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
+    // ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/fenceOrange.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/fenceBlue.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon player1 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
@@ -86,9 +88,10 @@ public class BoardGUI extends JPanel {
         return this.board;
     }
 
-    public void addTmpPossibilities(ArrayList<Square> pos) {
+    public void addTmpPossibilities(ArrayList<Square> pos, Player player) {
         for (Square s : pos) {
-            this.squares[s.getX()][s.getY()].setIcon(pawn_possible);
+            if (player == this.game.getPlayer1()) this.squares[s.getX()][s.getY()].setIcon(bluePlayerPossible);
+            else this.squares[s.getX()][s.getY()].setIcon(orangePlayerPossible);
         }
 
     }
