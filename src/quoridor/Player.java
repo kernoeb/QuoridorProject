@@ -3,6 +3,7 @@ package quoridor;
 import java.util.ArrayList;
 import utilitary.Maze;
 import java.io.*;
+import view.*;
 
 /**
  * Player
@@ -178,9 +179,13 @@ public abstract class Player implements Serializable {
 
 	public abstract void play() throws SaveGameException;
 
+	public abstract void play(Square square, BoardGUI boardGUI);
+
+	public abstract void playPawn();
 	public abstract void playPawn(Square square);
 
-	public abstract void playFence(Square square);
+	public abstract void playFence();
+	public abstract void playFence(Square square, BoardGUI boardGUI);
 
 	protected void movePawn(int x, int y) {
 		if (this.currentSquare != null) {
@@ -221,6 +226,9 @@ public abstract class Player implements Serializable {
 				ret = square.isFencePossible() && this.board.getGrid()[x-1][y].isFencePossible()
 							&& this.board.getGrid()[x+1][y].isFencePossible();
 			}
+
+			ret = ret && this.checkExistingPath(this.game.getPlayer1(), x, y, dir) &&
+			this.checkExistingPath(this.game.getPlayer2(), x, y, dir);
 		}
 
 		else {

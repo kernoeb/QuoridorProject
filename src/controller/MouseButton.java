@@ -36,26 +36,26 @@ public class MouseButton implements MouseListener {
 
         if (x % 2 != 0 && y % 2 == 0) {
             try {
-                if (y == this.boardGUI.getSquares().length-1) {
+                if (y != this.boardGUI.getSquares().length-1) {
+                  this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
+                  this.boardGUI.getSquares()[x][y+1].setBackground(colorTmp);
+                  this.boardGUI.getSquares()[x][y+2].setBackground(colorTmp);
+                } else {
                     this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
                     this.boardGUI.getSquares()[x][y-1].setBackground(colorTmp);
                     this.boardGUI.getSquares()[x][y-2].setBackground(colorTmp);
-                } else {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x][y+1].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x][y+2].setBackground(colorTmp);
                 }
             } catch (Exception ex) {}
         } else if (x % 2 == 0 && y % 2 != 0) {
             try {
-                if (x == this.boardGUI.getSquares().length-1) {
+                if (x != this.boardGUI.getSquares().length-1) {
+                  this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
+                  this.boardGUI.getSquares()[x+1][y].setBackground(colorTmp);
+                  this.boardGUI.getSquares()[x+2][y].setBackground(colorTmp);
+                } else {
                     this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
                     this.boardGUI.getSquares()[x-1][y].setBackground(colorTmp);
                     this.boardGUI.getSquares()[x-2][y].setBackground(colorTmp);
-                } else {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x+1][y].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x+2][y].setBackground(colorTmp);
                 }
             } catch (Exception ex) {}
         }
@@ -80,26 +80,26 @@ public class MouseButton implements MouseListener {
 
         if (x % 2 != 0 && y % 2 == 0) {
             try {
-                if (y == this.boardGUI.getSquares().length-1) {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x][y-1].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x][y-2].setBackground(colorRed);
+                if (y != this.boardGUI.getSquares().length-1) {
+                  this.boardGUI.getSquares()[x][y].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x][y+1].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x][y+2].setBackground(colorRed);
                 } else {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x][y+1].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x][y+2].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x][y].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x][y-1].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x][y-2].setBackground(colorRed);
                 }
             } catch (Exception ex) {}
         } else if (x % 2 == 0 && y % 2 != 0) {
             try {
-                if (x == this.boardGUI.getSquares().length-1) {
+                if (x != this.boardGUI.getSquares().length-1) {
+                  this.boardGUI.getSquares()[x][y].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x+1][y].setBackground(colorRed);
+                  this.boardGUI.getSquares()[x+2][y].setBackground(colorRed);
+                } else {
                     this.boardGUI.getSquares()[x][y].setBackground(colorRed);
                     this.boardGUI.getSquares()[x-1][y].setBackground(colorRed);
                     this.boardGUI.getSquares()[x-2][y].setBackground(colorRed);
-                } else {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x+1][y].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x+2][y].setBackground(colorRed);
                 }
             } catch (Exception ex) {}
         }

@@ -3,6 +3,7 @@ package quoridor;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.*;
+import view.*;
 
 public class AutoPlayer extends Player implements Serializable {
 
@@ -48,11 +49,15 @@ public class AutoPlayer extends Player implements Serializable {
 	 * The path validity is checked by the checkExistingPath method
 	 * @author
 	 */
-	private void playFence() {
+	public void playFence() {
 		// TODO - implement AutoPlayer.playFence
 	}
 
+	public void playPawn() {}
+
+	public void play(Square square, BoardGUI boardGUI) {}
+
 	public void playPawn(Square square) {}
 
-	public void playFence(Square square) {}
+	public void playFence(Square square, BoardGUI boardGUI) {}
 }

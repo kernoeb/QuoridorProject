@@ -6,6 +6,7 @@ package quoridor;
 // import java
 import java.util.Scanner;
 import java.io.*;
+import view.*;
 
 public class HumanPlayer extends Player implements Serializable {
 
@@ -28,55 +29,166 @@ public class HumanPlayer extends Player implements Serializable {
 		this.scan = new Scanner(System.in);
 	}
 
-    /**
-     * Let the player choose between if he wants to play a fence or moves its pawn
-     * @author
-     */
-    public void play() throws SaveGameException {
-        if(this.terminal) {
-            if(this.nbFences > 0) {
-                String mode = this.askMode();
+  /**
+   * Let the player choose between if he wants to play a fence or moves its pawn
+   * @author
+   */
+  public void play() throws SaveGameException {
+      if(this.terminal) {
+          if(this.nbFences > 0) {
+              String mode = this.askMode();
 
-                if (mode.equalsIgnoreCase("pawn")) {
-                    this.board.displayForPawn();
-                    this.playPawn();
-                }
+              if (mode.equalsIgnoreCase("pawn")) {
+                  this.board.displayForPawn();
+                  this.playPawn();
+              }
 
-                else if (mode.equalsIgnoreCase("fence")) {
-                    this.board.displayForFence();
-                    this.playFence();
-                    System.out.println("Il vous reste " + super.nbFences + " barrières !");
-                }
-                else if (mode.equalsIgnoreCase("save")) {
-                	throw new SaveGameException("");
-                }
-            }
-            else {
-                System.out.println("Vous n'avez plus de murs disponibles !");
+              else if (mode.equalsIgnoreCase("fence")) {
+                  this.board.displayForFence();
+                  this.playFence();
+                  System.out.println("Il vous reste " + super.nbFences + " barrières !");
+              }
+              else if (mode.equalsIgnoreCase("save")) {
+              	throw new SaveGameException("");
+              }
+          }
+          else {
+              System.out.println("Vous n'avez plus de murs disponibles !");
 
-                this.board.displayForPawn();
-                this.playPawn();
-            }
-        }
-    }
+              this.board.displayForPawn();
+              this.playPawn();
+          }
+      }
+  }
 
-    public void play(Square sq) {
-        if(!terminal) {
-            if(this.nbFences > 0) {
-                if (sq.isPawn()) {
-                    this.playPawn(sq);
-                }
+  public void play(Square square, BoardGUI boardGUI) {
+      if(!terminal) {
+					if (square.isPawn()) {
+						this.playPawn(square);
+					}
 
-                else if (sq.isFence()) {
-                    this.playFence(sq);
-                    // TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
-                }
-            }
-            else {
-                this.playPawn(sq);
-            }
-        }
-    }
+					else if (square.isFence()) {
+						this.playFence(square, boardGUI);
+					}
+      }
+  }
+
+
+	public void playPawn(Square square) {
+		if (this.board.listOfPossibilitiesPawn(this).contains(square)) {
+			this.game.getActualPlayer().playPawn(square);
+			this.game.nextPlayerGUI();
+			super.movePawn(square.getX(), square.getY());
+		}
+	}
+
+	public void playFence(Square square, BoardGUI boardGUI) {
+		if (this.game.getActualPlayer().getNbRestingFences() > 0) {
+			int x = square.getX();
+			int y = square.getY();
+			Square squareFence = null;
+			// Barrière horizontale
+			if (x % 2 != 0 && y % 2 == 0) {
+					try {
+							// if (y == boardGUI.getSquares().length-1) {
+							// 	boardGUI.getSquares()[x][y].setBackground(colorTmp);
+							// 	boardGUI.getSquares()[x][y+1].setBackground(colorTmp);
+							// 	boardGUI.getSquares()[x][y+2].setBackground(colorTmp);
+							// } else {
+							// 		boardGUI.getSquares()[x][y].setBackground(colorTmp);
+							// 		boardGUI.getSquares()[x][y-1].setBackground(colorTmp);
+							// 		boardGUI.getSquares()[x][y-2].setBackground(colorTmp);
+							// }
+
+							if (y != boardGUI.getSquares().length-1) {
+								squareFence = boardGUI.getSquare(boardGUI.getSquares()[x][y+1]);
+							}
+							else {
+								squareFence = boardGUI.getSquare(boardGUI.getSquares()[x][y-1]);
+							}
+
+							if (this.checkFencePossible(squareFence, "h")) {
+								this.board.setFence(squareFence.getX(), squareFence.getY(), "h", this);
+					      this.setNbFences(this.nbFences - 1);
+
+								if (y != boardGUI.getSquares().length-1) {
+									boardGUI.getSquares()[x][y].setEnabled(false);
+									boardGUI.getSquares()[x][y+1].setEnabled(false);
+									boardGUI.getSquares()[x][y+2].setEnabled(false);
+								} else {
+										boardGUI.getSquares()[x][y].setEnabled(false);
+										boardGUI.getSquares()[x][y-1].setEnabled(false);
+										boardGUI.getSquares()[x][y-2].setEnabled(false);
+								}
+							}
+
+
+					} catch (Exception ex) {}
+			}
+			// Barrière verticale
+			else if (x % 2 == 0 && y % 2 != 0) {
+					try {
+							// if (x == boardGUI.getSquares().length-1) {
+							// 	boardGUI.getSquares()[x][y].setBackground(colorTmp);
+							// 	boardGUI.getSquares()[x+1][y].setBackground(colorTmp);
+							// 	boardGUI.getSquares()[x+2][y].setBackground(colorTmp);
+							// } else {
+							// 		boardGUI.getSquares()[x][y].setBackground(colorTmp);
+							// 		boardGUI.getSquares()[x-1][y].setBackground(colorTmp);
+							// 		boardGUI.getSquares()[x-2][y].setBackground(colorTmp);
+							// }
+							if (x != boardGUI.getSquares().length-1) {
+								squareFence = boardGUI.getSquare(boardGUI.getSquares()[x+1][y]);
+							}
+							else {
+								squareFence = boardGUI.getSquare(boardGUI.getSquares()[x-1][y]);
+							}
+
+							if (this.checkFencePossible(squareFence, "v")) {
+								this.board.setFence(squareFence.getX(), squareFence.getY(), "v", this);
+					      this.setNbFences(this.nbFences - 1);
+
+								if (x != boardGUI.getSquares().length-1) {
+									boardGUI.getSquares()[x][y].setEnabled(false);
+									boardGUI.getSquares()[x+1][y].setEnabled(false);
+									boardGUI.getSquares()[x+2][y].setEnabled(false);
+								} else {
+										boardGUI.getSquares()[x][y].setEnabled(false);
+										boardGUI.getSquares()[x-1][y].setEnabled(false);
+										boardGUI.getSquares()[x-2][y].setEnabled(false);
+								}
+							}
+					} catch (Exception ex) {}
+				}
+			}
+
+			this.game.nextPlayerGUI();
+
+			// TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
+
+      // // TODO - implement HumanPlayer.playFence
+      // this.listOfOldPositions.clear();
+			//
+      // Square currentSquare = this.getCurrentSquare();
+			//
+      // while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
+      //     || (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
+      //     System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
+      //                         + "Veuillez en choisir une autre !");
+			//
+      //     x = this.askX(this.board.getSIZE() - 1);
+      //     y = this.askY(this.board.getSIZE() - 1);
+      //     dir = this.askDir();
+			//
+      //     this.setCurrentSquare(currentSquare);
+      // }
+			//
+      // this.setCurrentSquare(currentSquare);
+			//
+      // this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
+      // this.setNbFences(this.nbFences - 1);
+
+  }
 
 	private String askMode() {
 		System.out.println("Quelle pièce voulez-vous jouer ? \n"
@@ -114,7 +226,7 @@ public class HumanPlayer extends Player implements Serializable {
 	 * The path validity is checked by the checkExistingPath method
 	 * @author
 	 */
-	private void playFence() {
+	public void playFence() {
 		// TODO - implement HumanPlayer.playFence
 		this.listOfOldPositions.clear();
 
@@ -126,8 +238,7 @@ public class HumanPlayer extends Player implements Serializable {
 
 		Square currentSquare = this.getCurrentSquare();
 
-		while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
-			|| (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
+		while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)) {
 			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
 								+ "Veuillez en choisir une autre !");
 
@@ -144,36 +255,12 @@ public class HumanPlayer extends Player implements Serializable {
 		this.setNbFences(this.nbFences - 1);
 	}
 
-  public void playFence(Square sq) {
-      // // TODO - implement HumanPlayer.playFence
-      // this.listOfOldPositions.clear();
-			//
-      // Square currentSquare = this.getCurrentSquare();
-			//
-      // while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)
-      //     || (!this.checkExistingPath(this.game.getPlayer1(), x, y, dir)) || (!this.checkExistingPath(this.game.getPlayer2(), x, y, dir))) {
-      //     System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
-      //                         + "Veuillez en choisir une autre !");
-			//
-      //     x = this.askX(this.board.getSIZE() - 1);
-      //     y = this.askY(this.board.getSIZE() - 1);
-      //     dir = this.askDir();
-			//
-      //     this.setCurrentSquare(currentSquare);
-      // }
-			//
-      // this.setCurrentSquare(currentSquare);
-			//
-      // this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
-      // this.setNbFences(this.nbFences - 1);
-  }
-
 	/**
 	 * Moves the pawns to the desired direction.
 	 * The validity is checked by the current square fenceStatus
 	 * @author
 	 */
-	private void playPawn() {
+	public void playPawn() {
 		System.out.print("Vous pouvez jouer un pion sur les cases : ");
 
 		this.board.printListOfPossibilitiesPawn(this);
@@ -193,11 +280,6 @@ public class HumanPlayer extends Player implements Serializable {
 		}
 		super.movePawn(this.board.pawnCoord(x), this.board.pawnCoord(y));
 	}
-
-	public void playPawn(Square square) {
-		super.movePawn(square.getX(), square.getY());
-	}
-
 
 	// Méthode pour Pawn pour l'instant ...
 	private int askX(int maxSize) {

@@ -148,6 +148,15 @@ public class Game implements Serializable {
 		}
 	}
 
+	public void nextPlayerGUI() {
+		if (this.actualPlayer == this.player1) {
+			this.actualPlayer = this.player2;
+		}
+		else if (this.actualPlayer == this.player2) {
+			this.actualPlayer = this.player1;
+		}
+	}
+
 	/**
 	 * Launch the game
 	 */

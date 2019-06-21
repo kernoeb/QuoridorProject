@@ -17,31 +17,32 @@ public class SquareEcouteur implements ActionListener {
   public void actionPerformed(ActionEvent e) {
   	Square square = this.boardGUI.getSquare((JButton) e.getSource());
 
-		if (this.actualPlayer.getNbRestingFences() > 0) {
-			if (square.isPawn()) {
-				int x = square.getX();
-				int y = square.getY();
+		// if (square.isPawn()) {
+		// 	if (this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer).contains(square)) {
+    //     this.boardGUI.getGame().getActualPlayer().playPawn(square);
+    //     this.boardGUI.getGame().nextPlayerGUI();
+		// 	}
+    //
+		// }
+    //
+		// else if ((square.isFence()) && (this.actualPlayer.getNbRestingFences() > 0)) {
+		// 	this.actualPlayer.playFence(square);
+    //   this.boardGUI.getGame().nextPlayerGUI();
+		// 	// TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
+		// }
 
-				if ((this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer).contains(this.boardGUI.getBoard().getGrid()[x][y]) == false)) {
-					System.out.println("Erreur!");
-				}
+    this.actualPlayer.play(square, this.boardGUI);
 
-        else  {
-          this.boardGUI.getGame().getActualPlayer().playPawn(square);
-        }
+    this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer));
+    this.boardGUI.displayBoardGUI();
 
-				this.boardGUI.displayBoardGUI();
-			}
-
-			else if (square.isFence()) {
-				this.actualPlayer.playFence(square);
-				// TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
-			}
-		}
-		else {
-			this.actualPlayer.playPawn(square);
-		}
-
+    if((this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer1())) || (this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer2()))) {
+      this.endOfGame();
+    }
     // System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(square)/2 + ", " + this.boardGUI.getY(square)/2);
+  }
+
+  private void endOfGame() {
+
   }
 }
