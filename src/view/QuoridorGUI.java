@@ -299,7 +299,7 @@ public class QuoridorGUI extends JFrame {
     this.pauseText.setHorizontalAlignment(JLabel.CENTER);
     this.resumeButton = new JTexturedButton("Reprendre", "../data/images/Button.png", "../data/images/ButtonHover.png");
     this.restartButton = new JTexturedButton("Recommencer", "../data/images/Button.png", "../data/images/ButtonHover.png");
-    this.saveAndQuitButton = new JTexturedButton("Sauvegarder et quitter", "../data/images/Button.png", "../data/images/ButtonHover.png");
+    this.saveAndQuitButton = new JTexturedButton("Sauver et quitter", "../data/images/Button.png", "../data/images/ButtonHover.png");
 
     this.buttonPauseMenu.setLayout(new GridLayout(3, 0, 30, 30));
     this.buttonPauseMenu.add(this.resumeButton);

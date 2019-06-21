@@ -105,6 +105,8 @@ public class Board implements Serializable {
 			status = Status.FENCEPAWN2;
 		}
 
+		System.out.println("x : " + x + "   " + "y : " + y);
+
 		this.grid[x][y].setStatus(status);
 
 		if (dir.equalsIgnoreCase("h")) {
@@ -132,12 +134,12 @@ public class Board implements Serializable {
 	// 					obj[val][1] = "h";
 	// 					val++;
 	// 				}
-					
+
 	// 				if (checkFencePossible(this.grid[i][j], "v")) {
 	// 					obj[val][0] = this.grid[i][j];
 	// 					obj[val][1] = "v";
 	// 					val++;
-	// 				}					
+	// 				}
 	// 				// if (this.grid[i][j].isFencePossible()) list.add(this.grid[i][j]);
 	// 			}
 	// 		}

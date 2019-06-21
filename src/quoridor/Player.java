@@ -71,8 +71,7 @@ public abstract class Player implements Serializable {
 
 	public boolean checkExistingPath(Player player, int x, int y, String dir) {
 		Board tmp = this.board;
-		tmp.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, player);
-
+		// tmp.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, player);
 
 		Maze maze = null;
 		boolean ok = false;

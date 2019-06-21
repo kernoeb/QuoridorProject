@@ -83,7 +83,7 @@ public class GameGUI extends JPanel {
     this.board.setLayout(new BorderLayout(0,10));
     this.add(this.board, BorderLayout.CENTER);
     this.board.setBackground(new Color(195, 195, 148));
-    this.board.setBorder(new EmptyBorder(50, 150, 0, 150));
+    this.board.setBorder(new EmptyBorder(50, 200, 0, 200));
 
     this.nbBar1 = new JPanel();
     this.nbBar1.setLayout(new GridLayout(0,10));
