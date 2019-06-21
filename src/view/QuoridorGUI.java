@@ -16,11 +16,13 @@ public class QuoridorGUI extends JFrame {
   JPanel mainMenu;
   JPanel modeMenu;
   JPanel pauseMenu;
+  JPanel endMenu;
   GameGUI gameGUI;
 
   JPanel buttonMainMenu;
   JPanel buttonModeMenu;
   JPanel buttonPauseMenu;
+  JPanel buttonEndMenu;
 
   JLabel quoridorText;
   BackgroundImage back;
@@ -40,6 +42,10 @@ public class QuoridorGUI extends JFrame {
   JTexturedButton resumeButton;
   JTexturedButton restartButton;
   JTexturedButton saveAndQuitButton;
+
+  JLabel endText;
+  JTexturedButton restartEndButton;
+  JTexturedButton menuBackButton;
 
   Quoridor quoridor;
 
@@ -87,6 +93,14 @@ public class QuoridorGUI extends JFrame {
     return this.saveAndQuitButton;
   }
 
+  public JTexturedButton getButtonRestartEnd() {
+    return this.restartEndButton;
+  }
+
+  public JTexturedButton getButtonMenuBack() {
+    return this.menuBackButton;
+  }
+
   public JPanel getMenuLoad() {
     return this.loadMenu;
   }
@@ -101,6 +115,10 @@ public class QuoridorGUI extends JFrame {
 
   public JPanel getMenuPause() {
     return this.pauseMenu;
+  }
+
+  public JPanel getMenuEnd() {
+    return this.endMenu;
   }
 
   public GameGUI getGameGUI() {
@@ -142,9 +160,9 @@ public class QuoridorGUI extends JFrame {
 
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
-    this.setMinimumSize(new Dimension(820, 850));
+    this.setMinimumSize(new Dimension(806, 835));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    // this.setResizable(false);
+    this.setResizable(false);
 
     // quoridor = new Quoridor()
 
@@ -152,10 +170,9 @@ public class QuoridorGUI extends JFrame {
     this.initializeMainMenu();
     this.initializeModeMenu();
     this.initializePauseMenu();
-
+    this.initializeEndMenu();
 
     this.add(this.mainMenu);
-
     // this.mainMenu.setVisible(true);
 
     this.pack();
@@ -314,5 +331,38 @@ public class QuoridorGUI extends JFrame {
     this.pauseMenu.setLayout(new BorderLayout(30, 30));
     this.pauseMenu.add(this.pauseText, BorderLayout.NORTH);
     this.pauseMenu.add(this.buttonPauseMenu, BorderLayout.CENTER);
+  }
+
+  private void initializeEndMenu() {
+    this.endMenu = new JPanel();
+    this.buttonEndMenu = new JPanel();
+
+    this.endText = new JLabel("Pause");
+    GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    try {
+      genv.registerFont(getFontPalatino());
+    } catch (FontFormatException ffe) {
+    } catch (IOException io) {}
+
+
+    this.modeText = new JLabel("<html><head><style type='text/css'>body { font-family: Palatino Linotype; } </style></head><div align='center'>Veuillez choisir un <br> mode de jeu :</div></html>");
+    this.endText.setForeground(Color.WHITE);
+    this.endText.setPreferredSize(new Dimension(400, 300));
+    this.setFontPalatino(this.endText, 40);
+    this.endText.setHorizontalAlignment(JLabel.CENTER);
+    this.restartEndButton = new JTexturedButton("Recommencer", "../data/images/Button.png", "../data/images/ButtonHover.png");
+    this.menuBackButton = new JTexturedButton("Revenir au menu", "../data/images/Button.png", "../data/images/ButtonHover.png");
+
+    this.buttonEndMenu.setLayout(new GridLayout(2, 0, 30, 30));
+    this.buttonEndMenu.add(this.restartEndButton);
+    this.buttonEndMenu.add(this.menuBackButton);
+    this.buttonEndMenu.setOpaque(false);
+
+    this.restartEndButton.addActionListener(new ActionEcouteur(this));
+    this.menuBackButton.addActionListener(new ActionEcouteur(this));
+
+    this.endMenu.setLayout(new BorderLayout(30, 30));
+    this.endMenu.add(this.endText, BorderLayout.NORTH);
+    this.endMenu.add(this.buttonEndMenu, BorderLayout.CENTER);
   }
 }

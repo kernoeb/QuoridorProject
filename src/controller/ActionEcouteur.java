@@ -58,11 +58,19 @@ public class ActionEcouteur implements ActionListener {
     }
 
     else if (button == this.quoridorGUI.getButtonRestart()) {
-      this.restartGame();
+      this.restartGame(this.quoridorGUI.getMenuPause());
     }
 
     else if (button == this.quoridorGUI.getButtonSaveAndQuit()) {
       this.saveAndQuitGame();
+    }
+
+    else if (button == this.quoridorGUI.getButtonRestartEnd()) {
+      this.restartGame(this.quoridorGUI.getMenuEnd());
+    }
+
+    else if (button == this.quoridorGUI.getButtonMenuBack()) {
+      this.menuBack();
     }
   }
 
@@ -134,13 +142,17 @@ public class ActionEcouteur implements ActionListener {
 
   }
 
-  private void restartGame() {
-    this.launchMenuMode(this.quoridorGUI.getMenuPause());
+  private void restartGame(JPanel panel) {
+    this.launchMenuMode(panel);
   }
 
   private void saveAndQuitGame() {
     this.quoridorGUI.getQuoridor().saveGame(this.quoridorGUI.getGameGUI().getGame());
 
     this.launchMenuMain(this.quoridorGUI.getMenuPause());
+  }
+
+  private void menuBack() {
+    this.launchMenuMain(this.quoridorGUI.getMenuEnd());
   }
 }
