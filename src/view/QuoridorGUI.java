@@ -3,7 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.*;
 import javax.swing.border.*;
 
 import controller.ActionEcouteur;
@@ -37,6 +37,9 @@ public class QuoridorGUI extends JFrame {
   JTexturedButton modeCrossButton;
 
   JTexturedButton loadCrossButton;
+  JFileChooser fileChooser;
+  FileNameExtensionFilter fileFilter;
+  String fileChoosed;
 
   JLabel pauseText;
   JTexturedButton resumeButton;
@@ -121,6 +124,10 @@ public class QuoridorGUI extends JFrame {
     return this.endMenu;
   }
 
+  public JFileChooser getFileChooser() {
+    return this.fileChooser;
+  }
+
   public GameGUI getGameGUI() {
     return this.gameGUI;
   }
@@ -135,6 +142,10 @@ public class QuoridorGUI extends JFrame {
 
   public BackgroundImage getBackgroundImage() {
     return this.back;
+  }
+
+  public void setFileChoosed(String fileName) {
+    this.fileChoosed = fileName;
   }
 
   public void setBackgroundImage(String fileName) {
@@ -160,7 +171,7 @@ public class QuoridorGUI extends JFrame {
 
   private void createAndShowGUI() {
     this.setTitle("Quoridor");
-    this.setMinimumSize(new Dimension(800, 830));
+    this.setMinimumSize(new Dimension(800, 828));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
 
@@ -182,11 +193,19 @@ public class QuoridorGUI extends JFrame {
 
   private void initializeLoadMenu() {
     this.loadMenu = new JPanel();
+    this.loadMenu.setLayout(new BorderLayout());
 
     this.loadCrossButton = new JTexturedButton("../data/images/ArrowBack.png", "../data/images/ArrowBackHover.png");
-    this.loadMenu.setLayout(new FlowLayout());
+    this.loadCrossButton.setHorizontalAlignment(SwingConstants.LEFT);
     this.loadCrossButton.addActionListener(new ActionEcouteur(this));
-    this.loadMenu.add(this.loadCrossButton);
+
+    this.fileChooser = new JFileChooser(new File("../data/save/"));
+    this.fileFilter = new FileNameExtensionFilter("Save files (.ser)", "ser");
+    this.fileChooser.setFileFilter(this.fileFilter);
+    this.fileChooser.addActionListener(new ActionEcouteur(this));
+
+    this.loadMenu.add(this.loadCrossButton, BorderLayout.NORTH);
+    this.loadMenu.add(this.fileChooser, BorderLayout.CENTER);
   }
 
   private void initializeMainMenu() {

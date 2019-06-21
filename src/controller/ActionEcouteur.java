@@ -19,57 +19,66 @@ public class ActionEcouteur implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent e) {
-    JButton button = (JButton) e.getSource();
+    JComponent component = (JComponent) e.getSource();
 
-    if (button == this.quoridorGUI.getButtonPlay()) {
+    if (component == this.quoridorGUI.getButtonPlay()) {
       this.launchMenuMode(this.quoridorGUI.getMenuMain());
     }
 
-    else if (button == this.quoridorGUI.getButtonLoad()) {
+    else if (component == this.quoridorGUI.getButtonLoad()) {
       this.launchMenuLoad();
     }
 
-    else if (button == this.quoridorGUI.getButtonQuit()) {
+    else if (component == this.quoridorGUI.getButtonQuit()) {
       System.exit(0);
     }
 
-    else if (button == this.quoridorGUI.getButtonModeHH()) {
+    else if (component == this.quoridorGUI.getFileChooser()) {
+      JFileChooser fileChooser = (JFileChooser) e.getSource();
+
+      if (e.getActionCommand().equals(JFileChooser.APPROVE_SELECTION)) {
+        String fileChoosed = fileChooser.getSelectedFile().getName();
+        this.launchOldGame(fileChoosed);
+      }
+    }
+
+    else if (component == this.quoridorGUI.getButtonModeHH()) {
       this.launchGameGUI(Mode.HH);
     }
 
-    else if (button == this.quoridorGUI.getButtonModeHA()) {
+    else if (component == this.quoridorGUI.getButtonModeHA()) {
       this.launchGameGUI(Mode.HA);
     }
 
-    else if (button == this.quoridorGUI.getButtonLoadCross()) {
+    else if (component == this.quoridorGUI.getButtonLoadCross()) {
       this.launchMenuMain(this.quoridorGUI.getMenuLoad());
     }
 
-    else if (button == this.quoridorGUI.getButtonModeCross()) {
+    else if (component == this.quoridorGUI.getButtonModeCross()) {
       this.launchMenuMain(this.quoridorGUI.getMenuMode());
     }
 
-    else if (button == this.quoridorGUI.getGameGUI().getButtonPause()) {
+    else if (component == this.quoridorGUI.getGameGUI().getButtonPause()) {
       this.launchMenuPause();
     }
 
-    else if (button == this.quoridorGUI.getButtonResume()) {
+    else if (component == this.quoridorGUI.getButtonResume()) {
       this.resumeGame();
     }
 
-    else if (button == this.quoridorGUI.getButtonRestart()) {
+    else if (component == this.quoridorGUI.getButtonRestart()) {
       this.restartGame(this.quoridorGUI.getMenuPause());
     }
 
-    else if (button == this.quoridorGUI.getButtonSaveAndQuit()) {
+    else if (component == this.quoridorGUI.getButtonSaveAndQuit()) {
       this.saveAndQuitGame();
     }
 
-    else if (button == this.quoridorGUI.getButtonRestartEnd()) {
+    else if (component == this.quoridorGUI.getButtonRestartEnd()) {
       this.restartGame(this.quoridorGUI.getMenuEnd());
     }
 
-    else if (button == this.quoridorGUI.getButtonMenuBack()) {
+    else if (component == this.quoridorGUI.getButtonMenuBack()) {
       this.menuBack();
     }
   }
@@ -134,6 +143,20 @@ public class ActionEcouteur implements ActionListener {
 
     // this.quoridorGUI.setFocusableWindowState(true);
     this.quoridorGUI.getMenuPause().setOpaque(false);
+    this.quoridorGUI.revalidate();
+    this.quoridorGUI.repaint();
+  }
+
+  private void launchOldGame(String fileChoosed) {
+    this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+
+    this.quoridorGUI.remove(this.quoridorGUI.getMenuLoad());
+    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().loadOldGame(fileChoosed), this.quoridorGUI));
+    this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
+    // this.inGame = true;
+
+    this.quoridorGUI.setFocusableWindowState(true);
+    this.quoridorGUI.getGameGUI().setOpaque(false);
     this.quoridorGUI.revalidate();
     this.quoridorGUI.repaint();
   }

@@ -18,6 +18,7 @@ public class GameGUI extends JPanel {
   JTexturedButton pauseButton;
 
   JLabel time;
+  JLabel currentPlayerText;
   JLabel currentPlayerColor;
 
   JPanel board;
@@ -58,17 +59,21 @@ public class GameGUI extends JPanel {
     this.pawnOrange = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
 
     this.top = new JPanel();
-    this.top.setLayout(new GridLayout(1,3,100,0));
+    this.top.setLayout(new GridLayout(1,3));
 
     this.pauseButton = new JTexturedButton("../data/images/ButtonPause.png", "../data/images/ButtonPause.png");
     this.top.add(this.pauseButton);
     this.pauseButton.addActionListener(new ActionEcouteur(this.quoridorGUI));
 
-    this.top.add(new JLabel("Temps : 00:45"));
+    this.time = new JLabel("Temps : 00:45");
+    // this.quoridorGUI.setFontPalatino(this.time, 25);
+    this.top.add(this.time);
 
     this.currentPlayer = new JPanel();
     this.currentPlayer.setLayout(new GridLayout(1,0,0,0));
-    this.currentPlayer.add(new JLabel("Joueur actuel :"));
+    this.currentPlayerText = new JLabel("Joueur actuel :");
+    // this.quoridorGUI.setFontPalatino(this.currentPlayerText, 25);
+    this.currentPlayer.add(this.currentPlayerText);
     this.currentPlayerColor = new JLabel();
     this.currentPlayer.setBackground(new Color(195, 195, 148));
 
