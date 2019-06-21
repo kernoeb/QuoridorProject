@@ -4,6 +4,10 @@ import quoridor.*;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+/**
+ * Node
+ * Temporarily save the squares
+ */
 class Node {
 	int x, y, dist;
 
@@ -14,17 +18,66 @@ class Node {
 	}
 }
 
+/**
+ * Maze
+ * BFS implementation
+ */
 public class Maze {
 	private final int row[] = { -1, 0, 0, 1 };
 	private final int col[] = { 0, -1, 1, 0 };	
 	Board board;
 	int sens;
 
+	/**
+	 * Constructor
+	 * @param  board Used board
+	 * @param  sens  direction
+	 */
 	public Maze(Board board, int sens) {
 		this.board = board;
 		this.sens = sens;
 	}
 
+	/**
+	 * Convert the grid in matrix
+	 * @param  board Board
+	 * @return       the matrix "maze" 
+	 */
+	public int[][] convertToMaze(Board board) {
+		Square temp = null;
+		int[][] maze = new int[this.board.getTotalSize()][this.board.getTotalSize()];
+
+		for (int x = 0; x < this.board.getTotalSize(); x++) {
+			for (int y = 0; y < this.board.getTotalSize(); y++) {
+				temp = this.board.getGrid()[x][y];
+
+				if (this.sens == 0) {
+					if (x % 2 != 0 && y % 2 != 0) {
+						if (fenceAroundX(x, y)) maze[x][y] = 0;
+						else if (fenceAroundY(x, y)) maze[x][y] = 0;
+					} 
+					else if ((temp.isPawn2() && x == 0 && fenceX(x, y, 0)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
+					else maze[x][y] = 1;
+
+				} else {
+					if ((x % 2 != 0) && (y % 2 != 0)) {
+						if (fenceAroundX(x, y)) maze[x][y] = 0;
+						else if (fenceAroundY(x, y)) maze[x][y] = 0;
+					} 
+					else if ((temp.isPawn1() && x == this.board.getTotalSize()-1 && fenceX(x, y, this.board.getTotalSize()-1)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
+					else maze[x][y] = 1;					
+				}
+			}
+		}
+
+		printMaze(maze);
+		return maze;
+	}
+
+	/**
+	 * Print the maze (debug)
+	 * @param maze[][] matrix
+	 */
 	public void printMaze(int maze[][]) { 
 		for (int i = 0; i < maze.length; i++) { 
 			for (int j = 0; j < maze.length; j++) 
@@ -34,14 +87,36 @@ public class Maze {
 		System.out.println();
 	}
 
+	/**
+	 * Check if square is valid (size and not visited)
+	 * @param  mat[][]     the matrix
+	 * @param  visited[][] boolean tabs of visited squares
+	 * @param  row         x
+	 * @param  col         y
+	 * @return             true if valid
+	 */
 	private boolean isValid(int mat[][], boolean visited[][], int row, int col) {
 		return (row >= 0) && (row < this.board.getTotalSize()) && (col >= 0) && (col < this.board.getTotalSize()) && mat[row][col] == 1 && !visited[row][col];
 	}
 
+	/**
+	 * Check if square is valid (size)
+	 * @param  x horizontal
+	 * @param  y vertical
+	 * @return   true if valid
+	 */
 	private boolean checkValid(int x, int y) {
 		return (x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize());
 	}
 
+	/**
+	 * BFS Algorithm to find a path
+	 * @param  mat[][] the matrix
+	 * @param  i       "beginning" X
+	 * @param  j       "beginning" Y
+	 * @param  x       the arrival
+	 * @return         true if found a path, false if not
+	 */
 	public boolean BFS(int mat[][], int i, int j, int x) {
 		boolean[][] visited = new boolean[this.board.getTotalSize()][this.board.getTotalSize()];
 		Queue<Node> q = new ArrayDeque<>();
@@ -75,6 +150,12 @@ public class Maze {
 		else return false;
 	}
 
+	/**
+	 * Check if there are fences to the left and right of a square
+	 * @param  x square X
+	 * @param  y square Y
+	 * @return   true if there are fences
+	 */
 	private boolean fenceAroundX(int x, int y) {
 		try {
 			if (!this.board.getGrid()[x-1][y].isFencePossible()) 
@@ -90,6 +171,12 @@ public class Maze {
 		return false;
 	}
 
+	/**
+	 * Check if there are fences at the top and bottom of a square
+	 * @param  x square X
+	 * @param  y square Y
+	 * @return   true if there are fences
+	 */
 	private boolean fenceAroundY(int x, int y) {
 		try {
 			if (!this.board.getGrid()[x][y-1].isFencePossible()) 
@@ -105,6 +192,13 @@ public class Maze {
 		return false;
 	}
 
+	/**
+	 * Check if there is a FENCE status at the left and right
+	 * @param  x square X
+	 * @param  y square right
+	 * @param  v direction
+	 * @return   true if there is a FENCE status
+	 */
 	private boolean fenceX(int x, int y, int v) {
 		try {
 			if (x == v) {
@@ -117,6 +211,13 @@ public class Maze {
 		return false;
 	}
 
+	/**
+	 * Check if there is a FENCE status at the top and bottom
+	 * @param  x square X
+	 * @param  y square right
+	 * @param  v direction
+	 * @return   true if there is a FENCE status
+	 */
 	private boolean fenceY(int x, int y, int v) {
 		try {
 			if (x == v) {
@@ -129,34 +230,4 @@ public class Maze {
 		return false;
 	}
 
-	public int[][] convertToMaze(Board board) {
-		Square temp = null;
-		int[][] maze = new int[this.board.getTotalSize()][this.board.getTotalSize()];
-
-		for (int x = 0; x < this.board.getTotalSize(); x++) {
-			for (int y = 0; y < this.board.getTotalSize(); y++) {
-				temp = this.board.getGrid()[x][y];
-
-				if (this.sens == 0) {
-					if (x % 2 != 0 && y % 2 != 0) {
-						if (fenceAroundX(x, y)) maze[x][y] = 0;
-						else if (fenceAroundY(x, y)) maze[x][y] = 0;
-					} 
-					else if ((temp.isPawn2() && x == 0 && fenceX(x, y, 0)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
-					else maze[x][y] = 1;
-
-				} else {
-					if ((x % 2 != 0) && (y % 2 != 0)) {
-						if (fenceAroundX(x, y)) maze[x][y] = 0;
-						else if (fenceAroundY(x, y)) maze[x][y] = 0;
-					} 
-					else if ((temp.isPawn1() && x == this.board.getTotalSize()-1 && fenceX(x, y, this.board.getTotalSize()-1)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
-					else maze[x][y] = 1;					
-				}
-			}
-		}
-
-		printMaze(maze);
-		return maze;
-	}
 }
