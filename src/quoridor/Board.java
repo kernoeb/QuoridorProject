@@ -120,6 +120,22 @@ public class Board implements Serializable {
 		}
 	}
 
+	public void removeFence(int x, int y, String dir) {
+
+		this.grid[x][y].setStatus(Status.FENCEPOSSIBLE);
+
+		if (dir.equalsIgnoreCase("h")) {
+			this.grid[x][y-1].setStatus(Status.FENCEPOSSIBLE);
+			this.grid[x][y+1].setStatus(Status.FENCEPOSSIBLE);
+		}
+
+		else if (dir.equalsIgnoreCase("v")) {
+			this.grid[x-1][y].setStatus(Status.FENCEPOSSIBLE);
+			this.grid[x+1][y].setStatus(Status.FENCEPOSSIBLE);
+		}
+
+	}
+
 	// // public ArrayList<Square> listOfPossibilitiesFence(Player player) {
 	// public Object[][] listOfPossibilitiesFence(Player player) {
 	// 	// ArrayList<Square> list = new ArrayList<Square>();

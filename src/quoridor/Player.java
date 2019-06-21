@@ -84,7 +84,10 @@ public abstract class Player implements Serializable {
 			ok = maze.BFS(maze.convertToMaze(tmp), player.getCurrentSquare().getX(),
 						  player.getCurrentSquare().getY(), this.board.getTotalSize()-1);
 		}
-		if (!ok) System.out.println("Aucun chemin possible !");
+		if (!ok) {
+			tmp.removeFence(x, y, dir);
+			System.out.println("Aucun chemin possible !");
+		}
 		return ok;
 	}
 
