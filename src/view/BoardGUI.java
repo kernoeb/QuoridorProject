@@ -65,13 +65,15 @@ public class BoardGUI extends JPanel {
                     if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(35,12));
                     else {
                       squares[i][j].setPreferredSize(new Dimension(12,12));
-                      squares[i][j].setEnabled(false);
+                      // squares[i][j].setEnabled(false);
+                      squares[i][j].setBorderPainted(false);
+                      squares[i][j].setFocusPainted(false);
                     }
                 }
                 else {
                     this.squares[i][j].setBackground(colorBlack);
                     this.squares[i][j].setPreferredSize(new Dimension(35,35));
-                }
+                } 
                 this.squares[i][j].setBorderPainted(false);
                 this.add(squares[i][j]);
                 this.squares[i][j].addActionListener(sqEcouteur);
