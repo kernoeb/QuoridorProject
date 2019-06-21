@@ -152,9 +152,7 @@ public class Game implements Serializable {
 		if (this.actualPlayer == this.player1) {
 			this.actualPlayer = this.player2;
 		}
-		else if (this.actualPlayer == this.player2) {
-			this.actualPlayer = this.player1;
-		}
+		else this.actualPlayer = this.player1;
 	}
 
 	/**

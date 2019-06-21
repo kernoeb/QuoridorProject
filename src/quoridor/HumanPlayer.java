@@ -62,7 +62,7 @@ public class HumanPlayer extends Player implements Serializable {
   }
 
   public void play(Square square, BoardGUI boardGUI) {
-      if(!terminal) {
+      if(!this.terminal) {
 					if (square.isPawn()) {
 						this.playPawn(square);
 					}
@@ -76,9 +76,9 @@ public class HumanPlayer extends Player implements Serializable {
 
 	public void playPawn(Square square) {
 		if (this.board.listOfPossibilitiesPawn(this).contains(square)) {
-			this.game.getActualPlayer().playPawn(square);
-			this.game.nextPlayerGUI();
 			super.movePawn(square.getX(), square.getY());
+			// this.game.getActualPlayer().playPawn(square);
+			this.game.nextPlayerGUI();
 		}
 	}
 
@@ -87,6 +87,7 @@ public class HumanPlayer extends Player implements Serializable {
 			int x = square.getX();
 			int y = square.getY();
 			Square squareFence = null;
+			System.out.println("Vals : " + x + ", " + y);
 			// Barrière horizontale
 			if (x % 2 != 0 && y % 2 == 0) {
 					try {
@@ -109,16 +110,16 @@ public class HumanPlayer extends Player implements Serializable {
 
 							if (this.checkFencePossible(squareFence, "h")) {
 								this.board.setFence(squareFence.getX(), squareFence.getY(), "h", this);
-					      this.setNbFences(this.nbFences - 1);
+					      		this.setNbFences(this.nbFences - 1);
 
 								if (y != boardGUI.getSquares().length-1) {
 									boardGUI.getSquares()[x][y].setEnabled(false);
 									boardGUI.getSquares()[x][y+1].setEnabled(false);
 									boardGUI.getSquares()[x][y+2].setEnabled(false);
 								} else {
-										boardGUI.getSquares()[x][y].setEnabled(false);
-										boardGUI.getSquares()[x][y-1].setEnabled(false);
-										boardGUI.getSquares()[x][y-2].setEnabled(false);
+									boardGUI.getSquares()[x][y].setEnabled(false);
+									boardGUI.getSquares()[x][y-1].setEnabled(false);
+									boardGUI.getSquares()[x][y-2].setEnabled(false);
 								}
 							}
 
