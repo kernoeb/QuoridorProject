@@ -25,17 +25,6 @@ public class Maze {
 		this.sens = sens;
 	}
 
-	// public void printSolution(boolean visited[][]) { 
-	// 	for (int i = 0; i < visited.length; i++) { 
-	// 		for (int j = 0; j < visited.length; j++) { 
-	// 			if (visited[i][j] == true) System.out.print(" " + "\u001B[32m1" + " ");
-	// 			else System.out.print(" " + "\u001B[0m0" + " ");
-	// 		} 
-	// 		System.out.println(); 
-	// 	} 
-	// 	System.out.println("\u001B[0m");
-	// }
-
 	public void printMaze(int maze[][]) { 
 		for (int i = 0; i < maze.length; i++) { 
 			for (int j = 0; j < maze.length; j++) 
@@ -116,54 +105,6 @@ public class Maze {
 		return false;
 	}
 
-	private boolean fenceYG(int x, int y) {
-		try {
-			if ((this.board.getGrid()[x][y-1].isFencePawn1() || this.board.getGrid()[x][y-1].isFencePawn2()) 
-				&& (this.board.getGrid()[x][y-2].isFencePawn1() || this.board.getGrid()[x][y-2].isFencePawn2()) 
-				&& (this.board.getGrid()[x][y-3].isFencePawn1() || this.board.getGrid()[x][y-3].isFencePawn2()))
-					return true;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
-		return false;
-	}
-
-	private boolean fenceYD(int x, int y) {
-		try {
-			if ((this.board.getGrid()[x][y+1].isFencePawn1() || this.board.getGrid()[x][y+1].isFencePawn2()) 
-				&& (this.board.getGrid()[x][y+2].isFencePawn1() || this.board.getGrid()[x][y+2].isFencePawn2()) 
-				&& (this.board.getGrid()[x][y+3].isFencePawn1() || this.board.getGrid()[x][y+3].isFencePawn2()))
-					return true;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
-		return false;
-	}
-
-	private boolean fenceXG(int x, int y) {
-		try {
-			if ((this.board.getGrid()[x-1][y].isFencePawn1() || this.board.getGrid()[x-1][y].isFencePawn2()) 
-				&& (this.board.getGrid()[x-2][y].isFencePawn1() || this.board.getGrid()[x-2][y].isFencePawn2()) 
-				&& (this.board.getGrid()[x-3][y].isFencePawn1() || this.board.getGrid()[x-3][y].isFencePawn2()))
-					return true;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
-		return false;
-	}
-
-	private boolean fenceXD(int x, int y) {
-		try {
-			if ((this.board.getGrid()[x+1][y].isFencePawn1() || this.board.getGrid()[x+1][y].isFencePawn2()) 
-				&& (this.board.getGrid()[x+2][y].isFencePawn1() || this.board.getGrid()[x+2][y].isFencePawn2()) 
-				&& (this.board.getGrid()[x+3][y].isFencePawn1() || this.board.getGrid()[x+3][y].isFencePawn2()))
-					return true;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
-		return false;
-	}
-
 	private boolean fenceX(int x, int y, int v) {
 		try {
 			if (x == v) {
@@ -200,10 +141,6 @@ public class Maze {
 					if (x % 2 != 0 && y % 2 != 0) {
 						if (fenceAroundX(x, y)) maze[x][y] = 0;
 						else if (fenceAroundY(x, y)) maze[x][y] = 0;
-						// if (fenceXG(x, y)) maze[x][y] = 0;
-						// else if (fenceXD(x, y)) maze[x][y] = 0;
-						// else if (fenceYG(x, y)) maze[x][y] = 0;
-						// else if (fenceYD(x, y)) maze[x][y] = 0;
 					} 
 					else if ((temp.isPawn2() && x == 0 && fenceX(x, y, 0)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
 					else maze[x][y] = 1;
@@ -212,10 +149,6 @@ public class Maze {
 					if ((x % 2 != 0) && (y % 2 != 0)) {
 						if (fenceAroundX(x, y)) maze[x][y] = 0;
 						else if (fenceAroundY(x, y)) maze[x][y] = 0;
-						// if (fenceXG(x, y)) maze[x][y] = 0;
-						// else if (fenceXD(x, y)) maze[x][y] = 0;
-						// else if (fenceYG(x, y)) maze[x][y] = 0;
-						// else if (fenceYD(x, y)) maze[x][y] = 0;
 					} 
 					else if ((temp.isPawn1() && x == this.board.getTotalSize()-1 && fenceX(x, y, this.board.getTotalSize()-1)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
 					else maze[x][y] = 1;					
