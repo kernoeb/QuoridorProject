@@ -167,8 +167,8 @@ public class Maze {
 	private boolean fenceAroundX(int x, int y, int v) {
 		try {
 			if (x == v) {
-				if ((this.board.getGrid()[x-1][y].isFencePawn1() || this.board.getGrid()[x-1][y].isFencePawn1())
-					&& (this.board.getGrid()[x+1][y].isFencePawn1() || this.board.getGrid()[x+1][y].isFencePawn1())) return true;
+				if ((this.board.getGrid()[x][y-1].isFencePawn1() || this.board.getGrid()[x][y-1].isFencePawn2())
+					&& (this.board.getGrid()[x][y+1].isFencePawn1() || this.board.getGrid()[x][y+1].isFencePawn2())) return true;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return false;
