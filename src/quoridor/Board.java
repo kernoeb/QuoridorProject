@@ -105,7 +105,7 @@ public class Board implements Serializable {
 			status = Status.FENCEPAWN2;
 		}
 
-		System.out.println("x : " + x + "   " + "y : " + y);
+		// System.out.println("x : " + x + "   " + "y : " + y);
 
 		this.grid[x][y].setStatus(status);
 

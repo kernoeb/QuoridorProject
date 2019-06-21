@@ -62,6 +62,10 @@ public class Square implements Serializable {
 		return this.status == Status.FENCEPOSSIBLE;
 	}
 
+	public boolean isFenceFixed() {
+		return (this.status == Status.FENCEPAWN1) || (this.status == Status.FENCEPAWN2);
+	}
+
 	public boolean isPawn() {
 		return (this.status == Status.PAWN1) || (this.status == Status.PAWN2) || (this.status == Status.PAWNPOSSIBLE);
 	}
@@ -76,5 +80,9 @@ public class Square implements Serializable {
 
 	public boolean isPawn2() {
 		return this.status == Status.PAWN2;
+	}
+
+	public boolean isPawnFixed() {
+		return (this.status == Status.PAWN1) || (this.status == Status.PAWN2);
 	}
 }

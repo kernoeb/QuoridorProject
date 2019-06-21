@@ -71,7 +71,7 @@ public abstract class Player implements Serializable {
 
 	public boolean checkExistingPath(Player player, int x, int y, String dir) {
 		Board tmp = this.board;
-		// tmp.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, player);
+		tmp.setFence(x, y, dir, player);
 
 		Maze maze = null;
 		boolean ok = false;
@@ -178,13 +178,13 @@ public abstract class Player implements Serializable {
 
 	public abstract void play() throws SaveGameException;
 
-	public abstract void play(Square square, BoardGUI boardGUI);
+	public abstract boolean play(Square square, BoardGUI boardGUI);
 
 	public abstract void playPawn();
-	public abstract void playPawn(Square square);
+	public abstract boolean playPawn(Square square);
 
 	public abstract void playFence();
-	public abstract void playFence(Square square, BoardGUI boardGUI);
+	public abstract boolean playFence(Square square, BoardGUI boardGUI);
 
 	protected void movePawn(int x, int y) {
 		if (this.currentSquare != null) {

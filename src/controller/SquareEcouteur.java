@@ -12,9 +12,11 @@ public class SquareEcouteur implements ActionListener {
   public SquareEcouteur(BoardGUI boardGUI) {
     this.boardGUI = boardGUI;
     this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+    System.out.println(this.actualPlayer.getName());
   }
 
   public void actionPerformed(ActionEvent e) {
+    System.out.println(this.actualPlayer.getName());
   	Square square = this.boardGUI.getSquare((JButton) e.getSource());
 
 		// if (square.isPawn()) {
@@ -31,18 +33,22 @@ public class SquareEcouteur implements ActionListener {
 		// 	// TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
 		// }
 
-    this.actualPlayer.play(square, this.boardGUI);
+    if (this.actualPlayer.play(square, this.boardGUI)) {
+      // this.boardGUI.getGame().nextPlayerGUI();
+      this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+      this.boardGUI.setFencesEnabled(square);
+      this.boardGUI.displayBoardGUI();
+      this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer));
 
-    this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer));
-    this.boardGUI.displayBoardGUI();
-
-    if((this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer1())) || (this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer2()))) {
-      this.endOfGame();
+      if((this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer1())) || (this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer2()))) {
+        this.endOfGame();
+      }
     }
+
     // System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(square)/2 + ", " + this.boardGUI.getY(square)/2);
   }
 
   private void endOfGame() {
-
+    System.out.println("C'est fini !!!!");
   }
 }

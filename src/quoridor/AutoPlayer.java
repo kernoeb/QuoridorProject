@@ -55,9 +55,15 @@ public class AutoPlayer extends Player implements Serializable {
 
 	public void playPawn() {}
 
-	public void play(Square square, BoardGUI boardGUI) {}
+	public boolean play(Square square, BoardGUI boardGUI) {
+		return true;
+	}
 
-	public void playPawn(Square square) {}
+	public boolean playPawn(Square square) {
+		return true;
+	}
 
-	public void playFence(Square square, BoardGUI boardGUI) {}
+	public boolean playFence(Square square, BoardGUI boardGUI) {
+		return true;
+	}
 }

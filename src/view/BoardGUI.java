@@ -30,8 +30,8 @@ public class BoardGUI extends JPanel {
     ImageIcon player1 = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon player2 = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon fence_red = new ImageIcon((new ImageIcon("../data/icons/fence_red2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
-    ImageIcon fence_green = new ImageIcon((new ImageIcon("../data/icons/fence_green2.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/fenceOrange.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+    ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/fenceBlue.png")).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon player1 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon player2 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_red.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon pawn_possible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_possible.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
@@ -129,6 +129,31 @@ public class BoardGUI extends JPanel {
     	return this.squares;
     }
 
+    public void setFencesEnabled(Square square) {
+      int x = square.getX();
+      int y = square.getY();
+
+			// if (x != this.getSquares().length-1) {
+			// 	this.getSquares()[x][y].setEnabled(false);
+			// 	this.getSquares()[x+1][y].setEnabled(false);
+			// 	this.getSquares()[x+2][y].setEnabled(false);
+			// } else {
+			// 		this.getSquares()[x][y].setEnabled(false);
+			// 		this.getSquares()[x-1][y].setEnabled(false);
+			// 		this.getSquares()[x-2][y].setEnabled(false);
+			// }
+      //
+      // if (y != this.getSquares().length-1) {
+      //   this.getSquares()[x][y].setEnabled(false);
+      //   this.getSquares()[x][y+1].setEnabled(false);
+      //   this.getSquares()[x][y+2].setEnabled(false);
+      // } else {
+      //   this.getSquares()[x][y].setEnabled(false);
+      //   this.getSquares()[x][y-1].setEnabled(false);
+      //   this.getSquares()[x][y-2].setEnabled(false);
+      // }
+    }
+
     public void displayBoardGUI() {
         Square temp = null;
         for (int x = 0; x < this.board.getTotalSize(); x++) {
@@ -147,9 +172,9 @@ public class BoardGUI extends JPanel {
                     if (temp.isFencePossible()) {
                         this.squares[x][y].setIcon(null);
                     } else if (temp.isFencePawn1()) {
-                        this.squares[x][y].setIcon(fence_red);
+                        this.squares[x][y].setIcon(fenceBlue);
                     } else if (temp.isFencePawn2()) {
-                        this.squares[x][y].setIcon(fence_green);
+                        this.squares[x][y].setIcon(fenceOrange);
                     }
                 }
             }
