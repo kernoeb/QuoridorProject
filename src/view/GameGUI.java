@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.Border;
+import javax.swing.border.*;
 
 import quoridor.*;
 import textured.JTexturedButton;
@@ -12,7 +12,7 @@ public class GameGUI extends JPanel {
   QuoridorGUI quoridorGUI;
   Game game;
 
-  BoardGUI bg;
+  BoardGUI boardGUI;
   Border redLine;
 
   JTexturedButton pauseButton;
@@ -20,7 +20,7 @@ public class GameGUI extends JPanel {
   JLabel time;
   JLabel currentPlayerColor;
 
-  JPanel jP;
+  JPanel board;
   JPanel nbBar1;
   JPanel nbBar2;
   JPanel top;
@@ -46,9 +46,9 @@ public class GameGUI extends JPanel {
   }
 
   private void createAndShowGUI() {
-  	this.bg = this.game.getBoardGUI();
+  	this.boardGUI = this.game.getBoardGUI();
   	this.redLine = BorderFactory.createLineBorder(new Color(149, 26, 0), 15);
-  	bg.setBorder(redLine);
+  	this.boardGUI.setBorder(redLine);
 
     this.setLayout(new BorderLayout(0,5));
 
@@ -58,7 +58,7 @@ public class GameGUI extends JPanel {
     this.pawnOrange = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
 
     this.top = new JPanel();
-    this.top.setLayout(new GridLayout(2,0,50,0));
+    this.top.setLayout(new GridLayout(1,3,100,0));
 
     this.pauseButton = new JTexturedButton("../data/images/ButtonPause.png", "../data/images/ButtonPause.png");
     this.top.add(this.pauseButton);
@@ -79,11 +79,11 @@ public class GameGUI extends JPanel {
 
     this.add(this.top, BorderLayout.NORTH);
 
-    this.jP = new JPanel();
-    this.jP.setLayout(new BorderLayout(0,10));
-    this.add(this.jP, BorderLayout.CENTER);
-    this.jP.setBackground(new Color(195, 195, 148));
-
+    this.board = new JPanel();
+    this.board.setLayout(new BorderLayout(0,10));
+    this.add(this.board, BorderLayout.CENTER);
+    this.board.setBackground(new Color(195, 195, 148));
+    this.board.setBorder(new EmptyBorder(50, 150, 0, 150));
 
     this.nbBar1 = new JPanel();
     this.nbBar1.setLayout(new GridLayout(0,10));
@@ -97,12 +97,12 @@ public class GameGUI extends JPanel {
     this.updateFences();
 
 
-    this.jP.add(this.nbBar1, BorderLayout.NORTH);
-    this.jP.add(this.bg, BorderLayout.CENTER);
-    this.jP.add(this.nbBar2, BorderLayout.SOUTH);
+    this.board.add(this.nbBar1, BorderLayout.NORTH);
+    this.board.add(this.boardGUI, BorderLayout.CENTER);
+    this.board.add(this.nbBar2, BorderLayout.SOUTH);
 
-    this.bg.displayBoardGUI();
-    this.bg.addTmpPossibilities(this.game.getBoard().listOfPossibilitiesPawn(this.game.getActualPlayer()));
+    this.boardGUI.displayBoardGUI();
+    this.boardGUI.addTmpPossibilities(this.game.getBoard().listOfPossibilitiesPawn(this.game.getActualPlayer()));
   }
 
   public void updateCurrentPlayer() {
