@@ -20,13 +20,15 @@ public class Quoridor {
 	private boolean terminal;
 	private boolean load;
 
-	/**
-	 * Quoridor constructor
-	 * Create an object Quoridor
-	 * Serve as a platform to load and launch games
-	 * @param fileName path to the file where the current game will be saved in
-	 * @author
-	 */
+    /**
+     * Quoridor constructor
+     * Create an object Quoridor
+     * Serve as a platform to load and launch games
+     * @param fileName file used
+     * @param namePlayer1 player 1's name
+     * @param namePlayer2 player 2's name
+     * @param terminal teminal mode or not
+     */
 	public Quoridor(String fileName, String namePlayer1, String namePlayer2, boolean terminal) {
 		try {
 			ArrayList<String> list = RWFile.readFile(fileName);
