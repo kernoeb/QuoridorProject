@@ -35,32 +35,43 @@ public class MouseButton implements MouseListener {
         int y = this.boardGUI.getY(source);
 
         if (x % 2 != 0 && y % 2 == 0) {
-            try {
-                if (y != this.boardGUI.getSquares().length-1) {
-                  this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
-                  this.boardGUI.getSquares()[x][y+1].setBackground(colorTmp);
-                  this.boardGUI.getSquares()[x][y+2].setBackground(colorTmp);
-                } else {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x][y-1].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x][y-2].setBackground(colorTmp);
+            // if (this.boardGUI.getBoard().checkIfPossibilitiesFence(this.boardGUI.getBoard().getGrid()[x][y+1])) {
+            if (this.boardGUI.getBoard().possibleFence(this.boardGUI.getBoard().getGrid()[x][y], this.boardGUI.getGame().getActualPlayer())) {
+                try {
+                    if (y != this.boardGUI.getSquares().length-1) {
+                        this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x][y+1].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x][y+2].setBackground(colorTmp);
+                    } else {
+                        this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x][y-1].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x][y-2].setBackground(colorTmp);
+                    }
+                } catch (Exception ex) {
+                    System.out.println("");
                 }
-            } catch (Exception ex) {}
+            }
         } else if (x % 2 == 0 && y % 2 != 0) {
-            try {
-                if (x != this.boardGUI.getSquares().length-1) {
-                  this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
-                  this.boardGUI.getSquares()[x+1][y].setBackground(colorTmp);
-                  this.boardGUI.getSquares()[x+2][y].setBackground(colorTmp);
-                } else {
-                    this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x-1][y].setBackground(colorTmp);
-                    this.boardGUI.getSquares()[x-2][y].setBackground(colorTmp);
+            // if (this.boardGUI.getBoard().checkIfPossibilitiesFence(this.boardGUI.getBoard().getGrid()[x+1][y])) {
+            if (this.boardGUI.getBoard().possibleFence(this.boardGUI.getBoard().getGrid()[x][y], this.boardGUI.getGame().getActualPlayer())) {
+                try {
+                    if (x != this.boardGUI.getSquares().length-1) {
+                        this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x+1][y].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x+2][y].setBackground(colorTmp);
+                    } else {
+                        this.boardGUI.getSquares()[x][y].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x-1][y].setBackground(colorTmp);
+                        this.boardGUI.getSquares()[x-2][y].setBackground(colorTmp);
+                    }
+                } catch (Exception ex) {
+                    System.out.println("");
                 }
-            } catch (Exception ex) {}
+            }
+        
         }
         // source.setBackground(Color.RED);
-        if (!(x % 2 != 0 && y % 2 != 0)) source.setBackground(colorTmp);
+        if (!(x % 2 != 0 && y % 2 != 0) && this.boardGUI.getBoard().getGrid()[x][y].isPawn()) source.setBackground(colorTmp);
     }
 
     public void mouseExited(MouseEvent e) {

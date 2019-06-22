@@ -40,6 +40,15 @@ public class SquareEcouteur implements ActionListener {
       this.boardGUI.displayBoardGUI();
       this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
 
+      if (this.actualPlayer instanceof AutoPlayer) {      
+        square = this.actualPlayer.randomSquare(); 
+        this.actualPlayer.play(square, this.boardGUI);
+        this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+        this.boardGUI.setFencesEnabled(square);
+        this.boardGUI.displayBoardGUI();      
+        this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
+      }
+
       if((this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer1())) || (this.boardGUI.getGame().checkHasFinished(this.boardGUI.getGame().getPlayer2()))) {
         this.endOfGame();
       }

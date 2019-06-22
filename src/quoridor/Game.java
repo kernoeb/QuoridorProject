@@ -56,6 +56,7 @@ public class Game implements Serializable {
 
 		this.initializeGame();
 		this.boardGUI = new BoardGUI(this, this.board);
+		runAutoPlayer();
 	}
 
 	public Board getBoard() {
@@ -100,6 +101,17 @@ public class Game implements Serializable {
 	 */
 	private void initializeGame() {
 		this.actualPlayer = this.whoStarts();
+	}
+
+	private void runAutoPlayer() {
+		if (this.actualPlayer instanceof AutoPlayer) {
+			Square square = this.actualPlayer.randomSquare(); 
+			this.actualPlayer.play(square, this.boardGUI);
+			this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+			this.boardGUI.setFencesEnabled(square);
+			this.boardGUI.displayBoardGUI();		
+			this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);	
+		}
 	}
 
 	/**

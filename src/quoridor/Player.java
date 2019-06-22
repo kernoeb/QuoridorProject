@@ -130,7 +130,7 @@ public abstract class Player implements Serializable {
 	// 	return ret;
 	// }
 
-
+	public abstract Square randomSquare();
 
 	public void setCurrentSquare(int x, int y) {
 		if ((x >= 0) && (x < this.board.getSIZE()) && (y >= 0) && (y < this.board.getSIZE())

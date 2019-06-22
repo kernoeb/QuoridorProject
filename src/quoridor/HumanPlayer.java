@@ -61,29 +61,28 @@ public class HumanPlayer extends Player implements Serializable {
       }
   }
 
-  public boolean play(Square square, BoardGUI boardGUI) {
+  	public boolean play(Square square, BoardGUI boardGUI) {
 		boolean ret = false;
 
-      if(!this.terminal) {
-					if (square.isPawn()) {
-						ret = this.playPawn(square);
-						// System.out.println("playPawn : " + ret);
-						if (ret) {
-							this.game.nextPlayerGUI();
-						}
-					}
+   	    if(!this.terminal) {
+			if (square.isPawn()) {
+				ret = this.playPawn(square);
+				// System.out.println("playPawn : " + ret);
+				if (ret) {
+					this.game.nextPlayerGUI();
+				}
+			}
 
-					else if (square.isFence()) {
-						ret = this.playFence(square, boardGUI);
-						// System.out.println("playFence : " + ret);
-						if (ret) {
-							this.game.nextPlayerGUI();
-						}
-					}
-      }
-
+			else if (square.isFence()) {
+				ret = this.playFence(square, boardGUI);
+				// System.out.println("playFence : " + ret);
+				if (ret) {
+					this.game.nextPlayerGUI();
+				}
+			}
+    	}
 		return ret;
-  }
+  	}
 
 
 	public boolean playPawn(Square square) {
@@ -106,45 +105,35 @@ public class HumanPlayer extends Player implements Serializable {
 			int y = square.getY();
 			Square squareFence = null;
 			// Barrière horizontale
-			// System.out.println("Vals : " + x + ", " + y);
 			if (x % 2 != 0 && y % 2 == 0) {
-					try {
-							if (y != boardGUI.getSquares().length-1) {
-								squareFence = this.board.getGrid()[x][y+1];
-							}
-							else {
-								squareFence = this.board.getGrid()[x][y-1];
-							}
+				try {
+					if (y != boardGUI.getSquares().length-1) squareFence = this.board.getGrid()[x][y+1];
+					else squareFence = this.board.getGrid()[x][y-1];
 
-							if (this.checkFencePossible(squareFence, "h")) {
-								this.board.setFence(squareFence.getX(), squareFence.getY(), "h", this);
-					      this.setNbFences(this.nbFences - 1);
-								ret = true;
-							}
+					if (this.checkFencePossible(squareFence, "h")) {
+						this.board.setFence(squareFence.getX(), squareFence.getY(), "h", this);
+			      		this.setNbFences(this.nbFences - 1);
+						ret = true;
+					}
 
-
-					} catch (Exception ex) {}
+				} catch (Exception ex) {}
 			}
 			// Barrière verticale
 			else if (x % 2 == 0 && y % 2 != 0) {
-					try {
-							if (x != boardGUI.getSquares().length-1) {
-								squareFence = boardGUI.getSquare(boardGUI.getSquares()[x+1][y]);
-							}
-							else {
-								squareFence = boardGUI.getSquare(boardGUI.getSquares()[x-1][y]);
-							}
+				try {
+					if (y != boardGUI.getSquares().length-1) squareFence = this.board.getGrid()[x+1][y];
+					else squareFence = this.board.getGrid()[x-1][y];
 
-							if (this.checkFencePossible(squareFence, "v")) {
-								this.board.setFence(squareFence.getX(), squareFence.getY(), "v", this);
-					      this.setNbFences(this.nbFences - 1);
-								ret = true;
-							}
-					} catch (Exception ex) {}
-				}
+					if (this.checkFencePossible(squareFence, "v")) {
+						this.board.setFence(squareFence.getX(), squareFence.getY(), "v", this);
+			     		this.setNbFences(this.nbFences - 1);
+						ret = true;
+					}
+				} catch (Exception ex) {}
 			}
-
-			return ret;
+			// if (ret) this.board.removeFence(squareFence);
+		}
+		return ret;
 
 			// TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
 
@@ -361,5 +350,9 @@ public class HumanPlayer extends Player implements Serializable {
 		}
 
 		return ret;
+	}
+
+	public Square randomSquare() {
+		return null;
 	}
 }

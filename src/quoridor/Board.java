@@ -27,6 +27,8 @@ public class Board implements Serializable {
 	private String ANSI_CYAN = "\u001B[36m";
 	private String ANSI_WHITE = "\u001B[37m";
 
+	// private Object[][] listOfPossibilitiesFence;
+
 	/**
 	 * Board constructor
 	 * intiliaze a 81 squares board (9*9)
@@ -34,6 +36,7 @@ public class Board implements Serializable {
 	 */
 	public Board() {
 		this.grid = new Square[this.getTotalSize()][this.getTotalSize()];
+		// this.listOfPossibilitiesFence = new Object[128][2];
 		this.initializeBoard();
 		// stopColors();
 	}
@@ -136,36 +139,95 @@ public class Board implements Serializable {
 
 	}
 
-	// // public ArrayList<Square> listOfPossibilitiesFence(Player player) {
-	// public Object[][] listOfPossibilitiesFence(Player player) {
-	// 	// ArrayList<Square> list = new ArrayList<Square>();
-	// 	Object[][] obj = new Object[128][2];
+	public boolean possibleFence(Square square, Player player) {
+			boolean ret = false;
+			int x = square.getX();
+			int y = square.getY();
+			Square squareFence = null;
+			// Barrière horizontale
+			if (x % 2 != 0 && y % 2 == 0) {
+				try {
+					if (y != player.getGame().getBoardGUI().getSquares().length-1) squareFence = this.grid[x][y+1];
+					else squareFence = this.grid[x][y-1];
 
-	// 	int val = 0;
-	// 	for (int i = 0; i < getTotalSize(); i++) {
-	// 		for (int j = 0; j < getTotalSize(); j++) {
-	// 			if (((i % 2 != 0) && (j % 2 != 0))) {
-	// 				if (player.checkFencePossible(this.grid[i][j], "h")) {
-	// 					obj[val][0] = this.grid[i][j];
-	// 					obj[val][1] = "h";
-	// 					val++;
-	// 					this.removeFence(i, j, "h");
-	// 				}
+					if (player.checkFencePossible(squareFence, "h")) {
+						this.removeFence(squareFence.getX(), squareFence.getY(), "h");
+						ret = true;
+					}
 
-	// 				if (player.checkFencePossible(this.grid[i][j], "v")) {
-	// 					obj[val][0] = this.grid[i][j];
-	// 					obj[val][1] = "v";
-	// 					val++;
-	// 					this.removeFence(i, j, "v");
-	// 				}
-	// 				// if (this.grid[i][j].isFencePossible()) list.add(this.grid[i][j]);
-	// 			}
+				} catch (Exception ex) {}
+			}
+			// Barrière verticale
+			else if (x % 2 == 0 && y % 2 != 0) {
+				try {
+					if (y != player.getGame().getBoardGUI().getSquares().length-1) squareFence = this.grid[x+1][y];
+					else squareFence = this.grid[x-1][y];
+
+					if (player.checkFencePossible(squareFence, "v")) {
+						this.removeFence(squareFence.getX(), squareFence.getY(), "v");
+						ret = true;
+					}
+				} catch (Exception ex) {}
+			}
+		return ret;
+	}
+
+	// public void listOfPossibilitiesFence(Player player) {
+	public Object[][] listOfPossibilitiesFence(Player player) {
+		Object[][] listOfPossibilitiesFence = new Object[128][2];
+		int val = 0;
+		for (int i = 0; i < getTotalSize(); i++) {
+			for (int j = 0; j < getTotalSize(); j++) {
+				if (((i % 2 != 0) && (j % 2 != 0))) {
+					if (player.checkFencePossible(this.grid[i][j], "h")) {
+						listOfPossibilitiesFence[val][0] = this.grid[i][j];
+						listOfPossibilitiesFence[val][1] = "h";
+						val++;
+						this.removeFence(i, j, "h");
+					} else {
+						listOfPossibilitiesFence[val][0] = null;
+						listOfPossibilitiesFence[val][1] = "h";
+						val++;						
+					}
+
+					if (player.checkFencePossible(this.grid[i][j], "v")) {
+						listOfPossibilitiesFence[val][0] = this.grid[i][j];
+						listOfPossibilitiesFence[val][1] = "v";
+						val++;
+						this.removeFence(i, j, "v");
+					} else {
+						listOfPossibilitiesFence[val][0] = null;
+						listOfPossibilitiesFence[val][1] = "h";
+						val++;						
+					}
+				}
+			}
+		}
+		return listOfPossibilitiesFence;
+	}
+
+	// public void removeFence(Square s) {
+	// 	for (int i = 0; i < this.listOfPossibilitiesFence.length; i++) {
+	// 		if (this.listOfPossibilitiesFence[i][0] == s) {
+	// 			this.listOfPossibilitiesFence[i][0] = null;
+	// 			System.out.println("Trouvé !");
+	// 			break;
 	// 		}
 	// 	}
-
-	// 	// return list;
-	// 	return obj;
 	// }
+
+	// public Object[][] getListOfPossibilitiesFence() {
+	// 	return this.listOfPossibilitiesFence;
+	// }
+
+	// public boolean checkIfPossibilitiesFence(Square s) {
+	// 	for (int i = 0; i < this.listOfPossibilitiesFence.length; i++) {
+	// 		if (this.listOfPossibilitiesFence[i][0] == s) return true;
+	// 	}		
+	// 	return false;
+	// }
+
+
 
 	/**
 	 * Check the list of possibilities for the player

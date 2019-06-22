@@ -70,7 +70,7 @@ public class Maze {
 			}
 		}
 
-		printMaze(maze);
+		// printMaze(maze);
 		return maze;
 	}
 
