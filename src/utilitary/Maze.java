@@ -53,16 +53,16 @@ public class Maze {
 
 				if (this.sens == 0) {
 					if (x % 2 != 0 && y % 2 != 0) {
-						if (fenceAroundX(x, y)) maze[x][y] = 0;
-						else if (fenceAroundY(x, y)) maze[x][y] = 0;
+						if (fenceAround(x, y, 0, 1)) maze[x][y] = 0;
+						else if (fenceAround(x, y, 1, 0)) maze[x][y] = 0;
 					} 
 					else if ((temp.isPawn2() && x == 0 && fenceX(x, y, 0)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
 					else maze[x][y] = 1;
 
 				} else {
 					if ((x % 2 != 0) && (y % 2 != 0)) {
-						if (fenceAroundX(x, y)) maze[x][y] = 0;
-						else if (fenceAroundY(x, y)) maze[x][y] = 0;
+						if (fenceAround(x, y, 0, 1)) maze[x][y] = 0;
+						else if (fenceAround(x, y, 1, 0)) maze[x][y] = 0;
 					} 
 					else if ((temp.isPawn1() && x == this.board.getTotalSize()-1 && fenceX(x, y, this.board.getTotalSize()-1)) || temp.isFencePawn1() || temp.isFencePawn2()) maze[x][y] = 0;
 					else maze[x][y] = 1;					
@@ -97,16 +97,6 @@ public class Maze {
 	 */
 	private boolean isValid(int mat[][], boolean visited[][], int row, int col) {
 		return (row >= 0) && (row < this.board.getTotalSize()) && (col >= 0) && (col < this.board.getTotalSize()) && mat[row][col] == 1 && !visited[row][col];
-	}
-
-	/**
-	 * Check if square is valid (size)
-	 * @param  x horizontal
-	 * @param  y vertical
-	 * @return   true if valid
-	 */
-	private boolean checkValid(int x, int y) {
-		return (x >= 0) && (x < this.board.getTotalSize()) && (y >= 0) && (y < this.board.getTotalSize());
 	}
 
 	/**
@@ -154,37 +144,18 @@ public class Maze {
 	 * Check if there are fences to the left and right of a square
 	 * @param  x square X
 	 * @param  y square Y
+	 * @param i  coeff
+	 * @param j  coeff
 	 * @return   true if there are fences
 	 */
-	private boolean fenceAroundX(int x, int y) {
+	private boolean fenceAround(int x, int y, int i, int j) {
 		try {
-			if (!this.board.getGrid()[x-1][y].isFencePossible()) 
-				if (!this.board.getGrid()[x-2][y].isFencePossible()) 
-					if(!this.board.getGrid()[x-3][y].isFencePossible())
-						if (!this.board.getGrid()[x+1][y].isFencePossible())
-							if (!this.board.getGrid()[x+2][y].isFencePossible())
-								if (!this.board.getGrid()[x+3][y].isFencePossible()) 
-									return true;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
-		return false;
-	}
-
-	/**
-	 * Check if there are fences at the top and bottom of a square
-	 * @param  x square X
-	 * @param  y square Y
-	 * @return   true if there are fences
-	 */
-	private boolean fenceAroundY(int x, int y) {
-		try {
-			if (!this.board.getGrid()[x][y-1].isFencePossible()) 
-				if (!this.board.getGrid()[x][y-2].isFencePossible()) 
-					if(!this.board.getGrid()[x][y-3].isFencePossible())
-						if (!this.board.getGrid()[x][y+1].isFencePossible())
-							if (!this.board.getGrid()[x][y+2].isFencePossible())
-								if (!this.board.getGrid()[x][y+3].isFencePossible())
+			if (!this.board.getGrid()[x-i][y-i].isFencePossible()) 
+				if (!this.board.getGrid()[x-(2*i)][y-(2*i)].isFencePossible()) 
+					if(!this.board.getGrid()[x-(3*i)][y-(3*i)].isFencePossible())
+						if (!this.board.getGrid()[x+i][y+i].isFencePossible())
+							if (!this.board.getGrid()[x+(2*i)][y+(2*i)].isFencePossible())
+								if (!this.board.getGrid()[x+(3*i)][y+(3*i)].isFencePossible()) 
 									return true;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return false;
@@ -210,24 +181,4 @@ public class Maze {
 		}
 		return false;
 	}
-
-	/**
-	 * Check if there is a FENCE status at the top and bottom
-	 * @param  x square X
-	 * @param  y square right
-	 * @param  v direction
-	 * @return   true if there is a FENCE status
-	 */
-	private boolean fenceY(int x, int y, int v) {
-		try {
-			if (x == v) {
-				if ((this.board.getGrid()[x-1][y].isFencePawn1() || this.board.getGrid()[x+1][y].isFencePawn2())
-					&& (this.board.getGrid()[x+1][y].isFencePawn1() || this.board.getGrid()[x+1][y].isFencePawn2())) return true;
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false;
-		}
-		return false;
-	}
-
 }
