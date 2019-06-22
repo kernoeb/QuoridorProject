@@ -2,6 +2,7 @@ package quoridor.model;
 
 // project import
 import quoridor.model.utilitary.RWFile;
+import quoridor.model.*;
 
 import java.util.ArrayList;
 

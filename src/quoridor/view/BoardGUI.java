@@ -51,7 +51,7 @@ public class BoardGUI extends JPanel implements Serializable {
         this.setBackground(colorRed);
 
         SquareEcouteur sqEcouteur = new SquareEcouteur(this);
-        MouseEcouteur mb = new MouseEcouteur(this);
+        MouseEcouteur moEcouteur = new MouseEcouteur(this);
 
 
         for (int i = 0; i < 17; i++) {
@@ -78,19 +78,19 @@ public class BoardGUI extends JPanel implements Serializable {
                 this.squares[i][j].setBorderPainted(false);
                 this.add(squares[i][j]);
                 this.squares[i][j].addActionListener(sqEcouteur);
-                this.squares[i][j].addMouseListener(mb);
+                this.squares[i][j].addMouseListener(moEcouteur);
             }
         }
     }
 
     public void addAllListeners() {
       SquareEcouteur sqEcouteur = new SquareEcouteur(this);
-      MouseEcouteur mb = new MouseEcouteur(this);
+      MouseEcouteur moEcouteur = new MouseEcouteur(this);
 
       for (int i = 0; i < 17; i++) {
         for (int j = 0; j < 17; j++) {
           this.squares[i][j].addActionListener(sqEcouteur);
-          this.squares[i][j].addMouseListener(mb);
+          this.squares[i][j].addMouseListener(moEcouteur);
         }
       }
     }
