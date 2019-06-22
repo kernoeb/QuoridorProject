@@ -3,15 +3,18 @@ package view;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import controller.MouseButton;
-import controller.SquareEcouteur;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.io.*;
 
+import controller.SquareEcouteur;
+import controller.MouseButton;
 import quoridor.*;
 
-import java.util.ArrayList;
+public class BoardGUI extends JPanel implements Serializable {
 
-public class BoardGUI extends JPanel {
+    private static final long serialVersionUID = -350671869168492924L;
+
     JButton[][] squares = new JButton[17][17];
 
     // COLORS
@@ -73,13 +76,25 @@ public class BoardGUI extends JPanel {
                 else {
                     this.squares[i][j].setBackground(colorBlack);
                     this.squares[i][j].setPreferredSize(new Dimension(35,35));
-                } 
+                }
                 this.squares[i][j].setBorderPainted(false);
                 this.add(squares[i][j]);
                 this.squares[i][j].addActionListener(sqEcouteur);
                 this.squares[i][j].addMouseListener(mb);
             }
         }
+    }
+
+    public void addAllListeners() {
+      SquareEcouteur sqEcouteur = new SquareEcouteur(this);
+      MouseButton mb = new MouseButton(this);
+
+      for (int i = 0; i < 17; i++) {
+        for (int j = 0; j < 17; j++) {
+          this.squares[i][j].addActionListener(sqEcouteur);
+          this.squares[i][j].addMouseListener(mb);
+        }
+      }
     }
 
     public Game getGame() {

@@ -158,6 +158,7 @@ public class ActionEcouteur implements ActionListener {
     this.quoridorGUI.remove(this.quoridorGUI.getMenuLoad());
     this.quoridorGUI.setQuoridor(new Quoridor(fileChoosed, false));
     this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().getGame(), this.quoridorGUI));
+    this.quoridorGUI.getGameGUI().getGame().getBoardGUI().addAllListeners();
     this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
     // this.inGame = true;
 
