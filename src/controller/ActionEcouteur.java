@@ -143,7 +143,7 @@ public class ActionEcouteur implements ActionListener {
   private void launchMenuPause() {
     this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
 
-    // this.quoridorGUI.remove(this.quoridorGUI.getGameGUI());
+    this.quoridorGUI.remove(this.quoridorGUI.getGameGUI());
     this.quoridorGUI.add(this.quoridorGUI.getMenuPause());
 
     // this.quoridorGUI.setFocusableWindowState(true);
@@ -169,7 +169,15 @@ public class ActionEcouteur implements ActionListener {
   }
 
   private void resumeGame() {
+    this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
 
+    this.quoridorGUI.remove(this.quoridorGUI.getMenuPause());
+    this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
+
+    this.quoridorGUI.setFocusableWindowState(true);
+    this.quoridorGUI.getGameGUI().setOpaque(false);
+    this.quoridorGUI.revalidate();
+    this.quoridorGUI.repaint();
   }
 
   private void restartGame(JPanel panel) {
