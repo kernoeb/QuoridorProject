@@ -119,15 +119,15 @@ public class Maze {
 	 */
 	public boolean BFS(int mat[][], int i, int j, int x) {
 		boolean[][] visited = new boolean[this.board.getTotalSize()][this.board.getTotalSize()];
-		Queue<Node> q = new ArrayDeque<>();
+		Queue<Node> queue = new ArrayDeque<>();
 
 		visited[i][j] = true;
-		q.add(new Node(i, j, 0));
+		queue.add(new Node(i, j, 0));
 
 		int min_dist = Integer.MAX_VALUE;
 
-		while (!q.isEmpty()) {
-			Node node = q.poll();
+		while (!queue.isEmpty()) {
+			Node node = queue.poll();
 
 			i = node.x;
 			j = node.y;
@@ -141,7 +141,7 @@ public class Maze {
 			for (int k = 0; k < 4; k++) {
 				if (isValid(mat, visited, i + row[k], j + col[k])) {
 					visited[i + row[k]][j + col[k]] = true;
-					q.add(new Node(i + row[k], j + col[k], dist + 1));
+					queue.add(new Node(i + row[k], j + col[k], dist + 1));
 				}
 			}
 		}
