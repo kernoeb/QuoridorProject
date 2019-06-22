@@ -2,6 +2,7 @@
 
 // Import project
 import quoridor.*;
+import view.*;
 
 // Import Java
 // No import
@@ -93,8 +94,16 @@ public class Launcher {
 		}
 
 		else {
-			System.out.println("Aucun argument, lancement du config.txt");
-			Quoridor quoridor = new Quoridor("data/config.txt", "Red user", "Green user", true);
+		  	System.setProperty("awt.useSystemAAFontSettings","on"); 
+			System.setProperty("swing.aatext", "true"); 
+		    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+		      public void run() {
+		        new QuoridorGUI();
+		      }
+		    });	
+			// LaunchGUI launchGUI = new LaunchGUI();
+			// System.out.println("Aucun argument, lancement du config.txt");
+			// Quoridor quoridor = new Quoridor("data/config.txt", "Red user", "Green user", true);
 		}
 
 	}
