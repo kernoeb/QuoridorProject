@@ -27,6 +27,7 @@ public class ActionEcouteur implements ActionListener {
     }
 
     else if (component == this.quoridorGUI.getButtonLoad()) {
+      this.quoridorGUI.getFileChooser().setSelectedFile(new File(""));
       this.launchMenuLoad();
     }
 
@@ -44,7 +45,6 @@ public class ActionEcouteur implements ActionListener {
       }
 
       else if (command.equals(JFileChooser.CANCEL_OPTION)) {
-        this.quoridorGUI.getFileChooser().setSelectedFile(new File(""));
       }
     }
 
@@ -178,7 +178,7 @@ public class ActionEcouteur implements ActionListener {
   private void saveAndQuitGame() {
     this.quoridorGUI.getQuoridor().saveGame(this.quoridorGUI.getGameGUI().getGame());
     this.quoridorGUI.getFileChooser().rescanCurrentDirectory();
-    this.quoridorGUI.getFileChooser().setSelectedFile(new File(""));
+    // this.quoridorGUI.getFileChooser().setSelectedFile(new File(""));
     this.launchMenuMain(this.quoridorGUI.getMenuPause());
   }
 
