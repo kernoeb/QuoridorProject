@@ -69,6 +69,7 @@ public class HumanPlayer extends Player implements Serializable {
 				ret = this.playPawn(square);
 				// System.out.println("playPawn : " + ret);
 				if (ret) {
+					System.out.println("HumanPlayer - play() isPawn -> nextPlayerGUI");
 					this.game.nextPlayerGUI();
 				}
 			}
@@ -77,6 +78,7 @@ public class HumanPlayer extends Player implements Serializable {
 				ret = this.playFence(square, boardGUI);
 				// System.out.println("playFence : " + ret);
 				if (ret) {
+					System.out.println("HumanPlayer - play() isFence -> nextPlayerGUI");
 					this.game.nextPlayerGUI();
 				}
 			}

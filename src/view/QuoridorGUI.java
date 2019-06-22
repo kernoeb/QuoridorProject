@@ -125,6 +125,10 @@ public class QuoridorGUI extends JFrame {
     return this.endMenu;
   }
 
+  public JLabel getEndText() {
+    return this.endText;
+  }
+
   public JFileChooser getFileChooser() {
     return this.fileChooser;
   }
@@ -361,7 +365,6 @@ public class QuoridorGUI extends JFrame {
     this.endMenu = new JPanel();
     this.buttonEndMenu = new JPanel();
 
-    this.endText = new JLabel("Pause");
     GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
     try {
       genv.registerFont(getFontPalatino());
@@ -369,7 +372,7 @@ public class QuoridorGUI extends JFrame {
     } catch (IOException io) {}
 
 
-    this.modeText = new JLabel("<html><head><style type='text/css'>body { font-family: Palatino Linotype; } </style></head><div align='center'>Veuillez choisir un <br> mode de jeu :</div></html>");
+    this.endText = new JLabel();
     this.endText.setForeground(Color.WHITE);
     this.endText.setPreferredSize(new Dimension(400, 300));
     this.setFontPalatino(this.endText, 40);

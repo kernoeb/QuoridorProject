@@ -194,4 +194,17 @@ public class ActionEcouteur implements ActionListener {
   private void menuBack() {
     this.launchMenuMain(this.quoridorGUI.getMenuEnd());
   }
+
+  // private void endOfGame() {
+  //   this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+  //
+  //   this.quoridorGUI.remove(this.quoridorGUI.getGameGUI());
+  //   this.quoridorGUI.getEndText().setText("<html><head><style type='text/css'>body { font-family: Palatino Linotype; } </style></head><div align='center'>Félicitations ! Le joueur " + this.actualPlayer + " <br> a gagné la partie !</div></html>");
+  //   this.quoridorGUI.add(this.quoridorGUI.getMenuEnd());
+  //
+  //   this.quoridorGUI.setFocusableWindowState(true);
+  //   this.quoridorGUI.getGameGUI().setOpaque(false);
+  //   this.quoridorGUI.revalidate();
+  //   this.quoridorGUI.repaint();
+  // }
 }
