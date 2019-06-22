@@ -15,7 +15,7 @@ import java.util.Random;
 import java.io.*;
 
 /**
- * This class contains the methods to intiliaze the game
+ * This class contains the methods to initialize the game
  * @author
  */
 public class Game implements Serializable {
@@ -36,8 +36,8 @@ public class Game implements Serializable {
 
 	/**
 	 * Game constructor
-	 * intiliaze the board, the two players and the mode
-	 * The mode is choosen by the players with a scanner
+	 * initialize the board, the two players and the mode
+	 * The mode is chosen by the players with a scanner
 	 * @author
 	 */
 	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) throws SaveGameException {
