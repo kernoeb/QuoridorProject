@@ -44,13 +44,15 @@ public class Quoridor {
 		}
 	}
 
-	/**
-	 * Quoridor constructor
-	 * Create an object Quoridor
-	 * Serve as a platform to load and launch games
-	 * @param fileName path to the file where the current game will be saved in
-	 * @author
-	*/
+    /**
+     * Quoridor constructor
+     * Create an object Quoridor
+     * Serve as a platform to load and launch games
+     * @param mode game mode (HH or HA)
+     * @param namePlayer1 player 1's username
+     * @param namePlayer2 player 2's username
+     * @param terminal terminal mode or not
+     */
 	public Quoridor(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		try {
 			this.terminal = terminal;
@@ -107,7 +109,7 @@ public class Quoridor {
 	}
 
 	/**
-	 * Launch the choosen game
+	 * Launch the chosen game
 	 * @param game the desired game to launch
 	 * @author
 	 */
