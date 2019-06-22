@@ -112,12 +112,14 @@ public class AutoPlayer extends Player implements Serializable {
 
 		boolean val = new Random().nextInt(3) == 0;
 
-		if (val) {
-			s = (Square)lopFence[new Random().nextInt(lopFence.length)][0];
-			while (s == null) {
+		if (getNbRestingFences() > 0) {
+			if (val) {
 				s = (Square)lopFence[new Random().nextInt(lopFence.length)][0];
-			}
-		} else return s = lopPawn.get(new Random().nextInt(lopPawn.size())); 
+				while (s == null) {
+					s = (Square)lopFence[new Random().nextInt(lopFence.length)][0];
+				}
+			} else s = lopPawn.get(new Random().nextInt(lopPawn.size())); 
+		} else s = lopPawn.get(new Random().nextInt(lopPawn.size())); 
 
 
 		return s;
