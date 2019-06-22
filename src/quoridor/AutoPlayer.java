@@ -58,9 +58,10 @@ public class AutoPlayer extends Player implements Serializable {
 	public boolean play(Square square, BoardGUI boardGUI) {
 		boolean ret = false;
 
-   	    if(!this.terminal) {
+		if(!this.terminal) {
 			if (square.isPawn()) {
 				ret = this.playPawn(square);
+
 				if (ret) {
 					this.game.nextPlayerGUI();
 				}
@@ -68,12 +69,14 @@ public class AutoPlayer extends Player implements Serializable {
 
 			else if (square.isFence()) {
 				ret = this.playFence(square, boardGUI);
+
 				if (ret) {
 					this.game.nextPlayerGUI();
 				}
 			}
-    	}
-		return ret;		
+    }
+
+		return ret;
 	}
 
 	public boolean playPawn(Square square) {
@@ -92,16 +95,19 @@ public class AutoPlayer extends Player implements Serializable {
 
 				if (this.checkFencePossible(square, "h")) {
 					this.board.setFence(square.getX(), square.getY(), "h", this);
-		      		this.setNbFences(this.nbFences - 1);
+		      this.setNbFences(this.nbFences - 1);
 					ret = true;
-				} else if (this.checkFencePossible(square, "v")) {
+				}
+
+				else if (this.checkFencePossible(square, "v")) {
 					this.board.setFence(square.getX(), square.getY(), "v", this);
-		      		this.setNbFences(this.nbFences - 1);
+		      this.setNbFences(this.nbFences - 1);
 					ret = true;
 				}
 
 			} catch (Exception ex) {}
 		}
+		
 		return ret;
 	}
 
@@ -118,8 +124,8 @@ public class AutoPlayer extends Player implements Serializable {
 				while (s == null) {
 					s = (Square)lopFence[new Random().nextInt(lopFence.length)][0];
 				}
-			} else s = lopPawn.get(new Random().nextInt(lopPawn.size())); 
-		} else s = lopPawn.get(new Random().nextInt(lopPawn.size())); 
+			} else s = lopPawn.get(new Random().nextInt(lopPawn.size()));
+		} else s = lopPawn.get(new Random().nextInt(lopPawn.size()));
 
 
 		return s;
