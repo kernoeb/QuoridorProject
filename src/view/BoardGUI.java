@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.io.*;
 
 import controller.SquareEcouteur;
-import controller.MouseButton;
+import controller.MouseEcouteur;
 import quoridor.*;
 
 public class BoardGUI extends JPanel implements Serializable {
@@ -53,7 +53,7 @@ public class BoardGUI extends JPanel implements Serializable {
         this.setBackground(colorRed);
 
         SquareEcouteur sqEcouteur = new SquareEcouteur(this);
-        MouseButton mb = new MouseButton(this);
+        MouseEcouteur mb = new MouseEcouteur(this);
 
 
         for (int i = 0; i < 17; i++) {
@@ -87,7 +87,7 @@ public class BoardGUI extends JPanel implements Serializable {
 
     public void addAllListeners() {
       SquareEcouteur sqEcouteur = new SquareEcouteur(this);
-      MouseButton mb = new MouseButton(this);
+      MouseEcouteur mb = new MouseEcouteur(this);
 
       for (int i = 0; i < 17; i++) {
         for (int j = 0; j < 17; j++) {

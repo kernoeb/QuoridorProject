@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 import view.BoardGUI;
 
 
-public class MouseButton implements MouseListener {
+public class MouseEcouteur implements MouseListener {
     // private Color colorRed = new Color(186, 0, 32);
     // private Color colorRed = new Color(192, 13, 30);
     // private Color colorRed = new Color(180, 35, 25);
@@ -20,7 +20,7 @@ public class MouseButton implements MouseListener {
     private Color colorTmp = new Color(167, 168, 170);
     private BoardGUI boardGUI;
 
-    public MouseButton(BoardGUI boardGUI) {
+    public MouseEcouteur(BoardGUI boardGUI) {
         this.boardGUI = boardGUI;
     }
 
@@ -68,7 +68,7 @@ public class MouseButton implements MouseListener {
                     System.out.println("");
                 }
             }
-        
+
         }
         // source.setBackground(Color.RED);
         if (!(x % 2 != 0 && y % 2 != 0) && this.boardGUI.getBoard().getGrid()[x][y].isPawn()) source.setBackground(colorTmp);
