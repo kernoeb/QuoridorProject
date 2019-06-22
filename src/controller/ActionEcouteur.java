@@ -2,6 +2,7 @@ package controller;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
 
 import quoridor.*;
 
@@ -35,10 +36,15 @@ public class ActionEcouteur implements ActionListener {
 
     else if (component == this.quoridorGUI.getFileChooser()) {
       JFileChooser fileChooser = (JFileChooser) e.getSource();
+      String command = e.getActionCommand();
 
-      if (e.getActionCommand().equals(JFileChooser.APPROVE_SELECTION)) {
+      if (command.equals(JFileChooser.APPROVE_SELECTION)) {
         String fileChoosed = fileChooser.getSelectedFile().getAbsolutePath();
         this.launchOldGame(fileChoosed);
+      }
+
+      else if (command.equals(JFileChooser.CANCEL_OPTION)) {
+        this.quoridorGUI.getFileChooser().setSelectedFile(new File(""));
       }
     }
 
@@ -172,6 +178,7 @@ public class ActionEcouteur implements ActionListener {
   private void saveAndQuitGame() {
     this.quoridorGUI.getQuoridor().saveGame(this.quoridorGUI.getGameGUI().getGame());
     this.quoridorGUI.getFileChooser().rescanCurrentDirectory();
+    this.quoridorGUI.getFileChooser().setSelectedFile(new File(""));
     this.launchMenuMain(this.quoridorGUI.getMenuPause());
   }
 
