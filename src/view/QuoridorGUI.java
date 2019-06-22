@@ -7,9 +7,10 @@ import javax.swing.filechooser.*;
 import javax.swing.border.*;
 
 import controller.ActionEcouteur;
-import quoridor.Quoridor;
+import quoridor.*;
 import textured.BackgroundImage;
 import textured.JTexturedButton;
+import utilitary.*;
 
 public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
@@ -146,6 +147,10 @@ public class QuoridorGUI extends JFrame {
 
   public void setFileChoosed(String fileName) {
     this.fileChoosed = fileName;
+  }
+
+  public void setQuoridor(Quoridor quoridor) {
+    this.quoridor = quoridor;
   }
 
   public void setBackgroundImage(String fileName) {

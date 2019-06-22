@@ -37,7 +37,7 @@ public class ActionEcouteur implements ActionListener {
       JFileChooser fileChooser = (JFileChooser) e.getSource();
 
       if (e.getActionCommand().equals(JFileChooser.APPROVE_SELECTION)) {
-        String fileChoosed = fileChooser.getSelectedFile().getName();
+        String fileChoosed = fileChooser.getSelectedFile().getAbsolutePath();
         this.launchOldGame(fileChoosed);
       }
     }
@@ -151,7 +151,8 @@ public class ActionEcouteur implements ActionListener {
     this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
 
     this.quoridorGUI.remove(this.quoridorGUI.getMenuLoad());
-    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().loadOldGame(fileChoosed), this.quoridorGUI));
+    this.quoridorGUI.setQuoridor(new Quoridor(fileChoosed, false));
+    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().getGame(), this.quoridorGUI));
     this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
     // this.inGame = true;
 

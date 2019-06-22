@@ -34,7 +34,7 @@ public class Quoridor {
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
 			if (this.terminal) {
 				this.game.start();
-			}		
+			}
 		} catch (SaveGameException ex) {
 			this.saveGame(this.game);
 		} catch(Exception e) {
@@ -55,7 +55,7 @@ public class Quoridor {
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
 			if (this.terminal) {
 				this.game.start();
-			}			
+			}
 		} catch (SaveGameException ex) {
 			this.saveGame(this.game);
 		} catch (Exception e) {
