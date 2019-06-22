@@ -119,11 +119,11 @@ public class GameGUI extends JPanel {
   }
 
   public void updateFences() {
-    for (int i = 0; i < this.game.getActualPlayer().getNbRestingFences(); i++) {
+    for (int i = 0; i < this.game.getPlayer2().getNbRestingFences(); i++) {
       this.nbBar1.add(new JLabel(this.fenceOrange));
     }
 
-    for (int i = 0; i < this.game.getOtherPlayer().getNbRestingFences(); i++) {
+    for (int i = 0; i < this.game.getPlayer1().getNbRestingFences(); i++) {
     	this.nbBar2.add(new JLabel(this.fenceBlue));
     }
   }

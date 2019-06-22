@@ -105,12 +105,12 @@ public class Game implements Serializable {
 
 	private void runAutoPlayer() {
 		if (this.actualPlayer instanceof AutoPlayer) {
-			Square square = this.actualPlayer.randomSquare(); 
+			Square square = this.actualPlayer.randomSquare();
 			this.actualPlayer.play(square, this.boardGUI);
-			this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
-			this.boardGUI.setFencesEnabled(square);
-			this.boardGUI.displayBoardGUI();		
-			this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);	
+			// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+			// this.boardGUI.setFencesEnabled(square);
+			this.boardGUI.displayBoardGUI();
+			this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
 		}
 	}
 
@@ -165,6 +165,7 @@ public class Game implements Serializable {
 			this.actualPlayer = this.player2;
 		}
 		else this.actualPlayer = this.player1;
+		System.out.println(this.actualPlayer);
 	}
 
 	/**
