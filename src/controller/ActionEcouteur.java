@@ -120,19 +120,18 @@ public class ActionEcouteur implements ActionListener {
   }
 
   private void launchGameGUI(Mode mode) {
-    try {
-      this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+    this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
 
-      this.quoridorGUI.remove(this.quoridorGUI.getMenuMode());
-      this.quoridorGUI.setGameGUI(new GameGUI(new Game(mode, "Red user", "Green user", false), this.quoridorGUI));
-      this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
-      // this.inGame = true;
+    this.quoridorGUI.remove(this.quoridorGUI.getMenuMode());
+    this.quoridorGUI.setQuoridor(new Quoridor(mode, "Red user", "Green user", false));
+    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().getGame(), this.quoridorGUI));
+    this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
+    // this.inGame = true;
 
-      this.quoridorGUI.setFocusableWindowState(true);
-      this.quoridorGUI.getGameGUI().setOpaque(false);
-      this.quoridorGUI.revalidate();
-      this.quoridorGUI.repaint();
-    } catch(SaveGameException e) {}
+    this.quoridorGUI.setFocusableWindowState(true);
+    this.quoridorGUI.getGameGUI().setOpaque(false);
+    this.quoridorGUI.revalidate();
+    this.quoridorGUI.repaint();
   }
 
   private void launchMenuPause() {
@@ -172,7 +171,7 @@ public class ActionEcouteur implements ActionListener {
 
   private void saveAndQuitGame() {
     this.quoridorGUI.getQuoridor().saveGame(this.quoridorGUI.getGameGUI().getGame());
-
+    this.quoridorGUI.getFileChooser().rescanCurrentDirectory();
     this.launchMenuMain(this.quoridorGUI.getMenuPause());
   }
 

@@ -76,9 +76,16 @@ public class RWFile {
 	 *
 	 * @param fileName
 	 */
-	public static void writeFile(Game game) {
+	public static void writeFile(Game game, String oldFileName) {
 		if (game != null) {
 			try {
+				if(oldFileName != null) {
+					File oldFile = new File(oldFileName);
+					if(oldFile.delete()) {
+						System.out.println("Fichier supprimé : " + oldFileName);
+					}
+				}
+
 				String fileName = new SimpleDateFormat("'../data/save/save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
 				FileOutputStream file = new FileOutputStream(fileName);
 				ObjectOutputStream obj = new ObjectOutputStream(file);

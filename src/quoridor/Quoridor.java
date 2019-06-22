@@ -18,6 +18,7 @@ public class Quoridor {
 	private Game game;
 	private String fileName;
 	private boolean terminal;
+	private boolean load;
 
 	/**
 	 * Quoridor constructor
@@ -31,6 +32,7 @@ public class Quoridor {
 			ArrayList<String> list = RWFile.readFile(fileName);
 			Mode mode = Mode.valueOf(list.get(0));
 			this.terminal = terminal;
+			this.load = false;
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
 			if (this.terminal) {
 				this.game.start();
@@ -52,6 +54,7 @@ public class Quoridor {
 	public Quoridor(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		try {
 			this.terminal = terminal;
+			this.load = false;
 			this.game = new Game(mode, namePlayer1, namePlayer2, this.terminal);
 			if (this.terminal) {
 				this.game.start();
@@ -67,6 +70,7 @@ public class Quoridor {
 		try {
 			this.terminal = terminal;
 			this.fileName = fileName;
+			this.load = true;
 			this.game = this.loadOldGame(this.fileName);
 			// this.game.start();
 			if (this.terminal) this.launchGame(this.game);
@@ -124,7 +128,12 @@ public class Quoridor {
 	 */
 	public void saveGame(Game game) {
 		if (game != null) {
-				RWFile.writeFile(game);
+			if(this.load) {
+				RWFile.writeFile(game, this.fileName);
+			}
+			else {
+				RWFile.writeFile(game, "");
+			}
 		}
 
 		else {
