@@ -1,10 +1,10 @@
-package utilitary;
+package quoridor.model.utilitary;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import quoridor.*;
+import quoridor.model.*;
 
 public class RWFile {
 

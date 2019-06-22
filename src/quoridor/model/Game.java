@@ -1,11 +1,8 @@
-package quoridor;
+package quoridor.model;
 
 // import project
-import quoridor.Board;
-import quoridor.Mode;
-import quoridor.Player;
 
-import view.BoardGUI;
+import quoridor.view.BoardGUI;
 
 
 // import java

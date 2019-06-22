@@ -1,6 +1,6 @@
-package utilitary;
+package quoridor.model.utilitary;
 
-import quoridor.*;
+import quoridor.model.*;
 import java.util.ArrayDeque;
 import java.util.Queue;
 

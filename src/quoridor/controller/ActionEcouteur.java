@@ -1,13 +1,13 @@
-package controller;
+package quoridor.controller;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.File;
 
-import quoridor.*;
+import quoridor.model.*;
 
-import view.QuoridorGUI;
-import view.GameGUI;
+import quoridor.view.QuoridorGUI;
+import quoridor.view.GameGUI;
 
 public class ActionEcouteur implements ActionListener {
 

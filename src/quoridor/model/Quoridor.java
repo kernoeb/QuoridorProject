@@ -1,11 +1,9 @@
-package quoridor;
+package quoridor.model;
 
 // project import
-import quoridor.Game;
-import utilitary.RWFile;
+import quoridor.model.utilitary.RWFile;
 
 import java.util.ArrayList;
-import java.io.*;
 
 // java import
 

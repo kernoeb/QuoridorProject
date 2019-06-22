@@ -1,4 +1,4 @@
-package quoridor;
+package quoridor.model;
 
 /**
  * Enumeration with the two game mode possible.

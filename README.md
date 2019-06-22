@@ -2,7 +2,7 @@
 
 Application Java réalisée dans le cadre d'un projet universitaire. 
 
-Quoridor : <https://www.gigamic.com/jeu/quoridor>  
+Quoridor : <https://www.gigamic.com/jeu/quoridor.model>  
 Plus d'informations sur le jeu ici : <https://fr.wikipedia.org/wiki/Quoridor>
 
 Compile and create the jar file :

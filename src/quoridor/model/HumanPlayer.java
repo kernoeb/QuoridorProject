@@ -1,12 +1,12 @@
-package quoridor;
+package quoridor.model;
 
 // import project
-//import quoridor.Pawn;
+//import quoridor.model.Pawn;
 
 // import java
 import java.util.Scanner;
 import java.io.*;
-import view.*;
+import quoridor.view.*;
 
 public class HumanPlayer extends Player implements Serializable {
 

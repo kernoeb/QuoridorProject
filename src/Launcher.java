@@ -1,8 +1,8 @@
 //No packages
 
 // Import project
-import quoridor.*;
-import view.*;
+import quoridor.model.*;
+import quoridor.view.*;
 
 // Import Java
 // No import
@@ -103,7 +103,7 @@ public class Launcher {
 		    });	
 			// LaunchGUI launchGUI = new LaunchGUI();
 			// System.out.println("Aucun argument, lancement du config.txt");
-			// Quoridor quoridor = new Quoridor("data/config.txt", "Red user", "Green user", true);
+			// Quoridor quoridor.model = new Quoridor("data/config.txt", "Red user", "Green user", true);
 		}
 
 	}

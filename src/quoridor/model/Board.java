@@ -1,6 +1,5 @@
-package quoridor;
+package quoridor.model;
 
-import quoridor.Square;
 //import GUI.MainGUI;
 import java.util.ArrayList;
 import java.io.*;

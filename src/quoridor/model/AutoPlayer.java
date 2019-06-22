@@ -1,9 +1,9 @@
-package quoridor;
+package quoridor.model;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.*;
-import view.*;
+import quoridor.view.*;
 
 public class AutoPlayer extends Player implements Serializable {
 

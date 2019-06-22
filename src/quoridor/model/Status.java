@@ -1,4 +1,4 @@
-package quoridor;
+package quoridor.model;
 
 public enum Status {
 	FENCEPOSSIBLE,

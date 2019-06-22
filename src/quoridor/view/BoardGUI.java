@@ -1,15 +1,13 @@
-package view;
+package quoridor.view;
 
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.io.*;
 
-import controller.SquareEcouteur;
-import controller.MouseEcouteur;
-import quoridor.*;
+import quoridor.controller.SquareEcouteur;
+import quoridor.controller.MouseEcouteur;
+import quoridor.model.*;
 
 public class BoardGUI extends JPanel implements Serializable {
 

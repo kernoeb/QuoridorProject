@@ -1,12 +1,12 @@
-package view;
+package quoridor.view;
 
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
 
-import quoridor.*;
+import quoridor.model.*;
 import textured.JTexturedButton;
-import controller.ActionEcouteur;
+import quoridor.controller.ActionEcouteur;
 
 public class GameGUI extends JPanel {
   QuoridorGUI quoridorGUI;

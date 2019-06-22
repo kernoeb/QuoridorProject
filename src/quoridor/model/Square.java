@@ -1,7 +1,6 @@
-package quoridor;
+package quoridor.model;
 
 // import Project
-import quoridor.Status;
 
 import java.io.*;
 //import java

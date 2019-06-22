@@ -1,9 +1,9 @@
-package controller;
+package quoridor.controller;
 
 import javax.swing.*;
 import java.awt.event.*;
-import view.*;
-import quoridor.*;
+import quoridor.view.*;
+import quoridor.model.*;
 
 public class SquareEcouteur implements ActionListener {
   BoardGUI boardGUI;

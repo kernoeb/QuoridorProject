@@ -1,16 +1,14 @@
-package view;
+package quoridor.view;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import javax.swing.filechooser.*;
-import javax.swing.border.*;
 
-import controller.ActionEcouteur;
-import quoridor.*;
+import quoridor.controller.ActionEcouteur;
+import quoridor.model.*;
 import textured.BackgroundImage;
 import textured.JTexturedButton;
-import utilitary.*;
 
 public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
@@ -184,7 +182,7 @@ public class QuoridorGUI extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
 
-    // quoridor = new Quoridor()
+    // quoridor.model = new Quoridor()
 
     this.initializeLoadMenu();
     this.initializeMainMenu();

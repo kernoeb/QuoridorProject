@@ -1,9 +1,9 @@
-package quoridor;
+package quoridor.model;
 
 import java.util.ArrayList;
-import utilitary.Maze;
+import quoridor.model.utilitary.Maze;
 import java.io.*;
-import view.*;
+import quoridor.view.*;
 
 /**
  * Player

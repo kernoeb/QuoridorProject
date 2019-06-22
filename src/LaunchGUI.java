@@ -1,7 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-
-import view.*;
+import quoridor.view.*;
 
 public class LaunchGUI {
   public static void main(String[] args) {

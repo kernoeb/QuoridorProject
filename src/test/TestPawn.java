@@ -1,7 +1,6 @@
 package test;
 
 import org.junit.*;
-import quoridor.*;
 
 import static org.junit.Assert.*;
 

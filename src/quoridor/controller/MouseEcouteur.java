@@ -1,12 +1,9 @@
-package controller;
+package quoridor.controller;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.imageio.*;
-import java.io.*;
-import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.border.EmptyBorder;
-import view.BoardGUI;
+
+import quoridor.view.BoardGUI;
 
 
 public class MouseEcouteur implements MouseListener {
