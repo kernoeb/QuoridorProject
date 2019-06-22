@@ -1,4 +1,4 @@
-package textured;
+package quoridor.view.textured;
 
 import javax.swing.*;
 import java.awt.*;

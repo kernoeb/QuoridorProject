@@ -7,8 +7,8 @@ import javax.swing.filechooser.*;
 
 import quoridor.controller.ActionEcouteur;
 import quoridor.model.*;
-import textured.BackgroundImage;
-import textured.JTexturedButton;
+import quoridor.view.textured.BackgroundImage;
+import quoridor.view.textured.JTexturedButton;
 
 public class QuoridorGUI extends JFrame {
   JPanel loadMenu;
