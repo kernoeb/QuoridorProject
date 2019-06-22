@@ -27,7 +27,7 @@ public class Quoridor {
      * @param fileName file used
      * @param namePlayer1 player 1's name
      * @param namePlayer2 player 2's name
-     * @param terminal teminal mode or not
+     * @param terminal terminal mode or not
      */
 	public Quoridor(String fileName, String namePlayer1, String namePlayer2, boolean terminal) {
 		try {
