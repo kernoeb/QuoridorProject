@@ -1,32 +1,34 @@
 package quoridor.controller;
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
 
 import quoridor.view.BoardGUI;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 
 public class MouseEcouteur implements MouseListener {
     // private Color colorRed = new Color(186, 0, 32);
     // private Color colorRed = new Color(192, 13, 30);
     // private Color colorRed = new Color(180, 35, 25);
-    private Color colorRed = new Color(149, 26, 0);
-    // private Color colorRed = new Color(149, 26, 0);
-    private Color colorWhite = Color.WHITE;
-    private Color colorBlack = Color.BLACK;
-    private Color colorTmp = new Color(167, 168, 170);
-    private BoardGUI boardGUI;
+    private final Color colorRed = new Color(149, 26, 0);
+    private final Color colorBlack = Color.BLACK;
+    private final Color colorTmp = new Color(167, 168, 170);
+    private final BoardGUI boardGUI;
 
     public MouseEcouteur(BoardGUI boardGUI) {
         this.boardGUI = boardGUI;
     }
 
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     public void mouseEntered(MouseEvent e) {
-        JButton source = (JButton)e.getSource();
+        JButton source = (JButton) e.getSource();
 
         int x = this.boardGUI.getX(source);
         int y = this.boardGUI.getY(source);
@@ -46,7 +48,7 @@ public class MouseEcouteur implements MouseListener {
                             this.boardGUI.getSquares()[x][y - 2].setBackground(colorTmp);
                         }
                     } catch (Exception ex) {
-                        System.out.println("");
+                        System.out.println();
                     }
                 }
             } else if (x % 2 == 0 && y % 2 != 0) {
@@ -63,18 +65,19 @@ public class MouseEcouteur implements MouseListener {
                             this.boardGUI.getSquares()[x - 2][y].setBackground(colorTmp);
                         }
                     } catch (Exception ex) {
-                        System.out.println("");
+                        System.out.println();
                     }
                 }
 
             }
         }
         // source.setBackground(Color.RED);
-        if (!(x % 2 != 0 && y % 2 != 0) && this.boardGUI.getBoard().getGrid()[x][y].isPawn()) source.setBackground(colorTmp);
+        if (!(x % 2 != 0 && y % 2 != 0) && this.boardGUI.getBoard().getGrid()[x][y].isPawn())
+            source.setBackground(colorTmp);
     }
 
     public void mouseExited(MouseEvent e) {
-        JButton source = (JButton)e.getSource();
+        JButton source = (JButton) e.getSource();
 
         int x = this.boardGUI.getX(source);
         int y = this.boardGUI.getY(source);
@@ -90,28 +93,30 @@ public class MouseEcouteur implements MouseListener {
 
         if (x % 2 != 0 && y % 2 == 0) {
             try {
-                if (y != this.boardGUI.getSquares().length-1) {
-                  this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                  this.boardGUI.getSquares()[x][y+1].setBackground(colorRed);
-                  this.boardGUI.getSquares()[x][y+2].setBackground(colorRed);
-                } else {
-                  this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                  this.boardGUI.getSquares()[x][y-1].setBackground(colorRed);
-                  this.boardGUI.getSquares()[x][y-2].setBackground(colorRed);
-                }
-            } catch (Exception ex) {}
-        } else if (x % 2 == 0 && y % 2 != 0) {
-            try {
-                if (x != this.boardGUI.getSquares().length-1) {
-                  this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                  this.boardGUI.getSquares()[x+1][y].setBackground(colorRed);
-                  this.boardGUI.getSquares()[x+2][y].setBackground(colorRed);
+                if (y != this.boardGUI.getSquares().length - 1) {
+                    this.boardGUI.getSquares()[x][y].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x][y + 1].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x][y + 2].setBackground(colorRed);
                 } else {
                     this.boardGUI.getSquares()[x][y].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x-1][y].setBackground(colorRed);
-                    this.boardGUI.getSquares()[x-2][y].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x][y - 1].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x][y - 2].setBackground(colorRed);
                 }
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+            }
+        } else if (x % 2 == 0 && y % 2 != 0) {
+            try {
+                if (x != this.boardGUI.getSquares().length - 1) {
+                    this.boardGUI.getSquares()[x][y].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x + 1][y].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x + 2][y].setBackground(colorRed);
+                } else {
+                    this.boardGUI.getSquares()[x][y].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x - 1][y].setBackground(colorRed);
+                    this.boardGUI.getSquares()[x - 2][y].setBackground(colorRed);
+                }
+            } catch (Exception ex) {
+            }
         }
     }
 

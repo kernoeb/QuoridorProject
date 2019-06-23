@@ -2,214 +2,170 @@ package quoridor.model;
 
 // import project
 
-import quoridor.view.BoardGUI;
-
-
-// import java
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.*;
+
+// import java
 
 /**
  * This class contains the methods to initialize the game
+ *
  * @author
  */
 public class Game implements Serializable {
 
-	private static final long serialVersionUID = 5454564654L;
+    private static final long serialVersionUID = 5454564654L;
 
-	private Board board;
-	private Player player1;
-	private Player player2;
-	private Mode mode;
+    private final Board board;
+    private Player player1;
+    private Player player2;
+    private final Mode mode;
 
-	private BoardGUI boardGUI;
+    private Player actualPlayer;
 
-	private Player actualPlayer;
+    private final boolean terminal;
 
-	private boolean terminal;
+    /**
+     * Game constructor
+     * initialize the board, the two players and the mode
+     * The mode is chosen by the players with a scanner
+     *
+     * @author
+     */
+    public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
+        this.board = new Board();
+        this.terminal = terminal;
+        this.mode = mode;
 
-	/**
-	 * Game constructor
-	 * initialize the board, the two players and the mode
-	 * The mode is chosen by the players with a scanner
-	 * @author
-	 */
-	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
-		this.board = new Board();
-		this.terminal = terminal;
-		this.mode = mode;
+        if (mode == Mode.HH) {
+            this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE() - 1, this.board.getSIZE() / 2, terminal);
+            this.player2 = new HumanPlayer(this, namePlayer2, this.board, 0, this.board.getSIZE() / 2, terminal);
+        } else if (mode == Mode.HA) {
+            this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE() - 1, this.board.getSIZE() / 2, terminal);
+            this.player2 = new AutoPlayer(this, namePlayer2, this.board, 0, this.board.getSIZE() / 2, terminal);
+        }
 
-		if (mode == Mode.HH) {
-			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2), terminal);
-			this.player2 = new HumanPlayer(this, namePlayer2, this.board, 0, (int) (this.board.getSIZE() /2), terminal);
-		}
+        this.initializeGame();
+        // this.boardGUI = new BoardGUI(this, this.board);
+        // runAutoPlayer();
+    }
 
-		else if (mode == Mode.HA) {
-			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2), terminal);
-			this.player2 = new AutoPlayer(this, namePlayer2, this.board, 0, (int) (this.board.getSIZE() /2), terminal);
-		}
+    public Board getBoard() {
+        return this.board;
+    }
 
-		this.initializeGame();
-		// this.boardGUI = new BoardGUI(this, this.board);
-		// runAutoPlayer();
-	}
+    public Player getPlayer1() {
+        return this.player1;
+    }
 
-	public Board getBoard() {
-		return this.board;
-	}
+    public Player getPlayer2() {
+        return this.player2;
+    }
 
-	public Player getPlayer1() {
-		return this.player1;
-	}
+    public Player getActualPlayer() {
+        return this.actualPlayer;
+    }
 
-	public Player getPlayer2() {
-		return this.player2;
-	}
+    // public BoardGUI getBoardGUI() {
+    // 	return this.boardGUI;
+    // }
 
-	public Player getActualPlayer() {
-		return this.actualPlayer;
-	}
+    /**
+     * Initialize the game
+     */
+    private void initializeGame() {
+        this.actualPlayer = this.whoStarts();
+    }
 
-	public Player getOtherPlayer() {
-		if (this.actualPlayer == this.player1) return this.player2;
-		else return this.player1;
-	}
+    // private void runAutoPlayer() {
+    // 	if (this.actualPlayer instanceof AutoPlayer) {
+    // 		Square square = this.actualPlayer.randomSquare();
+    // 		this.actualPlayer.play(square, this.boardGUI);
+    // 		// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+    // 		// this.boardGUI.setFencesEnabled(square);
+    // 		this.boardGUI.displayBoardGUI();
+    // 		this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
+    // 	}
+    // }
 
-	// public BoardGUI getBoardGUI() {
-	// 	return this.boardGUI;
-	// }
+    /**
+     * Choose randomly which player plays first
+     *
+     * @return the starting player
+     */
+    private Player whoStarts() {
+        ArrayList<Player> list = new ArrayList<Player>();
+        list.add(this.player1);
+        list.add(this.player2);
+        if (!this.terminal && this.mode == Mode.HA) {
+            return this.player1;
+        } else return list.get(new Random().nextInt(list.size()));
+    }
 
-	/**
-	 * @param board the desired board to play the game with.
-	 */
-	public void setBoard(Board board) {
-		if(board != null) {
-			this.board = board;
-		}
-		else {
-			System.err.println("setBoard : Paramètre non valide");
-		}
-	}
+    public boolean checkHasFinished(Player player) {
+        // TODO - Player.checkHasFinished
+        boolean ret = false;
 
-	/**
-	 * Initialize the game
-	 */
-	private void initializeGame() {
-		this.actualPlayer = this.whoStarts();
-	}
+        if (player != null) {
+            if (player == this.player1) {
+                ret = (this.player1.getCurrentSquare().getX() == 0);
+            } else if (player == this.player2) {
+                ret = (this.player2.getCurrentSquare().getX() == (this.board.getTotalSize() - 1));
+            }
+        } else {
+            System.err.println("checkHasFinished : Paramètre non valide.");
+        }
 
-	// private void runAutoPlayer() {
-	// 	if (this.actualPlayer instanceof AutoPlayer) {
-	// 		Square square = this.actualPlayer.randomSquare();
-	// 		this.actualPlayer.play(square, this.boardGUI);
-	// 		// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
-	// 		// this.boardGUI.setFencesEnabled(square);
-	// 		this.boardGUI.displayBoardGUI();
-	// 		this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
-	// 	}
-	// }
+        return ret;
+    }
 
-	/**
-	 * Choose randomly which player plays first
-	 * @return the starting player
-	 */
-	public Player whoStarts() {
-		ArrayList<Player> list = new ArrayList<Player>();
-		list.add(this.player1);
-		list.add(this.player2);
-		if (!this.terminal && this.mode == Mode.HA) {
-			return this.player1;
-		} else return list.get(new Random().nextInt(list.size()));
-	}
+    public void setActualPlayer() {
+        if (this.actualPlayer == this.player1) {
+            this.actualPlayer = this.player2;
+        } else this.actualPlayer = this.player1;
+        // System.out.println(this.actualPlayer);
+    }
 
-	public boolean checkHasFinished(Player player) {
-		// TODO - Player.checkHasFinished
-		boolean ret = false;
+    // public void start() throws SaveGameException {
+    // 	// TODO - implement Game.start
+    // 	while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
+    // 		System.out.println(this);
+    // 		this.nextPlayer();
+    // 	}
+    //
+    // 	this.endOfGame();
+    // }
 
-		if (player != null) {
-			if (player == this.player1) {
-				ret = (this.player1.getCurrentSquare().getX() == 0);
-			}
+    /**
+     * End the game and launch the results procedure
+     */
+    public Player getWinnerPlayer() {
+        Player finishPlayer = null;
 
-			else if (player == this.player2) {
-				ret = (this.player2.getCurrentSquare().getX() == (this.board.getTotalSize()-1));
-			}
-		}
+        if (this.checkHasFinished(this.player1)) {
+            finishPlayer = this.player1;
+        } else if (this.checkHasFinished(this.player2)) {
+            finishPlayer = this.player2;
+        }
 
-		else {
-			System.err.println("checkHasFinished : Paramètre non valide.");
-		}
+        return finishPlayer;
+    }
 
-		return ret;
-	}
+    public String toString() {
+        // TODO - implement Game.toString
+        String ret = "";
 
-	public void nextPlayer() {
-		if (this.actualPlayer == this.player1) {
-			this.player1.play();
+        // this.boardGUI.displayBoardGUI(this.board);
 
-			this.actualPlayer = this.player2;
-		}
-		else if (this.actualPlayer == this.player2) {
-			this.player2.play();
+        ret += this.board;
+        if (!this.board.getColor()) {
+            if (this.actualPlayer == this.getPlayer1()) {
+                ret += this.actualPlayer.getName() + " (X) :";
+            } else ret += this.actualPlayer.getName() + " (O) :";
+        } else ret += this.actualPlayer.getName() + " :";
 
-			this.actualPlayer = this.player1;
-		}
-	}
-
-	public void setActualPlayer() {
-		if (this.actualPlayer == this.player1) {
-			this.actualPlayer = this.player2;
-		}
-		else this.actualPlayer = this.player1;
-		// System.out.println(this.actualPlayer);
-	}
-
-	/**
-	 * Launch the game
-	 */
-	// public void start() throws SaveGameException {
-	// 	// TODO - implement Game.start
-	// 	while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
-	// 		System.out.println(this);
-	// 		this.nextPlayer();
-	// 	}
-	//
-	// 	this.endOfGame();
-	// }
-
-	/**
-	 * End the game and launch the results procedure
-	 */
-	public Player getWinnerPlayer() {
-		Player finishPlayer = null;
-
-		if(this.checkHasFinished(this.player1)) {
-			finishPlayer = this.player1;
-		}
-		else if(this.checkHasFinished(this.player2)) {
-			finishPlayer = this.player2;
-		}
-
-		return finishPlayer;
-	}
-
-	public String toString() {
-		// TODO - implement Game.toString
-		String ret = "";
-
-		// this.boardGUI.displayBoardGUI(this.board);
-
-		ret += this.board;
-		if (!this.board.getColor()) {
-			if(this.actualPlayer == this.getPlayer1()) {
-				ret += this.actualPlayer.getName() + " (X) :";
-			}
-			else ret += this.actualPlayer.getName() + " (O) :";
-		}
-		else ret += this.actualPlayer.getName() + " :";
-
-		return ret;
-	}
+        return ret;
+    }
 
 }
