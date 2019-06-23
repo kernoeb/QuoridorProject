@@ -29,13 +29,44 @@ public class AutoPlayer extends Player implements Serializable {
 	 */
 	public void play() {
 		ArrayList<Square> al = this.board.listOfPossibilitiesPawn(this);
+		Object[][] lopFence = this.board.listOfPossibilitiesFence(this);
+
 		int currentX = this.currentSquare.getX();
 		int currentY = this.currentSquare.getY();
 		// System.out.println("Vals : " + currentX + " " + currentY);
-		this.board.printListOfPossibilitiesPawn(this);
+		//this.board.printListOfPossibilitiesPawn(this);
 
-		if (al.contains(this.board.getGrid()[(currentX+2)][currentY])) {
-			super.movePawn((currentX+2), currentY);
+		boolean val = new Random().nextInt(3) == 0;
+
+		if (getNbRestingFences() > 0) {
+			if (!val) {
+
+			if (al.contains(this.board.getGrid()[(currentX + 2)][currentY])) {
+				super.movePawn((currentX + 2), currentY);
+			} else {
+				Square s = al.get(new Random().nextInt(al.size()));
+				super.movePawn(s.getX(), s.getY());
+			}
+
+			} else {
+
+
+				Square s = (Square) lopFence[new Random().nextInt(lopFence.length)][0];
+				while (s == null) {
+					s = (Square) lopFence[new Random().nextInt(lopFence.length)][0];
+				}
+				//this.board.setFence(s.getX(), s.getY(), "h", this);
+				try {
+					if (this.checkFencePossible(s, "h")) {
+						this.board.setFence(s.getX(), s.getY(), "h", this);
+						this.setNbFences(this.nbFences - 1);
+					} else if (this.checkFencePossible(s, "v")) {
+						this.board.setFence(s.getX(), s.getY(), "v", this);
+						this.setNbFences(this.nbFences - 1);
+					}
+				} catch (Exception ex) {
+				}
+			}
 		} else {
 			Square s = al.get(new Random().nextInt(al.size()));
 			super.movePawn(s.getX(), s.getY());
@@ -45,7 +76,7 @@ public class AutoPlayer extends Player implements Serializable {
 
 	/**
 	 * Places a fence on the desired emplacement
-	 * The overlaping validity is checked by the square object by fenceStatus
+	 * The overlapping validity is checked by the square object by fenceStatus
 	 * The path validity is checked by the checkExistingPath method
 	 * @author
 	 */
