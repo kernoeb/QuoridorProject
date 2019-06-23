@@ -6,7 +6,6 @@ import quoridor.view.BoardGUI;
 
 
 // import java
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.*;
@@ -28,7 +27,6 @@ public class Game implements Serializable {
 
 	private Player actualPlayer;
 
-	private Scanner scan;
 	private boolean terminal;
 
 	/**
@@ -157,31 +155,31 @@ public class Game implements Serializable {
 		}
 	}
 
-	public void nextPlayerGUI() {
+	public void setActualPlayer() {
 		if (this.actualPlayer == this.player1) {
 			this.actualPlayer = this.player2;
 		}
 		else this.actualPlayer = this.player1;
-		System.out.println(this.actualPlayer);
+		// System.out.println(this.actualPlayer);
 	}
 
 	/**
 	 * Launch the game
 	 */
-	public void start() throws SaveGameException {
-		// TODO - implement Game.start
-		while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
-			System.out.println(this);
-			this.nextPlayer();
-		}
-
-		this.endOfGame();
-	}
+	// public void start() throws SaveGameException {
+	// 	// TODO - implement Game.start
+	// 	while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
+	// 		System.out.println(this);
+	// 		this.nextPlayer();
+	// 	}
+	//
+	// 	this.endOfGame();
+	// }
 
 	/**
 	 * End the game and launch the results procedure
 	 */
-	public void endOfGame() {
+	public Player getWinnerPlayer() {
 		Player finishPlayer = null;
 
 		if(this.checkHasFinished(this.player1)) {
@@ -191,7 +189,7 @@ public class Game implements Serializable {
 			finishPlayer = this.player2;
 		}
 
-		System.out.println("Félicitations ! Le joueur " + this.player1.getName() + " a gagné la partie !");
+		return finishPlayer;
 	}
 
 	public String toString() {
@@ -201,7 +199,13 @@ public class Game implements Serializable {
 		// this.boardGUI.displayBoardGUI(this.board);
 
 		ret += this.board;
-		ret += this.actualPlayer.getName() + " :";
+		if (!this.board.getColor()) {
+			if(this.actualPlayer == this.getPlayer1()) {
+				ret += this.actualPlayer.getName() + " (X) :";
+			}
+			else ret += this.actualPlayer.getName() + " (O) :";
+		}
+		else ret += this.actualPlayer.getName() + " :";
 
 		return ret;
 	}

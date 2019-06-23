@@ -13,6 +13,7 @@ public class Board implements Serializable {
 
 	private static final long serialVersionUID = 54254574554L;
 
+	private boolean color;
 	private int SIZE = 9;
 	private Square[][] grid;
 
@@ -38,6 +39,14 @@ public class Board implements Serializable {
 		// this.listOfPossibilitiesFence = new Object[128][2];
 		this.initializeBoard();
 		// stopColors();
+	}
+
+	public void setColor(boolean color) {
+		this.color = color;
+	}
+
+	public boolean getColor() {
+		return this.color;
 	}
 
 	public void initializeBoard() {
@@ -186,7 +195,7 @@ public class Board implements Serializable {
 					} else {
 						listOfPossibilitiesFence[val][0] = null;
 						listOfPossibilitiesFence[val][1] = "h";
-						val++;						
+						val++;
 					}
 
 					if (player.checkFencePossible(this.grid[i][j], "v")) {
@@ -197,7 +206,7 @@ public class Board implements Serializable {
 					} else {
 						listOfPossibilitiesFence[val][0] = null;
 						listOfPossibilitiesFence[val][1] = "h";
-						val++;						
+						val++;
 					}
 				}
 			}
@@ -222,7 +231,7 @@ public class Board implements Serializable {
 	// public boolean checkIfPossibilitiesFence(Square s) {
 	// 	for (int i = 0; i < this.listOfPossibilitiesFence.length; i++) {
 	// 		if (this.listOfPossibilitiesFence[i][0] == s) return true;
-	// 	}		
+	// 	}
 	// 	return false;
 	// }
 
@@ -383,205 +392,256 @@ public class Board implements Serializable {
 
 		Square temp = null;
 
-		System.out.print("  ");
-		for (int i = 0; i < this.getSIZE(); i++) System.out.print(ANSI_YELLOW + i + "   ");
-		System.out.println("");
 
-		for (int x = 0; x < this.getTotalSize(); x++) {
-			if (this.isEvenNumber(x)) {
-				ret += ANSI_YELLOW + x/2 + " ";
-			} else ret += "  ";
-			for (int y = 0; y < this.getTotalSize(); y++) {
-				temp = this.grid[x][y];
+		if (this.color) {
+			System.out.print("  ");
+			for (int i = 0; i < this.getSIZE(); i++) System.out.print(ANSI_YELLOW + i + "   ");
+			System.out.println("");
+			for (int x = 0; x < this.getTotalSize(); x++) {
+				if (this.isEvenNumber(x)) {
+					ret += ANSI_YELLOW + x/2 + " ";
+				} else ret += "  ";
+				for (int y = 0; y < this.getTotalSize(); y++) {
+					temp = this.grid[x][y];
 
-				if (temp.isPawn()) {
-					if (temp.isPawnPossible()) {
-						ret += this.ANSI_WHITE;
+					if (temp.isPawn()) {
+						if (temp.isPawnPossible()) {
+							ret += this.ANSI_WHITE;
+						}
+
+						else if (temp.isPawn1()) {
+							ret += this.ANSI_RED;
+						}
+
+						else if (temp.isPawn2()) {
+							ret += this.ANSI_GREEN;
+						}
+
+						ret += "X ";
 					}
 
-					else if (temp.isPawn1()) {
-						ret += this.ANSI_RED;
-					}
 
-					else if (temp.isPawn2()) {
-						ret += this.ANSI_GREEN;
-					}
+					else if (temp.isFence()) {
+						if (temp.isFencePossible()) {
+							ret += this.ANSI_GREY;
+						}
 
-					ret += "X ";
+						else if (temp.isFencePawn1()) {
+							ret += this.ANSI_RED;
+						}
+
+						else if (temp.isFencePawn2()) {
+							ret += this.ANSI_GREEN;
+						}
+
+						if (this.isEvenNumber(x)) {
+							ret += "| ";
+						}
+
+						else if (this.isEvenNumber(y)) {
+							ret += "─ ";
+						}
+
+						else {
+							ret += "+ ";
+						}
+					}
 				}
 
-
-				else if (temp.isFence()) {
-					if (temp.isFencePossible()) {
-						ret += this.ANSI_GREY;
-					}
-
-					else if (temp.isFencePawn1()) {
-						ret += this.ANSI_RED;
-					}
-
-					else if (temp.isFencePawn2()) {
-						ret += this.ANSI_GREEN;
-					}
-
-					if (this.isEvenNumber(x)) {
-						ret += "| ";
-					}
-
-					else if (this.isEvenNumber(y)) {
-						ret += "─ ";
-					}
-
-					else {
-						ret += "+ ";
-					}
-				}
+				ret += this.ANSI_RESET + "\n";
 			}
+		}
+		else {
+			System.out.print("  ");
+			for (int i = 0; i < this.getSIZE(); i++) System.out.print(i + "   ");
+			System.out.println("");
+			for (int x = 0; x < this.getTotalSize(); x++) {
+				if (this.isEvenNumber(x)) {
+					ret += x/2 + " ";
+				} else ret += "  ";
+				for (int y = 0; y < this.getTotalSize(); y++) {
+					temp = this.grid[x][y];
 
-			ret += this.ANSI_RESET + "\n";
+					if (temp.isPawn()) {
+						if (temp.isPawnPossible()) {
+							ret += "  ";
+						}
+
+						else if (temp.isPawn1()) {
+							ret += "X ";
+						}
+
+						else if (temp.isPawn2()) {
+							ret += "O ";
+						}
+					}
+
+
+					else if (temp.isFence()) {
+						if (temp.isFencePossible()) {
+							ret += "  ";
+						}
+
+						else if (this.isEvenNumber(x)) {
+							ret += "| ";
+						}
+
+						else if (this.isEvenNumber(y)) {
+							ret += "─ ";
+						}
+
+						else {
+							ret += "+ ";
+						}
+					}
+				}
+
+				ret += "\n";
+			}
 		}
 		return ret;
 	}
 
-	public void displayForPawn() {
-		Square temp = null;
 
-		System.out.print("  ");
-		for (int i = 0; i < this.getSIZE(); i++) System.out.print(ANSI_YELLOW + i + "   ");
-		System.out.println("");
+	// private void stopColors() {
+	// 	this.ANSI_RESET = "";
+	// 	this.ANSI_GREY = "";
+	// 	this.ANSI_RED = "";
+	// 	this.ANSI_GREEN = "";
+	// 	this.ANSI_YELLOW = "";
+	// 	this.ANSI_BLUE = "";
+	// 	this.ANSI_PURPLE = "";
+	// 	this.ANSI_CYAN = "";
+	// 	this.ANSI_WHITE = "";
+	// }
 
-		for (int x = 0; x < this.getTotalSize(); x++) {
-			if (this.isEvenNumber(x)) {
-				System.out.print(ANSI_YELLOW + x/2 + " ");
-			}
-			else System.out.print("  ");
+	// public void displayForPawn() {
+	// 	Square temp = null;
+	//
+	// 	System.out.print("  ");
+	// 	for (int i = 0; i < this.getSIZE(); i++) System.out.print(ANSI_YELLOW + i + "   ");
+	// 	System.out.println("");
+	//
+	// 	for (int x = 0; x < this.getTotalSize(); x++) {
+	// 		if (this.isEvenNumber(x)) {
+	// 			System.out.print(ANSI_YELLOW + x/2 + " ");
+	// 		}
+	// 		else System.out.print("  ");
+	//
+	// 		for (int y = 0; y < this.getTotalSize(); y++) {
+	// 			temp = this.grid[x][y];
+	//
+	// 			if (temp.isPawn()) {
+	// 				if (temp.isPawnPossible()) {
+	// 					System.out.print(this.ANSI_WHITE);
+	// 				}
+	//
+	// 				else if (temp.isPawn1()) {
+	// 					System.out.print(this.ANSI_RED);
+	// 				}
+	//
+	// 				else if (temp.isPawn2()) {
+	// 					System.out.print(this.ANSI_GREEN);
+	// 				}
+	//
+	// 				System.out.print("X ");
+	// 			}
+	//
+	//
+	// 			else if (temp.isFence()) {
+	// 				if (temp.isFencePossible()) {
+	// 					System.out.print(this.ANSI_GREY);
+	// 				}
+	//
+	// 				else if (temp.isFencePawn1()) {
+	// 					System.out.print(this.ANSI_RED);
+	// 				}
+	//
+	// 				else if (temp.isFencePawn2()) {
+	// 					System.out.print(this.ANSI_GREEN);
+	// 				}
+	//
+	// 				if (this.isEvenNumber(x)) {
+	// 					System.out.print("| ");
+	// 				}
+	//
+	// 				else if (this.isEvenNumber(y)) {
+	// 					System.out.print("─ ");
+	// 				}
+	//
+	// 				else {
+	// 					System.out.print("+ ");
+	// 				}
+	// 			}
+	// 		}
+	//
+	// 		System.out.println(this.ANSI_RESET);
+	// 	}
+	// }
 
-			for (int y = 0; y < this.getTotalSize(); y++) {
-				temp = this.grid[x][y];
+	// public void displayForFence() {
+	// 	Square temp = null;
+	//
+	// 	System.out.print("    ");
+	// 	for (int i = 0; i < this.getSIZE()-1; i++) System.out.print(ANSI_YELLOW + i + "   ");
+	// 	System.out.println("");
+	//
+	// 	for (int x = 0; x < this.getTotalSize(); x++) {
+	// 		if (this.isOddNumber(x)) {
+	// 			System.out.print(ANSI_YELLOW + (int) (x/2) + " ");
+	// 		}
+	// 		else System.out.print("  ");
+	//
+	// 		for (int y = 0; y < this.getTotalSize(); y++) {
+	// 			temp = this.grid[x][y];
+	//
+	// 			if (temp.isPawn()) {
+	// 				if (temp.isPawnPossible()) {
+	// 					System.out.print(this.ANSI_WHITE);
+	// 				}
+	//
+	// 				else if (temp.isPawn1()) {
+	// 					System.out.print(this.ANSI_RED);
+	// 				}
+	//
+	// 				else if (temp.isPawn2()) {
+	// 					System.out.print(this.ANSI_GREEN);
+	// 				}
+	//
+	// 				System.out.print("X ");
+	// 			}
+	//
+	//
+	// 			else if (temp.isFence()) {
+	// 				if (temp.isFencePossible()) {
+	// 					System.out.print(this.ANSI_GREY);
+	// 				}
+	//
+	// 				else if (temp.isFencePawn1()) {
+	// 					System.out.print(this.ANSI_RED);
+	// 				}
+	//
+	// 				else if (temp.isFencePawn2()) {
+	// 					System.out.print(this.ANSI_GREEN);
+	// 				}
+	//
+	// 				if (this.isEvenNumber(x)) {
+	// 					System.out.print("| ");
+	// 				}
+	//
+	// 				else if (this.isEvenNumber(y)) {
+	// 					System.out.print("─ ");
+	// 				}
+	//
+	// 				else {
+	// 					System.out.print("+ ");
+	// 				}
+	// 			}
+	// 		}
+	//
+	// 		System.out.println(this.ANSI_RESET);
+	// 	}
+	// }
 
-				if (temp.isPawn()) {
-					if (temp.isPawnPossible()) {
-						System.out.print(this.ANSI_WHITE);
-					}
-
-					else if (temp.isPawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
-
-					else if (temp.isPawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
-
-					System.out.print("X ");
-				}
-
-
-				else if (temp.isFence()) {
-					if (temp.isFencePossible()) {
-						System.out.print(this.ANSI_GREY);
-					}
-
-					else if (temp.isFencePawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
-
-					else if (temp.isFencePawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
-
-					if (this.isEvenNumber(x)) {
-						System.out.print("| ");
-					}
-
-					else if (this.isEvenNumber(y)) {
-						System.out.print("─ ");
-					}
-
-					else {
-						System.out.print("+ ");
-					}
-				}
-			}
-
-			System.out.println(this.ANSI_RESET);
-		}
-	}
-
-	public void displayForFence() {
-		Square temp = null;
-
-		System.out.print("    ");
-		for (int i = 0; i < this.getSIZE()-1; i++) System.out.print(ANSI_YELLOW + i + "   ");
-		System.out.println("");
-
-		for (int x = 0; x < this.getTotalSize(); x++) {
-			if (this.isOddNumber(x)) {
-				System.out.print(ANSI_YELLOW + (int) (x/2) + " ");
-			}
-			else System.out.print("  ");
-
-			for (int y = 0; y < this.getTotalSize(); y++) {
-				temp = this.grid[x][y];
-
-				if (temp.isPawn()) {
-					if (temp.isPawnPossible()) {
-						System.out.print(this.ANSI_WHITE);
-					}
-
-					else if (temp.isPawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
-
-					else if (temp.isPawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
-
-					System.out.print("X ");
-				}
-
-
-				else if (temp.isFence()) {
-					if (temp.isFencePossible()) {
-						System.out.print(this.ANSI_GREY);
-					}
-
-					else if (temp.isFencePawn1()) {
-						System.out.print(this.ANSI_RED);
-					}
-
-					else if (temp.isFencePawn2()) {
-						System.out.print(this.ANSI_GREEN);
-					}
-
-					if (this.isEvenNumber(x)) {
-						System.out.print("| ");
-					}
-
-					else if (this.isEvenNumber(y)) {
-						System.out.print("─ ");
-					}
-
-					else {
-						System.out.print("+ ");
-					}
-				}
-			}
-
-			System.out.println(this.ANSI_RESET);
-		}
-	}
-
-
-	public void stopColors() {
-		this.ANSI_RESET = "";
-		this.ANSI_GREY = "";
-		this.ANSI_RED = "";
-		this.ANSI_GREEN = "";
-		this.ANSI_YELLOW = "";
-		this.ANSI_BLUE = "";
-		this.ANSI_PURPLE = "";
-		this.ANSI_CYAN = "";
-		this.ANSI_WHITE = "";
-	}
 
 }

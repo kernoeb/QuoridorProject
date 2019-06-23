@@ -34,31 +34,31 @@ public class HumanPlayer extends Player implements Serializable {
    * @author
    */
   public void play() throws SaveGameException {
-      if(this.terminal) {
-          if(this.nbFences > 0) {
-              String mode = this.askMode();
-
-              if (mode.equalsIgnoreCase("pawn")) {
-                  this.board.displayForPawn();
-                  this.playPawn();
-              }
-
-              else if (mode.equalsIgnoreCase("fence")) {
-                  this.board.displayForFence();
-                  this.playFence();
-                  System.out.println("Il vous reste " + super.nbFences + " barrières !");
-              }
-              else if (mode.equalsIgnoreCase("save")) {
-              	throw new SaveGameException("");
-              }
-          }
-          else {
-              System.out.println("Vous n'avez plus de murs disponibles !");
-
-              this.board.displayForPawn();
-              this.playPawn();
-          }
-      }
+      // if(this.terminal) {
+      //     if(this.nbFences > 0) {
+      //         String mode = this.askMode();
+			//
+      //         if (mode.equalsIgnoreCase("pawn")) {
+      //             this.board.displayForPawn();
+      //             this.playPawn();
+      //         }
+			//
+      //         else if (mode.equalsIgnoreCase("fence")) {
+      //             this.board.displayForFence();
+      //             this.playFence();
+      //             System.out.println("Il vous reste " + super.nbFences + " barrières !");
+      //         }
+      //         else if (mode.equalsIgnoreCase("save")) {
+      //         	throw new SaveGameException("");
+      //         }
+      //     }
+      //     else {
+      //         System.out.println("Vous n'avez plus de murs disponibles !");
+			//
+      //         this.board.displayForPawn();
+      //         this.playPawn();
+      //     }
+      // }
   }
 
   	public boolean play(Square square, BoardGUI boardGUI) {
@@ -70,7 +70,7 @@ public class HumanPlayer extends Player implements Serializable {
 				// System.out.println("playPawn : " + ret);
 				if (ret) {
 					System.out.println("HumanPlayer - play() isPawn -> nextPlayerGUI");
-					this.game.nextPlayerGUI();
+					this.game.setActualPlayer();
 				}
 			}
 
@@ -79,7 +79,7 @@ public class HumanPlayer extends Player implements Serializable {
 				// System.out.println("playFence : " + ret);
 				if (ret) {
 					System.out.println("HumanPlayer - play() isFence -> nextPlayerGUI");
-					this.game.nextPlayerGUI();
+					this.game.setActualPlayer();
 				}
 			}
     	}
