@@ -9,12 +9,11 @@ import quoridor.view.QuoridorGUI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// java import
-
 /**
- * Permits to launch a session from which can be launch and saved games
+ * Quoridor
  *
- * @author
+ * @author BOISNARD Noéwen
+ * @author GAVIGNET Sébastien
  */
 public class Quoridor {
 
@@ -86,6 +85,12 @@ public class Quoridor {
         }
     }
 
+    /**
+     * Quoridor Constructor
+     *
+     * @param fileName fileName config
+     * @param terminal terminal or GUI mode
+     */
     public Quoridor(String fileName, boolean terminal) {
         try {
             this.terminal = terminal;
@@ -107,13 +112,19 @@ public class Quoridor {
     }
 
     /**
-     * @return the Game of the current Quoridor.
-     * @author
+     * Return the created game by the class
+     *
+     * @return the created game
      */
     public Game getGame() {
         return this.game;
     }
 
+    /**
+     * If GUI mode, if AutoPlayer is player one, play the move
+     *
+     * @param quoridorGUI current game gui
+     */
     public void runAutoPlayer(QuoridorGUI quoridorGUI) {
         Player actualPlayer = this.game.getActualPlayer();
         BoardGUI boardGUI = quoridorGUI.getGameGUI().getBoardGUI();
@@ -127,8 +138,10 @@ public class Quoridor {
     }
 
     /**
-     * @return The previously saved game
-     * @author
+     * Get the previous played game
+     *
+     * @param fileName file name used
+     * @return the game
      */
     private Game loadOldGame(String fileName) {
         Game game = null;
@@ -145,8 +158,6 @@ public class Quoridor {
 
     /**
      * Launch the chosen game
-     *
-     * @author
      */
     private void launchGame() {
         if (game != null) {
@@ -177,6 +188,11 @@ public class Quoridor {
         }
     }
 
+    /**
+     * Switch to the next player
+     *
+     * @param mode current mode used
+     */
     private void nextPlayer(String mode) {
         Player actualPlayer = this.game.getActualPlayer();
 
@@ -201,6 +217,11 @@ public class Quoridor {
         this.game.setActualPlayer();
     }
 
+    /**
+     * Play a pawn for the current user
+     *
+     * @param actualPlayer current user
+     */
     private void makePlayPawn(Player actualPlayer) {
         Board board = this.game.getBoard();
         this.displayTerminal.displayForPawn(board);
@@ -221,6 +242,11 @@ public class Quoridor {
         actualPlayer.movePawn(board.pawnCoord(x), board.pawnCoord(y));
     }
 
+    /**
+     * Play a fence for the current player
+     *
+     * @param actualPlayer current player
+     */
     private void makePlayFence(Player actualPlayer) {
 
         Board board = this.game.getBoard();
@@ -251,7 +277,6 @@ public class Quoridor {
      * Save the desired game into the saving file of the current Quoridor object
      *
      * @param game The desired game to save
-     * @author
      */
     public void saveGame(Game game) {
         if (game != null) {
@@ -265,6 +290,12 @@ public class Quoridor {
         }
     }
 
+    /**
+     * In terminal mode, ask the user if he wants to
+     * play a pawn or a fence
+     *
+     * @return the answer
+     */
     private String askMode() {
         System.out.println("Quelle pièce voulez-vous jouer ? \n"
                 + "Pion (p) ou Mur (m) | Arrêter et sauvegarder la partie (s)");
@@ -293,6 +324,12 @@ public class Quoridor {
         return ret;
     }
 
+    /**
+     * Ask the X coordinate to the user
+     *
+     * @param maxSize max size of the checkerboard
+     * @return the coordinate
+     */
     private int askX(int maxSize) {
         int x = 0;
 
@@ -329,6 +366,12 @@ public class Quoridor {
         return x;
     }
 
+    /**
+     * Ask the Y coordinate to the user
+     *
+     * @param maxSize max size of the checkerboard
+     * @return the coordinate
+     */
     private int askY(int maxSize) {
         int y = 0;
 
@@ -364,6 +407,11 @@ public class Quoridor {
         return y;
     }
 
+    /**
+     * Ask the direction for a fence
+     *
+     * @return the direction
+     */
     private String askDir() {
         String ret;
 
@@ -390,6 +438,11 @@ public class Quoridor {
         return ret;
     }
 
+    /**
+     * Ask if the terminal can show colors
+     *
+     * @return true if the user allows to show colors
+     */
     private boolean askColor() {
         boolean ret = false;
         String line;
