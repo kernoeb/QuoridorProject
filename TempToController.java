@@ -2,107 +2,189 @@
 // Game.java
 // =============================================================================
 
-public void start() throws SaveGameException {
-  // TODO - implement Game.start
-  while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
-    System.out.println(this);
-    this.nextPlayer();
+	private BoardGUI boardGUI;
+
+    this.boardGUI = new BoardGUI(this, this.board);
+
+  public BoardGUI getBoardGUI() {
+    return this.boardGUI;
   }
 
-  this.endOfGame();
-}
+  private void runAutoPlayer() {
+    if (this.actualPlayer instanceof AutoPlayer) {
+      Square square = this.actualPlayer.randomSquare();
+      this.actualPlayer.play(square, this.boardGUI);
+      // this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+      // this.boardGUI.setFencesEnabled(square);
+      this.boardGUI.displayBoardGUI();
+      this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
+    }
+  }
 
+// =============================================================================
+// Board.java
+// =============================================================================
+
+public boolean possibleFence(Square square, Player player) {
+    boolean ret = false;
+    int x = square.getX();
+    int y = square.getY();
+    Square squareFence = null;
+    // Barrière horizontale
+    if (x % 2 != 0 && y % 2 == 0) {
+      try {
+        if (y != player.getGame().getBoardGUI().getSquares().length-1) squareFence = this.grid[x][y+1];
+        else squareFence = this.grid[x][y-1];
+
+        if (player.checkFencePossible(squareFence, "h")) {
+          this.removeFence(squareFence.getX(), squareFence.getY(), "h");
+          ret = true;
+        }
+
+      } catch (Exception ex) {}
+    }
+    // Barrière verticale
+    else if (x % 2 == 0 && y % 2 != 0) {
+      try {
+        if (y != player.getGame().getBoardGUI().getSquares().length-1) squareFence = this.grid[x+1][y];
+        else squareFence = this.grid[x-1][y];
+
+        if (player.checkFencePossible(squareFence, "v")) {
+          this.removeFence(squareFence.getX(), squareFence.getY(), "v");
+          ret = true;
+        }
+      } catch (Exception ex) {}
+    }
+  return ret;
+}
 
 // =============================================================================
 // HumanPlayer.java
 // =============================================================================
 
-	private transient Scanner scan;
+public boolean play(Square square, BoardGUI boardGUI) {
+boolean ret = false;
 
-  // A voir pour cette méthode comment faire
-  public void play() throws SaveGameException {
-      if(this.terminal) {
-          if(this.nbFences > 0) {
-              String mode = this.askMode();
-
-              if (mode.equalsIgnoreCase("pawn")) {
-                  this.board.displayForPawn();
-                  this.playPawn();
-              }
-
-              else if (mode.equalsIgnoreCase("fence")) {
-                  this.board.displayForFence();
-                  this.playFence();
-                  System.out.println("Il vous reste " + super.nbFences + " barrières !");
-              }
-              else if (mode.equalsIgnoreCase("save")) {
-              	throw new SaveGameException("");
-              }
-          }
-          else {
-              System.out.println("Vous n'avez plus de murs disponibles !");
-
-              this.board.displayForPawn();
-              this.playPawn();
-          }
-      }
-  }
-
-
-
-  public void playFence() {
-		// TODO - implement HumanPlayer.playFence
-		this.listOfOldPositions.clear();
-
-		System.out.println("Sur quelle case voulez-vous jouer ?");
-
-		int x = this.askX(this.board.getSIZE() - 1);
-		int y = this.askY(this.board.getSIZE() - 1);
-		String dir = this.askDir();
-
-		Square currentSquare = this.getCurrentSquare();
-
-		while (!this.checkFencePossible(this.board.getGrid()[this.board.fenceCoord(x)][this.board.fenceCoord(y)], dir)) {
-			System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
-								+ "Veuillez en choisir une autre !");
-
-			x = this.askX(this.board.getSIZE() - 1);
-			y = this.askY(this.board.getSIZE() - 1);
-			dir = this.askDir();
-
-			this.setCurrentSquare(currentSquare);
-		}
-
-		this.setCurrentSquare(currentSquare);
-
-		this.board.setFence(this.board.fenceCoord(x), this.board.fenceCoord(y), dir, this);
-		this.setNbFences(this.nbFences - 1);
-	}
-
-  public void playPawn() {
-    System.out.print("Vous pouvez jouer un pion sur les cases : ");
-
-    this.board.printListOfPossibilitiesPawn(this);
-    // this.game.getBoardGUI().addTmpPossibilities(this.board.listOfPossibilitiesPawn(this));
-
-    System.out.println("Sur quelle case voulez-vous jouer ?");
-    int x = this.askX(this.board.getSIZE());
-    int y = this.askY(this.board.getSIZE());
-
-    while (((this.board.pawnCoord(x) == this.currentSquare.getX()) && (this.board.pawnCoord(y) == this.currentSquare.getY()))
-        || (this.board.listOfPossibilitiesPawn(this).contains(this.board.getGrid()[this.board.pawnCoord(x)][this.board.pawnCoord(y)]) == false)) {
-      System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
-                + "Veuillez en choisir une autre !");
-
-      x = this.askX(this.board.getSIZE());
-      y = this.askY(this.board.getSIZE());
+    if(!this.terminal) {
+  if (square.isPawn()) {
+    ret = this.playPawn(square);
+    // System.out.println("playPawn : " + ret);
+    if (ret) {
+      System.out.println("HumanPlayer - play() isPawn -> nextPlayerGUI");
+      this.game.setActualPlayer();
     }
-    super.movePawn(this.board.pawnCoord(x), this.board.pawnCoord(y));
   }
+
+  else if (square.isFence()) {
+    ret = this.playFence(square, boardGUI);
+    // System.out.println("playFence : " + ret);
+    if (ret) {
+      System.out.println("HumanPlayer - play() isFence -> nextPlayerGUI");
+      this.game.setActualPlayer();
+    }
+  }
+  }
+return ret;
+}
+
+public boolean playFence(Square square, BoardGUI boardGUI) {
+  boolean ret = false;
+
+  if (this.getNbRestingFences() > 0) {
+    int x = square.getX();
+    int y = square.getY();
+    Square squareFence = null;
+    // Barrière horizontale
+    if (x % 2 != 0 && y % 2 == 0) {
+      try {
+        if (y != boardGUI.getSquares().length-1) squareFence = this.board.getGrid()[x][y+1];
+        else squareFence = this.board.getGrid()[x][y-1];
+
+        if (this.checkFencePossible(squareFence, "h")) {
+          this.board.setFence(squareFence.getX(), squareFence.getY(), "h", this);
+              this.setNbFences(this.nbFences - 1);
+          ret = true;
+        }
+
+      } catch (Exception ex) {}
+    }
+    // Barrière verticale
+    else if (x % 2 == 0 && y % 2 != 0) {
+      try {
+        if (y != boardGUI.getSquares().length-1) squareFence = this.board.getGrid()[x+1][y];
+        else squareFence = this.board.getGrid()[x-1][y];
+
+        if (this.checkFencePossible(squareFence, "v")) {
+          this.board.setFence(squareFence.getX(), squareFence.getY(), "v", this);
+            this.setNbFences(this.nbFences - 1);
+          ret = true;
+        }
+      } catch (Exception ex) {}
+    }
+    // if (ret) this.board.removeFence(squareFence);
+  }
+  return ret;
+
+// =============================================================================
+// AutoPlayer.java
+// =============================================================================
+public boolean play(Square square, BoardGUI boardGUI) {
+  boolean ret = false;
+
+  if(!this.terminal) {
+    if (square.isPawn()) {
+      ret = this.playPawn(square);
+
+      if (ret) {
+        System.out.println("AutoPlayer - play() isPawn -> nextPlayerGUI");
+        this.game.setActualPlayer();
+      }
+    }
+
+    else if (square.isFence()) {
+      ret = this.playFence(square, boardGUI);
+
+      if (ret) {
+        System.out.println("AutoPlayer - play() isFence -> nextPlayerGUI");
+        this.game.setActualPlayer();
+      }
+    }
+  }
+
+  return ret;
+}
+
+public boolean playFence(Square square, BoardGUI boardGUI) {
+  boolean ret = false;
+
+  if (this.getNbRestingFences() > 0) {
+    int x = square.getX();
+    int y = square.getY();
+
+    try {
+
+      if (this.checkFencePossible(square, "h")) {
+        this.board.setFence(square.getX(), square.getY(), "h", this);
+        this.setNbFences(this.nbFences - 1);
+        ret = true;
+      }
+
+      else if (this.checkFencePossible(square, "v")) {
+        this.board.setFence(square.getX(), square.getY(), "v", this);
+        this.setNbFences(this.nbFences - 1);
+        ret = true;
+      }
+
+    } catch (Exception ex) {}
+  }
+
+  return ret;
+}
 
 
 // =============================================================================
 // Player.java
 // =============================================================================
-
+	public abstract boolean play(Square square, BoardGUI boardGUI);
+  	public abstract boolean playFence(Square square, BoardGUI boardGUI);
 // A modifier selon les changements effectués dans HumanPlayer et AutoPlayer

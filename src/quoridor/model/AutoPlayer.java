@@ -94,7 +94,7 @@ public class AutoPlayer extends Player implements Serializable {
 				ret = this.playPawn(square);
 
 				if (ret) {
-					System.out.println("AutoPlayer - play() isPawn -> nextPlayerGUI");
+					// System.out.println("AutoPlayer - play() isPawn -> nextPlayerGUI");
 					this.game.setActualPlayer();
 				}
 			}
@@ -103,7 +103,7 @@ public class AutoPlayer extends Player implements Serializable {
 				ret = this.playFence(square, boardGUI);
 
 				if (ret) {
-					System.out.println("AutoPlayer - play() isFence -> nextPlayerGUI");
+					// System.out.println("AutoPlayer - play() isFence -> nextPlayerGUI");
 					this.game.setActualPlayer();
 				}
 			}

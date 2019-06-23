@@ -360,21 +360,21 @@ public class Board implements Serializable {
 		return listOfPossibilities;
 	}
 
-	/**
-	 * Print the list of possibilities
-	 * @param player player
-	 */
-	public void printListOfPossibilitiesPawn(Player player) {
-		// System.out.println(player.getCurrentSquare().getX()/2 + " " + player.getCurrentSquare().getY()/2);
-
-		ArrayList<Square> listOfPossibilities = listOfPossibilitiesPawn(player);
-
-		// System.out.print("Coups possibles : ");
-		for (Square s : listOfPossibilities) {
-			System.out.print(s.getX()/2 + ", " + s.getY()/2	 + " | ");
-		}
-		System.out.println();
-	}
+	// /**
+	//  * Print the list of possibilities
+	//  * @param player player
+	//  */
+	// public void printListOfPossibilitiesPawn(Player player) {
+	// 	// System.out.println(player.getCurrentSquare().getX()/2 + " " + player.getCurrentSquare().getY()/2);
+	//
+	// 	ArrayList<Square> listOfPossibilities = listOfPossibilitiesPawn(player);
+	//
+	// 	// System.out.print("Coups possibles : ");
+	// 	for (Square s : listOfPossibilities) {
+	// 		System.out.print(s.getX()/2 + ", " + s.getY()/2	 + " | ");
+	// 	}
+	// 	System.out.println();
+	// }
 
 
 	/**
@@ -394,9 +394,9 @@ public class Board implements Serializable {
 
 
 		if (this.color) {
-			System.out.print("  ");
-			for (int i = 0; i < this.getSIZE(); i++) System.out.print(ANSI_YELLOW + i + "   ");
-			System.out.println("");
+			ret += "  ";
+			for (int i = 0; i < this.getSIZE(); i++) ret += ANSI_YELLOW + i + "   ";
+			ret += "\n";
 			for (int x = 0; x < this.getTotalSize(); x++) {
 				if (this.isEvenNumber(x)) {
 					ret += ANSI_YELLOW + x/2 + " ";
@@ -452,9 +452,9 @@ public class Board implements Serializable {
 			}
 		}
 		else {
-			System.out.print("  ");
-			for (int i = 0; i < this.getSIZE(); i++) System.out.print(i + "   ");
-			System.out.println("");
+			ret += "  ";
+			for (int i = 0; i < this.getSIZE(); i++) ret += i + "   ";
+			ret += "\n";
 			for (int x = 0; x < this.getTotalSize(); x++) {
 				if (this.isEvenNumber(x)) {
 					ret += x/2 + " ";
