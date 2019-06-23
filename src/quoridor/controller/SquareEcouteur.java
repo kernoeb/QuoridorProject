@@ -10,15 +10,34 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Class representing a square listener.
+ * Listen and make actions chen the user click on a square of the board of the graphical interface.
+ * @author Noéwen Boisnard, Sébastien Gavignet
+ */
 public class SquareEcouteur implements ActionListener {
+
+    /** The board of the graphical interface.
+    */
     private final BoardGUI boardGUI;
+
+    /** The actual player.
+    */
     private Player actualPlayer;
 
+    /**
+     * Constructor of a square listener.
+     * @param boardGUI The board of the graphical interface.
+     */
     public SquareEcouteur(BoardGUI boardGUI) {
         this.boardGUI = boardGUI;
         this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
     }
 
+    /**
+     * Method launched each time the user click on a square of the board of the graphical interface.
+     * @param e The event raised which allow notably to determine which button has been clicked.
+     */
     public void actionPerformed(ActionEvent e) {
         Square square = this.boardGUI.getSquare((JButton) e.getSource());
 
@@ -49,6 +68,9 @@ public class SquareEcouteur implements ActionListener {
         }
     }
 
+    /**
+     * Launch the endMenu when one of the two players has won the game.
+     */
     private void endOfGame() {
         QuoridorGUI quoridorGUI = this.boardGUI.getGameGUI().getQuoridorGUI();
 
