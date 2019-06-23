@@ -19,6 +19,7 @@ public class MouseEcouteur implements MouseListener {
 
     /**
      * Constructor
+     *
      * @param boardGUI the using checkerboard
      */
     public MouseEcouteur(BoardGUI boardGUI) {
@@ -33,6 +34,7 @@ public class MouseEcouteur implements MouseListener {
 
     /**
      * Give possibilities to the user by hover the checkerboard
+     *
      * @param e MouseEvent
      */
     public void mouseEntered(MouseEvent e) {
@@ -83,6 +85,7 @@ public class MouseEcouteur implements MouseListener {
 
     /**
      * Reset the checkerboard if mouse exited
+     *
      * @param e MouseEvent
      */
     public void mouseExited(MouseEvent e) {

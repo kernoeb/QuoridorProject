@@ -12,6 +12,7 @@ import java.io.File;
 /**
  * ActionEcouteur
  * Listen for button click on GUI menus
+ *
  * @author BOISNARD Noéwen
  * @author GAVIGNET Sébastien
  */
@@ -21,6 +22,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * Constructor
+     *
      * @param quoridorGUI menu GUI
      */
     public ActionEcouteur(QuoridorGUI quoridorGUI) {
@@ -29,6 +31,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * If any action performed
+     *
      * @param e ActionEvent
      */
     public void actionPerformed(ActionEvent e) {
@@ -88,6 +91,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * Load the mode menu
+     *
      * @param panel used JPanel and modify it
      */
     private void launchMenuMode(JPanel panel) {
@@ -103,6 +107,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * Load the main menu
+     *
      * @param panel used JPanel and modify it
      */
     private void launchMenuMain(JPanel panel) {
@@ -118,6 +123,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * Launch the game GUI
+     *
      * @param mode Run the game with chosed mode
      */
     private void launchGameGUI(Mode mode) {
@@ -152,6 +158,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * Launch an old game from a file
+     *
      * @param fileChoosed file with save informations
      */
     private void launchOldGame(String fileChoosed) {
@@ -187,6 +194,7 @@ public class ActionEcouteur implements ActionListener {
 
     /**
      * Restart the game
+     *
      * @param panel used JPanel to launch again the mode menu
      */
     private void restartGame(JPanel panel) {
