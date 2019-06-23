@@ -1,32 +1,81 @@
 package quoridor.view;
 
+/** This will allow us to use elements of the class Board.
+*/
 import quoridor.model.Board;
+
+/** This will allow us to use elements of the class Game.
+*/
 import quoridor.model.Game;
+
+/** This will allow us to use elements of the class Player.
+*/
 import quoridor.model.Player;
+
+/** This will allow us to use elements of the class Square.
+*/
 import quoridor.model.Square;
 
+/** This will allow us to create an ArrayList.
+*/
 import java.util.ArrayList;
 
+/**
+ * Class representing a display unit for the terminal.
+ * @author Noéwen Boisnard, Sébastien Gavignet
+ */
 public class DisplayTerminal {
 
+    /** String used to reset the color of the terminal's text.
+    */
     private final String ANSI_RESET = "\u001B[0m";
+
+    /** String used to change the color of the terminal's text to grey.
+    */
     private final String ANSI_GREY = "\u001B[30m";
+
+    /** String used to change the color of the terminal's text to red.
+    */
     private final String ANSI_RED = "\u001B[31m";
+
+    /** String used to change the color of the terminal's text to green.
+    */
     private final String ANSI_GREEN = "\u001B[32m";
+
+    /** String used to change the color of the terminal's text to yellow.
+    */
     private final String ANSI_YELLOW = "\u001B[33m";
+
+    /** String used to change the color of the terminal's text to white.
+    */
     private final String ANSI_WHITE = "\u001B[37m";
 
+    /**
+     * Constructor of a display unit, which effectuates nothing.
+     */
     public DisplayTerminal() {
     }
 
+    /**
+     * Display the end of the game by writing the name of the winner.
+     * @param winnerPlayer The player who won the game.
+     */
     public void displayEndOfGame(Player winnerPlayer) {
         System.out.println("Félicitations ! Le joueur " + winnerPlayer.getName() + " a gagné la partie !");
     }
 
+    /**
+     * Display the game.
+     * @param game The game we want to display.
+     */
     public void displayGame(Game game) {
         System.out.println(game);
     }
 
+    /**
+     * Display the list of possibilities where the player can move his pawn.
+     * @param listOfPossibilities The list of possibilities where the player can move his pawn.
+     */
     public void displayListOfPossibilitiesPawn(ArrayList<Square> listOfPossibilities) {
         System.out.print("Vous pouvez jouer un pion sur les cases : ");
         for (Square s : listOfPossibilities) {
@@ -35,6 +84,10 @@ public class DisplayTerminal {
         System.out.println();
     }
 
+    /**
+     * Display the board of the game when the player wants to move his pawn.
+     * @param board The board we want to display.
+     */
     public void displayForPawn(Board board) {
         Square temp;
 
@@ -121,6 +174,10 @@ public class DisplayTerminal {
         }
     }
 
+    /**
+     * Display the board of the game when the player wants to place a fence.
+     * @param board The board we want to display.
+     */
     public void displayForFence(Board board) {
         Square temp;
 

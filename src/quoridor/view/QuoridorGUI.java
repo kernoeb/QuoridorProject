@@ -1,147 +1,337 @@
 package quoridor.view;
 
+/** This will allow us to use elements of the class ActionEcouteur.
+*/
 import quoridor.controller.ActionEcouteur;
+
+/** This will allow us to use elements of the class Quoridor.
+*/
 import quoridor.controller.Quoridor;
+
+/** This will allow us to use elements of the class BackgroundImage.
+*/
 import quoridor.view.textured.BackgroundImage;
+
+/** This will allow us to use elements of the class JTexturedButton.
+*/
 import quoridor.view.textured.JTexturedButton;
 
+/** This will allow us to use elements of the package swing.
+*/
 import javax.swing.*;
+
+/** This will allow us to use elements of the class FileNameExtensionFilter.
+*/
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+/** This will allow us to use elements of the package awt.
+*/
 import java.awt.*;
+
+/** This will allow us to use elements of the class File.
+*/
 import java.io.File;
+
+/** This will allow us to use elements of the class IOException.
+*/
 import java.io.IOException;
 
+/**
+ * Class representing a quoridor graphical interface.
+ * @author Noéwen Boisnard, Sébastien Gavignet
+ */
 public class QuoridorGUI extends JFrame {
+
+    /** The menu where it is possible to load games.
+    */
     private JPanel loadMenu;
+
+    /** The principal menu.
+    */
     private JPanel mainMenu;
+
+    /** The menu where it is possible to choose the mode of the future game.
+    */
     private JPanel modeMenu;
+
+    /** The menu when the game is on pause.
+    */
     private JPanel pauseMenu;
+
+    /** The menu when it is the end of the game.
+    */
     private JPanel endMenu;
+
+    /** The game of the graphical interface.
+    */
     private GameGUI gameGUI;
 
+    /** The mainMenu's button to go to the modeMenu.
+    */
     private JTexturedButton playButton;
+
+    /** The mainMenu's button to go to the loadMenu.
+    */
     private JTexturedButton loadButton;
+
+    /** The mainMenu's button to quit the game.
+    */
     private JTexturedButton quitButton;
 
+    /** The modeMenu's button to choose to start a HH (Human vs Human) game.
+    */
     private JTexturedButton modeHHButton;
+
+    /** The modeMenu's button to choose to start a HA (Human vs Auto) game.
+    */
     private JTexturedButton modeHAButton;
+
+    /** The modeMenu's cross button to return to the mainMenu.
+    */
     private JTexturedButton modeCrossButton;
 
+    /** The loadMenu's cross button to return to the mainMenu.
+    */
     private JTexturedButton loadCrossButton;
+
+    /** The FileChooser used to load games.
+    */
     private JFileChooser fileChooser;
 
+    /** The pauseMenu's button to resume the game.
+    */
     private JTexturedButton resumeButton;
+
+    /** The pauseMenu's button to restart a game.
+    */
     private JTexturedButton restartButton;
+
+    /** The pauseMenu's button to save the game and return to the mainMenu.
+    */
     private JTexturedButton saveAndQuitButton;
 
+    /** The endMenu's text to print the winner of the game.
+    */
     private JLabel endText;
+
+    /** The endMenu's button to restart a game.
+    */
     private JTexturedButton restartEndButton;
+
+    /** The endMenu's button to return to the mainMenu.
+    */
     private JTexturedButton menuBackButton;
 
+    /** The quoridor it corresponds to.
+    */
     private Quoridor quoridor;
 
+    /**
+     * Constructor of a quoridor graphical interface.
+     */
     public QuoridorGUI() {
         this.createAndShowGUI();
     }
 
+    /**
+     * Return the mainMenu's button to go to the modeMenu.
+     * @return The mainMenu's button to go to the modeMenu.
+     */
     public JTexturedButton getButtonPlay() {
         return this.playButton;
     }
 
+    /**
+     * Return the mainMenu's button to go to the loadMenu.
+     * @return The mainMenu's button to go to the loadMenu.
+     */
     public JTexturedButton getButtonLoad() {
         return this.loadButton;
     }
 
+    /**
+     * Return the mainMenu's button to quit the game.
+     * @return The mainMenu's button to quit the game.
+     */
     public JTexturedButton getButtonQuit() {
         return this.quitButton;
     }
 
+    /**
+     * Return the modeMenu's button to choose to start a HH (Human vs Human) game.
+     * @return The modeMenu's button to choose to start a HH (Human vs Human) game.
+     */
     public JTexturedButton getButtonModeHH() {
         return this.modeHHButton;
     }
 
+    /**
+     * Return the modeMenu's button to choose to start a HA (Human vs Auto) game.
+     * @return The modeMenu's button to choose to start a HA (Human vs Auto) game.
+     */
     public JTexturedButton getButtonModeHA() {
         return this.modeHAButton;
     }
 
+    /**
+     * Return the modeMenu's cross button to return to the mainMenu.
+     * @return The modeMenu's cross button to return to the mainMenu.
+     */
     public JTexturedButton getButtonModeCross() {
         return this.modeCrossButton;
     }
 
+    /**
+     * Return the loadMenu's cross button to return to the mainMenu.
+     * @return The loadMenu's cross button to return to the mainMenu.
+     */
     public JTexturedButton getButtonLoadCross() {
         return this.loadCrossButton;
     }
 
+    /**
+     * Return the pauseMenu's button to resume the game.
+     * @return The pauseMenu's button to resume the game.
+     */
     public JTexturedButton getButtonResume() {
         return this.resumeButton;
     }
 
+    /**
+     * Return the pauseMenu's button to restart a game.
+     * @return The pauseMenu's button to restart a game.
+     */
     public JTexturedButton getButtonRestart() {
         return this.restartButton;
     }
 
+    /**
+     * Return the pauseMenu's button to save the game and return to the mainMenu.
+     * @return The pauseMenu's button to save the game and return to the mainMenu.
+     */
     public JTexturedButton getButtonSaveAndQuit() {
         return this.saveAndQuitButton;
     }
 
+    /**
+     * Return the endMenu's button to restart a game.
+     * @return The endMenu's button to restart a game.
+     */
     public JTexturedButton getButtonRestartEnd() {
         return this.restartEndButton;
     }
 
+    /**
+     * Return the endMenu's button to return to the mainMenu.
+     * @return The endMenu's button to return to the mainMenu.
+     */
     public JTexturedButton getButtonMenuBack() {
         return this.menuBackButton;
     }
 
+    /**
+     * Return the menu where it is possible to load games.
+     * @return The menu where it is possible to load games.
+     */
     public JPanel getMenuLoad() {
         return this.loadMenu;
     }
 
+    /**
+     * Return the principal menu.
+     * @return The principal menu.
+     */
     public JPanel getMenuMain() {
         return this.mainMenu;
     }
 
+    /**
+     * Return the menu where it is possible to choose the mode of the future game.
+     * @return The menu where it is possible to choose the mode of the future game.
+     */
     public JPanel getMenuMode() {
         return this.modeMenu;
     }
 
+    /**
+     * Return the menu when the game is on pause.
+     * @return The menu when the game is on pause.
+     */
     public JPanel getMenuPause() {
         return this.pauseMenu;
     }
 
+    /**
+     * Return the menu when it is the end of the game.
+     * @return The menu when it is the end of the game.
+     */
     public JPanel getMenuEnd() {
         return this.endMenu;
     }
 
+    /**
+     * Return the endMenu's text to print the winner of the game.
+     * @return The endMenu's text to print the winner of the game.
+     */
     public JLabel getEndText() {
         return this.endText;
     }
 
+    /**
+     * Return the FileChooser used to load games.
+     * @return The FileChooser used to load games.
+     */
     public JFileChooser getFileChooser() {
         return this.fileChooser;
     }
 
+    /**
+     * Return the game of the graphical interface.
+     * @return The game of the graphical interface.
+     */
     public GameGUI getGameGUI() {
         return this.gameGUI;
     }
 
+    /**
+     * Modify the game of the graphical interface.
+     * @param gameGUI The game of the graphical interface.
+     */
     public void setGameGUI(GameGUI gameGUI) {
         this.gameGUI = gameGUI;
     }
 
+    /**
+     * Return the quoridor it corresponds to.
+     * @return The quoridor it corresponds to.
+     */
     public Quoridor getQuoridor() {
         return this.quoridor;
     }
 
+    /**
+     * Modify the quoridor it corresponds to.
+     * @param quoridor The quoridor it corresponds to.
+     */
     public void setQuoridor(Quoridor quoridor) {
         this.quoridor = quoridor;
     }
 
+    /**
+     * Modify the background image.
+     * @param fileName The filename of the image.
+     */
     public void setBackgroundImage(String fileName) {
         BackgroundImage back = new BackgroundImage(fileName);
         this.setContentPane(back);
         this.setLayout(new FlowLayout());
     }
 
+    /**
+     * Set the font of the component given in parameter to Palatino.
+     * @param component The component for which we want to change the font.
+     * @param size      The size of the font.
+     */
     public void setFontPalatino(JComponent component, int size) {
         try {
             Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
@@ -151,10 +341,20 @@ public class QuoridorGUI extends JFrame {
         }
     }
 
+    /**
+     * Return the font Palatino created.
+     * @return The font Palatino created.
+     * @throws FontFormatException
+     * @throws IOException
+     */
     private Font getFontPalatino() throws FontFormatException, IOException {
         return Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
     }
 
+    /**
+     * Initialize and add all the components of the quoridor graphical interface to it by
+     * calling each initialize method.
+     */
     private void createAndShowGUI() {
         this.setTitle("Quoridor");
         this.setMinimumSize(new Dimension(800, 828));
@@ -174,6 +374,9 @@ public class QuoridorGUI extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Initialize the components of the loadMenu.
+     */
     private void initializeLoadMenu() {
         this.loadMenu = new JPanel();
         this.loadMenu.setLayout(new BorderLayout());
@@ -191,6 +394,9 @@ public class QuoridorGUI extends JFrame {
         this.loadMenu.add(this.fileChooser, BorderLayout.CENTER);
     }
 
+    /**
+     * Initialize the components of the mainMenu.
+     */
     private void initializeMainMenu() {
         this.mainMenu = new JPanel();
         JPanel buttonMainMenu = new JPanel();
@@ -222,6 +428,9 @@ public class QuoridorGUI extends JFrame {
         this.mainMenu.setOpaque(false);
     }
 
+    /**
+     * Initialize the components of the modeMenu.
+     */
     private void initializeModeMenu() {
         this.modeMenu = new JPanel();
         JPanel buttonModeMenu = new JPanel();
@@ -270,6 +479,9 @@ public class QuoridorGUI extends JFrame {
         this.modeCrossButton.addActionListener(new ActionEcouteur(this));
     }
 
+    /**
+     * Initialize the components of the pauseMenu.
+     */
     private void initializePauseMenu() {
         this.pauseMenu = new JPanel();
         JPanel buttonPauseMenu = new JPanel();
@@ -298,6 +510,9 @@ public class QuoridorGUI extends JFrame {
         this.pauseMenu.add(buttonPauseMenu, BorderLayout.CENTER);
     }
 
+    /**
+     * Initialize the components of the endMenu.
+     */
     private void initializeEndMenu() {
         this.endMenu = new JPanel();
         JPanel buttonEndMenu = new JPanel();

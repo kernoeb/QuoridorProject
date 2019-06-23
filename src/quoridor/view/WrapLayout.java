@@ -1,3 +1,6 @@
+// Code from https://tips4java.wordpress.com/2008/11/06/wrap-layout/
+// Copyright Rob Camick
+
 package quoridor.view;
 
 import javax.swing.*;
