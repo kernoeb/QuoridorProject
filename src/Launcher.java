@@ -1,13 +1,6 @@
-//No packages
-
-// Import project
-
 import quoridor.controller.Quoridor;
 import quoridor.model.Mode;
 import quoridor.view.QuoridorGUI;
-
-// Import Java
-// No import
 
 /**
  * Game launcher of Quoridor

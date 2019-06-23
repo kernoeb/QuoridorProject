@@ -17,11 +17,9 @@ public class SquareEcouteur implements ActionListener {
     public SquareEcouteur(BoardGUI boardGUI) {
         this.boardGUI = boardGUI;
         this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
-        System.out.println("SquareEcouteur : " + this.actualPlayer.getName());
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println("actionPerformed() : " + this.actualPlayer.getName());
         Square square = this.boardGUI.getSquare((JButton) e.getSource());
 
         if (this.actualPlayer.play(square, this.boardGUI)) {

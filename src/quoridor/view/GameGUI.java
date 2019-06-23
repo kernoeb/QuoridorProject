@@ -129,9 +129,6 @@ public class GameGUI extends JPanel {
         this.nbBar1.removeAll();
         this.nbBar2.removeAll();
 
-        System.out.println("Joueur 1 : " + this.game.getPlayer1().getNbRestingFences());
-        System.out.println("Joueur 2 : " + this.game.getPlayer2().getNbRestingFences());
-
         for (int i = 0; i < this.game.getPlayer2().getNbRestingFences(); i++) {
             this.nbBar1.add(new JLabel(this.fenceOrange));
         }
