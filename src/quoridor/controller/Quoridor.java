@@ -47,7 +47,7 @@ public class Quoridor {
 				}
 				this.game.getBoard().setColor(color);
 				this.displayTerminal = new DisplayTerminal();
-				this.launchGame(this.game);
+				this.launchGame();
 			}
 		} catch (Exception e) {
 			System.err.println("Quoridor 1 : " + e.getMessage());
@@ -75,7 +75,7 @@ public class Quoridor {
 				}
 				this.game.getBoard().setColor(color);
 				this.displayTerminal = new DisplayTerminal();
-				this.launchGame(this.game);
+				this.launchGame();
 			}
 		} catch (Exception e) {
 			System.err.println("Quoridor 2 : " + e.getMessage());
@@ -97,7 +97,7 @@ public class Quoridor {
 				}
 				this.game.getBoard().setColor(color);
 				this.displayTerminal = new DisplayTerminal();
-				this.launchGame(this.game);
+				this.launchGame();
 			}
 	 	} catch (Exception e) {
 			System.err.println("Quoridor 3 : " + e.getMessage());
@@ -134,19 +134,24 @@ public class Quoridor {
 	 * @param game the desired game to launch
 	 * @author
 	 */
-	public void launchGame(Game game) {
+	public void launchGame() {
 		if(game != null) {
 			String mode = null;
 			boolean save = false;
-			while((!game.checkHasFinished(game.getPlayer1())) && (!game.checkHasFinished(game.getPlayer2())) && (!save)) {
+			while((!this.game.checkHasFinished(this.game.getPlayer1())) && (!this.game.checkHasFinished(this.game.getPlayer2())) && (!save)) {
 		    this.displayTerminal.displayGame(game);
-				mode = this.askMode();
-				if (!mode.equalsIgnoreCase("save")) {
-		    	this.nextPlayer(mode);
+				if (this.game.getActualPlayer() instanceof HumanPlayer) {
+					mode = this.askMode();
+					if (!mode.equalsIgnoreCase("save")) {
+			    	this.nextPlayer(mode);
+					}
+					else {
+						this.saveGame(this.game);
+						save = true;
+					}
 				}
 				else {
-					this.saveGame(this.game);
-					save = true;
+					this.nextPlayer("");
 				}
 		  }
 
