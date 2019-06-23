@@ -38,6 +38,7 @@ public class Game implements Serializable {
 	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		this.board = new Board();
 		this.terminal = terminal;
+		this.mode = mode;
 
 		if (mode == Mode.HH) {
 			this.player1 = new HumanPlayer(this, namePlayer1, this.board, this.board.getSIZE()-1, (int) (this.board.getSIZE() /2), terminal);
@@ -114,14 +115,12 @@ public class Game implements Serializable {
 	 * @return the starting player
 	 */
 	public Player whoStarts() {
-		if (this.terminal) {
-			ArrayList<Player> list = new ArrayList<Player>();
-			list.add(this.player1);
-			list.add(this.player2);
-
-			return list.get(new Random().nextInt(list.size()));
-		}
-		else return this.player1;
+		ArrayList<Player> list = new ArrayList<Player>();
+		list.add(this.player1);
+		list.add(this.player2);
+		if (!this.terminal && this.mode == Mode.HA) {
+			return this.player1;
+		} else return list.get(new Random().nextInt(list.size()));
 	}
 
 	public boolean checkHasFinished(Player player) {
