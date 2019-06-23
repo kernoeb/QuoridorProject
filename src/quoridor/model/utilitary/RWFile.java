@@ -7,10 +7,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * RWFile
+ * Read or write files
+ */
 public class RWFile {
 
     /**
-     * @param fileName
+     * Read a file (config)
+     *
+     * @param fileName file name location
+     * @return configuration wrote in the file
      */
     public static ArrayList<String> readFile(String fileName) {
         ArrayList<String> ret = new ArrayList<String>();
@@ -40,6 +47,12 @@ public class RWFile {
         return ret;
     }
 
+    /**
+     * Read a saved game
+     *
+     * @param fileName fime name location
+     * @return the serialized saved game
+     */
     public static Game readObj(String fileName) {
         Game game = null;
 
@@ -70,6 +83,10 @@ public class RWFile {
     }
 
     /**
+     * Write a new save with current date
+     *
+     * @param game        game the user want to save
+     * @param oldFileName check if there is already a save and replace it with the good date
      */
     public static void writeFile(Game game, String oldFileName) {
         if (game != null) {
@@ -86,7 +103,6 @@ public class RWFile {
                 ObjectOutputStream obj = new ObjectOutputStream(file);
 
                 obj.writeObject(game);
-
                 obj.close();
 
             } catch (FileNotFoundException e) {
