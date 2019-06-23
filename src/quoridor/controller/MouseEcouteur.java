@@ -9,9 +9,6 @@ import java.awt.event.MouseListener;
 
 
 public class MouseEcouteur implements MouseListener {
-    // private Color colorRed = new Color(186, 0, 32);
-    // private Color colorRed = new Color(192, 13, 30);
-    // private Color colorRed = new Color(180, 35, 25);
     private final Color colorRed = new Color(149, 26, 0);
     private final Color colorBlack = Color.BLACK;
     private final Color colorTmp = new Color(167, 168, 170);
@@ -35,7 +32,6 @@ public class MouseEcouteur implements MouseListener {
 
         if (this.boardGUI.getGame().getActualPlayer().getNbRestingFences() > 0) {
             if (x % 2 != 0 && y % 2 == 0) {
-                // if (this.boardGUI.getBoard().checkIfPossibilitiesFence(this.boardGUI.getBoard().getGrid()[x][y+1])) {
                 if (this.boardGUI.getBoard().possibleFence(this.boardGUI.getBoard().getGrid()[x][y], this.boardGUI.getGame().getActualPlayer())) {
                     try {
                         if (y != this.boardGUI.getSquares().length - 1) {
@@ -52,7 +48,6 @@ public class MouseEcouteur implements MouseListener {
                     }
                 }
             } else if (x % 2 == 0 && y % 2 != 0) {
-                // if (this.boardGUI.getBoard().checkIfPossibilitiesFence(this.boardGUI.getBoard().getGrid()[x+1][y])) {
                 if (this.boardGUI.getBoard().possibleFence(this.boardGUI.getBoard().getGrid()[x][y], this.boardGUI.getGame().getActualPlayer())) {
                     try {
                         if (x != this.boardGUI.getSquares().length - 1) {
@@ -71,7 +66,6 @@ public class MouseEcouteur implements MouseListener {
 
             }
         }
-        // source.setBackground(Color.RED);
         if (!(x % 2 != 0 && y % 2 != 0) && this.boardGUI.getBoard().getGrid()[x][y].isPawn())
             source.setBackground(colorTmp);
     }
@@ -87,7 +81,6 @@ public class MouseEcouteur implements MouseListener {
         } else if (x % 2 != 0) {
             source.setBackground(colorRed);
         } else {
-            // source.setBackground(colorWhite);
             source.setBackground(colorBlack);
         }
 
@@ -121,11 +114,5 @@ public class MouseEcouteur implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-        // int x = e.getX();
-        // int y = e.getY();
-        // if (x > 240 && x < 560 && y > 320 && y < 400) {
-        //     System.out.println("Jouer !");
-        // }
-        // System.out.println(x+", "+y);
     }
 }

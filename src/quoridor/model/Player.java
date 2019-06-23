@@ -67,45 +67,6 @@ public abstract class Player implements Serializable {
         return ok;
     }
 
-    // public boolean checkExistingPath(Player player) {
-    // 	boolean ret = false;
-    // 	ArrayList<Square> list = this.board.listOfPossibilitiesPawn(player);
-    // 	int i = 0;
-    // 	Square sq = null;
-
-    // 	while((!ret) && (i < list.size())) {
-    // 		// movePawn -> nouvelle cases (list.get(i))
-    // 		// Si joueur a fini
-    // 		// Alors ret = true
-    // 		// Sinon ret = checkExistingPath(player)
-    // 		// 	Si
-
-    // 		sq = list.get(i);
-    // 		player.movePawn(sq.getX(), sq.getY());
-    // 		this.listOfOldPositions.add(this.board.getGrid()[sq.getX()][sq.getY()]);
-
-    // 		System.out.println("x : " + sq.getX() + "y : " + sq.getY());
-
-    // 		if (player.getGame().checkHasFinished(player)) {
-    // 			ret = true;
-    // 		}
-    // 		else if(this.listOfOldPositions.contains(sq)) {
-
-    // 		}
-    // 		else {
-    // 			ret = this.checkExistingPath(player);
-
-    // 			if(!ret) {
-    // 				player.movePawn(sq.getX(), sq.getY());
-    // 			}
-    // 		}
-
-    // 		i++;
-    // 	}
-
-    // 	return ret;
-    // }
-
     public abstract Square randomSquare();
 
     public Square getCurrentSquare() {
@@ -130,8 +91,6 @@ public abstract class Player implements Serializable {
 
     public void movePawn(int x, int y) {
         if (this.currentSquare != null) {
-            // System.out.println("X : " + this.currentSquare.getX() + " | Y : " + this.currentSquare.getY());
-            // System.out.println(this.currentSquare.getStatus());
             this.board.getGrid()[x][y].setStatus(this.currentSquare.getStatus());
             this.board.getGrid()[this.currentSquare.getX()][this.currentSquare.getY()].setStatus(Status.PAWNPOSSIBLE);
             this.currentSquare = this.board.getGrid()[x][y];

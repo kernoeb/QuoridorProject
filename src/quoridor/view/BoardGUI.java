@@ -22,23 +22,12 @@ public class BoardGUI extends JPanel implements Serializable {
     private final Board board;
     private final GameGUI gameGUI;
 
-    // background : #C3C394 (195, 195, 148)
-    // orange (top pawn) : #C57600 (197, 118, 0)
-    // blue (bottom pawn) : #1F6398 (31, 99, 152)
-
-
     private final ImageIcon player1 = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
     private final ImageIcon player2 = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
     private final ImageIcon orangePlayerPossible = new ImageIcon((new ImageIcon("../data/icons/orangePlayerPossible.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
     private final ImageIcon bluePlayerPossible = new ImageIcon((new ImageIcon("../data/icons/bluePlayerPossible.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
-    // ImageIcon pawn_possible = new ImageIcon((new ImageIcon("../data/icons/pawn_possible.png")).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
     private final ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/fenceOrange.png")).getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
     private final ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/fenceBlue.png")).getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon player1 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_green.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon player2 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_red.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon pawn_possible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/pawn_possible.png"))).getImage().getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon fence_red = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_red2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
-    // private ImageIcon fence_green = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_green2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 
     public BoardGUI(GameGUI gameGUI, Game game, Board board) {
         this.game = game;
@@ -48,9 +37,8 @@ public class BoardGUI extends JPanel implements Serializable {
         this.squares = new JButton[this.board.getTotalSize()][this.board.getTotalSize()];
 
         this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
-        // super.setPreferredSize(new Dimension(360, 358));
         super.setPreferredSize(new Dimension(450, 441));
-        // super.setMaximumSize(new Dimension(425, 441));
+
         // COLORS
         Color colorRed = new Color(149, 26, 0);
         this.setBackground(colorRed);
@@ -70,7 +58,6 @@ public class BoardGUI extends JPanel implements Serializable {
                     if (j % 2 == 0) squares[i][j].setPreferredSize(new Dimension(35, 12));
                     else {
                         squares[i][j].setPreferredSize(new Dimension(12, 12));
-                        // squares[i][j].setEnabled(false);
                         squares[i][j].setBorderPainted(false);
                         squares[i][j].setFocusPainted(false);
                     }

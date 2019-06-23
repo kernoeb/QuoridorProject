@@ -139,8 +139,6 @@ public class QuoridorGUI extends JFrame {
     public void setBackgroundImage(String fileName) {
         BackgroundImage back = new BackgroundImage(fileName);
         this.setContentPane(back);
-        // System.out.println(this.back.getImageSize());
-        // this.setPreferredSize(this.back.getImageSize());
         this.setLayout(new FlowLayout());
     }
 
@@ -163,8 +161,6 @@ public class QuoridorGUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        // quoridor.model = new Quoridor()
-
         this.initializeLoadMenu();
         this.initializeMainMenu();
         this.initializeModeMenu();
@@ -172,7 +168,6 @@ public class QuoridorGUI extends JFrame {
         this.initializeEndMenu();
 
         this.add(this.mainMenu);
-        // this.mainMenu.setVisible(true);
 
         this.pack();
         this.setLocationRelativeTo(null);
@@ -220,13 +215,10 @@ public class QuoridorGUI extends JFrame {
         this.quitButton.addActionListener(new ActionEcouteur(this));
 
         this.mainMenu.setLayout(new BorderLayout(30, 30));
-        //this.mainMenu.add(Box.createRigidArea(new Dimension(50,50)), BorderLayout.PAGE_START);
         this.mainMenu.add(quoridorText, BorderLayout.NORTH);
         this.mainMenu.add(buttonMainMenu, BorderLayout.CENTER);
 
         this.setBackgroundImage("../data/images/MenuBackground.png");
-        // this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        // this.setLayout(new FlowLayout());
         this.mainMenu.setOpaque(false);
     }
 
@@ -258,53 +250,20 @@ public class QuoridorGUI extends JFrame {
         buttonModeMenu.add(this.modeHAButton);
         buttonModeMenu.setOpaque(false);
 
-        // this.modeMenu.setLayout(new BorderLayout(50, 50));
-        // this.modeMenu.add(this.modeText, BorderLayout.NORTH);
-        // this.modeMenu.add(this.buttonModeMenu, BorderLayout.CENTER);
-
-
         this.modeMenu.setLayout(new BorderLayout(0, -30));
 
         JPanel crossPanel = new JPanel();
-        // crossPanel.setLayout(new GridLayout(0, 3, (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(), 0));
         crossPanel.setLayout(new GridLayout(0, 3, 300, 0));
         crossPanel.add(this.modeCrossButton);
         crossPanel.setOpaque(false);
-        // crossPanel.add(new JPanel());
-
-        // cons.anchor = GridBagConstraints.WEST;
 
         this.modeMenu.add(crossPanel, BorderLayout.NORTH);
         JPanel jP = new JPanel();
-        // jP.setLayout(new GridLayout(0,1));
         jP.setLayout(new BorderLayout(0, 50));
         jP.setOpaque(false);
         jP.add(modeText, BorderLayout.NORTH);
         jP.add(buttonModeMenu, BorderLayout.CENTER);
         this.modeMenu.add(jP);
-
-
-        // this.modeMenu.setLayout(new GridBagLayout());
-        // GridBagConstraints cons = new GridBagConstraints();
-        // // cons.anchor = GridBagConstraints.NORTHWEST;
-        // cons.gridx = 0;
-        // cons.gridy = 0;
-        // cons.weightx = GridBagConstraints.LINE_START;
-        // // cons.fill = GridBagConstraints.NORTHEAST;
-        // this.modeMenu.add(this.modeCrossButton, cons);
-        // // this.modeCrossButton.setBorder(new EmptyBorder(0, -20, 0, 0));
-
-        // // cons.insets = new Insets(-25, -50, 0, 0);
-
-        // cons.gridx = 1;
-        // cons.gridy = 1;
-        // // cons.anchor = GridBagConstraints.NORTH;
-        // cons.anchor = GridBagConstraints.NORTHWEST;
-        // this.modeMenu.add(this.modeText, cons);
-
-        // cons.gridy = 2;
-        // // cons.anchor = GridBagConstraints.CENTER;
-        // this.modeMenu.add(this.buttonModeMenu, cons);
 
         this.modeHHButton.addActionListener(new ActionEcouteur(this));
         this.modeHAButton.addActionListener(new ActionEcouteur(this));

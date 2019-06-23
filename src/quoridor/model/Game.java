@@ -1,12 +1,8 @@
 package quoridor.model;
 
-// import project
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-
-// import java
 
 /**
  * This class contains the methods to initialize the game
@@ -47,8 +43,6 @@ public class Game implements Serializable {
         }
 
         this.initializeGame();
-        // this.boardGUI = new BoardGUI(this, this.board);
-        // runAutoPlayer();
     }
 
     public Board getBoard() {
@@ -67,27 +61,12 @@ public class Game implements Serializable {
         return this.actualPlayer;
     }
 
-    // public BoardGUI getBoardGUI() {
-    // 	return this.boardGUI;
-    // }
-
     /**
      * Initialize the game
      */
     private void initializeGame() {
         this.actualPlayer = this.whoStarts();
     }
-
-    // private void runAutoPlayer() {
-    // 	if (this.actualPlayer instanceof AutoPlayer) {
-    // 		Square square = this.actualPlayer.randomSquare();
-    // 		this.actualPlayer.play(square, this.boardGUI);
-    // 		// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
-    // 		// this.boardGUI.setFencesEnabled(square);
-    // 		this.boardGUI.displayBoardGUI();
-    // 		this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
-    // 	}
-    // }
 
     /**
      * Choose randomly which player plays first
@@ -104,7 +83,6 @@ public class Game implements Serializable {
     }
 
     public boolean checkHasFinished(Player player) {
-        // TODO - Player.checkHasFinished
         boolean ret = false;
 
         if (player != null) {
@@ -124,18 +102,7 @@ public class Game implements Serializable {
         if (this.actualPlayer == this.player1) {
             this.actualPlayer = this.player2;
         } else this.actualPlayer = this.player1;
-        // System.out.println(this.actualPlayer);
     }
-
-    // public void start() throws SaveGameException {
-    // 	// TODO - implement Game.start
-    // 	while((!this.checkHasFinished(this.player1)) && (!this.checkHasFinished(this.player2))) {
-    // 		System.out.println(this);
-    // 		this.nextPlayer();
-    // 	}
-    //
-    // 	this.endOfGame();
-    // }
 
     /**
      * End the game and launch the results procedure
@@ -155,8 +122,6 @@ public class Game implements Serializable {
     public String toString() {
         // TODO - implement Game.toString
         String ret = "";
-
-        // this.boardGUI.displayBoardGUI(this.board);
 
         ret += this.board;
         if (!this.board.getColor()) {

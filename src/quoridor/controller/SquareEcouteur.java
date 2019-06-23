@@ -24,22 +24,7 @@ public class SquareEcouteur implements ActionListener {
         System.out.println("actionPerformed() : " + this.actualPlayer.getName());
         Square square = this.boardGUI.getSquare((JButton) e.getSource());
 
-        // if (square.isPawn()) {
-        // 	if (this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer).contains(square)) {
-        //     this.boardGUI.getGame().getActualPlayer().playPawn(square);
-        //     this.boardGUI.getGame().nextPlayerGUI();
-        // 	}
-        //
-        // }
-        //
-        // else if ((square.isFence()) && (this.actualPlayer.getNbRestingFences() > 0)) {
-        // 	this.actualPlayer.playFence(square);
-        //   this.boardGUI.getGame().nextPlayerGUI();
-        // 	// TODO - Réactualiser le nombre de barrières en ayant accès à GameGUI
-        // }
-
         if (this.actualPlayer.play(square, this.boardGUI)) {
-            // this.boardGUI.getGame().nextPlayerGUI();
             this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
             this.boardGUI.displayBoardGUI();
             this.boardGUI.getGameGUI().updateFences();
@@ -64,8 +49,6 @@ public class SquareEcouteur implements ActionListener {
                 this.endOfGame();
             }
         }
-
-        // System.out.println("Le joueur a cliqué en : " + this.boardGUI.getX(square)/2 + ", " + this.boardGUI.getY(square)/2);
     }
 
     private void endOfGame() {

@@ -1,7 +1,5 @@
 package quoridor.controller;
 
-// project import
-
 import quoridor.model.*;
 import quoridor.model.utilitary.RWFile;
 import quoridor.view.BoardGUI;
@@ -54,9 +52,6 @@ public class Quoridor {
                 this.displayTerminal = new DisplayTerminal();
                 this.launchGame();
             }
-            // else {
-            // 	this.runAutoPlayer();
-            // }
         } catch (Exception e) {
             System.err.println("Quoridor 1 : " + e.getMessage());
         }
@@ -97,8 +92,6 @@ public class Quoridor {
             this.fileName = fileName;
             this.load = true;
             this.game = this.loadOldGame(this.fileName);
-            // this.game.start();
-            // if (this.terminal) this.launchGame(this.game);
             if (this.terminal) {
                 boolean color = true;
                 if (this.askColor()) {
@@ -128,8 +121,6 @@ public class Quoridor {
         if (actualPlayer instanceof AutoPlayer) {
             Square square = actualPlayer.randomSquare();
             actualPlayer.play(square, boardGUI);
-            // this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
-            // this.boardGUI.setFencesEnabled(square);
             boardGUI.displayBoardGUI();
             boardGUI.addTmpPossibilities(boardGUI.getBoard().listOfPossibilitiesPawn(actualPlayer), actualPlayer);
         }
@@ -213,9 +204,7 @@ public class Quoridor {
     private void makePlayPawn(Player actualPlayer) {
         Board board = this.game.getBoard();
         this.displayTerminal.displayForPawn(board);
-        // actualPlayer.playPawn();
         this.displayTerminal.displayListOfPossibilitiesPawn(board.listOfPossibilitiesPawn(actualPlayer));
-        // this.game.getBoardGUI().addTmpPossibilities(this.board.listOfPossibilitiesPawn(this));
 
         System.out.println("Sur quelle case voulez-vous jouer ?");
         int x = this.askX(board.getSIZE());
@@ -245,8 +234,6 @@ public class Quoridor {
         int y = this.askY(board.getSIZE() - 1);
         String dir = this.askDir();
 
-        // Square currentSquare = actualPlayer.getCurrentSquare();
-
         while (!actualPlayer.checkFencePossible(board.getGrid()[board.fenceCoord(x)][board.fenceCoord(y)], dir)) {
             System.out.println("Vous ne pouvez pas jouer sur cette case. \n"
                     + "Veuillez en choisir une autre !");
@@ -254,11 +241,7 @@ public class Quoridor {
             x = this.askX(board.getSIZE() - 1);
             y = this.askY(board.getSIZE() - 1);
             dir = this.askDir();
-
-            // actualPlayer.setCurrentSquare(currentSquare);
         }
-
-        // actualPlayer.setCurrentSquare(currentSquare);
 
         board.setFence(board.fenceCoord(x), board.fenceCoord(y), dir, actualPlayer);
         actualPlayer.setNbFences(actualPlayer.getNbRestingFences() - 1);
@@ -348,7 +331,6 @@ public class Quoridor {
         return x;
     }
 
-    // Méthode pour Pawn pour l'instant ...
     private int askY(int maxSize) {
         int y = 0;
 

@@ -35,8 +35,6 @@ public class AutoPlayer extends Player implements Serializable {
 
         int currentX = this.currentSquare.getX();
         int currentY = this.currentSquare.getY();
-        // System.out.println("Vals : " + currentX + " " + currentY);
-        //this.board.printListOfPossibilitiesPawn(this);
 
         boolean val = new Random().nextInt(3) == 0;
 
@@ -57,7 +55,6 @@ public class AutoPlayer extends Player implements Serializable {
                 while (s == null) {
                     s = (Square) lopFence[new Random().nextInt(lopFence.length)][0];
                 }
-                //this.board.setFence(s.getX(), s.getY(), "h", this);
                 try {
                     if (this.checkFencePossible(s, "h")) {
                         this.board.setFence(s.getX(), s.getY(), "h", this);
@@ -84,14 +81,12 @@ public class AutoPlayer extends Player implements Serializable {
                 ret = this.playPawn(square);
 
                 if (ret) {
-                    // System.out.println("AutoPlayer - play() isPawn -> nextPlayerGUI");
                     this.game.setActualPlayer();
                 }
             } else if (square.isFence()) {
                 ret = this.playFence(square);
 
                 if (ret) {
-                    // System.out.println("AutoPlayer - play() isFence -> nextPlayerGUI");
                     this.game.setActualPlayer();
                 }
             }

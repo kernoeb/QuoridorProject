@@ -28,8 +28,6 @@ public class DisplayTerminal {
     }
 
     public void displayListOfPossibilitiesPawn(ArrayList<Square> listOfPossibilities) {
-        // System.out.println(player.getCurrentSquare().getX()/2 + " " + player.getCurrentSquare().getY()/2);
-        // System.out.print("Coups possibles : ");
         System.out.print("Vous pouvez jouer un pion sur les cases : ");
         for (Square s : listOfPossibilities) {
             System.out.print(s.getX() / 2 + ", " + s.getY() / 2 + " | ");
