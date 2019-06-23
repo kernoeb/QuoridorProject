@@ -13,7 +13,7 @@ public class BoardGUI extends JPanel implements Serializable {
 
     private static final long serialVersionUID = -350671869168492924L;
 
-    JButton[][] squares = new JButton[17][17];
+    JButton[][] squares;
 
     // COLORS
     Color colorRed = new Color(149, 26, 0);
@@ -22,6 +22,7 @@ public class BoardGUI extends JPanel implements Serializable {
 
     Game game;
     Board board;
+    GameGUI gameGUI;
 
     // background : #C3C394 (195, 195, 148)
     // orange (top pawn) : #C57600 (197, 118, 0)
@@ -41,9 +42,13 @@ public class BoardGUI extends JPanel implements Serializable {
     // private ImageIcon fence_red = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_red2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
     // private ImageIcon fence_green = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fence_green2.png"))).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
 
-    public BoardGUI(Game game, Board board) {
+    public BoardGUI(GameGUI gameGUI, Game game, Board board) {
         this.game = game;
         this.board = board;
+        this.gameGUI = gameGUI;
+
+        this.squares = new JButton[this.board.getTotalSize()][this.board.getTotalSize()];
+
         this.setLayout(new WrapLayout(WrapLayout.CENTER, 0, 0));
         // super.setPreferredSize(new Dimension(360, 358));
         super.setPreferredSize(new Dimension(450, 441));
@@ -54,8 +59,8 @@ public class BoardGUI extends JPanel implements Serializable {
         MouseEcouteur moEcouteur = new MouseEcouteur(this);
 
 
-        for (int i = 0; i < 17; i++) {
-            for (int j = 0; j < 17; j++) {
+        for (int i = 0; i < this.board.getTotalSize(); i++) {
+            for (int j = 0; j < this.board.getTotalSize(); j++) {
                 this.squares[i][j] = new JButton();
                 if (i % 2 == 0 && j % 2 != 0) {
                     this.squares[i][j].setBackground(colorRed);
@@ -81,6 +86,10 @@ public class BoardGUI extends JPanel implements Serializable {
                 this.squares[i][j].addMouseListener(moEcouteur);
             }
         }
+    }
+
+    public GameGUI getGameGUI() {
+      return this.gameGUI;
     }
 
     public void addAllListeners() {

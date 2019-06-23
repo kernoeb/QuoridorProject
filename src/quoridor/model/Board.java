@@ -155,7 +155,7 @@ public class Board implements Serializable {
 			// Barrière horizontale
 			if (x % 2 != 0 && y % 2 == 0) {
 				try {
-					if (y != player.getGame().getBoardGUI().getSquares().length-1) squareFence = this.grid[x][y+1];
+					if (y != this.getTotalSize()-1) squareFence = this.grid[x][y+1];
 					else squareFence = this.grid[x][y-1];
 
 					if (player.checkFencePossible(squareFence, "h")) {
@@ -168,7 +168,7 @@ public class Board implements Serializable {
 			// Barrière verticale
 			else if (x % 2 == 0 && y % 2 != 0) {
 				try {
-					if (y != player.getGame().getBoardGUI().getSquares().length-1) squareFence = this.grid[x+1][y];
+					if (y != this.getTotalSize()-1) squareFence = this.grid[x+1][y];
 					else squareFence = this.grid[x-1][y];
 
 					if (player.checkFencePossible(squareFence, "v")) {

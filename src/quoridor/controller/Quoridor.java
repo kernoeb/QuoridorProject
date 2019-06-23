@@ -49,6 +49,9 @@ public class Quoridor {
 				this.displayTerminal = new DisplayTerminal();
 				this.launchGame();
 			}
+			// else {
+			// 	this.runAutoPlayer();
+			// }
 		} catch (Exception e) {
 			System.err.println("Quoridor 1 : " + e.getMessage());
 		}
@@ -110,6 +113,20 @@ public class Quoridor {
 	 */
 	public Game getGame() {
 		return this.game;
+	}
+
+	public void runAutoPlayer(QuoridorGUI quoridorGUI) {
+		Player actualPlayer = this.game.getActualPlayer();
+		BoardGUI boardGUI = quoridorGUI.getGameGUI().getBoardGUI();
+
+		if (actualPlayer instanceof AutoPlayer) {
+			Square square = actualPlayer.randomSquare();
+			actualPlayer.play(square, boardGUI);
+			// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+			// this.boardGUI.setFencesEnabled(square);
+			boardGUI.displayBoardGUI();
+			boardGUI.addTmpPossibilities(boardGUI.getBoard().listOfPossibilitiesPawn(actualPlayer), actualPlayer);
+		}
 	}
 
 	/**

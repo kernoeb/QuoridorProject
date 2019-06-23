@@ -51,8 +51,8 @@ public class Game implements Serializable {
 		}
 
 		this.initializeGame();
-		this.boardGUI = new BoardGUI(this, this.board);
-		runAutoPlayer();
+		// this.boardGUI = new BoardGUI(this, this.board);
+		// runAutoPlayer();
 	}
 
 	public Board getBoard() {
@@ -76,9 +76,9 @@ public class Game implements Serializable {
 		else return this.player1;
 	}
 
-	public BoardGUI getBoardGUI() {
-		return this.boardGUI;
-	}
+	// public BoardGUI getBoardGUI() {
+	// 	return this.boardGUI;
+	// }
 
 	/**
 	 * @param board the desired board to play the game with.
@@ -99,16 +99,16 @@ public class Game implements Serializable {
 		this.actualPlayer = this.whoStarts();
 	}
 
-	private void runAutoPlayer() {
-		if (this.actualPlayer instanceof AutoPlayer) {
-			Square square = this.actualPlayer.randomSquare();
-			this.actualPlayer.play(square, this.boardGUI);
-			// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
-			// this.boardGUI.setFencesEnabled(square);
-			this.boardGUI.displayBoardGUI();
-			this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
-		}
-	}
+	// private void runAutoPlayer() {
+	// 	if (this.actualPlayer instanceof AutoPlayer) {
+	// 		Square square = this.actualPlayer.randomSquare();
+	// 		this.actualPlayer.play(square, this.boardGUI);
+	// 		// this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
+	// 		// this.boardGUI.setFencesEnabled(square);
+	// 		this.boardGUI.displayBoardGUI();
+	// 		this.boardGUI.addTmpPossibilities(this.boardGUI.getBoard().listOfPossibilitiesPawn(this.actualPlayer), this.actualPlayer);
+	// 	}
+	// }
 
 	/**
 	 * Choose randomly which player plays first

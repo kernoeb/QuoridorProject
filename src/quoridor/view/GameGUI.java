@@ -32,9 +32,13 @@ public class GameGUI extends JPanel {
   ImageIcon fenceOrange;
   ImageIcon pawnOrange;
 
-  public GameGUI(Game game, QuoridorGUI quoridorGUI) {
-    this.game = game;
+  Color colorRed = new Color(149, 26, 0);
+  Color colorBackground = new Color(195, 195, 148);
+
+  public GameGUI(QuoridorGUI quoridorGUI) {
     this.quoridorGUI = quoridorGUI;
+    this.game = this.quoridorGUI.getQuoridor().getGame();
+    this.boardGUI = new BoardGUI(this, this.game, this.game.getBoard());
     this.createAndShowGUI();
   }
 
@@ -42,13 +46,20 @@ public class GameGUI extends JPanel {
     return this.game;
   }
 
+  public QuoridorGUI getQuoridorGUI() {
+    return this.quoridorGUI;
+  }
+
+  public BoardGUI getBoardGUI() {
+    return this.boardGUI;
+  }
+
   public JTexturedButton getButtonPause() {
     return this.pauseButton;
   }
 
   private void createAndShowGUI() {
-  	this.boardGUI = this.game.getBoardGUI();
-  	this.redLine = BorderFactory.createLineBorder(new Color(149, 26, 0), 15);
+  	this.redLine = BorderFactory.createLineBorder(this.colorRed, 15);
   	this.boardGUI.setBorder(redLine);
 
     this.setLayout(new BorderLayout(0,5));
@@ -75,29 +86,29 @@ public class GameGUI extends JPanel {
     this.quoridorGUI.setFontPalatino(this.currentPlayerText, 25);
     this.currentPlayer.add(this.currentPlayerText);
     this.currentPlayerColor = new JLabel();
-    this.currentPlayer.setBackground(new Color(195, 195, 148));
+    this.currentPlayer.setBackground(this.colorBackground);
 
     this.updateCurrentPlayer();
 
     this.top.add(this.currentPlayer);
-    this.top.setBackground(new Color(195, 195, 148));
+    this.top.setBackground(this.colorBackground);
 
     this.add(this.top, BorderLayout.NORTH);
 
     this.board = new JPanel();
     this.board.setLayout(new BorderLayout(0,10));
     this.add(this.board, BorderLayout.CENTER);
-    this.board.setBackground(new Color(195, 195, 148));
+    this.board.setBackground(this.colorBackground);
     this.board.setBorder(new EmptyBorder(50, 200, 0, 200));
 
     this.nbBar1 = new JPanel();
     this.nbBar1.setLayout(new GridLayout(0,10));
-    this.nbBar1.setBackground(new Color(195, 195, 148));
+    this.nbBar1.setBackground(this.colorBackground);
 
 
     this.nbBar2 = new JPanel();
     this.nbBar2.setLayout(new GridLayout(0,10));
-    this.nbBar2.setBackground(new Color(195, 195, 148));
+    this.nbBar2.setBackground(this.colorBackground);
 
     this.updateFences();
 

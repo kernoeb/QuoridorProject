@@ -130,7 +130,8 @@ public class ActionEcouteur implements ActionListener {
 
     this.quoridorGUI.remove(this.quoridorGUI.getMenuMode());
     this.quoridorGUI.setQuoridor(new Quoridor(mode, "Red user", "Green user", false));
-    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().getGame(), this.quoridorGUI));
+    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI));
+    this.quoridorGUI.getQuoridor().runAutoPlayer(this.quoridorGUI);
     this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
     // this.inGame = true;
 
@@ -157,8 +158,9 @@ public class ActionEcouteur implements ActionListener {
 
     this.quoridorGUI.remove(this.quoridorGUI.getMenuLoad());
     this.quoridorGUI.setQuoridor(new Quoridor(fileChoosed, false));
-    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI.getQuoridor().getGame(), this.quoridorGUI));
-    this.quoridorGUI.getGameGUI().getGame().getBoardGUI().addAllListeners();
+    this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI));
+    this.quoridorGUI.getQuoridor().runAutoPlayer(this.quoridorGUI);
+    this.quoridorGUI.getGameGUI().getBoardGUI().addAllListeners();
     this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
     // this.inGame = true;
 

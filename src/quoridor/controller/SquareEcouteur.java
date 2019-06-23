@@ -58,6 +58,16 @@ public class SquareEcouteur implements ActionListener {
   }
 
   private void endOfGame() {
-    System.out.println("C'est fini !!!!");
+    QuoridorGUI quoridorGUI = this.boardGUI.getGameGUI().getQuoridorGUI();
+
+    quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
+    quoridorGUI.remove(quoridorGUI.getGameGUI());
+    quoridorGUI.getEndText().setText("<html><head><style type='text/css'>body { font-family: Palatino Linotype; } </style></head><div align='center'>Félicitations ! <br> Le joueur " + this.actualPlayer.getName() + " a gagné la partie !</div></html>");
+    quoridorGUI.add(quoridorGUI.getMenuEnd());
+
+    quoridorGUI.setFocusableWindowState(true);
+    quoridorGUI.getMenuEnd().setOpaque(false);
+    quoridorGUI.revalidate();
+    quoridorGUI.repaint();
   }
 }
