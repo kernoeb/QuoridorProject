@@ -1,32 +1,46 @@
 package quoridor.model;
 
-import quoridor.view.BoardGUI;
-
+/** This will allow us to use elements of the class Serializable.
+*/
 import java.io.Serializable;
 
+/**
+ * Class representing a human player.
+ * @author Noéwen Boisnard, Sébastien Gavignet
+ */
 public class HumanPlayer extends Player implements Serializable {
 
+    /** This will allow us to serialize the object.
+    */
     private static final long serialVersionUID = 52698554L;
 
     /**
-     * HumanPlayer constructor
-     *
-     * @param name
-     * @author
+     * Constructor of a human player.
+     * Calls the constructor of the class Player.
+     * @param game     The game the player belongs to.
+     * @param name     The name of the player.
+     * @param board    The board the player belongs to.
+     * @param initX    The initial position of the automatic player on the board's X axis.
+     * @param initY    The initial position of the automatic player on the board's Y axis.
+     * @param terminal Tells if the human player will play on a terminal or not.
      */
     public HumanPlayer(Game game, String name, Board board, int initX, int initY, boolean terminal) {
         super(game, name, board, initX, initY, terminal);
     }
 
     /**
-     * Let the player choose between if he wants to play a fence or moves its pawn
-     *
-     * @author
+     * Method created to have the possibility to use the class abstract.
      */
     public void play() {
     }
 
-    public boolean play(Square square, BoardGUI boardGUI) {
+    /**
+     * Call the right method to allow the player to play in the graphical interface
+     * in the square given in parameter.
+     * @param  square   The square in which the player wants to play.
+     * @return          True if something has been modified, false otherwise.
+     */
+    public boolean play(Square square) {
         boolean ret = false;
 
         if (!this.terminal) {
@@ -36,7 +50,7 @@ public class HumanPlayer extends Player implements Serializable {
                     this.game.setActualPlayer();
                 }
             } else if (square.isFence()) {
-                ret = this.playFence(square, boardGUI);
+                ret = this.playFence(square);
                 if (ret) {
                     this.game.setActualPlayer();
                 }
@@ -45,7 +59,11 @@ public class HumanPlayer extends Player implements Serializable {
         return ret;
     }
 
-
+    /**
+     * Mive the pawn according to the square given in parameters.
+     * @param  square The square in which the player wants to move the pawn.
+     * @return        True if something has been modified, false otherwise.
+     */
     private boolean playPawn(Square square) {
         boolean ret = false;
 
@@ -57,17 +75,23 @@ public class HumanPlayer extends Player implements Serializable {
         return ret;
     }
 
-    private boolean playFence(Square square, BoardGUI boardGUI) {
+    /**
+     * Place a fence in the square given in parameter.
+     * @param  square   The square in which the player wants to place a fence.
+     * @return          True if something has been modified, false otherwise.
+     */
+    private boolean playFence(Square square) {
         boolean ret = false;
 
         if (this.getNbRestingFences() > 0) {
             int x = square.getX();
             int y = square.getY();
             Square squareFence;
-            // Barrière horizontale
+
+            // Horizontal fence
             if (x % 2 != 0 && y % 2 == 0) {
                 try {
-                    if (y != boardGUI.getSquares().length - 1) squareFence = this.board.getGrid()[x][y + 1];
+                    if (y != this.board.getTotalSize() - 1) squareFence = this.board.getGrid()[x][y + 1];
                     else squareFence = this.board.getGrid()[x][y - 1];
 
                     if (this.checkFencePossible(squareFence, "h")) {
@@ -79,10 +103,11 @@ public class HumanPlayer extends Player implements Serializable {
                 } catch (Exception ignored) {
                 }
             }
-            // Barrière verticale
+
+            // Vertical fence
             else if (x % 2 == 0 && y % 2 != 0) {
                 try {
-                    if (y != boardGUI.getSquares().length - 1) squareFence = this.board.getGrid()[x + 1][y];
+                    if (y != this.board.getTotalSize() - 1) squareFence = this.board.getGrid()[x + 1][y];
                     else squareFence = this.board.getGrid()[x - 1][y];
 
                     if (this.checkFencePossible(squareFence, "v")) {
@@ -97,6 +122,10 @@ public class HumanPlayer extends Player implements Serializable {
         return ret;
     }
 
+    /**
+     * Method created to have the possibility to use the abstract class.
+     * @return Null
+     */
     public Square randomSquare() {
         return null;
     }

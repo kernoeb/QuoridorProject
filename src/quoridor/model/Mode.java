@@ -1,9 +1,15 @@
 package quoridor.model;
 
 /**
- * Enumeration with the two game mode possible.
+ * Enumeration representing a game mode.
+ * @author Noéwen Boisnard, Sébastien Gavignet
  */
 public enum Mode {
-    HH, // HumanPlayer vs HumanPlayer
-    HA // HumanPlayer vs AutomaticPlayer
+    /** HumanPlayer vs HumanPlayer
+    */
+    HH,
+
+    /** HumanPlayer vs AutomaticPlayer
+    */
+    HA 
 }

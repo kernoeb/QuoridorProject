@@ -22,7 +22,7 @@ public class SquareEcouteur implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Square square = this.boardGUI.getSquare((JButton) e.getSource());
 
-        if (this.actualPlayer.play(square, this.boardGUI)) {
+        if (this.actualPlayer.play(square)) {
             this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
             this.boardGUI.displayBoardGUI();
             this.boardGUI.getGameGUI().updateFences();
@@ -33,7 +33,7 @@ public class SquareEcouteur implements ActionListener {
 
             if (this.actualPlayer instanceof AutoPlayer) {
                 square = this.actualPlayer.randomSquare();
-                this.actualPlayer.play(square, this.boardGUI);
+                this.actualPlayer.play(square);
                 this.actualPlayer = this.boardGUI.getGame().getActualPlayer();
                 this.boardGUI.displayBoardGUI();
                 this.boardGUI.getGameGUI().updateFences();

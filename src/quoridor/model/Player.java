@@ -1,35 +1,66 @@
 package quoridor.model;
 
+/** This will allow us to use elements of the class Maze.
+*/
 import quoridor.model.utilitary.Maze;
-import quoridor.view.BoardGUI;
 
+/** This will allow us to use elements of the class Serializable.
+*/
 import java.io.Serializable;
+
+/** This will allow us to create an ArrayList.
+*/
 import java.util.ArrayList;
 
 /**
- * Player
- *
- * @author
+ * Class representing a player.
+ * @author Noéwen Boisnard, Sébastien Gavignet
  */
 public abstract class Player implements Serializable {
 
+    /** This will allow us to serialize the object.
+    */
     private static final long serialVersionUID = 52696565L;
 
+    /** The board the player belongs to.
+    */
     Board board;
+
+    /** The square where the player is at a specific moment.
+    */
     Square currentSquare;
+
+    /** The name of the player.
+    */
     private String name;
+
+    /** The number of resting fences of the player.
+    */
     int nbFences;
+
+    /** The game the player belongs to.
+    */
     Game game;
-    public ArrayList<Square> listOfOldPositions;
+
+    /** The boolean terminal which tells if the game is in the terminal or not.
+    */
     boolean terminal;
 
+    /**
+     * Construct of a player.
+     * @param game     The game the player belongs to.
+     * @param name     The name of the player.
+     * @param board    The board the player belongs to.
+     * @param initX    The initial position of the automatic player on the board's X axis.
+     * @param initY    The initial position of the automatic player on the board's Y axis.
+     * @param terminal Tells if the player will play on a terminal or not.
+     */
     Player(Game game, String name, Board board, int initX, int initY, boolean terminal) {
         if ((game != null) && (name != null) && (board != null)) {
             this.name = name;
             this.board = board;
             this.nbFences = 10;
             this.game = game;
-            this.listOfOldPositions = new ArrayList<Square>();
             this.terminal = terminal;
 
             if ((initX >= 0) && (initX < this.board.getSIZE()) && (initY >= 0) && (initY < this.board.getSIZE())) {
@@ -44,6 +75,16 @@ public abstract class Player implements Serializable {
         }
     }
 
+    /**
+     * Return true if the there is still an existing path if the fence with the
+     * caracteristics given in parameters is set.
+     * Uses the algorithm BFS of the class Maze.
+     * @param  player The player for which the fence would be set.
+     * @param  x      The coordinate x of the fence which would be set.
+     * @param  y      The coordinate y of the fence which would be set.
+     * @param  dir    The direction of the fence which would be set.
+     * @return        Return true if there is still an existing path, false otherwise.
+     */
     private boolean checkExistingPath(Player player, int x, int y, String dir) {
         Board tmp = this.board;
         tmp.setFence(x, y, dir, player);
@@ -66,28 +107,54 @@ public abstract class Player implements Serializable {
         return ok;
     }
 
+    /**
+     * Abstract method to select a square randomly where a player could play.
+     * @return Return a square selected randomly.
+     */
     public abstract Square randomSquare();
 
+    /**
+     * Return the current square of the player.
+     * @return The current square of the player.
+     */
     public Square getCurrentSquare() {
         return this.currentSquare;
     }
 
+    /**
+     * Return the name of the player.
+     * @return The name of the player.
+     */
     public String getName() {
         return this.name;
     }
 
     /**
-     * @return the number of fences left playable by the player
-     * @author
+     * Return the number of resting fences of the player.
+     * @return The number of resting fences of the player.
      */
     public int getNbRestingFences() {
         return this.nbFences;
     }
 
+    /**
+     * Abstract method to allow the player to play in the terminal.
+     */
     public abstract void play();
 
-    public abstract boolean play(Square square, BoardGUI boardGUI);
+    /**
+     * Abstract method to allow the player to play in the graphical interface by
+     * playing in the square given in parameter.
+     * @param  square The square in which the player wants to play.
+     * @return        True if something has been modified.
+     */
+    public abstract boolean play(Square square);
 
+    /**
+     * Move the player's pawn in the square with the specified coordinates.
+     * @param x The coordinate x of where to move the pawn.
+     * @param y The coordinate y of where to move the pawn.
+     */
     public void movePawn(int x, int y) {
         if (this.currentSquare != null) {
             this.board.getGrid()[x][y].setStatus(this.currentSquare.getStatus());
@@ -98,13 +165,19 @@ public abstract class Player implements Serializable {
         }
     }
 
+    /**
+     * Modify the number of resting fences of the player.
+     * @param nb The number of resting fences of the player.
+     */
     public void setNbFences(int nb) {
         this.nbFences = nb;
     }
 
     /**
-     * @param square
-     * @return
+     * Return true if the fence with the caracteristics given in parameters could be placed.
+     * @param  square The square of the fence which would be placed.
+     * @param  dir    The direction of the fence which would be placed.
+     * @return        True if the fence could be placed.
      */
     public boolean checkFencePossible(Square square, String dir) {
         boolean ret = false;

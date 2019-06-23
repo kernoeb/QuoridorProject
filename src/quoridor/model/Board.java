@@ -1,39 +1,67 @@
 package quoridor.model;
 
+/** This will allow us to use elements of the class Serializable.
+*/
 import java.io.Serializable;
+
+/** This will allow us to create an ArrayList.
+*/
 import java.util.ArrayList;
 
 /**
- * Class for the initializing of the board.
- * Contains the grid and calls the GUI package to show the game
- *
+ * Class representing the board of the game.
+ * @author Noéwen Boisnard, Sébastien Gavignet
  */
 public class Board implements Serializable {
 
+    /** This will allow us to serialize the object.
+    */
     private static final long serialVersionUID = 54254574554L;
 
+    /** Boolean used to know if the user wants to have colors in his terminal.
+    */
     private boolean color;
+
+    /** The fixed size of the board which is 9.
+    */
     private final int SIZE = 9;
+
+    /** The grid of the board which will contained Square elements.
+    * The grid will have a size of 17 per 17 because it will contain pawns and fences.
+    */
     private final Square[][] grid;
 
     /**
-     * Board constructor
-     * intiliaze a 81 squares board (9*9)
-     * Initialize walls and positionates players on their starting positions
+     * Constructor of the board.
+     * Initialize the grid by setting its size according to the final int SIZE attribute.
+     * Its size is not only 9 per 9 because it will also contain the fences of the game.
+     * Initialize then all the squares with their corresponding status.
      */
     public Board() {
         this.grid = new Square[this.getTotalSize()][this.getTotalSize()];
         this.initializeBoard();
     }
 
+    /**
+     * Return the boolean color, corresponding if the user wants colors in his terminal or not.
+     * @return The boolean color.
+     */
     public boolean getColor() {
         return this.color;
     }
 
+    /**
+     * Set the value of the boolean color.
+     * @param color The boolean used to know if the user wants colors in his terminal.
+     */
     public void setColor(boolean color) {
         this.color = color;
     }
 
+    /**
+     * Initialize the board by setting a status to each square of the grid, according to their position
+     * in it.
+     */
     private void initializeBoard() {
         for (int x = 0; x < this.getTotalSize(); x++) {
             for (int y = 0; y < this.getTotalSize(); y++) {
@@ -52,34 +80,73 @@ public class Board implements Serializable {
         this.grid[this.pawnCoord(0)][this.pawnCoord(4)] = new Square(this.pawnCoord(0), this.pawnCoord(4), Status.PAWN2);
     }
 
+    /**
+     * Return the size of the board (9).
+     * @return The size of the board (9).
+     */
     public int getSIZE() {
         return this.SIZE;
     }
 
+    /**
+     * Return the grid of the board.
+     * @return The grid of the board.
+     */
     public Square[][] getGrid() {
         return this.grid;
     }
 
+    /**
+     * Return the total size of the board (with fences and pawns) (17)
+     * @return Return the total size of the board (17).
+     */
     public int getTotalSize() {
         return this.SIZE * 2 - 1;
     }
 
+    /**
+     * Return true if the number given in parameters is an even number, false otherwise.
+     * @param  x The number we want to know if it is an even number.
+     * @return   True if it is an even number.
+     */
     public boolean isEvenNumber(int x) {
         return (x % 2) == 0;
     }
 
+    /**
+     * Return true if the number given in parameters is an odd number, false otherwise.
+     * @param  x The number we want to know if it is an odd number.
+     * @return   True if it is an odd number.
+     */
     public boolean isOddNumber(int x) {
         return (x % 2) != 0;
     }
 
+    /**
+     * Transform the coordinate of a pawn from the normal size (9) to the total size (17).
+     * @param  x The number we want to transform.
+     * @return   Return the number in the total size.
+     */
     public int pawnCoord(int x) {
         return x * 2;
     }
 
+    /**
+     * Transform the coordinate of a fence from the normal size (9) to the total size (17).
+     * @param  x The number we want to transform.
+     * @return   Return the number in the total size.
+     */
     public int fenceCoord(int x) {
         return (x * 2) + 1;
     }
 
+    /**
+     * Set a fence with the specified caracteristics given in parameters.
+     * @param x      The coordinate x of the fence we want to set.
+     * @param y      The coordinate y of the fence we want to set.
+     * @param dir    The direction of the fence we want to set.
+     * @param player The player of the fence we want to set.
+     */
     public void setFence(int x, int y, String dir, Player player) {
         Status status = null;
 
@@ -100,6 +167,12 @@ public class Board implements Serializable {
         }
     }
 
+    /**
+     * Remove the fence with the specified caracteristics given in parameters.
+     * @param x   The coordinate x of the fence we want to remove.
+     * @param y   The coordinate y of the fence we want to remove.
+     * @param dir The direction of the fence we want to remove.
+     */
     public void removeFence(int x, int y, String dir) {
 
         this.grid[x][y].setStatus(Status.FENCEPOSSIBLE);
@@ -114,12 +187,20 @@ public class Board implements Serializable {
 
     }
 
+    /**
+     * Return true if the square given in parameter can be set as a fence for the
+     * player given in parameter.
+     * @param  square The square for which we want to check.
+     * @param  player The player for which we want to check.
+     * @return        Return true if the square is possible.
+     */
     public boolean possibleFence(Square square, Player player) {
         boolean ret = false;
         int x = square.getX();
         int y = square.getY();
         Square squareFence;
-        // Barrière horizontale
+
+        // Horizontal fence
         if (x % 2 != 0 && y % 2 == 0) {
             try {
                 if (y != this.getTotalSize() - 1) squareFence = this.grid[x][y + 1];
@@ -133,7 +214,8 @@ public class Board implements Serializable {
             } catch (Exception ignored) {
             }
         }
-        // Barrière verticale
+
+        // Vertical fence
         else if (x % 2 == 0 && y % 2 != 0) {
             try {
                 if (y != this.getTotalSize() - 1) squareFence = this.grid[x + 1][y];
@@ -149,6 +231,12 @@ public class Board implements Serializable {
         return ret;
     }
 
+    /**
+     * Return an array of objects which correspond to the different possibilities
+     * where the player given in parameters can place a fence.
+     * @param  player The player for who we want to know the possibilities.
+     * @return        An array of objects which are the possibilities of fence.
+     */
     public Object[][] listOfPossibilitiesFence(Player player) {
         Object[][] listOfPossibilitiesFence = new Object[128][2];
         int val = 0;
@@ -183,9 +271,10 @@ public class Board implements Serializable {
     }
 
     /**
-     * Check the list of possibilities for the player
-     *
-     * @param player list of possibilities for one player
+     * Return an ArrayList of squares on the possibilities where the player given in parameters
+     * can move his pawn.
+     * @param  player The player for who we want to know the possibilities.
+     * @return        An ArrayList of squares which are the possibilities of pawn.
      */
     public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
         ArrayList<Square> listOfPossibilities = new ArrayList<Square>();
@@ -193,7 +282,7 @@ public class Board implements Serializable {
         int x = player.getCurrentSquare().getX();
         int y = player.getCurrentSquare().getY();
 
-        // Vérification du haut
+        // Verify the positions at the top.
         try {
             if (this.grid[x - 1][y].isFencePossible()) {
                 if (!this.grid[x - 2][y].isPawnPossible()) {
@@ -214,7 +303,7 @@ public class Board implements Serializable {
         } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
-        // Vérification du bas
+        // Verify the positions at the bottom.
         try {
             if (this.grid[x + 1][y].isFencePossible()) {
                 if (!this.grid[x + 2][y].isPawnPossible()) {
@@ -235,7 +324,7 @@ public class Board implements Serializable {
         } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
-        // Vérification de la gauche
+        // Verify the positions at the left.
         try {
             if (this.grid[x][y - 1].isFencePossible()) {
                 if (!this.grid[x][y - 2].isPawnPossible()) {
@@ -256,7 +345,7 @@ public class Board implements Serializable {
         } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
-        // Vérification de la droite
+        // Verify the positions at the right.
         try {
             if (this.grid[x][y + 1].isFencePossible()) {
                 if (!this.grid[x][y + 2].isPawnPossible()) {
@@ -280,6 +369,11 @@ public class Board implements Serializable {
         return listOfPossibilities;
     }
 
+    /**
+     * Return a string which contain the board.
+     * The display is different according if the user wants colors in his terminal or not.
+     * @return A string which allow to display the board.
+     */
     public String toString() {
         StringBuilder ret = new StringBuilder();
 

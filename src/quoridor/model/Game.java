@@ -1,33 +1,60 @@
 package quoridor.model;
 
+/** This will allow us to use elements of the class Serializable.
+*/
 import java.io.Serializable;
+
+/** This will allow us to create an ArrayList.
+*/
 import java.util.ArrayList;
+
+/** This will allow us to use elements of the class Random.
+*/
 import java.util.Random;
 
 /**
- * This class contains the methods to initialize the game
- *
- * @author
+ * Class representing a game.
+ * @author Noéwen Boisnard, Sébastien Gavignet
  */
 public class Game implements Serializable {
 
+    /** This will allow us to serialize the object.
+    */
     private static final long serialVersionUID = 5454564654L;
 
+    /** The board of the game.
+    */
     private final Board board;
+
+    /** The first player of the game.
+    */
     private Player player1;
+
+    /** The second player of the game.
+    */
     private Player player2;
+
+    /** The mode of the game.
+    */
     private final Mode mode;
 
+    /** The actual player of the game.
+    */
     private Player actualPlayer;
 
+    /** The boolean terminal which tells if the game is in the terminal or not.
+    */
     private final boolean terminal;
 
     /**
-     * Game constructor
-     * initialize the board, the two players and the mode
-     * The mode is chosen by the players with a scanner
-     *
-     * @author
+     * Constructor of a game.
+     * Initialize the elements of the game (its board, its mode, its players and
+     * the actual player, which means the player who will play at first and who is
+     * selected randomly).
+     * @param mode        The mode of the game.
+     * @param namePlayer1 The name of the first player.
+     * @param namePlayer2 The name of the second player.
+     * @param terminal    The booelan terminal which tells if the game is in a terminal or not.
      */
     public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
         this.board = new Board();
@@ -45,43 +72,67 @@ public class Game implements Serializable {
         this.initializeGame();
     }
 
+    /**
+     * Return the board of the game.
+     * @return The board of the game.
+     */
     public Board getBoard() {
         return this.board;
     }
 
+    /**
+     * Return the first player of the game.
+     * @return The first player of the game.
+     */
     public Player getPlayer1() {
         return this.player1;
     }
 
+    /**
+     * Return the second player of the game.
+     * @return The second player of the game.
+     */
     public Player getPlayer2() {
         return this.player2;
     }
 
+    /**
+     * Return the actual player of the game.
+     * @return Return the actual player of the game.
+     */
     public Player getActualPlayer() {
         return this.actualPlayer;
     }
 
     /**
-     * Initialize the game
+     * Initialize tje actual plyaer, which means the player who will start to play.
      */
     private void initializeGame() {
         this.actualPlayer = this.whoStarts();
     }
 
     /**
-     * Choose randomly which player plays first
-     *
-     * @return the starting player
+     * Choose randomly one of the two player to know which one will start.
+     * @return One of the two player selected randomly.
      */
     private Player whoStarts() {
         ArrayList<Player> list = new ArrayList<Player>();
         list.add(this.player1);
         list.add(this.player2);
+
+        // If the game is in a graphical interface, we choosed to start always by
+        // the HumanPlayer because we think that when the AutomaticPlayer starts,
+        // it is not natural that we will have to play after.
         if (!this.terminal && this.mode == Mode.HA) {
             return this.player1;
         } else return list.get(new Random().nextInt(list.size()));
     }
 
+    /**
+     * Return true if the player given in parameters has finished.
+     * @param  player The player for who we want to know if he has finished.
+     * @return        True if the player has finished, false otherwise.
+     */
     public boolean checkHasFinished(Player player) {
         boolean ret = false;
 
@@ -98,6 +149,9 @@ public class Game implements Serializable {
         return ret;
     }
 
+    /**
+     * Update the actual player.
+     */
     public void setActualPlayer() {
         if (this.actualPlayer == this.player1) {
             this.actualPlayer = this.player2;
@@ -105,7 +159,8 @@ public class Game implements Serializable {
     }
 
     /**
-     * End the game and launch the results procedure
+     * Return the player who has finished and so the one who won the game.
+     * @return The player who won the game.
      */
     public Player getWinnerPlayer() {
         Player finishPlayer = null;
@@ -119,8 +174,11 @@ public class Game implements Serializable {
         return finishPlayer;
     }
 
+    /**
+     * Return a representation of a game, with its board and the player supposed to play.
+     * @return A string which represents the game with its board and the actual player.
+     */
     public String toString() {
-        // TODO - implement Game.toString
         String ret = "";
 
         ret += this.board;

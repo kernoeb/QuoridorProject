@@ -120,7 +120,7 @@ public class Quoridor {
 
         if (actualPlayer instanceof AutoPlayer) {
             Square square = actualPlayer.randomSquare();
-            actualPlayer.play(square, boardGUI);
+            actualPlayer.play(square);
             boardGUI.displayBoardGUI();
             boardGUI.addTmpPossibilities(boardGUI.getBoard().listOfPossibilitiesPawn(actualPlayer), actualPlayer);
         }
@@ -225,8 +225,6 @@ public class Quoridor {
 
         Board board = this.game.getBoard();
         this.displayTerminal.displayForFence(board);
-
-        actualPlayer.listOfOldPositions.clear();
 
         System.out.println("Sur quelle case voulez-vous jouer ?");
 

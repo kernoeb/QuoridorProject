@@ -1,33 +1,44 @@
 package quoridor.model;
 
-import quoridor.view.BoardGUI;
-
+/** This will allow us to use elements of the class Serializable.
+*/
 import java.io.Serializable;
+
+/** This will allow us to create an ArrayList.
+*/
 import java.util.ArrayList;
+
+/** This will allow us to use elements of the classes Random.
+*/
 import java.util.Random;
 
+/**
+* Class representing an automatic player.
+* @author Noéwen Boisnard, Sébastien Gavignet
+*/
 public class AutoPlayer extends Player implements Serializable {
 
+	  /** This will allow us to serialize the object.
+	  */
     private static final long serialVersionUID = 5452854L;
 
     /**
-     * AutoPlayer constructor
-     * @param game
-     * @param name
-     * @param board
-     * @param initX
-     * @param initY
-     * @param terminal
+     * Constructor of an automatic player.
+     * @param game The game he belongs to.
+     * @param name The name of the automatic player.
+     * @param board The board he belongs to.
+     * @param initX The initial position of the automatic player on the board's X axis.
+     * @param initY The initial position of the automatic player on the board's Y axis.
+     * @param terminal Tells if the automatic player will play on a terminal or not.
      */
     public AutoPlayer(Game game, String name, Board board, int initX, int initY, boolean terminal) {
         super(game, name, board, initX, initY, terminal);
     }
 
     /**
-     * AI for the AutoPlayer
-     * Choose between playFence and playPawn
-     * Only one level of difficulty for now
-     *
+     * Make the automatic player play by choosing randomly if it will place a fence or
+	   * move its pawn.
+	   * Only the first difficulty has been implemented.
      */
     public void play() {
         ArrayList<Square> al = this.board.listOfPossibilitiesPawn(this);
@@ -73,7 +84,17 @@ public class AutoPlayer extends Player implements Serializable {
 
     }
 
-    public boolean play(Square square, BoardGUI boardGUI) {
+    /**
+     * Method which make the automatic player in the graphical interface.
+   	 * As well as the one for the terminal, it selects randomly a square
+   	 * and places a fence in it or move the pawn in it according to the status
+   	 * of the square.
+   	 * However, this method only calls the right method according if the square
+   	 * choosed is a fence or a pawn.
+     * @param  square   The square choosed in which the automatic player will play.
+     * @return          True if something has been modified, false otherwise.
+     */
+    public boolean play(Square square) {
         boolean ret = false;
 
         if (!this.terminal) {
@@ -95,11 +116,21 @@ public class AutoPlayer extends Player implements Serializable {
         return ret;
     }
 
+    /**
+     * Move the pawn according to the square given in parameters
+     * @param  square The square in which the automatic player will move.
+     * @return        True if something has been modified.
+     */
     private boolean playPawn(Square square) {
         super.movePawn(square.getX(), square.getY());
         return true;
     }
 
+    /**
+     * Place a fence according to the square given in parameters.
+     * @param  square The square in which the automatic player will place a fence.
+     * @return        True if something has been modified.
+     */
     private boolean playFence(Square square) {
         boolean ret = false;
 
@@ -124,6 +155,12 @@ public class AutoPlayer extends Player implements Serializable {
         return ret;
     }
 
+    /**
+     * Selects randomly a square in the list of squares where it could play (fence or pawn)
+     * and this square will be used by the automatic player to play in.
+     * Corresponds to the first difficulty (Easy) of the automatic player's strategy.
+     * @return The square which has been selected.
+     */
     public Square randomSquare() {
         ArrayList<Square> lopPawn = this.board.listOfPossibilitiesPawn(this);
         Object[][] lopFence = this.board.listOfPossibilitiesFence(this);
