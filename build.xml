@@ -19,7 +19,8 @@
 	<target name="compile" depends="init" description="Compilation des fichiers sources">
 		<!-- Compilation des fichiers sources présents dans ${src} en fichiers class dans le dossier ${buildJar} -->
 		<javac srcdir="${src}" destdir="${buildJar}" encoding="utf8">
-		<exclude name="test/*.java"/>
+			<exclude name="test/*.java"/>
+			<exclude name="test/*/*/*.java"/>
 		</javac>
 	</target>
 

@@ -1,101 +1,100 @@
 package test.quoridor.model;
-import quoridor.*;
+
 import org.junit.Test;
+import quoridor.model.*;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class BoardTest {
     public static void main(String[] args) {
-
+        System.out.println("Test Board");
+        testBoard();
+        testListOfPossibilitiesFence();
+        testListOfPossibilitiesPawn();
+        testGetSIZE();
+        testGetGrid();
+        testGetTotalSize();
     }
 
     @Test
-    public void testBoard() {
-        Board board = new Board();
-        assertNotNull(board);
+    public static void testBoard() {
+        try {
+            Board board = new Board();
+            assertNotNull(board);
+            System.out.println("testBoard : OK");
+        } catch (AssertionError e) {
+            System.out.println("testBoard : Error");
+        }
     }
 
     @Test
-    public void testListOfPossibilitiesFence(){
+    public static void testListOfPossibilitiesFence() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = new AutoPlayer(game, "Michel", game.getBoard(), 0, 0, false);
             Object[][] arrayPossibilitiesFence = game.getBoard().listOfPossibilitiesFence(player);
             assertNotNull(arrayPossibilitiesFence);
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("testListOfPossibilitiesFence : OK");
+        } catch (AssertionError e) {
+            System.out.println("testListOfPossibilitiesFence : Error");
         }
     }
 
     @Test
-    public void testListOfPossibilitiesPawn(){
+    public static void testListOfPossibilitiesPawn() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = new AutoPlayer(game, "Michel", game.getBoard(), 0, 0, false);
             ArrayList<Square> arrayPossibilitiesPawn = game.getBoard().listOfPossibilitiesPawn(player);
             assertNotNull(arrayPossibilitiesPawn);
+            System.out.println("testListOfPossibilitiesPawn : OK");
+        } catch (AssertionError e) {
+            System.out.println("testListOfPossibilitiesPawn : Error");
+        }
+        try {
+            Game game = new Game(Mode.HH, "Michel", "Paul", false);
             assertNull(game.getBoard().listOfPossibilitiesPawn(null));
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("testListOfPossibilitiesPawn : Error");
+        } catch (NullPointerException e) {
+            System.out.println("testListOfPossibilitiesPawn : OK");
         }
     }
 
     @Test
-    public void setColor() {
+    public static void testGetSIZE() {
+        try {
+            Game game = new Game(Mode.HH, "Michel", "Paul", false);
+            int size = game.getBoard().getSIZE();
+            assertNotNull(size);
+            System.out.println("getSIZE : OK");
+        } catch (AssertionError e) {
+            System.out.println("getSIZE : Error");
+        }
     }
 
     @Test
-    public void getColor() {
+    public static void testGetGrid() {
+        try {
+            Game game = new Game(Mode.HH, "Michel", "Paul", false);
+            assertNotNull(game.getBoard().getGrid());
+            System.out.println("getGrid : OK");
+        } catch (AssertionError e) {
+            System.out.println("getGrid : Error");
+        }
     }
 
     @Test
-    public void initializeBoard() {
+    public static void testGetTotalSize() {
+        try {
+            Game game = new Game(Mode.HH, "Michel", "Paul", false);
+            int size = game.getBoard().getTotalSize();
+            assertNotNull(size);
+            System.out.println("getTotalSize : OK");
+        } catch (AssertionError e) {
+            System.out.println("getTotalSize : Error");
+        }
     }
-
-    @Test
-    public void getSIZE() {
-    }
-
-    @Test
-    public void getGrid() {
-    }
-
-    @Test
-    public void getTotalSize() {
-    }
-
-    @Test
-    public void isEvenNumber() {
-    }
-
-    @Test
-    public void isOddNumber() {
-    }
-
-    @Test
-    public void pawnCoord() {
-    }
-
-    @Test
-    public void fenceCoord() {
-    }
-
-    @Test
-    public void setFence() {
-    }
-
-    @Test
-    public void removeFence() {
-    }
-
-    @Test
-    public void possibleFence() {
-    }
-
-    @Test
-    public void checkOutside() {
-    }
-
 }
