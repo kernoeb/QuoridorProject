@@ -12,9 +12,12 @@ public class AutoPlayer extends Player implements Serializable {
 
     /**
      * AutoPlayer constructor
-     *
+     * @param game
      * @param name
-     * @author
+     * @param board
+     * @param initX
+     * @param initY
+     * @param terminal
      */
     public AutoPlayer(Game game, String name, Board board, int initX, int initY, boolean terminal) {
         super(game, name, board, initX, initY, terminal);
@@ -25,7 +28,6 @@ public class AutoPlayer extends Player implements Serializable {
      * Choose between playFence and playPawn
      * Only one level of difficulty for now
      *
-     * @author
      */
     public void play() {
         ArrayList<Square> al = this.board.listOfPossibilitiesPawn(this);
@@ -64,7 +66,7 @@ public class AutoPlayer extends Player implements Serializable {
                         this.board.setFence(s.getX(), s.getY(), "v", this);
                         this.setNbFences(this.nbFences - 1);
                     }
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
             }
         } else {
@@ -86,7 +88,7 @@ public class AutoPlayer extends Player implements Serializable {
                     this.game.setActualPlayer();
                 }
             } else if (square.isFence()) {
-                ret = this.playFence(square, boardGUI);
+                ret = this.playFence(square);
 
                 if (ret) {
                     // System.out.println("AutoPlayer - play() isFence -> nextPlayerGUI");
@@ -103,7 +105,7 @@ public class AutoPlayer extends Player implements Serializable {
         return true;
     }
 
-    private boolean playFence(Square square, BoardGUI boardGUI) {
+    private boolean playFence(Square square) {
         boolean ret = false;
 
         if (this.getNbRestingFences() > 0) {
@@ -120,7 +122,7 @@ public class AutoPlayer extends Player implements Serializable {
                     ret = true;
                 }
 
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         }
 

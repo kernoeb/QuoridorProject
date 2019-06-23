@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * Class for the initializing of the board.
  * Contains the grid and calls the GUI package to show the game
  *
- * @author
  */
 public class Board implements Serializable {
 
@@ -143,7 +142,7 @@ public class Board implements Serializable {
                     ret = true;
                 }
 
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         }
         // Barrière verticale
@@ -156,7 +155,7 @@ public class Board implements Serializable {
                     this.removeFence(squareFence.getX(), squareFence.getY(), "v");
                     ret = true;
                 }
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         }
         return ret;
@@ -221,7 +220,7 @@ public class Board implements Serializable {
     /**
      * Check the list of possibilities for the player
      *
-     * @param player
+     * @param player list of possibilities for one player
      */
     public ArrayList<Square> listOfPossibilitiesPawn(Player player) {
         ArrayList<Square> listOfPossibilities = new ArrayList<Square>();
@@ -247,7 +246,7 @@ public class Board implements Serializable {
                     listOfPossibilities.add(this.grid[x - 2][y]);
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
         // Verification du bas
@@ -268,7 +267,7 @@ public class Board implements Serializable {
                     listOfPossibilities.add(this.grid[x + 2][y]);
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
         // Verification de la gauche
@@ -289,7 +288,7 @@ public class Board implements Serializable {
                     listOfPossibilities.add(this.grid[x][y - 2]);
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
         // Verification de la droite
@@ -310,7 +309,7 @@ public class Board implements Serializable {
                     listOfPossibilities.add(this.grid[x][y + 2]);
                 }
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
 
         return listOfPossibilities;

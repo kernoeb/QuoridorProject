@@ -239,8 +239,8 @@ public class QuoridorGUI extends JFrame {
         GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
             genv.registerFont(getFontPalatino());
-        } catch (FontFormatException ffe) {
-        } catch (IOException io) {
+        } catch (FontFormatException ignored) {
+        } catch (IOException ignored) {
         }
 
 
@@ -346,8 +346,8 @@ public class QuoridorGUI extends JFrame {
         GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
             genv.registerFont(getFontPalatino());
-        } catch (FontFormatException ffe) {
-        } catch (IOException io) {
+        } catch (FontFormatException ignored) {
+        } catch (IOException ignored) {
         }
 
 

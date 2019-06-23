@@ -8,7 +8,6 @@ package quoridor.model;
 import quoridor.view.BoardGUI;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class HumanPlayer extends Player implements Serializable {
 
@@ -22,7 +21,6 @@ public class HumanPlayer extends Player implements Serializable {
      */
     public HumanPlayer(Game game, String name, Board board, int initX, int initY, boolean terminal) {
         super(game, name, board, initX, initY, terminal);
-        Scanner scan = new Scanner(System.in);
     }
 
     /**
@@ -113,7 +111,7 @@ public class HumanPlayer extends Player implements Serializable {
                         ret = true;
                     }
 
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
             }
             // Barrière verticale
@@ -127,7 +125,7 @@ public class HumanPlayer extends Player implements Serializable {
                         this.setNbFences(this.nbFences - 1);
                         ret = true;
                     }
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
                 }
             }
             // if (ret) this.board.removeFence(squareFence);

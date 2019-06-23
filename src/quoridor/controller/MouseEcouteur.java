@@ -102,7 +102,7 @@ public class MouseEcouteur implements MouseListener {
                     this.boardGUI.getSquares()[x][y - 1].setBackground(colorRed);
                     this.boardGUI.getSquares()[x][y - 2].setBackground(colorRed);
                 }
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         } else if (x % 2 == 0 && y % 2 != 0) {
             try {
@@ -115,7 +115,7 @@ public class MouseEcouteur implements MouseListener {
                     this.boardGUI.getSquares()[x - 1][y].setBackground(colorRed);
                     this.boardGUI.getSquares()[x - 2][y].setBackground(colorRed);
                 }
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         }
     }
