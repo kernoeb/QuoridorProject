@@ -33,7 +33,7 @@ public class HumanPlayer extends Player implements Serializable {
    * Let the player choose between if he wants to play a fence or moves its pawn
    * @author
    */
-  public void play() throws SaveGameException {
+  public void play() {
       // if(this.terminal) {
       //     if(this.nbFences > 0) {
       //         String mode = this.askMode();

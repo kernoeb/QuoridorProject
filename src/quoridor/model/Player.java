@@ -179,7 +179,7 @@ public abstract class Player implements Serializable {
 		return this.nbFences;
 	}
 
-	public abstract void play() throws SaveGameException;
+	public abstract void play();
 
 	public abstract boolean play(Square square, BoardGUI boardGUI);
 

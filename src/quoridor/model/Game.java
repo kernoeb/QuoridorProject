@@ -35,7 +35,7 @@ public class Game implements Serializable {
 	 * The mode is chosen by the players with a scanner
 	 * @author
 	 */
-	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) throws SaveGameException {
+	public Game(Mode mode, String namePlayer1, String namePlayer2, boolean terminal) {
 		this.board = new Board();
 		this.terminal = terminal;
 
@@ -142,7 +142,7 @@ public class Game implements Serializable {
 		return ret;
 	}
 
-	public void nextPlayer() throws SaveGameException {
+	public void nextPlayer() {
 		if (this.actualPlayer == this.player1) {
 			this.player1.play();
 
