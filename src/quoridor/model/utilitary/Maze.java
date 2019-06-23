@@ -1,6 +1,7 @@
 package quoridor.model.utilitary;
 
-import quoridor.model.*;
+import quoridor.model.Board;
+import quoridor.model.Square;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

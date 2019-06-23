@@ -4,16 +4,11 @@ import org.junit.Test;
 import quoridor.controller.Quoridor;
 import quoridor.model.Mode;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 public class QuoridorTest {
-
-    public static void main(String[] args) {
-        testGetGame();
-    }
-
     @Test
-    public static void testGetGame() {
+    public void testGetGame() {
         try {
             Quoridor quoridor = new Quoridor(Mode.HH, "Michel", "Jean", false);
             assertNotNull(quoridor.getGame());

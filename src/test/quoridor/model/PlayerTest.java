@@ -7,17 +7,11 @@ import quoridor.model.Player;
 import quoridor.model.Square;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 public class PlayerTest {
-
-    public static void main(String[] args) {
-        testGetCurrentSquare();
-        testGetName();
-        testGetNbRestingFences();
-    }
-
     @Test
-    public static void testGetCurrentSquare() {
+    public void testGetCurrentSquare() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getActualPlayer();
@@ -30,7 +24,7 @@ public class PlayerTest {
     }
 
     @Test
-    public static void testGetName() {
+    public void testGetName() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getActualPlayer();
@@ -43,12 +37,26 @@ public class PlayerTest {
     }
 
     @Test
-    public static void testGetNbRestingFences() {
+    public void testGetNbRestingFences() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getActualPlayer();
             int restingFences = player.getNbRestingFences();
             assertNotNull(restingFences);
+            System.out.println("getNbRestingFences : OK");
+        } catch (AssertionError e) {
+            System.out.println("getNbRestingFences : Error");
+        }
+    }
+
+    @Test
+    public void testGetNbRestingFences2() {
+        try {
+            Game game = new Game(Mode.HH, "Michel", "Paul", false);
+            Player player = game.getActualPlayer();
+            int restingFences = player.getNbRestingFences();
+            player.setNbFences(restingFences-1);
+            assertEquals(restingFences-1,player.getNbRestingFences());
             System.out.println("getNbRestingFences : OK");
         } catch (AssertionError e) {
             System.out.println("getNbRestingFences : Error");

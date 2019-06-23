@@ -9,18 +9,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class BoardTest {
-    public static void main(String[] args) {
-        System.out.println("Test Board");
-        testBoard();
-        testListOfPossibilitiesFence();
-        testListOfPossibilitiesPawn();
-        testGetSIZE();
-        testGetGrid();
-        testGetTotalSize();
-    }
-
     @Test
-    public static void testBoard() {
+    public void testBoard() {
         try {
             Board board = new Board();
             assertNotNull(board);
@@ -31,7 +21,7 @@ public class BoardTest {
     }
 
     @Test
-    public static void testListOfPossibilitiesFence() {
+    public void testListOfPossibilitiesFence() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = new AutoPlayer(game, "Michel", game.getBoard(), 0, 0, false);
@@ -44,7 +34,7 @@ public class BoardTest {
     }
 
     @Test
-    public static void testListOfPossibilitiesPawn() {
+    public void testListOfPossibilitiesPawn() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = new AutoPlayer(game, "Michel", game.getBoard(), 0, 0, false);
@@ -64,7 +54,7 @@ public class BoardTest {
     }
 
     @Test
-    public static void testGetSIZE() {
+    public void testGetSIZE() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             int size = game.getBoard().getSIZE();
@@ -76,7 +66,7 @@ public class BoardTest {
     }
 
     @Test
-    public static void testGetGrid() {
+    public void testGetGrid() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             assertNotNull(game.getBoard().getGrid());
@@ -87,7 +77,7 @@ public class BoardTest {
     }
 
     @Test
-    public static void testGetTotalSize() {
+    public void testGetTotalSize() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             int size = game.getBoard().getTotalSize();

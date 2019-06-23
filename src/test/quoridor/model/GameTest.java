@@ -9,16 +9,8 @@ import quoridor.model.Player;
 import static org.junit.Assert.assertNotNull;
 
 public class GameTest {
-
-    public static void main(String[] args) {
-        getBoard();
-        getPlayer1();
-        getPlayer2();
-        getActualPlayer();
-    }
-
     @Test
-    public static void getBoard() {
+    public void getBoard() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Board board = game.getBoard();
@@ -30,7 +22,7 @@ public class GameTest {
     }
 
     @Test
-    public static void getPlayer1() {
+    public void getPlayer1() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getPlayer1();
@@ -42,7 +34,7 @@ public class GameTest {
     }
 
     @Test
-    public static void getPlayer2() {
+    public void getPlayer2() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getPlayer2();
@@ -54,7 +46,7 @@ public class GameTest {
     }
 
     @Test
-    public static void getActualPlayer() {
+    public void getActualPlayer() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getActualPlayer();

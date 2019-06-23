@@ -8,13 +8,8 @@ import quoridor.model.Player;
 import static org.junit.Assert.assertEquals;
 
 public class AutoPlayerTest {
-
-    public static void main(String[] args) {
-        play();
-    }
-
     @Test
-    public static void play() {
+    public void play() {
         try {
             Game game = new Game(Mode.HH, "Michel", "Paul", false);
             Player player = game.getPlayer1();

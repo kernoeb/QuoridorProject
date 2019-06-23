@@ -19,12 +19,58 @@
 	<target name="compile" depends="init" description="Compilation des fichiers sources">
 		<!-- Compilation des fichiers sources présents dans ${src} en fichiers class dans le dossier ${buildJar} -->
 		<javac srcdir="${src}" destdir="${buildJar}" encoding="utf8">
-			<exclude name="test/*.java"/>
-			<exclude name="test/*/*/*.java"/>
+			<!--<exclude name="test/*.java"/>
+			<exclude name="test/*/*/*.java"/>-->
 		</javac>
 	</target>
 
-	<target name="createJar" depends="compile" description="Création du fichier .jar">
+
+	<!-- Run jUnit -->
+	<target name="junit" depends="compile">
+
+		<junit printsummary="yes" haltonfailure="no">
+			<classpath location="lib/junit-4.12.jar" />
+			<classpath location="lib/hamcrest-core-1.3.jar" />
+			<classpath location="${buildJar}"/>
+
+			<test name="test.quoridor.controller.QuoridorTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+
+			<test name="test.quoridor.model.PlayerTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+
+			<test name="test.quoridor.model.AutoPlayerTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+
+			<test name="test.quoridor.model.HumanPlayerTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+
+			<test name="test.quoridor.model.BoardTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+
+			<test name="test.quoridor.model.GameTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+
+			<test name="test.quoridor.model.SquareTest"
+				  haltonfailure="no" todir="reports">
+				<formatter type="xml" />
+			</test>
+		</junit>
+	</target>
+
+	<target name="createJar" depends="junit" description="Création du fichier .jar">
 		<!-- Création du dossier qui contiendra le fichier .jar -->
 		<mkdir dir="${jar}"/>
 		<!-- Création du fichier .jar à partir de l'ensemble des fichiers class du dossier ${buildJar} -->

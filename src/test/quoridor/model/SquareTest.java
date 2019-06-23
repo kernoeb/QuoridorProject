@@ -7,15 +7,8 @@ import quoridor.model.Status;
 import static org.junit.Assert.assertNotNull;
 
 public class SquareTest {
-
-    public static void main(String[] args) {
-        testGetStatus();
-        testGetX();
-        testGetY();
-    }
-
-    @Test
-    public static void testGetStatus() {
+   @Test
+    public void testGetStatus() {
         try {
             Square square = new Square(0, 0, Status.FENCEPOSSIBLE);
             assertNotNull(square.getStatus());
@@ -26,7 +19,7 @@ public class SquareTest {
     }
 
     @Test
-    public static void testGetX() {
+    public void testGetX() {
         try {
             Square square = new Square(0, 0, Status.FENCEPOSSIBLE);
             assertNotNull(square.getX());
@@ -37,7 +30,7 @@ public class SquareTest {
     }
 
     @Test
-    public static void testGetY() {
+    public void testGetY() {
         try {
             Square square = new Square(0, 0, Status.FENCEPOSSIBLE);
             assertNotNull(square.getY());
