@@ -105,7 +105,6 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.setGameGUI(new GameGUI(this.quoridorGUI));
         this.quoridorGUI.getQuoridor().runAutoPlayer(this.quoridorGUI);
         this.quoridorGUI.add(this.quoridorGUI.getGameGUI());
-        // this.inGame = true;
 
         this.quoridorGUI.setFocusableWindowState(true);
         this.quoridorGUI.getGameGUI().setOpaque(false);
