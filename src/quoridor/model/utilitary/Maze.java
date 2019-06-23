@@ -73,8 +73,6 @@ public class Maze {
                 }
             }
         }
-
-        // printMaze(maze);
         return maze;
     }
 

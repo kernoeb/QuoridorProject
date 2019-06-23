@@ -33,7 +33,6 @@ public abstract class Player implements Serializable {
             this.terminal = terminal;
 
             if ((initX >= 0) && (initX < this.board.getSIZE()) && (initY >= 0) && (initY < this.board.getSIZE())) {
-                // this.currentSquare = this.board.getGrid()[initX][initY];
                 this.currentSquare = this.board.getGrid()[this.board.pawnCoord(initX)][this.board.pawnCoord(initY)];
             } else {
                 System.out.println("Player : Paramètre(s) x et/ou y non valide(s). \n"
@@ -62,7 +61,7 @@ public abstract class Player implements Serializable {
         }
         if (!ok) {
             tmp.removeFence(x, y, dir);
-            System.out.println("Aucun chemin possible !");
+            if (this.terminal) System.out.println("Aucun chemin possible !");
         }
         return ok;
     }
