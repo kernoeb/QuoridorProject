@@ -114,11 +114,14 @@ public class Game implements Serializable {
 	 * @return the starting player
 	 */
 	public Player whoStarts() {
-		ArrayList<Player> list = new ArrayList<Player>();
-		list.add(this.player1);
-		list.add(this.player2);
+		if (this.terminal) {
+			ArrayList<Player> list = new ArrayList<Player>();
+			list.add(this.player1);
+			list.add(this.player2);
 
-		return list.get(new Random().nextInt(list.size()));
+			return list.get(new Random().nextInt(list.size()));
+		}
+		else return this.player1;
 	}
 
 	public boolean checkHasFinished(Player player) {
