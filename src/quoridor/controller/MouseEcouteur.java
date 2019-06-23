@@ -7,13 +7,20 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
+/**
+ * MouseEcouteur
+ * Listen for a clic on a button in the checkerboard
+ */
 public class MouseEcouteur implements MouseListener {
     private final Color colorRed = new Color(149, 26, 0);
     private final Color colorBlack = Color.BLACK;
     private final Color colorTmp = new Color(167, 168, 170);
     private final BoardGUI boardGUI;
 
+    /**
+     * Constructor
+     * @param boardGUI the using checkerboard
+     */
     public MouseEcouteur(BoardGUI boardGUI) {
         this.boardGUI = boardGUI;
     }
@@ -24,6 +31,10 @@ public class MouseEcouteur implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
 
+    /**
+     * Give possibilities to the user by hover the checkerboard
+     * @param e MouseEvent
+     */
     public void mouseEntered(MouseEvent e) {
         JButton source = (JButton) e.getSource();
 
@@ -70,6 +81,10 @@ public class MouseEcouteur implements MouseListener {
             source.setBackground(colorTmp);
     }
 
+    /**
+     * Reset the checkerboard if mouse exited
+     * @param e MouseEvent
+     */
     public void mouseExited(MouseEvent e) {
         JButton source = (JButton) e.getSource();
 

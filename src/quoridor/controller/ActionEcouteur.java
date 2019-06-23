@@ -9,14 +9,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * ActionEcouteur
+ * Listen for button click on GUI menus
+ * @author BOISNARD Noéwen
+ * @author GAVIGNET Sébastien
+ */
 public class ActionEcouteur implements ActionListener {
 
     private final QuoridorGUI quoridorGUI;
 
+    /**
+     * Constructor
+     * @param quoridorGUI menu GUI
+     */
     public ActionEcouteur(QuoridorGUI quoridorGUI) {
         this.quoridorGUI = quoridorGUI;
     }
 
+    /**
+     * If any action performed
+     * @param e ActionEvent
+     */
     public void actionPerformed(ActionEvent e) {
         JComponent component = (JComponent) e.getSource();
 
@@ -59,6 +73,9 @@ public class ActionEcouteur implements ActionListener {
         }
     }
 
+    /**
+     * Launch the load menu
+     */
     private void launchMenuLoad() {
         this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
 
@@ -69,6 +86,10 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Load the mode menu
+     * @param panel used JPanel and modify it
+     */
     private void launchMenuMode(JPanel panel) {
         this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
 
@@ -80,6 +101,10 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Load the main menu
+     * @param panel used JPanel and modify it
+     */
     private void launchMenuMain(JPanel panel) {
         this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground.png");
 
@@ -91,6 +116,10 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Launch the game GUI
+     * @param mode Run the game with chosed mode
+     */
     private void launchGameGUI(Mode mode) {
         this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
 
@@ -106,6 +135,10 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Launch the pause menu
+     * Allow user to pause the game, resume or save the game
+     */
     private void launchMenuPause() {
         this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
 
@@ -117,6 +150,10 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Launch an old game from a file
+     * @param fileChoosed file with save informations
+     */
     private void launchOldGame(String fileChoosed) {
         this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
 
@@ -133,6 +170,9 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Resume the game
+     */
     private void resumeGame() {
         this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
 
@@ -145,16 +185,27 @@ public class ActionEcouteur implements ActionListener {
         this.quoridorGUI.repaint();
     }
 
+    /**
+     * Restart the game
+     * @param panel used JPanel to launch again the mode menu
+     */
     private void restartGame(JPanel panel) {
         this.launchMenuMode(panel);
     }
 
+    /**
+     * Save the game (saveGame)
+     * and return to main menu
+     */
     private void saveAndQuitGame() {
         this.quoridorGUI.getQuoridor().saveGame(this.quoridorGUI.getGameGUI().getGame());
         this.quoridorGUI.getFileChooser().rescanCurrentDirectory();
         this.launchMenuMain(this.quoridorGUI.getMenuPause());
     }
 
+    /**
+     * Back to menu
+     */
     private void menuBack() {
         this.launchMenuMain(this.quoridorGUI.getMenuEnd());
     }
