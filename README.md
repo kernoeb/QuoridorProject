@@ -17,4 +17,15 @@ Run the jar file :
 cd jar && java -jar Quoridor.jar
 ```
 
+Arguments :
+
+```bash
+java -jar Quoridor.jar [HH | HA] [Username1] [Username2] 
+```
+
+```bash
+java -jar Quoridor.jar load [config.txt]
+```
+
 By [@kernoeb](https://github.com/kernoeb) and [@Gavidof](https://github.com/Gavidof)
+
