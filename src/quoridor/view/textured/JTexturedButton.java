@@ -50,7 +50,8 @@ public class JTexturedButton extends JButton {
     private void initializeComponents(String icon, String iconHover) {
         this.setForeground(Color.BLACK);
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+            //Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/data/fonts/palab.ttf"));
             this.setFont(font.deriveFont(35F));
         } catch (Exception e) {
             System.err.println("JTexturedButton : " + e.getMessage());
@@ -64,7 +65,7 @@ public class JTexturedButton extends JButton {
         this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setHorizontalTextPosition(SwingConstants.CENTER);
 
-        this.setIcon(new ImageIcon(icon));
-        this.setRolloverIcon(new ImageIcon(iconHover));
+        this.setIcon(new ImageIcon(getClass().getResource(icon)));
+        this.setRolloverIcon(new ImageIcon(getClass().getResource(iconHover)));
     }
 }

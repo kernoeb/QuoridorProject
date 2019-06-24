@@ -61,27 +61,27 @@ public class BoardGUI extends JPanel {
 
     /** The icon of the first player.
     */
-    private final ImageIcon player1 = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+    private final ImageIcon player1 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/orangePlayer.png"))).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
 
     /** The icon of the second player.
     */
-    private final ImageIcon player2 = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+    private final ImageIcon player2 = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/bluePlayer.png"))).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
 
     /** The icon of the square where the second player can move his pawn.
     */
-    private final ImageIcon orangePlayerPossible = new ImageIcon((new ImageIcon("../data/icons/orangePlayerPossible.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+    private final ImageIcon orangePlayerPossible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/orangePlayerPossible.png"))).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
 
     /** The icon of the square where the first player can move his pawn.
     */
-    private final ImageIcon bluePlayerPossible = new ImageIcon((new ImageIcon("../data/icons/bluePlayerPossible.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+    private final ImageIcon bluePlayerPossible = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/bluePlayerPossible.png"))).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
 
     /** The icon of the fence of the second player.
     */
-    private final ImageIcon fenceOrange = new ImageIcon((new ImageIcon("../data/icons/fenceOrange.png")).getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+    private final ImageIcon fenceOrange = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fenceOrange.png"))).getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
 
     /** The icon of the fence of the first player.
     */
-    private final ImageIcon fenceBlue = new ImageIcon((new ImageIcon("../data/icons/fenceBlue.png")).getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
+    private final ImageIcon fenceBlue = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/fenceBlue.png"))).getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH));
 
     /**
      * Constructor of a board of the graphical interface.

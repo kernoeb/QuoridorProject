@@ -40,7 +40,8 @@ public class BackgroundImage extends JComponent {
      */
     public BackgroundImage(String fileName) {
         try {
-            this.image = ImageIO.read(new File(fileName));
+            //this.image = ImageIO.read(new File(fileName);
+            this.image = ImageIO.read(getClass().getResourceAsStream(fileName));
         } catch (IOException e) {
             System.err.println("BackgroundImage : " + e.getMessage());
         } catch (Exception ex) {

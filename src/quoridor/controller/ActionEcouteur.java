@@ -80,7 +80,7 @@ public class ActionEcouteur implements ActionListener {
      * Launch the load menu
      */
     private void launchMenuLoad() {
-        this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/MenuBackground2.png");
 
         this.quoridorGUI.remove(this.quoridorGUI.getMenuMain());
         this.quoridorGUI.add(this.quoridorGUI.getMenuLoad());
@@ -95,7 +95,7 @@ public class ActionEcouteur implements ActionListener {
      * @param panel used JPanel and modify it
      */
     private void launchMenuMode(JPanel panel) {
-        this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/MenuBackground2.png");
 
         this.quoridorGUI.remove(panel);
         this.quoridorGUI.add(this.quoridorGUI.getMenuMode());
@@ -111,7 +111,7 @@ public class ActionEcouteur implements ActionListener {
      * @param panel used JPanel and modify it
      */
     private void launchMenuMain(JPanel panel) {
-        this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/MenuBackground.png");
 
         this.quoridorGUI.remove(panel);
         this.quoridorGUI.add(this.quoridorGUI.getMenuMain());
@@ -127,7 +127,7 @@ public class ActionEcouteur implements ActionListener {
      * @param mode Run the game with chosed mode
      */
     private void launchGameGUI(Mode mode) {
-        this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/GameBoard.png");
 
         this.quoridorGUI.remove(this.quoridorGUI.getMenuMode());
         this.quoridorGUI.setQuoridor(new Quoridor(mode, "Red user", "Green user", false));
@@ -146,7 +146,7 @@ public class ActionEcouteur implements ActionListener {
      * Allow user to pause the game, resume or save the game
      */
     private void launchMenuPause() {
-        this.quoridorGUI.setBackgroundImage("../data/images/MenuBackground2.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/MenuBackground2.png");
 
         this.quoridorGUI.remove(this.quoridorGUI.getGameGUI());
         this.quoridorGUI.add(this.quoridorGUI.getMenuPause());
@@ -162,7 +162,7 @@ public class ActionEcouteur implements ActionListener {
      * @param fileChoosed file with save informations
      */
     private void launchOldGame(String fileChoosed) {
-        this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/GameBoard.png");
 
         this.quoridorGUI.remove(this.quoridorGUI.getMenuLoad());
         this.quoridorGUI.setQuoridor(new Quoridor(fileChoosed, false));
@@ -181,7 +181,7 @@ public class ActionEcouteur implements ActionListener {
      * Resume the game
      */
     private void resumeGame() {
-        this.quoridorGUI.setBackgroundImage("../data/images/GameBoard.png");
+        this.quoridorGUI.setBackgroundImage("/data/images/GameBoard.png");
 
         this.quoridorGUI.remove(this.quoridorGUI.getMenuPause());
         this.quoridorGUI.add(this.quoridorGUI.getGameGUI());

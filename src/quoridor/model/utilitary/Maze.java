@@ -91,6 +91,7 @@ public class Maze {
     /**
      * BFS Algorithm to find a path
      *
+     * @param mat     matrix
      * @param i       "beginning" X
      * @param j       "beginning" Y
      * @param x       the arrival

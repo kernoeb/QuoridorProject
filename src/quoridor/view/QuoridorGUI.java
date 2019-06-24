@@ -334,7 +334,8 @@ public class QuoridorGUI extends JFrame {
      */
     public void setFontPalatino(JComponent component, int size) {
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+            //Font font = Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/data/fonts/palab.ttf"));
             component.setFont(font.deriveFont(size * 1.0f));
         } catch (Exception e) {
             System.err.println("JTexturedButton : " + e.getMessage());
@@ -348,7 +349,8 @@ public class QuoridorGUI extends JFrame {
      * @throws IOException
      */
     private Font getFontPalatino() throws FontFormatException, IOException {
-        return Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+        //return Font.createFont(Font.TRUETYPE_FONT, new File("../data/fonts/palab.ttf"));
+        return Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/data/fonts/palab.ttf"));
     }
 
     /**
@@ -381,11 +383,12 @@ public class QuoridorGUI extends JFrame {
         this.loadMenu = new JPanel();
         this.loadMenu.setLayout(new BorderLayout());
 
-        this.loadCrossButton = new JTexturedButton("../data/images/ArrowBack.png", "../data/images/ArrowBackHover.png");
+        this.loadCrossButton = new JTexturedButton("/data/images/ArrowBack.png", "/data/images/ArrowBackHover.png");
         this.loadCrossButton.setHorizontalAlignment(SwingConstants.LEFT);
         this.loadCrossButton.addActionListener(new ActionEcouteur(this));
 
-        this.fileChooser = new JFileChooser(new File("../data/save/"));
+        //this.fileChooser = new JFileChooser(new File("../data/save/"));
+        this.fileChooser = new JFileChooser(new File("save/"));
         FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Save files (.ser)", "ser");
         this.fileChooser.setFileFilter(fileFilter);
         this.fileChooser.addActionListener(new ActionEcouteur(this));
@@ -406,9 +409,9 @@ public class QuoridorGUI extends JFrame {
         this.setFontPalatino(quoridorText, 70);
         quoridorText.setPreferredSize(new Dimension(450, 250));
         quoridorText.setHorizontalAlignment(JLabel.CENTER);
-        this.playButton = new JTexturedButton("Jouer", "../data/images/Button.png", "../data/images/ButtonHover.png");
-        this.loadButton = new JTexturedButton("Charger", "../data/images/Button.png", "../data/images/ButtonHover.png");
-        this.quitButton = new JTexturedButton("Quitter", "../data/images/Button.png", "../data/images/ButtonHover.png");
+        this.playButton = new JTexturedButton("Jouer", "/data/images/Button.png", "/data/images/ButtonHover.png");
+        this.loadButton = new JTexturedButton("Charger", "/data/images/Button.png", "/data/images/ButtonHover.png");
+        this.quitButton = new JTexturedButton("Quitter", "/data/images/Button.png", "/data/images/ButtonHover.png");
 
         buttonMainMenu.setLayout(new GridLayout(3, 0, 30, 30));
         buttonMainMenu.add(this.playButton);
@@ -424,7 +427,7 @@ public class QuoridorGUI extends JFrame {
         this.mainMenu.add(quoridorText, BorderLayout.NORTH);
         this.mainMenu.add(buttonMainMenu, BorderLayout.CENTER);
 
-        this.setBackgroundImage("../data/images/MenuBackground.png");
+        this.setBackgroundImage("/data/images/MenuBackground.png");
         this.mainMenu.setOpaque(false);
     }
 
@@ -435,7 +438,7 @@ public class QuoridorGUI extends JFrame {
         this.modeMenu = new JPanel();
         JPanel buttonModeMenu = new JPanel();
 
-        this.modeCrossButton = new JTexturedButton("../data/images/ArrowBack.png", "../data/images/ArrowBackHover.png");
+        this.modeCrossButton = new JTexturedButton("/data/images/ArrowBack.png", "/data/images/ArrowBackHover.png");
 
         GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
@@ -451,8 +454,8 @@ public class QuoridorGUI extends JFrame {
         modeText.setHorizontalAlignment(JLabel.CENTER);
         modeText.setForeground(Color.WHITE);
 
-        this.modeHHButton = new JTexturedButton("Humain / Humain", "../data/images/Button.png", "../data/images/ButtonHover.png");
-        this.modeHAButton = new JTexturedButton("Humain / IA", "../data/images/Button.png", "../data/images/ButtonHover.png");
+        this.modeHHButton = new JTexturedButton("Humain / Humain", "/data/images/Button.png", "/data/images/ButtonHover.png");
+        this.modeHAButton = new JTexturedButton("Humain / IA", "/data/images/Button.png", "/data/images/ButtonHover.png");
 
         buttonModeMenu.setLayout(new GridLayout(2, 0, 50, 50));
         buttonModeMenu.add(this.modeHHButton);
@@ -491,9 +494,9 @@ public class QuoridorGUI extends JFrame {
         pauseText.setPreferredSize(new Dimension(400, 235));
         this.setFontPalatino(pauseText, 40);
         pauseText.setHorizontalAlignment(JLabel.CENTER);
-        this.resumeButton = new JTexturedButton("Reprendre", "../data/images/Button.png", "../data/images/ButtonHover.png");
-        this.restartButton = new JTexturedButton("Recommencer", "../data/images/Button.png", "../data/images/ButtonHover.png");
-        this.saveAndQuitButton = new JTexturedButton("Sauver et quitter", "../data/images/Button.png", "../data/images/ButtonHover.png");
+        this.resumeButton = new JTexturedButton("Reprendre", "/data/images/Button.png", "/data/images/ButtonHover.png");
+        this.restartButton = new JTexturedButton("Recommencer", "/data/images/Button.png", "/data/images/ButtonHover.png");
+        this.saveAndQuitButton = new JTexturedButton("Sauver et quitter", "/data/images/Button.png", "/data/images/ButtonHover.png");
 
         buttonPauseMenu.setLayout(new GridLayout(3, 0, 30, 30));
         buttonPauseMenu.add(this.resumeButton);
@@ -530,8 +533,8 @@ public class QuoridorGUI extends JFrame {
         this.endText.setPreferredSize(new Dimension(400, 300));
         this.setFontPalatino(this.endText, 40);
         this.endText.setHorizontalAlignment(JLabel.CENTER);
-        this.restartEndButton = new JTexturedButton("Recommencer", "../data/images/Button.png", "../data/images/ButtonHover.png");
-        this.menuBackButton = new JTexturedButton("Revenir au menu", "../data/images/Button.png", "../data/images/ButtonHover.png");
+        this.restartEndButton = new JTexturedButton("Recommencer", "/data/images/Button.png", "/data/images/ButtonHover.png");
+        this.menuBackButton = new JTexturedButton("Revenir au menu", "/data/images/Button.png", "/data/images/ButtonHover.png");
 
         buttonEndMenu.setLayout(new GridLayout(2, 0, 30, 30));
         buttonEndMenu.add(this.restartEndButton);

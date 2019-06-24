@@ -143,15 +143,15 @@ public class GameGUI extends JPanel {
 
         this.setLayout(new BorderLayout(0, 5));
 
-        this.fenceBlue = new ImageIcon((new ImageIcon("../data/icons/blueFence.png")).getImage().getScaledInstance(8, 65, java.awt.Image.SCALE_SMOOTH));
-        this.pawnBlue = new ImageIcon((new ImageIcon("../data/icons/bluePlayer.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
-        this.fenceOrange = new ImageIcon((new ImageIcon("../data/icons/orangeFence.png")).getImage().getScaledInstance(8, 65, java.awt.Image.SCALE_SMOOTH));
-        this.pawnOrange = new ImageIcon((new ImageIcon("../data/icons/orangePlayer.png")).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+        this.fenceBlue = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/blueFence.png"))).getImage().getScaledInstance(8, 65, java.awt.Image.SCALE_SMOOTH));
+        this.pawnBlue = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/bluePlayer.png"))).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+        this.fenceOrange = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/orangeFence.png"))).getImage().getScaledInstance(8, 65, java.awt.Image.SCALE_SMOOTH));
+        this.pawnOrange = new ImageIcon((new ImageIcon(getClass().getResource("/data/icons/orangePlayer.png"))).getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
 
         JPanel top = new JPanel();
         top.setLayout(new GridLayout(1, 3, -50, 0));
 
-        this.pauseButton = new JTexturedButton("../data/images/ButtonPause.png", "../data/images/ButtonPause.png");
+        this.pauseButton = new JTexturedButton("/data/images/ButtonPause.png", "/data/images/ButtonPause.png");
         top.add(this.pauseButton);
         this.pauseButton.addActionListener(new ActionEcouteur(this.quoridorGUI));
 

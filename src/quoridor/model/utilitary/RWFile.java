@@ -98,7 +98,9 @@ public class RWFile {
                     }
                 }
 
-                String fileName = new SimpleDateFormat("'../data/save/save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
+                File directory = new File("save/");
+                if (!directory.exists()) directory.mkdir();
+                String fileName = new SimpleDateFormat("'save/save_'yyyy-MM-dd'_'HH-mm-ss'.ser'").format(new Date());
                 FileOutputStream file = new FileOutputStream(fileName);
                 ObjectOutputStream obj = new ObjectOutputStream(file);
 
