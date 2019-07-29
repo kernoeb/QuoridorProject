@@ -1,6 +1,6 @@
 # QuoridorProject
 
-Application Java réalisée dans le cadre d'un projet universitaire. 
+Application Java réalisée dans le cadre d'un projet universitaire. (On a eu 15/20 :tada:)
 
 Quoridor : <https://www.gigamic.com/jeu/quoridor.model>  
 Plus d'informations sur le jeu ici : <https://fr.wikipedia.org/wiki/Quoridor>
